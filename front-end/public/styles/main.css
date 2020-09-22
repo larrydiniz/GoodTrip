@@ -1,7 +1,7 @@
 :root {  /* referencia a raiz do documento*/
     --cinza-bordas: #dddddd; 
     --fonte-normal:#656363;
-    --cinza-fundo-form: #fafafa
+    --cinza-fundo-form: #fafafa;
     --azul-logo: #006478;
     --azul: #026f81;
     --azul-seleção: #a5f2ff;

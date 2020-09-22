@@ -126,7 +126,7 @@ main {
 
 .criar #mockup{
     margin: 0 auto;
-    background-image: url(/public/icons/criar.png);
+    background-image: url(../icons/criar.png);
     width: 80%;
     height: 40%; 
 }
@@ -137,14 +137,14 @@ main {
 
 .criar #imagem{
     margin: 20px 0 0 auto;
-    background-image: url(/public/icons/travel_plans.svg);
+    background-image: url(../icons/travel_plans.svg);
     width: 70%;
     height: 55%;
 }
 
 .compartilhar #imagem{
     margin: 0 0 auto;
-    background-image: url(/public/icons/undraw_travelers.svg);
+    background-image: url(../icons/undraw_travelers.svg);
     width: 50%;
     height: 42%;
 }
@@ -155,14 +155,14 @@ main {
 
 .compartilhar #mockup{
     margin: 20px 0 0 auto;
-    background-image: url(/public/icons/compartilhar.png);
+    background-image: url(../icons/compartilhar.png);
     width: 70%;
     height: 43%; 
 }
 
 .conectar #mockup{
     margin: 0;
-    background-image: url(/public/icons/conectar.png);
+    background-image: url(../icons/conectar.png);
     width: 20%;
     height: 42%; 
 }
@@ -177,7 +177,7 @@ main {
 
 .conectar #imagem{
     margin: 0 auto;
-    background-image: url(/public/icons/friends.svg);
+    background-image: url(../icons/friends.svg);
     width: 100%;
     height: 70%;
 }
