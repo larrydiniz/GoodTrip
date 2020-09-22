@@ -194,6 +194,11 @@ main {
         border-right: var(--cinza-bordas) solid 1px;
     }
 
+    header .logo-main {
+        width: 140px;
+        margin-left: 43%;
+    }
+
     nav{
         background-color: transparent;
         height: 80px;
