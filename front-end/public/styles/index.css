@@ -1,0 +1,319 @@
+body{
+    position: relative;
+}
+
+/************ Header ************/
+header {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: var(--cinza-bordas) solid 1px;
+}
+
+header .menu-landing{
+    margin-left: 25px;
+    background-color: white;
+    border: none;
+    width: 30px;
+    height: 25px;
+
+}
+
+header .logo{
+    width: 100px;
+}
+
+header span{
+    width: 55px;
+}
+
+/************ Nav ************/
+nav{
+    width: 100vw;
+    height: 330px;
+    z-index: 10;
+    position: absolute;
+    display: none;
+    background-color: white;
+    animation: anim 0.5s forwards;
+}
+
+nav.show{
+    display: block;
+}
+
+ul{
+    margin: 0;
+    width: 100vw;
+    height: 100%;
+    padding: 0;
+    display: flex;    
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+li{
+    list-style: none;
+    display: flex;
+    height: 75px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--cinza-bordas) solid 1px;
+}
+
+li a{
+    padding: 25px 10%;
+    width: 100%;
+    color: #006478;
+    font-weight: 700; 
+    font-size: 20px;
+}
+
+li .menu{
+    font-weight: 700; 
+    font-size: 18px;
+}
+
+li #cadastrar{
+    margin: 0 25px 0 10%;
+    width: 160px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: white;
+    color: #006478;
+    border: var(--azul) solid 1px;
+}
+
+li #entrar{
+    margin-right: 10%;
+    width: 120px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: var(--azul);
+    color: white;
+    border: var(--azul) solid 1px;
+}
+
+/************ Divs ************/
+main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#imagem, #mockup{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.criar, .compartilhar, .conectar{
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: 375px;
+}
+
+#texto{
+    width: 100%;
+    height: 45px;
+    font-weight: 500;
+}
+
+.criar #mockup{
+    margin: 0 auto;
+    background-image: url(/public/icons/criar.png);
+    width: 80%;
+    height: 40%; 
+}
+
+.criar #texto{
+    margin: auto;
+}
+
+.criar #imagem{
+    margin: 20px 0 0 auto;
+    background-image: url(/public/icons/travel_plans.svg);
+    width: 70%;
+    height: 55%;
+}
+
+.compartilhar #imagem{
+    margin: 0 0 auto;
+    background-image: url(/public/icons/undraw_travelers.svg);
+    width: 50%;
+    height: 42%;
+}
+
+.compartilhar #texto{
+    margin: auto;
+}
+
+.compartilhar #mockup{
+    margin: 20px 0 0 auto;
+    background-image: url(/public/icons/compartilhar.png);
+    width: 70%;
+    height: 43%; 
+}
+
+.conectar #mockup{
+    margin: 0;
+    background-image: url(/public/icons/conectar.png);
+    width: 20%;
+    height: 42%; 
+}
+
+.conectar #texto{
+    margin: 0;
+    width: 250px;
+    position: relative;
+    align-self: flex-end;
+    bottom: 30%;
+}
+
+.conectar #imagem{
+    margin: 0 auto;
+    background-image: url(/public/icons/friends.svg);
+    width: 100%;
+    height: 70%;
+}
+
+
+/************ Responsividade ************/
+@media (min-width: 800px){
+	header .menu-landing{
+        display: none;
+    }
+
+    header .logo{
+        padding: 0 10px;
+        border-right: var(--cinza-bordas) solid 1px;
+    }
+
+    nav{
+        background-color: transparent;
+        height: 80px;
+        width: 86%;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        top: 0;
+        right: 0;   
+    }
+
+    ul{
+        padding: 10px 0;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    li{
+        padding-left: 15px;
+        border-bottom: none;
+        height: 80%;
+    }
+    li a{
+        padding: 25px 0;
+        font-size: 18px;
+    }
+
+    li #cadastrar{
+        margin: 0 10px;
+        width: 120px;
+    }
+    
+    li #entrar{
+        margin-right: 10px;
+        width: 80px;
+    }
+
+    #btn{
+        margin: 0;
+        order: 4;
+        border-left: var(--cinza-bordas) solid 1px;
+    }
+
+    .criar, .compartilhar, .conectar{
+        margin: 50px 0;
+        position: relative;
+        width: 95%;
+        height: 400px;
+    }
+
+    #texto{
+        height: 60px;
+        font-size: 20px;
+    }
+    
+    .criar #mockup{
+        margin: 30px 0 0;
+        width: 48%;
+        height: 65%;
+    }
+    
+    .criar #texto{
+        width: 45%;
+        margin: 30px auto 0;
+    }
+    
+    .criar #imagem{
+        margin: 0;
+        width: 40%;
+        height: 75%;
+        position: absolute;
+        top: 0;
+        right: 0;
+   }
+    
+    .compartilhar #imagem{
+        width: 25%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        top: 10%;
+ }
+    
+    .compartilhar #texto{
+        padding: 10px;
+        width: 35%;
+        position: absolute;
+        right: 40%;
+        bottom: 55%;
+  }
+    
+    .compartilhar #mockup{
+        width: 45%;
+        height: 95%;
+        position: absolute;
+        right: 0;
+        top: 10%;
+}
+    
+    .conectar #mockup{
+        width: 12%;
+        height: 65%;
+        position: absolute;
+        left: 10%;
+        bottom: 0;
+    }
+    
+    .conectar #texto{
+        width: 45%;
+        position: absolute;
+        left: 0;
+        top: 15%;      
+}
+    
+    .conectar #imagem{
+        width: 55%;
+        height: 85%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+ }
+}

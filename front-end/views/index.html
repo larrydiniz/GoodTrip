@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="shortcut icon" href="../public/icons/logo-min.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/main.css">
+    <link rel="stylesheet" href="../public/styles/index.css">
+    <title>GoodTrip</title>
+</head>
+<body>
+    <header>
+        <button class="menu-landing"><img src="/public/icons/menu.svg"></button>
+        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
+        <span></span>
+    </header>
+    <nav id="menu">
+        <ul>
+            <li id="btn">
+                <button class ="menu" id="cadastrar">Cadastrar</button>
+                <button class ="menu" id="entrar">Entrar</button>
+            </li>
+            <li>
+                <a onclick="menu();" href="#criar">Criar Viagens</a>
+            </li>
+            <li>
+                <a onclick="menu();" href="#compartilhar">Compartilhar com o Grupo</a>
+            </li>
+            <li>
+                <a onclick="menu();" href="#conectar">Conectar com amigos</a>
+            </li>       
+        </ul>
+    </nav>
+    <main class="content">
+        <a name="criar"></a>
+        <div class="criar">
+            <div class="criar" id="mockup"> </div>
+            <div class="criar" id="texto">
+                <p>Deixe registrados seus planos de viagem, para não esquecer de nada!</p>
+            </div>
+            <div class="criar" id="imagem"> </div>
+        </div>
+
+        <div class="compartilhar">
+            <div class="compartilhar" id="imagem"> </div>
+            <div class="compartilhar" id="texto">
+                <p>Compartilhe sua viagem com amigos, e planejem os roteiros juntos...</p>
+            </div>
+            <div class="compartilhar" id="mockup"> </div>     
+        </div>
+        <a name="compartilhar"></a>
+
+        <div class="conectar">
+            <div class="conectar" id="mockup"> </div>
+            <div class="conectar" id="texto">
+                <p>Adicione amigos a sua lista, para criarem viagens juntos!</p>
+            </div>
+            <div class="conectar" id="imagem"> </div>
+        </div>
+        <a name="conectar"></a>
+    </main>
+    <script src='/public/scripts/main.js'></script>
+</body>
+</html>
