@@ -169,7 +169,7 @@ main {
 
 .conectar #texto{
     margin: 0;
-    width: 250px;
+    width: 75%;
     position: relative;
     align-self: flex-end;
     bottom: 30%;
