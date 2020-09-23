@@ -242,12 +242,13 @@ div.login{
 div.login.conteudo{
     background-color: #ffffff;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
     justify-content: flex-start;
     position: fixed;
+    overflow-y: hidden;
     left: 0px;
     top: 0px;
-    width: 100%;
+    width: 100vw;
     z-index: -2;
 }
 
