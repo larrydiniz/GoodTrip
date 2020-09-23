@@ -185,109 +185,146 @@ main {
     height: 70%;
 }
 
-/************ Modal login **************/
+/************* Modais ******************/
 
-a.login.esqueci{
-    font-size: 12px;
-    margin: 0 0 0px 150px;
-    text-decoration: none;
-    color: var(--azul);
-}
+     button.menu{
+        z-index: 2;
+     }
 
-button.login.fechar{
-    font-size: 20px;
-    font-weight: 700;
-    background-color: #ffffff;
-    border: 0;
-    color: var(--azul);
-    margin: 15px 0 0 300px;
-}
+     div.overlay{
+        background-color: rgba(65, 65, 65, 0.5);
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -2;
+    }
 
-button.login.entrar{
-    width: 300px;
-    height: 55px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    background-color: var(--azul);
-    color: white;
-    border: var(--azul) solid 1px;
-    margin: 45px 0 10px 0;
-}
+    a.login.esqueci{
+        font-size: 12px;
+        margin: 0 0 0px 150px;
+        text-decoration: none;
+        color: var(--azul);
+    }
 
-button.login.google{
-    width: 300px;
-    height: 55px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    align-items: center;
-    background-color: white;
-    color: #006478;
-    border: var(--azul) solid 1px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
+    button.login.fechar, button.cadastro.fechar{
+        font-size: 20px;
+        font-weight: 700;
+        background-color: #ffffff;
+        border: 0;
+        color: var(--azul);
+        margin: 15px 0 0 90%;
+    }
 
-button.login.google > p{
-    margin: 0 0 0 10px;
-}
+    button.login.entrar{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: var(--azul);
+        color: white;
+        border: var(--azul) solid 1px;
+        margin: 45px 0 10px 0;
+    }
 
-div.login{
-    align-items: center;
-    display: flex;
-}
+    button.cadastro.cadastrar{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: var(--azul);
+        color: white;
+        border: var(--azul) solid 1px;
+        margin: 0 0 0 0;
+    }
 
-div.login.conteudo{
-    background-color: #ffffff;
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-start;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    z-index: -2;
-}
+    button.login.google{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        align-items: center;
+        background-color: white;
+        color: #006478;
+        border: var(--azul) solid 1px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 0 5px 0;
+    }
 
-div.login.cadastrar{
-    flex-direction: row;
-    justify-content: center;
-    margin: 15px 0 0 0;
-}
+    button.login.google > p{
+        margin: 0 0 0 10px;
+    }
 
-div.login.cadastrar > svg{
-    margin: 0 5px 5px 0;
-}
+    div.login, div.cadastro{
+        align-items: center;
+        display: flex;
+    }
 
-div.login.cadastrar > a {
-    text-decoration: none;
-    color: var(--azul);
-}
+    div.login.conteudo, div.cadastro.conteudo{
+        background-color: #ffffff;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: flex-start;
+        position: fixed;
+        overflow-y: hidden;
+        left: 0px;
+        top: 0px;
+        width: 100vw;
+        z-index: -2;
+    }
 
-div.login.show{
-    z-index: 3;
-}
+    div.login.cadastrar{
+        flex-direction: row;
+        justify-content: center;
+        margin: 15px 0 0 0;
+    }
 
-form.login{
-    display: flex;
-    flex-direction: column;
-}
+    div.login.cadastrar > svg{
+        margin: 0 10px 5px 0;
+    }
 
-input.login{
-    background-color: #fafafa;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    height: 55px;
-    margin: 0 0 20px 0;
-    padding: 0 0 0 10px;
-    width: 300px;
-}
+    div.login.cadastrar > a {
+        text-decoration: none;
+        margin: 0 0 0 5px;
+        color: var(--azul);
+    }
 
-p.login.err{
-    height: 12px;
-}
+    div.login.show, div.cadastro.show{
+        z-index: 5;
+    }
+
+    form.login, form.cadastro{
+        display: flex;
+        flex-direction: column;
+    }
+
+    input.login, input.cadastro{
+        background-color: #fafafa;
+        border: 1px solid #dddddd;
+        border-radius: 8px;
+        height: 55px;
+        margin: 0 0 20px 0;
+        padding: 0 0 0 10px;
+        width: 300px;
+    }
+
+    p.login.err, p.cadastro.err{
+        height: 12px;
+    }
+
+    p.cadastro{
+        color: #656565;
+        font-size: 16px;
+        margin: 5px 0 8px 0;
+        font-weight: 700;
+    }
 
 /************ Responsividade ************/
 @media (min-width: 800px){
@@ -427,4 +464,18 @@ p.login.err{
         right: 0;
         bottom: 0;
  }
+
+ /**     MODAIS  **/
+
+    div.overlay.show{
+        display: block;
+        z-index: 3;
+    }
+
+     div.login.conteudo, div.cadastro.conteudo{
+        height: 800px;
+        width: 752px;
+        top: 150px;
+        left: calc(calc(100% - 752px)/2);
+     }
 }
