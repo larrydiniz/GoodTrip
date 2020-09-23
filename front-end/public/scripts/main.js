@@ -4,6 +4,7 @@ const btn = document.querySelector(".menu-landing");
 const btnMenuLogin = document.querySelector("button#entrar.menu");
 const divLoginContent = document.querySelector("div.login.conteudo");
 const btnLoginClose = document.querySelector("button.login.fechar");
+const overlay = document.querySelector("div.overlay");
 
 function toggleClass(element, toggClass){
 
@@ -22,4 +23,6 @@ function toggleClass(element, toggClass){
 btn.addEventListener("click", toggleClass(nav, "show"));
 nav.addEventListener("click", toggleClass(nav, "show"));
 btnMenuLogin.addEventListener("click", toggleClass(divLoginContent, "show"));
+btnMenuLogin.addEventListener("click", toggleClass(overlay, "show"));
 btnLoginClose.addEventListener("click", toggleClass(divLoginContent, "show"));
+btnLoginClose.addEventListener("click", toggleClass(overlay, "show"));
