@@ -185,110 +185,128 @@ main {
     height: 70%;
 }
 
+/************* Modais ******************/
+
+     button.menu{
+        z-index: 2;
+     }
+
+     div.overlay{
+        background-color: rgba(65, 65, 65, 0.5);
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -2;
+    }
+
 /************ Modal login **************/
 
-a.login.esqueci{
-    font-size: 12px;
-    margin: 0 0 0px 150px;
-    text-decoration: none;
-    color: var(--azul);
-}
+    a.login.esqueci{
+        font-size: 12px;
+        margin: 0 0 0px 150px;
+        text-decoration: none;
+        color: var(--azul);
+    }
 
-button.login.fechar{
-    font-size: 20px;
-    font-weight: 700;
-    background-color: #ffffff;
-    border: 0;
-    color: var(--azul);
-    margin: 15px 0 0 300px;
-}
+    button.login.fechar{
+        font-size: 20px;
+        font-weight: 700;
+        background-color: #ffffff;
+        border: 0;
+        color: var(--azul);
+        margin: 15px 0 0 90%;
+    }
 
-button.login.entrar{
-    width: 300px;
-    height: 55px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    background-color: var(--azul);
-    color: white;
-    border: var(--azul) solid 1px;
-    margin: 45px 0 10px 0;
-}
+    button.login.entrar{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: var(--azul);
+        color: white;
+        border: var(--azul) solid 1px;
+        margin: 45px 0 10px 0;
+    }
 
-button.login.google{
-    width: 300px;
-    height: 55px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    align-items: center;
-    background-color: white;
-    color: #006478;
-    border: var(--azul) solid 1px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
+    button.login.google{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        align-items: center;
+        background-color: white;
+        color: #006478;
+        border: var(--azul) solid 1px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
-button.login.google > p{
-    margin: 0 0 0 10px;
-}
+    button.login.google > p{
+        margin: 0 0 0 10px;
+    }
 
-div.login{
-    align-items: center;
-    display: flex;
-}
+    div.login{
+        align-items: center;
+        display: flex;
+    }
 
-div.login.conteudo{
-    background-color: #ffffff;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: flex-start;
-    position: fixed;
-    overflow-y: hidden;
-    left: 0px;
-    top: 0px;
-    width: 100vw;
-    z-index: -2;
-}
+    div.login.conteudo{
+        background-color: #ffffff;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: flex-start;
+        position: fixed;
+        overflow-y: hidden;
+        left: 0px;
+        top: 0px;
+        width: 100vw;
+        z-index: -2;
+    }
 
-div.login.cadastrar{
-    flex-direction: row;
-    justify-content: center;
-    margin: 15px 0 0 0;
-}
+    div.login.cadastrar{
+        flex-direction: row;
+        justify-content: center;
+        margin: 15px 0 0 0;
+    }
 
-div.login.cadastrar > svg{
-    margin: 0 5px 5px 0;
-}
+    div.login.cadastrar > svg{
+        margin: 0 10px 5px 0;
+    }
 
-div.login.cadastrar > a {
-    text-decoration: none;
-    color: var(--azul);
-}
+    div.login.cadastrar > a {
+        text-decoration: none;
+        margin: 0 0 0 5px;
+        color: var(--azul);
+    }
 
-div.login.show{
-    z-index: 3;
-}
+    div.login.show{
+        z-index: 5;
+    }
 
-form.login{
-    display: flex;
-    flex-direction: column;
-}
+    form.login{
+        display: flex;
+        flex-direction: column;
+    }
 
-input.login{
-    background-color: #fafafa;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    height: 55px;
-    margin: 0 0 20px 0;
-    padding: 0 0 0 10px;
-    width: 300px;
-}
+    input.login{
+        background-color: #fafafa;
+        border: 1px solid #dddddd;
+        border-radius: 8px;
+        height: 55px;
+        margin: 0 0 20px 0;
+        padding: 0 0 0 10px;
+        width: 300px;
+    }
 
-p.login.err{
-    height: 12px;
-}
+    p.login.err{
+        height: 12px;
+    }
 
 /************ Responsividade ************/
 @media (min-width: 800px){
@@ -428,4 +446,18 @@ p.login.err{
         right: 0;
         bottom: 0;
  }
+
+ /**     MODAL LOGIN   **/
+
+    div.overlay.show{
+        display: block;
+        z-index: 3;
+    }
+
+     div.login.conteudo{
+        height: 800px;
+        width: 752px;
+        top: 150px;
+        left: calc(calc(100% - 752px)/2);
+     }
 }
