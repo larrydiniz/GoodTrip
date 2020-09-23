@@ -202,8 +202,6 @@ main {
         z-index: -2;
     }
 
-/************ Modal login **************/
-
     a.login.esqueci{
         font-size: 12px;
         margin: 0 0 0px 150px;
@@ -211,7 +209,7 @@ main {
         color: var(--azul);
     }
 
-    button.login.fechar{
+    button.login.fechar, button.cadastro.fechar{
         font-size: 20px;
         font-weight: 700;
         background-color: #ffffff;
@@ -232,6 +230,18 @@ main {
         margin: 45px 0 10px 0;
     }
 
+    button.cadastro.cadastrar{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: var(--azul);
+        color: white;
+        border: var(--azul) solid 1px;
+        margin: 0 0 0 0;
+    }
+
     button.login.google{
         width: 300px;
         height: 55px;
@@ -245,18 +255,19 @@ main {
         display: flex;
         flex-direction: row;
         justify-content: center;
+        margin: 0 0 5px 0;
     }
 
     button.login.google > p{
         margin: 0 0 0 10px;
     }
 
-    div.login{
+    div.login, div.cadastro{
         align-items: center;
         display: flex;
     }
 
-    div.login.conteudo{
+    div.login.conteudo, div.cadastro.conteudo{
         background-color: #ffffff;
         flex-direction: column;
         height: 100vh;
@@ -285,16 +296,16 @@ main {
         color: var(--azul);
     }
 
-    div.login.show{
+    div.login.show, div.cadastro.show{
         z-index: 5;
     }
 
-    form.login{
+    form.login, form.cadastro{
         display: flex;
         flex-direction: column;
     }
 
-    input.login{
+    input.login, input.cadastro{
         background-color: #fafafa;
         border: 1px solid #dddddd;
         border-radius: 8px;
@@ -304,8 +315,15 @@ main {
         width: 300px;
     }
 
-    p.login.err{
+    p.login.err, p.cadastro.err{
         height: 12px;
+    }
+
+    p.cadastro{
+        color: #656565;
+        font-size: 16px;
+        margin: 5px 0 8px 0;
+        font-weight: 700;
     }
 
 /************ Responsividade ************/
@@ -447,14 +465,14 @@ main {
         bottom: 0;
  }
 
- /**     MODAL LOGIN   **/
+ /**     MODAIS  **/
 
     div.overlay.show{
         display: block;
         z-index: 3;
     }
 
-     div.login.conteudo{
+     div.login.conteudo, div.cadastro{
         height: 800px;
         width: 752px;
         top: 150px;
