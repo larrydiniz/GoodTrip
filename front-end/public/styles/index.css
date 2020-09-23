@@ -472,7 +472,7 @@ main {
         z-index: 3;
     }
 
-     div.login.conteudo, div.cadastro{
+     div.login.conteudo, div.cadastro.conteudo{
         height: 800px;
         width: 752px;
         top: 150px;
