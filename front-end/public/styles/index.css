@@ -172,7 +172,7 @@ main {
 
 .conectar #texto{
     margin: 0;
-    width: 250px;
+    width: 75%;
     position: relative;
     align-self: flex-end;
     bottom: 30%;
@@ -298,6 +298,11 @@ p.login.err{
     header .logo{
         padding: 0 10px;
         border-right: var(--cinza-bordas) solid 1px;
+    }
+
+    header .logo-main {
+        width: 140px;
+        margin-left: 43%;
     }
 
     nav{
