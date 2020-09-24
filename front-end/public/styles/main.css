@@ -37,6 +37,133 @@ a {
     text-decoration: none;
 }
 
+.img-menu-lateral{
+    margin-right: 30px;
+}
+
+.menu-li {
+    list-style-type: none;
+    margin-top: 10px;
+}
+.menu-lateral {
+    width: 300px;
+    margin-left: 10px;
+    position: fixed;
+    display: flex;
+    flex-flow: wrap row;
+}
+
+.ancora-lateral{
+    display: flex;
+    width: 250px;
+    justify-content: start;
+}
+
+.ancora-lateral > p {
+    color: #006478;
+    font-weight: bold;
+}
+.logo{
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-principal{
+    margin-left: 30%;
+    width: 70%;
+    height: 80px;
+    position: relative;
+    display: flex;
+    flex-flow: wrap row;
+
+}
+
+.titulo {
+    width: 15%;
+    font-size: 36px;
+    margin-left: 20px;
+    text-align: center;
+    color: var(--fonte-normal);
+
+}
+
+.conteudo{
+    margin-left: 32%;
+    width: 66%;
+    display: flex;
+    align-content: center;
+    flex-flow: wrap row;
+    justify-content: space-between;
+    border: var(--cinza-bordas) solid 1px;
+    border-radius: 8px;
+    padding-bottom: 10px;
+    
+}
+
+.perfil {
+    width: 300px;
+    display: flex;
+    flex-flow: wrap row;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.dados-perfil{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.dados-perfil-nome{
+    color: #656363;
+    font-size: 20;
+    font-weight: bold;
+}
+
+.dados-perfil-user {
+    color: #656363;
+    font-size: 14;
+
+}
+.pesquisar {
+    width: 250px;
+    margin-right: 20px;
+    height: 25px;
+    background-image: url(../icons/pesquisar.svg);
+    background-position: 95%;
+    background-color: #fafafa;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    align-self: center;
+    justify-content: flex-start;
+    margin-right: 25px;
+    padding-left: 5px;
+    width: 250px;
+    height: 25px;
+    color: var(--fonte-normal);
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+}
+
+.btn-cadastrar{
+    position: relative;
+    top: 10px;
+    left: 89%;
+}
+
+.imagem-viagem {
+    width: 96%;
+    margin-top: 10px;
+}
+
+.overlay-imagem {
+    margin-left: 20px;
+    width: 700px;
+}
+
 @media (min-width: 800px){
     body{
         margin: 20px auto; 
@@ -47,43 +174,6 @@ a {
         margin-left: 55%;
     }
 
-    h1 {
-        margin-left: left;
-        width: 100%;
-        margin-left: 5%;
-        color: var(--fonte-normal);
-    }
-
-    #card-viagem {
-        margin-left: 30%;
-        width: 69%;
-        max-width: 1024px;
-        border: var(--cinza-bordas) solid 1px;
-        border-radius: 8px;
-    }
-
-    section {
-        display: flex;
-        justify-content: space-between;
-        flex-flow: wrap;
-        margin-bottom: 10px;
-    }
-
-    section > h1 {
-        width: 100px;
-    }
-    .lista-viagens{
-        width: 65%;
-        max-width: 650px;
-    }
-    
-    .imagem-lista-viagens {
-        background-size: cover;
-        margin-left: 32px;
-        width: 650px;
-        margin-top: 10px;
-
-    }
     header.landing {
         width: 100%;
         height: 75px;
@@ -102,20 +192,4 @@ a {
         border-bottom: none;
     }
 
-    .input-pesquisar {
-        background-image: url(../icons/pesquisar.svg);
-        background-position: 95%;
-        background-size: 16px;
-        background-repeat: no-repeat;
-        align-self: center;
-        justify-content: flex-start;
-        flex-direction: column;
-        margin-right: 25px;
-        padding-left: 5px;
-        width: 250px;
-        height: 21px;
-        border-radius: 8px;
-        border-color: #DDDDDD;
-        color: var(--fonte-normal);
-    }
 }

@@ -5,25 +5,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/styles/main.css">
+
     <title>GoodTrip</title>
 </head>
 <body>
-    <header class="header-main">
-        <img class="logo-main" src="../../public/icons/logo_extenso.svg" alt="">
-        <span></span>
-    </header>
-    <main class="content">
-        <section id="card-viagem">
-            <h1> Viagens </h1>
-            <input class="input-pesquisar" placeholder="Procurar viagem" type="text">
+    <section class="secao-principal">
+        <nav class="menu-lateral">
 
-            <section class="lista-viagens">
-                <img class="imagem-lista-viagens" src="../../public/icons/teste.svg">
-                <img class="imagem-lista-viagens" src="../../public/icons/teste.svg">
-                <img class="imagem-lista-viagens" src="../../public/icons/teste.svg">
-
-            </section>
-        </section>
-    </main>
+            <div class="perfil">
+                <img src="../../public/icons/perfil.svg" alt="">
+                <div class="dados-perfil">
+                    <div class="dados-perfil-nome">
+                        Ana Julia 
+                    </div>
+                    <div class="dados-perfil-user">
+                        @annajd
+                    </div>
+                </div>
+            </div>
+            <ul>
+                <li class="menu-li"> 
+                    <a class="ancora-lateral" href="#"> 
+                        <img class="img-menu-lateral" src="../../public/icons/viagem.svg"> 
+                        <p>Viagens</p>
+                    </a> 
+                </li>
+                <li class="menu-li"> 
+                    <a class="ancora-lateral" href="#"> 
+                        <img class="img-menu-lateral" src="../../public/icons/amigos.svg"> 
+                        <p>Amigos</p>
+                    </a> 
+                </li>
+                <li class="menu-li"> 
+                    <a class="ancora-lateral" href="#"> 
+                        <img class="img-menu-lateral" src="../../public/icons/mala.svg"> 
+                        <p>Mala</p>
+                    </a> 
+                </li>
+                <li class="menu-li"> 
+                    <a class="ancora-lateral" href="#"> 
+                        <img class="img-menu-lateral" src="../../public/icons/embarque.svg"> 
+                        <p>Embarque</p>
+                    </a> 
+                </li>
+            </ul>
+        </nav>
+        <header class="header-principal">
+            <img class="logo" src="../../public/icons/logo_extenso.svg" alt="">
+        </header>
+        <div class="conteudo">
+                <h1 class="titulo">Viagens</h1>
+                <input class="pesquisar" type="text" placeholder="Procurar viagem">
+                <div class="overlay-imagem">
+                    <img class="imagem-viagem" src="../../public/icons/teste.svg">   
+                </div>
+                <div class="overlay-imagem">
+                    <img class="imagem-viagem" src="../../public/icons/teste.svg">   
+                </div> 
+                
+                <div class="btn-cadastrar">
+                    <a href="#">
+                        <img src="../../public/icons/adicionar.svg" alt="">
+                    </a>
+                </div>
+        </div>
+    </section>
 </body>
 </html>
