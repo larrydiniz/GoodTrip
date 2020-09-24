@@ -1,0 +1,180 @@
+/************ Header ************/
+header {
+    background-color: #ffffff;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: var(--cinza-bordas) solid 1px;
+}
+
+header .menu-landing{
+    margin-left: 25px;
+    background-color: white;
+    border: none;
+    width: 30px;
+    height: 25px;
+
+}
+
+header .logo{
+    width: 100px;
+}
+
+header span{
+    width: 55px;
+}
+
+/************ Nav ************/
+nav{
+    width: 85%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+    background-color: white;
+    animation: anim 0.5s forwards;
+}
+
+nav.show{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.perfil {
+    margin: 0 25px;
+    padding: 25px 0;
+    height: 70px;
+    border-bottom: var(--cinza-bordas) solid 1px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.img-perfil{
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    background-image: url(../icons/perfil.svg); /*deixei a div redonda pra inserir a imagem*/
+    background-size: cover;
+}
+
+.dados-perfil{
+    margin-left: 10px;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dados-perfil #nome , #user{
+    width: 100%;
+    color: var(--fonte-normal);
+}
+.dados-perfil #nome{ 
+    font-weight: 700;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.dados-perfil #user{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+ul{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    display: flex;    
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+li{
+    margin: 0 25px;
+    padding: 5% 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+li a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    color: #006478;
+    font-weight: 700; 
+    font-size: 14px;
+}
+
+li a p{
+    margin-left: 20px;
+}
+
+ul span{
+    margin: 2% 25px; ;
+    height: 1px;
+    background-color: var(--cinza-bordas);
+}
+
+
+/************ RESPONSIVIDADE ************/
+@media (min-width: 500px){
+    nav{
+        width: 50%;
+    }
+}
+
+@media (min-width: 800px){
+    body{
+        height: 100vh;
+    }
+
+    header{
+        width: 60%;
+        position: absolute;
+        right: 0;
+        border: 0;
+    }
+
+	header .menu-landing{
+        display: none;
+    }
+
+    header .logo{
+        position: absolute;
+        right: 50%;
+        width: 150px;   
+    }
+
+    header .logo-main {
+        width: 140px;
+        margin-left: 43%;
+    }
+
+    nav{
+        background-color: transparent;
+        width: 28%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: absolute;
+        top: 0;
+        left: 0;   
+    }
+
+    main{
+        width: 70%;
+        margin: 15px;
+        position: absolute;
+        right: 0;
+        top: 75px;
+        height: 85%;
+        border-radius: 8px;
+        border: var(--cinza-bordas) solid 1px;;
+    }
+}

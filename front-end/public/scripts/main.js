@@ -36,3 +36,13 @@ divLoginContent.addEventListener("toggling", toggleClass(overlay, "show"));
 btnMenuRegister.addEventListener("click", toggleClass(divRegisterContent, "show"));
 btnRegisterClose.addEventListener("click", toggleClass(divRegisterContent, "show"));
 divRegisterContent.addEventListener("toggling", toggleClass(overlay, "show"));
+
+/************** Imagem Cadastro-Viagem ************/
+function PreviewImage() {
+	var imgReader = new FileReader();
+	imgReader.readAsDataURL(document.getElementById("carregar-imagem").files[0]);
+
+	imgReader.onload = function (imgEvent) {
+		document.getElementById("preview").src = imgEvent.target.result;
+	};
+};
