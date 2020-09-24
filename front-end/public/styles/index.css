@@ -54,6 +54,12 @@ ul{
     display: flex;    
     flex-direction: column;
     justify-content: space-between;
+    z-index: -2;
+}
+
+ul.hide{
+    display: none;
+    z-index:2;
 }
 
 li{
@@ -63,6 +69,7 @@ li{
     justify-content: space-between;
     align-items: center;
     border-bottom: var(--cinza-bordas) solid 1px;
+    z-index: 2;
 }
 
 li a{
@@ -264,7 +271,7 @@ main {
 
     div.login, div.cadastro{
         align-items: center;
-        display: flex;
+        display: none;
     }
 
     div.login.conteudo, div.cadastro.conteudo{
@@ -297,6 +304,7 @@ main {
     }
 
     div.login.show, div.cadastro.show{
+        display: flex;
         z-index: 5;
     }
 
@@ -358,6 +366,7 @@ main {
         width: 100%;
         flex-direction: row;
         justify-content: space-between;
+        z-index: -2;
     }
     
     li{
@@ -384,6 +393,11 @@ main {
         margin: 0;
         order: 4;
         border-left: var(--cinza-bordas) solid 1px;
+    }
+
+    ul.hide{
+        display: none;
+        z-index:2;
     }
 
     .criar, .compartilhar, .conectar{
@@ -475,7 +489,7 @@ main {
      div.login.conteudo, div.cadastro.conteudo{
         height: 800px;
         width: 752px;
-        top: 150px;
+        top: 85px;
         left: calc(calc(100% - 752px)/2);
      }
 }

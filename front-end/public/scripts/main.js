@@ -7,6 +7,7 @@ const divLoginContent = document.querySelector("div.login.conteudo");
 const divRegisterContent = document.querySelector("div.cadastro.conteudo");
 const btnLoginClose = document.querySelector("button.login.fechar");
 const btnRegisterClose = document.querySelector("button.cadastro.fechar");
+const ulNav = document.querySelector("ul");
 const overlay = document.querySelector("div.overlay");
 
 function toggleClass(element, toggClass){
@@ -32,7 +33,9 @@ nav.addEventListener("click", toggleClass(nav, "show"));
 btnMenuLogin.addEventListener("click", toggleClass(divLoginContent, "show"));
 btnLoginClose.addEventListener("click", toggleClass(divLoginContent, "show"));
 divLoginContent.addEventListener("toggling", toggleClass(overlay, "show"));
+divLoginContent.addEventListener("toggling", toggleClass(ulNav, "hide"));
 
 btnMenuRegister.addEventListener("click", toggleClass(divRegisterContent, "show"));
 btnRegisterClose.addEventListener("click", toggleClass(divRegisterContent, "show"));
 divRegisterContent.addEventListener("toggling", toggleClass(overlay, "show"));
+divRegisterContent.addEventListener("toggling", toggleClass(ulNav, "hide"));
