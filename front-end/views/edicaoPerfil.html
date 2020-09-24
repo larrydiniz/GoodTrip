@@ -9,15 +9,18 @@
     <title>GoodTrip</title>
 </head>
 <body>
+    <nav id="seraomenu">
+        
+    </nav>
     <header class="header-landing">
         <button class="menu-landing"><img src="../public/icons/menu.svg"></button>
         <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
         <span></span>
     </header>
     <main id="edicao_perfil_inputs">
-        <div id="edicao_imagem">
-            <img src="">
-            <label for="inputImagem">Trocar foto de perfil
+            <label id="edicao_imagem" for="inputImagem">
+                <img src="">
+                <p>Trocar foto de perfil</p>
                 <div id="edicao_fake_input">
                     <p>Escolher imagem...</p>
                     <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +29,6 @@
                 </div>
             </label>
             <input type="file" name="imagemPerfil" id="inputImagem" accept="image/png, image/jpg">
-        </div>
         <label id="nomeUsuario" for="edicao_nome_usuario">Nome de Usuário</label>
         <input type="text" name="nomeUsuario" id="edicao_nome_usuario">
         <textarea  id="edicao_descricao"></textarea>
