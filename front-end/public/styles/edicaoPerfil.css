@@ -152,6 +152,7 @@ main#edicao_perfil_inputs{
     nav#seraomenu{
         display: flex;
         margin: 0 0 200px 0;
+        position: relative;
     }
 
     button.menu-landing{
