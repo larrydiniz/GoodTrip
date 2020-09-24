@@ -274,7 +274,7 @@ main {
         display: none;
     }
 
-    div.login.conteudo, div.cadastro.conteudo{
+    div.login.modal, div.cadastro.modal{
         background-color: #ffffff;
         flex-direction: column;
         height: 100vh;
@@ -486,7 +486,7 @@ main {
         z-index: 3;
     }
 
-     div.login.conteudo, div.cadastro.conteudo{
+     div.login.modal, div.cadastro.modal{
         height: 800px;
         width: 752px;
         top: 85px;
