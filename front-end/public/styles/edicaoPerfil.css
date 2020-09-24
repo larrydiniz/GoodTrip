@@ -1,0 +1,238 @@
+main#edicao_perfil_inputs{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+/************ Header ************/
+    header {
+        background-color: #ffffff;
+        width: 100%;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: var(--cinza-bordas) solid 1px;
+    }
+
+    header .menu-landing{
+        margin-left: 25px;
+        background-color: white;
+        border: none;
+        width: 30px;
+        height: 25px;
+
+    }
+
+    header .logo{
+        width: 100px;
+    }
+
+    header span{
+        width: 55px;
+    }
+
+/***** NAV MENU        ******/
+    nav#seraomenu{
+        background-color: #dddddd;
+        display: none;
+        height: 680px;
+        width: 250px;
+    }
+
+/***** TROCA DA IMAGEM ******/
+
+    label#edicao_imagem > p{
+        margin: 0 40px 0 0;
+    }
+
+
+    label#edicao_imagem > img{
+        width: 86px;
+        height: 86px;
+        border-radius: 40px;
+        background-color: #656565;
+    }
+
+    label#edicao_imagem{
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        display: flex;
+        width: 300px;
+        height: 82px;
+        margin: 30px 25px 5px 30px;
+        color: var(--azul);
+        font-weight: 700;
+    }
+
+    input#inputImagem{
+        display: none;
+    }
+
+    div#edicao_fake_input{
+        height: 32px;
+        width: 198px;
+        align-items: center;
+        display: flex;
+        border: 1px solid #dddddd;
+        border-radius: 8px;
+        justify-content: center;
+        margin: 5px 0 0 0;
+    }
+
+    div#edicao_fake_input > p{
+        color: #8E8E8E;
+        font-size: 12px;
+        margin: 0 50px 0 0;
+    }
+
+    div#edicao_fake_input > svg{
+        margin: 0 0 4px 0;
+    }
+
+/****** TROCAS TEXTUAIS ******/
+    label#nomeUsuario{
+        height: 18px;
+        margin: 25px 170px 5px 0;
+        color: var(--azul);
+        font-weight: 700;
+    }
+
+    input#edicao_nome_usuario{
+        width: 300px;
+        height: 50px;
+        background-color: #fafafa;
+        border: 1px solid #dddddd;
+        border-radius: 8px;
+        margin: 0 0 30px 0;
+        padding: 0 0 0 10px;
+    }
+
+    textarea#edicao_descricao{
+        width: 300px;
+        height: 140px;
+        background-color: #fafafa;
+        border: 1px solid #dddddd;
+        border-radius: 8px;
+        margin: 0 0 20px 0;
+        padding: 0 0 0 10px;
+        resize: none;
+    }
+
+    button#edicao_salvar{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: var(--azul);
+        color: white;
+        border: var(--azul) solid 1px;
+        margin: 45px 0 10px 0;
+    }
+
+@media (min-width: 800px){
+    body{
+        align-items: flex-end;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 900px;
+    }
+
+    main#edicao_perfil_inputs{
+        height: 760px;
+        width: 700px;
+        margin: 0 20px 0 0;
+        border: 1px solid #ddd;
+        border-radius: 14px;
+    }
+
+    nav#seraomenu{
+        display: flex;
+        margin: 0 0 200px 0;
+    }
+
+    button.menu-landing{
+        display: none;
+    }
+
+    header.header-landing{
+        justify-content: center;
+        display: flex;
+        width: 700px;
+        border: none;
+    }
+
+    img.logo{
+        height: 73px;
+        width: 147px;
+    }
+
+/***** TROCA DA IMAGEM ******/
+
+    label#edicao_imagem{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 260px;
+        width: 202px;
+        justify-content: center;
+        margin: 0;
+    }
+
+    label#edicao_imagem > img{
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+    }
+
+    label#edicao_imagem > p{
+        display: none;
+    }
+
+    div#edicao_fake_input{
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: #fff;
+        position: relative;
+        left: 70px;
+        bottom: 65px;
+    }
+
+    div#edicao_fake_input > p{
+        display: none;
+    }
+
+    div#edicao_fake_input > svg{
+        width: 20px;
+        height: 20px;
+    }
+
+/****** TROCAS TEXTUAIS *****/
+    label#nomeUsuario{
+        height: 18px;
+        margin: 25px 170px 5px 0;
+        color: var(--azul);
+        font-weight: 700;
+    }
+
+    textarea#edicao_descricao{
+        width: 650px;
+        height: 140px;
+    }
+
+    button#edicao_salvar{
+        width: 300px;
+        height: 55px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: var(--azul);
+        color: white;
+        border: var(--azul) solid 1px;
+        margin: 45px 0 10px 0;
+    }
+}
