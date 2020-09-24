@@ -10,7 +10,7 @@
 </head>
 <body >
     <section class="secao-principal">
-        <nav class="menu-lateral">
+        <nav id="menu" class="menu-lateral">
             <div class="perfil">
                 <img src="../../public/icons/perfil.svg" alt="">
                 <div class="dados-perfil">
@@ -20,6 +20,7 @@
                     <div class="dados-perfil-user">
                         @annajd
                     </div>
+                    <a> <img class="btn-voltar" src="../../public/icons/voltar.svg"> </a>
                 </div>
             </div>
             <ul>
@@ -88,8 +89,8 @@
         </nav>
 
         <header class="header-principal">
+            <button onclick="expandirMenuLateral()" class="menu-landing"><img src="../../public/icons/menu.svg"></button>
             <img class="logo-main-goodtrip" src="../../public/icons/logo_extenso.svg" alt="">
-            <!-- <button class="menu-landing"><img src="../../public/icons/menu.svg"></button> -->
 
         </header>
         <div class="conteudo">
@@ -126,33 +127,16 @@
                     </div>
                     <img class="imagem-viagem" src="../../public/icons/imagemViagem.svg">   
                 </div>
-                <div class="overlay-imagem">
-                    <div class="destino-viagem">
-                        Chile
-                    </div>
-                    <div class="data-viagem">
-                        Jan
-                        2021  
-                    </div>
-                    <img class="imagem-viagem" src="../../public/icons/imagemViagem.svg">   
-                </div>
-                <div class="overlay-imagem">
-                    <div class="destino-viagem">
-                        Chile
-                    </div>
-                    <div class="data-viagem">
-                        Jan
-                        2021  
-                    </div>
-                    <img class="imagem-viagem" src="../../public/icons/imagemViagem.svg">   
-                </div>
+
                 
                 <div class="btn-cadastrar">
                     <a href="#">
-                        <img src="../../public/icons/adicionar.svg" alt="">
+                        <img class="img-adicionar" src="../../public/icons/adicionar.svg" alt="">
                     </a>
                 </div>
         </div>
     </section>
+    <script src='../../public/scripts/main.js'></script>
+
 </body>
 </html>
