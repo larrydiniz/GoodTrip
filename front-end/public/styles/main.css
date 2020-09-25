@@ -69,6 +69,9 @@ nav{
     animation: anim 0.5s forwards;
 }
 
+nav.show{
+    display: block;
+}
 .conteudo{
     width: 100%;
     display: flex;

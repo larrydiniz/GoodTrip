@@ -1,5 +1,6 @@
 /************** Menu Overlay ************/
 const nav = document.getElementById("menu");
+const menuLateral = document.getElementById("navBar");
 const btn = document.querySelector(".menu-landing");
 const btnMenuLogin = document.querySelector("button#entrar.menu");
 const btnMenuRegister = document.querySelector("button#cadastrar.menu");
@@ -48,3 +49,20 @@ function PreviewImage() {
 		document.getElementById("preview").src = imgEvent.target.result;
 	};
 };
+
+
+//Expande menu
+function expandedMore(){
+	if(!menuLateral.classList.contains("show")){
+		menuLateral.classList.add("show") 
+
+	}
+}
+
+//Encolhe menu
+function expandedLess(){
+	if(menuLateral.classList.contains("show")){
+		menuLateral.classList.remove("show") 
+
+	}
+}

@@ -10,7 +10,7 @@
 </head>
 <body >
     <section class="secao-principal">
-        <nav id="menu" class="menu-lateral">
+        <nav id="navBar" class="menu-lateral">
             <div class="perfil">
                 <img src="../../public/icons/perfil.svg" alt="">
                 <div class="dados-perfil">
@@ -20,7 +20,7 @@
                     <div class="dados-perfil-user">
                         @annajd
                     </div>
-                    <a> <img class="btn-voltar" src="../../public/icons/voltar.svg"> </a>
+                    <img class="btn-voltar" onclick="expandedLess()" src="../../public/icons/voltar.svg">
                 </div>
             </div>
             <ul>
@@ -89,7 +89,7 @@
         </nav>
 
         <header class="header-principal">
-            <button onclick="expandirMenuLateral()" class="menu-landing"><img src="../../public/icons/menu.svg"></button>
+            <button onclick="expandedMore()" class="menu-landing"><img src="../../public/icons/menu.svg"></button>
             <img class="logo-main-goodtrip" src="../../public/icons/logo_extenso.svg" alt="">
 
         </header>
