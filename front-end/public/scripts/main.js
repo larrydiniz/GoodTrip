@@ -38,6 +38,7 @@ divLoginContent.addEventListener("toggling", toggleClass(ulNav, "hide"));
 btnMenuRegister.addEventListener("click", toggleClass(divRegisterContent, "show"));
 btnRegisterClose.addEventListener("click", toggleClass(divRegisterContent, "show"));
 divRegisterContent.addEventListener("toggling", toggleClass(overlay, "show"));
+divRegisterContent.addEventListener("toggling", toggleClass(ulNav, "hide"));
 
 /************** Imagem Cadastro-Viagem ************/
 function PreviewImage() {

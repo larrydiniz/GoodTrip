@@ -1,6 +1,6 @@
-/* body{
-    position: relative;
-} */
+body{
+    max-height: 1580px;
+}
 
 main {
     width: 100%;
@@ -342,6 +342,13 @@ main {
 
 /************ Responsividade ************/
 @media (min-width: 800px){
+  /*   main{
+        border: var(--cinza-bordas) solid 1px;
+        border-top: 0;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    } */
+
 	header .menu-landing{
         display: none;
     }

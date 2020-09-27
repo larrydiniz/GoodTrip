@@ -1,6 +1,10 @@
 body{
     height: 100vh;
 }
+
+main{
+    height: 100%;
+}
 /************ Header ************/
 header {
     background-color: #ffffff;
@@ -21,22 +25,6 @@ header .menu-landing{
 
 }
 
-header .btn-menu-lateral{
-    margin-left: 25px;
-    background-color: white;
-    border: none;
-    width: 30px;
-    height: 25px;
-
-}
-
-
-.btn-menu-lateral .show{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
 header .logo{
     width: 100px;
 }
@@ -47,8 +35,9 @@ header span{
 
 /************ Nav ************/
 nav{
-    width: 50%;
-    height: 80vh;
+    width: 85%;
+    height: 100%;
+    min-height: 670px;
     z-index: 10;
     position: absolute;
     display: none;
@@ -123,6 +112,7 @@ li{
 }
 
 li a{
+    padding: 2% 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -138,16 +128,16 @@ li a p{
 }
 
 ul span{
-    margin: 2% 25px; ;
+    margin: 2% 25px;
     height: 1px;
     background-color: var(--cinza-bordas);
 }
 
 
 /************ RESPONSIVIDADE ************/
-@media (max-width: 500px){
+@media (min-width: 500px){
     nav{
-        width: 70%;
+        width: 50%;
     }
 }
 
@@ -160,10 +150,6 @@ ul span{
     }
 
 	header .menu-landing{
-        display: none;
-    }
-
-    header .btn-menu-lateral{
         display: none;
     }
 
@@ -190,12 +176,12 @@ ul span{
     } 
  
    main{
+    margin: auto 15px;
     width: 70%;
-    margin: 15px;
-    position: absolute;
-    right: 0;
-    top: 75px;
-    height: 85%;
+    position: relative;
+    left: 26%;
+    top: 10%;
+    height: 88%;
     border-radius: 8px;
     border: var(--cinza-bordas) solid 1px;;
     }

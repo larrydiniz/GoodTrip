@@ -1,9 +1,13 @@
 /************** Div Principal ************/
-.conteudo{
+.secao-principal, .conteudo{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+}
+
+.conteudo{
+    height: 100%;
 }
 
 /************** h1 ************/
@@ -37,13 +41,19 @@
     width: 70%;
     height: 25px;
     color: var(--fonte-normal);
-    border: 1px solid #dddddd;
+    border: var(--cinza-bordas) solid 1px;
     border-radius: 8px;
 }
 
 /************** Cards ************/
-.overlay-imagem {
+.viagens{
+    overflow-y: auto;
     width: 90%;
+    height: 70%;
+}
+
+.overlay-imagem {  
+    width: 100%;
     height: 120px;
     position: relative;
     background-color: rgb(16, 160, 255);
@@ -89,7 +99,8 @@
 .btn-cadastrar{
     margin-top: 10px;
     position: absolute;
-    bottom: 2%;
+    float: inline-end;
+    bottom: 0;
     right: 5%;
 }
 
@@ -102,6 +113,7 @@
     .titulo {	    	        
         font-size: 25px;
     }	 
-
-
+    .btn-cadastrar{
+        bottom: 2%;
+    }
 }

@@ -7,7 +7,6 @@ header .voltar{
 
 }
 
-
 main{
     display: flex;
     flex-direction: column;
@@ -79,8 +78,6 @@ div.data, .imagem{
 
 img{
     position: relative;
-    
-
 }
 
 input.cadastrar{
@@ -104,7 +101,7 @@ input.cadastrar{
 @media (min-width: 800px){
     
     header .voltar{
-        margin-left: 25px;
+        margin-left: 30px;
         background-color: white;
         border: none;
         width: 30px;
