@@ -21,6 +21,22 @@ header .menu-landing{
 
 }
 
+header .btn-menu-lateral{
+    margin-left: 25px;
+    background-color: white;
+    border: none;
+    width: 30px;
+    height: 25px;
+
+}
+
+
+.btn-menu-lateral .show{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 header .logo{
     width: 100px;
 }
@@ -31,7 +47,7 @@ header span{
 
 /************ Nav ************/
 nav{
-    width: 85%;
+    width: 50%;
     height: 80vh;
     z-index: 10;
     position: absolute;
@@ -129,9 +145,9 @@ ul span{
 
 
 /************ RESPONSIVIDADE ************/
-@media (min-width: 500px){
+@media (max-width: 500px){
     nav{
-        width: 50%;
+        width: 70%;
     }
 }
 
@@ -144,6 +160,10 @@ ul span{
     }
 
 	header .menu-landing{
+        display: none;
+    }
+
+    header .btn-menu-lateral{
         display: none;
     }
 

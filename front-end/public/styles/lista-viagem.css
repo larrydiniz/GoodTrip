@@ -1,0 +1,107 @@
+/************** Div Principal ************/
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/************** h1 ************/
+.h1{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.titulo {
+    margin: 0;
+    padding-top: 20px;
+    width: 40%;
+    color: var(--fonte-normal);
+    font-size: 20px;
+}
+
+.pesquisar {
+    margin-top: 20px ;
+    background-image: url(../icons/pesquisar.svg);
+    background-position: 95%;
+    background-color: #fafafa;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    align-self: center;
+    justify-content: flex-start;
+    padding-left: 5px;
+    width: 70%;
+    height: 25px;
+    color: var(--fonte-normal);
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+}
+
+/************** Cards ************/
+.overlay-imagem {
+    width: 90%;
+    height: 120px;
+    position: relative;
+    background-color: rgb(16, 160, 255);
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.imagem-viagem {
+    width: 100%;  
+}
+
+.destino-viagem {
+    background-color: #026e81b9;   
+    color: white;
+    height: 40px;   
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    position: absolute;
+    bottom: 13px;
+    left: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+   }
+   
+.data-viagem{
+    width: 60px;
+    height: 70px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    background-color: #28de71ab;
+    right: 5%;
+    top: 10%;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.btn-cadastrar{
+    margin-top: 10px;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+}
+
+/************** Responsividade ************/
+@media (min-width: 800px){	
+    .h1{
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }    
+    .titulo {	    	        
+        font-size: 25px;
+    }	 
+
+
+}
