@@ -29,16 +29,15 @@ function toggleClass(element, toggClass){
 
 btn.addEventListener("click", toggleClass(nav, "show"));
 nav.addEventListener("click", toggleClass(nav, "show"));
+overlay.addEventListener("toggling", toggleClass(ulNav, "hide"));
 
 btnMenuLogin.addEventListener("click", toggleClass(divLoginContent, "show"));
 btnLoginClose.addEventListener("click", toggleClass(divLoginContent, "show"));
 divLoginContent.addEventListener("toggling", toggleClass(overlay, "show"));
-divLoginContent.addEventListener("toggling", toggleClass(ulNav, "hide"));
 
 btnMenuRegister.addEventListener("click", toggleClass(divRegisterContent, "show"));
 btnRegisterClose.addEventListener("click", toggleClass(divRegisterContent, "show"));
 divRegisterContent.addEventListener("toggling", toggleClass(overlay, "show"));
-divRegisterContent.addEventListener("toggling", toggleClass(ulNav, "hide"));
 
 /************** Imagem Cadastro-Viagem ************/
 function PreviewImage() {
