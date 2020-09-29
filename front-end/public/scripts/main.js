@@ -37,7 +37,7 @@ divLoginContent.addEventListener("toggling", classToggler({element: overlay, tog
 
 btnMenuRegister.addEventListener("click", classToggler({element: divRegisterContent, toggleClass: "show"}));
 btnRegisterClose.addEventListener("click", classToggler({element: divRegisterContent, toggleClass: "show"}));
-divRegisterContent.addEventListener("toggling", classToggler({element: overlay, toogleClass: "show"}));
+divRegisterContent.addEventListener("toggling", classToggler({element: overlay, toggleClass: "show"}));
 
 /************** Imagem Cadastro-Viagem ************/
 function PreviewImage() {
