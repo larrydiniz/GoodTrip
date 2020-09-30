@@ -66,7 +66,7 @@ main#edicao_perfil_inputs{
         font-weight: 700;
     }
 
-    input#inputImagem{
+    input#edicao_perfil_inputImagem{
         display: none;
     }
 

@@ -6,11 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/styles/main.css">
     <link rel="stylesheet" href="../public/styles/edicaoPerfil.css">
+    <link rel="stylesheet" type="text/css" href="../public/styles/menu.css">
     <title>GoodTrip</title>
 </head>
 <body>
-    <nav id="seraomenu">
-        
+    <nav id="menu">
+        <div class="perfil">
+            <div class="img-perfil">
+            </div>
+            <div class="dados-perfil">
+                <div class="dados-perfil" id="nome">
+                    Ana Julia 
+                </div>
+                <div class="dados-perfil" id="user">
+                    @annajd
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/viagem.svg"> 
+                    <p>Viagens</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/amigos.svg"> 
+                    <p>Amigos</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/mala.svg"> 
+                    <p>Mala</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/embarcar.svg"> 
+                    <p>Embarque</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/config.svg"> 
+                    <p>Atualizar perfil</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/senha.svg"> 
+                    <p>Alterar Senha</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/sobre.svg"> 
+                    <p>Sobre</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/sair.svg"> 
+                    <p>Sair</p>
+                </a> 
+            </li>
     </nav>
     <header class="header-landing">
         <button class="menu-landing"><img src="../public/icons/menu.svg"></button>
@@ -18,8 +82,8 @@
         <span></span>
     </header>
     <main id="edicao_perfil_inputs">
-            <label id="edicao_imagem" for="inputImagem">
-                <img src="">
+            <label id="edicao_imagem" for="edicao_perfil_inputImagem">
+                <img id="edicao_perfil_img" src="">
                 <p>Trocar foto de perfil</p>
                 <div id="edicao_fake_input">
                     <p>Escolher imagem...</p>
@@ -28,11 +92,12 @@
                     </svg>
                 </div>
             </label>
-            <input type="file" name="imagemPerfil" id="inputImagem" accept="image/png, image/jpg">
+            <input type="file" name="imagemPerfil" id="edicao_perfil_inputImagem" accept="image/png, image/jpg">
         <label id="nomeUsuario" for="edicao_nome_usuario">Nome de Usuário</label>
         <input type="text" name="nomeUsuario" id="edicao_nome_usuario">
         <textarea  id="edicao_descricao"></textarea>
         <button id="edicao_salvar">Salvar Alterações</button>
     </main>
+    <script src='../public/scripts/edicaoDePerfil.js'></script>
 </body>
 </html>
