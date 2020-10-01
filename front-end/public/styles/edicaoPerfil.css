@@ -133,14 +133,6 @@ main#edicao_perfil_inputs{
     }
 
 @media (min-width: 800px){
-    body{
-        align-items: flex-end;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        height: 900px;
-    }
-
     main#edicao_perfil_inputs{
         height: 760px;
         width: 700px;
