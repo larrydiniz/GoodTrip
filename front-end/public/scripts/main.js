@@ -39,7 +39,8 @@ function classToggler({element, toggleClass}){
 		const classList = element.classList
 
 	    if(classList.contains(toggleClass)){
-	        classList.remove(toggleClass);
+			classList.remove(toggleClass);
+
 	    }
 	    else{
 	        classList.add(toggleClass);
@@ -68,3 +69,46 @@ overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: 
 
 modalMountListeners(loginModal);
 modalMountListeners(registerModal);
+
+/*************** Visualizar Senha *****************/
+function visualizar(id, cod){
+
+	let campo = document.getElementById(id);
+
+	//botão
+	if (cod == '1'){
+		var olho = document.querySelector(".olho1");
+	} else if (cod == '2') {
+		var olho = document.querySelector(".olho2");
+	} else {
+		var olho = document.querySelector(".olho3");
+	}
+
+	//visualização da senha
+	if (campo.type == 'password'){
+		campo.type = 'text';
+		olho.src = "../public/icons/olho-aberto.svg"
+	}
+	else{
+		campo.type = 'password';
+		olho.src = "../public/icons/olho-fechado.svg"
+	}	
+}
+
+
+
+/* 
+const nav = document.getElementById("nav");
+const btn = document.getElementById("dh_menu_btn");
+
+function menu (){
+    let show = nav.classList.contains("show");
+
+        if(show == false){
+            nav.classList.add("show");
+        }else{
+            nav.classList.remove("show");
+        }
+}
+
+btn.addEventListener("click", menu)  */
