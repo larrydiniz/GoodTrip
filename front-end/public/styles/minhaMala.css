@@ -1,0 +1,120 @@
+/************** Div Principal ************/
+.secao-principal, .conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.conteudo{
+    height: 100%;
+    width: 100%;
+}
+
+/************** h1 ************/
+.h1{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.titulo {
+    margin: 0;
+    padding-top: 20px;
+    width: 50%;
+    color: var(--fonte-normal);
+    font-size: 20px;
+    margin-left: 60px;
+}
+
+.dropbtn {
+    background-color: #DDDDDD;
+    border-radius: 8px;
+    width: 80%;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: left;
+    color: #656363;
+    border: var(--cinza-bordas) solid 1px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .dropbtn > img {
+      display: flex;
+      align-self: center;
+      margin-right: 10px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 80%;
+    margin-top: 55px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    height: 80px;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #f1f1f15b}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+.viagem {
+    height: 80px;
+    border: var(--cinza-bordas) solid 1px;
+    border-radius: 8px;
+    background-image: url(../icons/imagemViagem.svg);
+    background-size: cover;
+  }
+
+.destino-viagem {
+    background-color: #026e81b9;   
+    color: white;
+    height: 40px;   
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    position: relative;
+    top: 20%;
+    left: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    }
+       
+/************** Responsividade ************/
+@media (min-width: 800px){	
+    .h1{
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }    
+    .titulo {	    	        
+        font-size: 25px;
+        width: 200px;
+    }	 
+}

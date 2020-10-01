@@ -133,7 +133,6 @@ ul span{
     background-color: var(--cinza-bordas);
 }
 
-
 /************ RESPONSIVIDADE ************/
 @media (min-width: 500px){
     nav{
