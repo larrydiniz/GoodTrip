@@ -40,6 +40,27 @@ a {
     text-decoration: none;
 } 
 
+
+.h1{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.titulo {
+    margin: 0;
+    padding-top: 20px;
+    width: 50%;
+    color: var(--fonte-normal);
+    margin-left: 60px;
+    font-size: 25px;
+    width: 200px;
+}
+
 @media (min-width: 800px){
     body{
         margin: 20px auto; 
@@ -52,7 +73,4 @@ a {
         margin-left: 55%;
     }
     
-    h1 {
-        margin-left: left;
-    }
 }
