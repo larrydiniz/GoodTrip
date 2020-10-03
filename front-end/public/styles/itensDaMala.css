@@ -1,0 +1,75 @@
+main {
+    margin-top: 10px;
+}
+
+/************** Cards ************/
+.viagens{
+    overflow-y: auto;
+    width: 90%;
+    height: 70%;
+}
+
+.overlay-imagem {  
+    width: 100%;
+    height: 150px;
+    position: relative;
+    background-image: url(../icons/imagemViagem.svg);
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.imagem-viagem {
+    width: 100%;  
+}
+
+.destino-viagem {
+    background-color: #026e81b9;   
+    color: white;
+    height: 35px;   
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    position: absolute;
+    top: 13px;
+    left: 20px;
+    border-radius: 8px;
+    font-weight: 700;
+   }
+   
+.data-viagem{
+    width: 60px;
+    height: 70px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    background-color: #28de71ab;
+    right: 5%;
+    top: 10%;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.titulo-viagem{
+    background-color: #28de71ab;
+    color: white;
+    height: 40px;   
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    position: absolute;
+    bottom: 13px;
+    left: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.titulo-viagem > p {
+    font-size: 30px;
+    font-weight: bold;
+}
