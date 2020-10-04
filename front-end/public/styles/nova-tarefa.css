@@ -1,0 +1,284 @@
+header .voltar{
+    margin-right: 25px;
+    background-color: white;
+    border: none;
+    width: 30px;
+    height: 25px;
+
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/************** cabeçalho ************/
+div.viagem {  
+    width: 100%;
+    height: 120px;
+    position: relative;
+    background-color: rgb(16, 160, 255);
+    border-radius: 8px;
+}
+
+img.imagem-viagem {
+    width: 100%;  
+}
+
+div.destino-viagem {
+    background-color: #026e81b9;   
+    color: white;
+    height: 30px;   
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    width: 150px;
+    position: absolute;
+    top: 13px;
+    left: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+   }
+
+div.nome-tela {
+    background-color: #28de71ab;   
+    color: white;
+    height: 40px;   
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    width: 150px;
+    position: absolute;
+    bottom: 13px;
+    left: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 22px;
+   }
+   
+div.data-viagem{
+    width: 60px;
+    height: 70px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    background-color: #28de71ab;
+    right: 5%;
+    top: 10%;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/************** form de cadastro de tarefa ************/
+form{
+    width: 90%;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/************** infos dia e hora ************/
+div.agenda{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.agenda #dia{
+    width: 80px;
+    height: 80px;
+    background-color: var(--azul-logo);
+    border-radius: 8px;
+    color: white;
+    font-size: 48px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.agenda .info-horario{
+    width: 190px;
+}
+
+.info-horario #info{
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--fonte-normal);
+}
+
+.info-horario #horario{ 
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--fonte-normal);
+}
+
+.info-horario #horario input{ 
+    margin-top: 10px;
+    width: 35%;
+    height: 45px;
+    border-radius: 8px;
+    border: var(--cinza-bordas) solid 1px;
+    padding-left: 5px;
+}
+/************** transporte ************/
+div.transporte{
+    padding: 5% 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.transporte input[type=radio]:checked 
+    + label svg path {
+    fill: var(--verde-seleção);
+}
+
+/************** infos ************/
+div.inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inputs #titulo, #descricao{
+    width: 80%;
+    border-radius: 8px;
+    border: var(--cinza-bordas) solid 1px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: Roboto, sans-serif; 
+}
+
+.inputs #titulo{
+    max-height: 50px;
+}
+
+.inputs #descricao{
+    margin-top: 20px;
+}
+
+/************** custo ************/
+div.custo{
+    padding: 5% 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.custo input[type=radio]:checked 
+    + label svg path {
+    fill: var(--verde-seleção);
+}
+
+#yen{
+    margin-left: 10%;
+}
+
+.custo input{
+    margin-right: 6%;
+    width: 85px;
+    max-height: 35px;
+    border-radius: 8px;
+    border: var(--cinza-bordas) solid 1px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-salvar{
+    width: 50px;
+    margin-top: 10px;
+    position: relative;
+    bottom: 10px;
+    left: 80%;
+}
+
+/************** tarefas do dia ************/
+section.tarefas{
+    display: none;
+}
+
+/************** Responsividade ************/
+@media(min-width:370px){
+    form{
+        width: 80%;
+    }
+}
+
+@media (min-width: 500px){
+    form{
+        width: 60%;
+    }
+}
+
+@media (min-width: 800px){
+    body{
+        min-height: 800px;
+    }
+
+    header .voltar{
+        margin-left: 30px;
+        background-color: white;
+        border: none;
+        width: 30px;
+        height: 25px;
+        position: absolute;
+        right: 0;
+    }
+
+    main{
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    form{
+        max-height: 90vh;
+        margin: 0 6%;
+        width: 50%;
+    }
+
+    section.tarefas{
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 37%;
+        height: 75%;
+        border-left: var(--cinza-bordas) solid 1px;
+        padding: 20px 0;
+    }
+
+    section h3{
+        align-self: flex-start;
+        margin: 0 0 30px 20px;
+        color: var(--fonte-normal);
+    }
+
+    div.tarefas{
+        width: 85%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.card{
+        width: 100%;
+        height: 60px;
+        margin-bottom: 20px;
+        background-color: var(--cinza-fundo-form);
+        border-radius: 8px;
+        border: var(--cinza-bordas) solid 1px;
+    }
+}
+
+@media (min-width: 910px){
+    div.agenda{
+        width: 90%;
+        padding: 0 20px;
+    }
+}
