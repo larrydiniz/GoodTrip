@@ -63,6 +63,7 @@ a {
 
 @media (min-width: 800px){
     body{
+        min-height: 800px;
         margin: 20px auto; 
         border: var(--cinza-bordas) solid 1px;
         border-radius: 8px;

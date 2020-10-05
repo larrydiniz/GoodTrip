@@ -218,10 +218,6 @@ section.tarefas{
 }
 
 @media (min-width: 800px){
-    body{
-        min-height: 800px;
-    }
-
     header .voltar{
         margin-left: 30px;
         background-color: white;
