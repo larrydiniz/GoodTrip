@@ -10,6 +10,11 @@
     <title>GoodTrip</title>
 </head>
 <body>
+    <header class="header-landing">
+        <button class="menu-landing"><img src="../public/icons/menu.svg"></button>
+        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
+        <span></span>
+    </header>
     <nav id="menu">
         <div class="perfil">
             <div class="img-perfil">
@@ -76,11 +81,6 @@
                 </a> 
             </li>
     </nav>
-    <header class="header-landing">
-        <button class="menu-landing"><img src="../public/icons/menu.svg"></button>
-        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
-        <span></span>
-    </header>
     <main id="edicao_perfil_inputs">
             <label id="edicao_imagem" for="edicao_perfil_inputImagem">
                 <img id="edicao_perfil_img" src="">
@@ -93,8 +93,16 @@
                 </div>
             </label>
             <input type="file" name="imagemPerfil" id="edicao_perfil_inputImagem" accept="image/png, image/jpg">
-        <label id="nomeUsuario" for="edicao_nome_usuario">Nome de Usuário</label>
-        <input type="text" name="nomeUsuario" id="edicao_nome_usuario">
+        <div id="edicao_campos">
+            <div id="edicao_content_nome_perfil">
+                <label id="nomePerfil" for="edicao_nome_perfil">Nome</label>
+                <input type="text" name="nomePerfil" id="edicao_nome_perfil">
+            </div>
+            <div id="edicao_content_nome_usuario">
+                <label id="nomeUsuario" for="edicao_nome_usuario">Nome de Usuário</label>
+                <input type="text" name="nomeUsuario" id="edicao_nome_usuario">
+            </div>
+        </div>
         <textarea  id="edicao_descricao"></textarea>
         <button id="edicao_salvar">Salvar Alterações</button>
     </main>
