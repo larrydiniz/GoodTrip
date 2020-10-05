@@ -1,0 +1,174 @@
+.conteudo{
+    height: 100%;
+}
+
+.convites-embarque{
+    overflow-y: auto;
+    width: 100%;
+    height: 70%;
+}
+
+.convite {
+    height: 100px;
+    background-color: #F4FDFF;
+    border-width: thin;
+    border-style: solid;
+    border-color: #c2c1c1;
+    border-radius: 8px;
+    margin: 10px;
+    margin-bottom: 15px;
+    position: relative;
+    display: flex;
+
+}
+
+.usuario-convite {
+    width: 194px;
+    position: relative;
+    margin-left: 10px;
+}
+
+.user {
+    width: 100%;
+    display: flex;
+}
+
+.user-img{
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+.user-convite-perfil{
+    margin-top: 32px;
+    margin-left: 10px;
+}
+
+#convite-username {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#convite-nickname{
+    margin-top: 1px;
+    color: #656363;
+    font-size: 13px;
+}
+
+.convite-conteudo{
+    width: 80%;
+    display: flex;
+    flex-flow: wrap row;
+    position: relative;
+}
+
+.convite-destino{
+    display: flex;
+    justify-content: space-around;
+    background-color: #026F81;
+    border-radius: 8px;
+    width: 90%;
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.convite-destino > p {
+    display: flex;
+    align-self: center;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.convite-opcoes {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.convite-aceitar{
+    width: 40%;
+    height: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    background-color: #28DE70;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;    
+}
+
+.convite-aceitar > p {
+    display: flex;
+    align-self: center;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.convite-recusar{
+    width: 40%;
+    height: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    background-color: #E84242;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;  
+}
+
+.convite-recusar > p {
+    display: flex;
+    align-self: center;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.desktop-aceitar {
+    display: block;
+}
+  
+.mobile-aceitar {
+    display: none;
+}
+  
+.desktop-recusar {
+    display: block;
+}
+  
+.mobile-recusar {
+    display: none;
+}
+
+@media(max-width: 480px) {
+    .desktop-aceitar {
+        display: none;
+    }
+    .mobile-aceitar {
+        display: block;
+    }
+    .mobile-aceitar > img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .desktop-recusar {
+        display: none;
+    }
+    .mobile-recusar {
+        display: block;
+    }
+    .mobile-recusar > img{
+        width: 20px;
+        height: 2
+    }
+    
+}

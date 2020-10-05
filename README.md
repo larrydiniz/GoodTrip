@@ -7,11 +7,11 @@ Trata-se do Projeto Integrador do curso de Full Stack Java, proporcionado pela D
 
 ### Sprint 2
 Front-end das telas, com base apenas no design estabelecido.
-- [ ] index / landing page
-- [ ] login (modal)
-- [ ] cadastro (modal)
-- [ ] lista viagens
-- [ ] cadastro viagens
+- [X] index / landing page
+- [X] login (modal)
+- [X] cadastro (modal)
+- [X] lista viagens
+- [X] cadastro viagens
 - [ ] menu principal (overlay)
 - [ ] agenda viagem
 - [ ] item agenda
@@ -20,9 +20,9 @@ Front-end das telas, com base apenas no design estabelecido.
 - [ ] membros da viagem
 - [ ] amigos
 - [ ] adicionar amigos (overlay)
-- [ ] minha mala
+- [X] minha mala
 - [ ] itens da mala
 - [ ] tela de exibição de perfil
-- [ ] embarque
-- [ ] alterar senha
-- [ ] sobre
+- [X] embarque
+- [X] alterar senha
+- [X] sobre

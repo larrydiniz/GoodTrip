@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="shortcut icon" href="../public/icons/logo-min.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/main.css">
+    <link rel="stylesheet" href="../public/styles/menu.css">
+    <link rel="stylesheet" href="../public/styles/embarque.css">
+
+    <title>GoodTrip</title>
+</head>
+<body >
+    <header class="header-landing">
+        <button class="menu-landing" onclick="expandedMenu()">
+            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.75 4.1875H20.25C20.625 4.1875 21 3.85938 21 3.4375V1.5625C21 1.1875 20.625 0.8125 20.25 0.8125H0.75C0.328125 0.8125 0 1.1875 0 1.5625V3.4375C0 3.85938 0.328125 4.1875 0.75 4.1875ZM0.75 11.6875H20.25C20.625 11.6875 21 11.3594 21 10.9375V9.0625C21 8.6875 20.625 8.3125 20.25 8.3125H0.75C0.328125 8.3125 0 8.6875 0 9.0625V10.9375C0 11.3594 0.328125 11.6875 0.75 11.6875ZM0.75 19.1875H20.25C20.625 19.1875 21 18.8594 21 18.4375V16.5625C21 16.1875 20.625 15.8125 20.25 15.8125H0.75C0.328125 15.8125 0 16.1875 0 16.5625V18.4375C0 18.8594 0.328125 19.1875 0.75 19.1875Z" fill="#026F81"/>
+            </svg>
+        </button>
+        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
+        <span></span>
+    </header>
+    <nav  id="navBar">
+        <div class="perfil">
+            <div class="img-perfil">
+            </div>
+            <div class="dados-perfil">
+                <div class="dados-perfil" id="nome">
+                    Ana Julia 
+                </div>
+                <div class="dados-perfil" id="user">
+                    @annajd
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="listaDeViagem.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/viagem.svg"> 
+                    <p>Viagens</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/amigos.svg"> 
+                    <p>Amigos</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="minhaMala.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/mala.svg"> 
+                    <p>Mala</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/embarcar.svg"> 
+                    <p>Embarque</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/config.svg"> 
+                    <p>Atualizar perfil</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/senha.svg"> 
+                    <p>Alterar Senha</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/sobre.svg"> 
+                    <p>Sobre</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/sair.svg"> 
+                    <p>Sair</p>
+                </a> 
+            </li>
+    </nav>
+    <main class="secao-principal">
+        <div class="conteudo">
+            <div class="h1">
+                <h1 class="titulo">Embarque</h1>
+            </div>
+            <div class="convites-embarque">
+                <!-- Lista de convites -->
+                
+                <div class="convite">
+                    <div class="user">
+                        <div class="user-img">
+                            <img src="../public/icons/alex.svg" alt="" srcset="">
+                        </div>
+                        <div class="user-convite-perfil">
+                            <div id="convite-username">
+                                Alex Rui
+                            </div>
+                            <div id="convite-nickname">
+                                @alexr
+                            </div>
+                        </div>
+                    </div>
+                    <div class="convite-conteudo">
+                        <div class="convite-destino">
+                            <p>
+                                Nova York 
+                            </p>
+                            <p>
+                                Jun | 2021
+                            </p>
+                        </div>
+                        <div class="convite-opcoes">
+                            <div class="convite-aceitar">
+                                <p>
+                                    <span class="desktop-aceitar"> Embarcar </span>
+                                    <span class="mobile-aceitar"> <img src="../public/icons/certo.jpg"> </span>
+                                </p>
+                            </div>
+                            <div class="convite-recusar">
+                                <p>
+                                    <span class="desktop-aceitar"> Recusar </span>
+                                    <span class="mobile-aceitar"> <img src="../public/icons/recusar.jpg"> </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="convite">
+                    <div class="user">
+                        <div class="user-img">
+                            <img src="../public/icons/alex.svg" alt="" srcset="">
+                        </div>
+                        <div class="user-convite-perfil">
+                            <div id="convite-username">
+                                Alex Rui
+                            </div>
+                            <div id="convite-nickname">
+                                @alexr
+                            </div>
+                        </div>
+                    </div>
+                    <div class="convite-conteudo">
+                        <div class="convite-destino">
+                            <p>
+                                Nova York 
+                            </p>
+                            <p>
+                                Jun | 2021
+                            </p>
+                        </div>
+                        <div class="convite-opcoes">
+                            <div class="convite-aceitar">
+                                <p>
+                                    <span class="desktop-aceitar"> Embarcar </span>
+                                    <span class="mobile-aceitar"> <img src="../public/icons/certo.jpg"> </span>
+                                </p>
+                            </div>
+                            <div class="convite-recusar">
+                                <p>
+                                    <span class="desktop-aceitar"> Recusar </span>
+                                    <span class="mobile-aceitar"> <img src="../public/icons/recusar.jpg"> </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fim Lista de convites -->
+            </div>
+        </div> 
+    </main>
+    <script src='../public/scripts/listaDeViagem.js'></script>
+
+</body>
+</html>

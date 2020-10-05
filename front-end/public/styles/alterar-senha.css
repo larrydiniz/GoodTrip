@@ -1,0 +1,97 @@
+header .voltar{
+    margin-right: 25px;
+    background-color: white;
+    border: none;
+    width: 30px;
+    height: 25px;
+
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+h1{
+    padding-top: 20px ;
+    width: 90%;
+    color: var(--fonte-normal);
+    font-size: 20px;
+}
+
+form{
+    width: 80%;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+div.senha{
+    margin: 5% 0;
+    min-height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0 15px;
+    font-size: 14px;
+    background-color: var(--cinza-fundo-form);
+    border: var(--cinza-bordas) solid 1px;
+}
+
+input.pass{
+    height: 55px;  
+    width: 80%;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+input.salvar{
+    width: 100%;
+    min-height: 55px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: var(--azul);
+    color: white;
+    border: var(--azul) solid 1px;
+    margin: 45px 0 10px 0;
+}
+
+input:focus{
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+button.visualizar{
+    margin-right: 25px;
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    height: 25px;
+}
+
+button:focus{
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+@media (min-width: 500px){
+    form{
+        width: 60%;
+    }
+}
+
+@media (min-width: 800px){
+
+    h1{
+        font-size: 25px;
+    }
+    form{
+        width: 50%;
+    }
+}

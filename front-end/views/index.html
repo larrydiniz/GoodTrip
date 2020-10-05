@@ -61,7 +61,7 @@
     </main>
 
     <!-- LOGIN MODAL -->
-    <div class="login conteudo">
+    <div class="login modal">
         <button class="login fechar">X</button>
 
         <p class="login err"></p>
@@ -74,7 +74,9 @@
             <input class="login senha" type="password" name="loginSenha" placeholder="Digite sua senha">
         </form>
         <a class="login esqueci"href="">Esqueceu sua senha?</a>
-        <button class="login entrar">Entrar</button>
+
+        <!-- onClick só para redirecionar pra tela principal  -->
+        <button onclick="window.location.href = 'listaDeViagem.html'" class="login entrar">Entrar</button>
         <button class="login google">
 
             <!--- SVG LOGO GOOGLE --->
@@ -96,7 +98,7 @@
     </div><!-- MODAL -->
 
     <!-- CADASTRO MODAL-->
-     <div class="cadastro conteudo">
+     <div class="cadastro modal">
         <button class="cadastro fechar">X</button>
         <p class="cadastro err"></p>
         <button class="login google">
