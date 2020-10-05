@@ -161,6 +161,7 @@ div.inputs{
 
 .inputs #descricao{
     margin-top: 20px;
+    resize: none;
 }
 
 /************** custo ************/
