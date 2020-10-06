@@ -180,6 +180,7 @@ input#membros_busca_amigo{
         align-items: center;
         flex-direction: row;
         justify-content: space-between;
+        width: 92%;
     }
 
     input#membros_busca_amigo{
