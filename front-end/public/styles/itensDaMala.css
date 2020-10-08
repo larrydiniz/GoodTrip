@@ -80,7 +80,7 @@ main {
 .dropbtn {
 background-color: #DDDDDD;
 border-radius: 8px;
-width: 30%;
+width: 100%;
 cursor: pointer;
 text-align: left;
 color: #656363;
@@ -106,12 +106,18 @@ justify-content: center;
 }
 
 .dropdown {
-position: relative;
-display: flex;
-justify-content: flex-end;
-width: 95%;
-top: 65%;
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
 
+.dropdown-body {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 100px;
+    right: 30px;
 }
 
 .dropdown-content {
@@ -140,12 +146,43 @@ display: block;
 }
 
 .itens {
-    background-color: lightseagreen;
+    background-color: var(--cinza-bordas);
     border: var(--cinza-bordas) solid 1px;
 
 }
 .itens-menu {
     color: rgb(3, 5, 0);
     margin: 5px;
-    background-color: lightcoral;
+    background-color: none;
+}
+
+.itens-menu:hover {
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+@media (max-width: 425px){
+
+    .titulo-viagem{
+        background-color: #28de71ab;
+        color: white;
+        height: 40px;   
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        position: absolute;
+        bottom: 13px;
+        left: 20px;
+        border-radius: 8px;
+    }
+    
+    .titulo-viagem > p {
+        font-size: 25px;
+    }
+
+    .dropdown-body {
+        right: 15px;
+    }
 }
