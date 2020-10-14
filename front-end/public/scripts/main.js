@@ -50,17 +50,6 @@ function classToggler({element, toggleClass}){
 	}
 }
 
-/************** Imagem Cadastro-Viagem ************/
-function PreviewImage() {
-	var imgReader = new FileReader();
-	imgReader.readAsDataURL(document.getElementById("carregar-imagem").files[0]);
-
-	imgReader.onload = function (imgEvent) {
-		document.getElementById("preview").src = imgEvent.target.result;
-	};
-};
-
-
 /***** MAIN *****/
 
 btn.addEventListener("click", classToggler({element: nav, toggleClass: "show"}));
@@ -69,28 +58,3 @@ overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: 
 
 modalMountListeners(loginModal);
 modalMountListeners(registerModal);
-
-/*************** Visualizar Senha *****************/
-function visualizar(id, cod){
-
-	let campo = document.getElementById(id);
-
-	//botão
-	if (cod == '1'){
-		var olho = document.querySelector(".olho1");
-	} else if (cod == '2') {
-		var olho = document.querySelector(".olho2");
-	} else {
-		var olho = document.querySelector(".olho3");
-	}
-
-	//visualização da senha
-	if (campo.type == 'password'){
-		campo.type = 'text';
-		olho.src = "../public/icons/olho-aberto.svg"
-	}
-	else{
-		campo.type = 'password';
-		olho.src = "../public/icons/olho-fechado.svg"
-	}	
-}

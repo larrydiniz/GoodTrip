@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="shortcut icon" href="../public/icons/logo-min.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/main.css">
+    <link rel="stylesheet" href="../public/styles/agenda-viagem.css">
+    <link rel="stylesheet" href="../public/styles/menu.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    
+    
+    <title>GoodTrip</title>
+</head>
+<body>
+    <header class="header-landing">
+        <button class="menu-landing"><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.75 4.1875H20.25C20.625 4.1875 21 3.85938 21 3.4375V1.5625C21 1.1875 20.625 0.8125 20.25 0.8125H0.75C0.328125 0.8125 0 1.1875 0 1.5625V3.4375C0 3.85938 0.328125 4.1875 0.75 4.1875ZM0.75 11.6875H20.25C20.625 11.6875 21 11.3594 21 10.9375V9.0625C21 8.6875 20.625 8.3125 20.25 8.3125H0.75C0.328125 8.3125 0 8.6875 0 9.0625V10.9375C0 11.3594 0.328125 11.6875 0.75 11.6875ZM0.75 19.1875H20.25C20.625 19.1875 21 18.8594 21 18.4375V16.5625C21 16.1875 20.625 15.8125 20.25 15.8125H0.75C0.328125 15.8125 0 16.1875 0 16.5625V18.4375C0 18.8594 0.328125 19.1875 0.75 19.1875Z" fill="#026F81"/>
+            </svg></button>
+        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
+        <button class="configuracoes" onclick="expandedMenu()"><svg width="29" height="8" viewBox="0 0 29 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.09837 8.00003C6.36184 8.00003 8.19675 6.20917 8.19675 4.00002C8.19675 1.79087 6.36184 0 4.09837 0C1.8349 0 0 1.79087 0 4.00002C0 6.20917 1.8349 8.00003 4.09837 8.00003Z" fill="#026F81"/>
+            <path d="M14.3443 8.00003C16.6077 8.00003 18.4426 6.20917 18.4426 4.00002C18.4426 1.79087 16.6077 0 14.3443 0C12.0808 0 10.2459 1.79087 10.2459 4.00002C10.2459 6.20917 12.0808 8.00003 14.3443 8.00003Z" fill="#026F81"/>
+            <path d="M24.5901 8.00003C26.8536 8.00003 28.6885 6.20917 28.6885 4.00002C28.6885 1.79087 26.8536 0 24.5901 0C22.3267 0 20.4918 1.79087 20.4918 4.00002C20.4918 6.20917 22.3267 8.00003 24.5901 8.00003Z" fill="#026F81"/>
+            </svg></button>
+    </header>
+    <nav id="menu">
+        <div class="perfil">
+            <div class="img-perfil">
+            </div>
+            <div class="dados-perfil">
+                <div class="dados-perfil" id="nome">
+                    Ana Julia 
+                </div>
+                <div class="dados-perfil" id="user">
+                    @annajd
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/viagem.svg"> 
+                    <p>Viagens</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/amigos.svg"> 
+                    <p>Amigos</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/mala.svg"> 
+                    <p>Mala</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/embarcar.svg"> 
+                    <p>Embarque</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/config.svg"> 
+                    <p>Atualizar perfil</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/senha.svg"> 
+                    <p>Alterar Senha</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/sobre.svg"> 
+                    <p>Sobre</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/sair.svg"> 
+                    <p>Sair</p>
+                </a> 
+            </li>
+    </nav>
+    <nav id="config">
+        <ul>
+            <li class="menu-li">
+                <p class="titulo">Configurações</p>
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="cadastro-viagem.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/periodo.svg"> 
+                    <p>Periodo</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/membros.svg"> 
+                    <p>Membros</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/mala.svg"> 
+                    <p>Mala</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/compartilhar.svg"> 
+                    <p>Compartilhar</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="#"> 
+                    <img class="img-menu-lateral" src="../public/icons/sair.svg"> 
+                    <p>Excluir</p>
+                </a> 
+            </li>      
+    </nav>
+    <main>
+        <div class="viagem">
+            <div class="destino-viagem">
+                Praga
+            </div>
+            <div class="data-viagem">
+                    Jan
+                    2021  
+            </div>
+            <div class="nome-tela">
+                Agenda
+            </div>
+            <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
+        </div>
+
+        <div class="calendario">
+            <span id="calendario"></span>
+            <script>
+                /* const datas = new Date('2021-01-07'); */
+
+                $(function() {
+                    $("#calendario" ).datepicker({
+                        dateFormat: 'yy-mm-dd',
+                        defaultDate: '2021-01-07',
+                        endDate: '2021-01-19', 
+                        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+                        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+                        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+                        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+                        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+                        onSelect: function(date) {
+                            console.log(date);
+                        }
+ 
+    });
+                });
+            </script>
+        </div>
+
+        <div class="tarefas">
+            <div class="tarefa">
+                <div id="horario">
+                    09:00
+                </div>
+                <div id="nome">
+                    Praça da Cidade Antiga
+                </div>
+            </div>
+        </div>   
+        <a class="btn-adicionar" href="nova-tarefa.html">
+            <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.5 0C10.5416 0 0 10.5416 0 23.5C0 36.4584 10.5416 47 23.5 47C36.4584 47 47 36.4584 47 23.5C47 10.5416 36.4584 0 23.5 0ZM33.7812 25.4582H25.4582V33.7812C25.4582 34.8624 24.5811 35.7395 23.5 35.7395C22.4189 35.7395 21.5418 34.8624 21.5418 33.7812V25.4582H13.2188C12.1376 25.4582 11.2605 24.5811 11.2605 23.5C11.2605 22.4189 12.1376 21.5418 13.2188 21.5418H21.5418V13.2188C21.5418 12.1376 22.4189 11.2605 23.5 11.2605C24.5811 11.2605 25.4582 12.1376 25.4582 13.2188V21.5418H33.7812C34.8624 21.5418 35.7395 22.4189 35.7395 23.5C35.7395 24.5811 34.8624 25.4582 33.7812 25.4582Z" fill="#006478"/>
+            </svg>
+        </a>
+    </main>
+    <script src='../public/scripts/agenda-viagem.js'></script>
+</body>
+</html>

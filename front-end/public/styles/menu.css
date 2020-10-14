@@ -164,7 +164,7 @@ ul span{
         margin-left: 43%;
     }
 
-    nav{
+    nav#menu{
         background-color: transparent;
         width: 28%;
         display: flex;
