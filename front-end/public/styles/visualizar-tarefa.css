@@ -155,12 +155,20 @@ div.descricao{
     text-align: center;
 }
 
+.botoes{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-excluir{
+    background-color: white;
+    border: none;
+    width: 60px;
+}
+
 .btn-editar{
     width: 50px;
-    margin-top: 10px;
-    position: relative;
-    bottom: 10px;
-    left: 80%;
+    margin-top: 15px;
 }
 
 /************** tarefas do dia ************/
