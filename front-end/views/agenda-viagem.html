@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../public/styles/agenda-viagem.css">
     <link rel="stylesheet" href="../public/styles/menu.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
     
     <title>GoodTrip</title>
 </head>
@@ -144,20 +144,33 @@
             </div>
             <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
         </div>
+        <div class="data">
+            <div class="dia-selecionado">
 
-        <div class="calendario">
-            <span id="calendario"></span>
+            </div>
+
+            <div class="calendario" id="calendar">
+               
+            </div>
         </div>
 
         <div class="tarefas">
-            <div class="tarefa">
+            <a class="tarefa" href="visualizar-tarefa.html">
                 <div id="horario">
                     09:00
                 </div>
                 <div id="nome">
                     Praça da Cidade Antiga
                 </div>
-            </div>
+            </a>
+            <button type="button" class="tarefa"> <!-- qual é melhor? -->
+                <div id="horario">
+                    11:00
+                </div>
+                <div id="nome">
+                    Relógio Astronômico
+                </div>
+            </button>
         </div>   
         <a class="btn-adicionar" href="nova-tarefa.html">
             <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -166,5 +179,11 @@
         </a>
     </main>
     <script src='../public/scripts/agenda-viagem.js'></script>
+    <script>
+        let calendario = new Calendario('calendar');
+        calendario.getElement().addEventListener('change', e => {
+            console.log(calendario.value().format('YYYY-MM-DD'));
+        })
+    </script>
 </body>
 </html>
