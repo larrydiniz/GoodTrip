@@ -183,9 +183,7 @@ class Calendario {
 				this.selectedDay.innerHTML = `${this.diaSelecionado.date()}`;
 
 				/* change */
-				this.calendar.dispatchEvent(new Event('change'));
-
-				
+				this.calendar.dispatchEvent(new Event('change'));				
 			})
 		})
 	}

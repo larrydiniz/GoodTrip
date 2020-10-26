@@ -144,14 +144,6 @@ main#edicao_perfil_inputs{
     }
 
 @media (min-width: 800px){
-    main#edicao_perfil_inputs{
-        height: 760px;
-        width: 700px;
-        margin: 0 20px 0 0;
-        border: 1px solid #ddd;
-        border-radius: 14px;
-    }
-
     nav#seraomenu{
         display: flex;
         margin: 0 0 200px 0;
@@ -184,6 +176,7 @@ main#edicao_perfil_inputs{
         width: 202px;
         justify-content: center;
         margin: 0;
+        margin-top: 20px;
     }
 
     label#edicao_imagem > img{

@@ -116,4 +116,7 @@
     .btn-cadastrar{
         bottom: 2%;
     }
+    nav{
+        display: flex;
+    }
 }

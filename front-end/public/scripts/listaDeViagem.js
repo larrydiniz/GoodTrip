@@ -1,4 +1,4 @@
-const menuLateral = document.getElementById("navBar");
+const menuLateral = document.getElementById("menu");
 
 //Expande menu
 expandedMenu = () => {
