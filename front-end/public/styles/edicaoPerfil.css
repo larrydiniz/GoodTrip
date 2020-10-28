@@ -92,20 +92,20 @@ main#edicao_perfil_inputs{
     }
 
 /****** TROCAS TEXTUAIS ******/
-    label#nomeUsuario{
+    label#nomeUsuario, label#nomePerfil{
         height: 18px;
         margin: 25px 170px 5px 0;
         color: var(--azul);
         font-weight: 700;
     }
 
-    input#edicao_nome_usuario{
+    input#edicao_nome_usuario, input#edicao_nome_perfil{
         width: 300px;
         height: 50px;
         background-color: #fafafa;
         border: 1px solid #dddddd;
         border-radius: 8px;
-        margin: 0 0 30px 0;
+        margin: 0 0 0 0;
         padding: 0 0 0 10px;
     }
 
@@ -115,7 +115,7 @@ main#edicao_perfil_inputs{
         background-color: #fafafa;
         border: 1px solid #dddddd;
         border-radius: 8px;
-        margin: 0 0 20px 0;
+        margin: 30px 0 20px 0;
         padding: 0 0 0 10px;
         resize: none;
     }
@@ -132,15 +132,18 @@ main#edicao_perfil_inputs{
         margin: 45px 0 10px 0;
     }
 
-@media (min-width: 800px){
-    main#edicao_perfil_inputs{
-        height: 760px;
-        width: 700px;
-        margin: 0 20px 0 0;
-        border: 1px solid #ddd;
-        border-radius: 14px;
+/**** CAMPOS ***/
+    div#edicao_campos{
+        display: flex;
+        flex-direction: column;
+    }
+    div#edicao_content_nome_perfil, div#edicao_content_nome_usuario{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
+@media (min-width: 800px){
     nav#seraomenu{
         display: flex;
         margin: 0 0 200px 0;
@@ -173,6 +176,7 @@ main#edicao_perfil_inputs{
         width: 202px;
         justify-content: center;
         margin: 0;
+        margin-top: 20px;
     }
 
     label#edicao_imagem > img{
@@ -205,7 +209,7 @@ main#edicao_perfil_inputs{
     }
 
 /****** TROCAS TEXTUAIS *****/
-    label#nomeUsuario{
+    label#nomeUsuario, label#nomePerfil{
         height: 18px;
         margin: 25px 170px 5px 0;
         color: var(--azul);
@@ -227,5 +231,12 @@ main#edicao_perfil_inputs{
         color: white;
         border: var(--azul) solid 1px;
         margin: 45px 0 10px 0;
+    }
+/***** CAMPOS ******/
+    div#edicao_campos{
+        flex-direction: row;
+        align-items: space-around;
+        justify-content: space-around;
+        width: 100%;
     }
 }

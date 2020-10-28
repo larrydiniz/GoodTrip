@@ -10,7 +10,12 @@
     <title>GoodTrip</title>
 </head>
 <body>
-    <nav id="menu">
+    <header class="header-landing">
+        <button class="menu-landing"><img src="../public/icons/menu.svg"></button>
+        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
+        <span></span>
+    </header>
+    <nav  id="menu">
         <div class="perfil">
             <div class="img-perfil">
             </div>
@@ -25,65 +30,54 @@
         </div>
         <ul>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="listaDeViagem.html"> 
                     <img class="img-menu-lateral" src="../public/icons/viagem.svg"> 
                     <p>Viagens</p>
                 </a> 
             </li>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
-                    <img class="img-menu-lateral" src="../public/icons/amigos.svg"> 
-                    <p>Amigos</p>
-                </a> 
-            </li>
-            <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="minhaMala.html"> 
                     <img class="img-menu-lateral" src="../public/icons/mala.svg"> 
                     <p>Mala</p>
                 </a> 
             </li>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="embarque.html"> 
                     <img class="img-menu-lateral" src="../public/icons/embarcar.svg"> 
                     <p>Embarque</p>
                 </a> 
             </li>
             <span></span>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="edicaoPerfil.html"> 
                     <img class="img-menu-lateral" src="../public/icons/config.svg"> 
                     <p>Atualizar perfil</p>
                 </a> 
             </li>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="alterar-senha.html"> 
                     <img class="img-menu-lateral" src="../public/icons/senha.svg"> 
                     <p>Alterar Senha</p>
                 </a> 
             </li>
             <span></span>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="sobre.html"> 
                     <img class="img-menu-lateral" src="../public/icons/sobre.svg"> 
                     <p>Sobre</p>
                 </a> 
             </li>
             <span></span>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="index.html"> 
                     <img class="img-menu-lateral" src="../public/icons/sair.svg"> 
                     <p>Sair</p>
                 </a> 
             </li>
     </nav>
-    <header class="header-landing">
-        <button class="menu-landing"><img src="../public/icons/menu.svg"></button>
-        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
-        <span></span>
-    </header>
     <main id="edicao_perfil_inputs">
             <label id="edicao_imagem" for="edicao_perfil_inputImagem">
-                <img id="edicao_perfil_img" src="">
+                <img id="edicao_perfil_img" src="../public/icons/perfil.svg">
                 <p>Trocar foto de perfil</p>
                 <div id="edicao_fake_input">
                     <p>Escolher imagem...</p>
@@ -93,8 +87,16 @@
                 </div>
             </label>
             <input type="file" name="imagemPerfil" id="edicao_perfil_inputImagem" accept="image/png, image/jpg">
-        <label id="nomeUsuario" for="edicao_nome_usuario">Nome de Usuário</label>
-        <input type="text" name="nomeUsuario" id="edicao_nome_usuario">
+        <div id="edicao_campos">
+            <div id="edicao_content_nome_perfil">
+                <label id="nomePerfil" for="edicao_nome_perfil">Nome</label>
+                <input type="text" name="nomePerfil" id="edicao_nome_perfil">
+            </div>
+            <div id="edicao_content_nome_usuario">
+                <label id="nomeUsuario" for="edicao_nome_usuario">Nome de Usuário</label>
+                <input type="text" name="nomeUsuario" id="edicao_nome_usuario">
+            </div>
+        </div>
         <textarea  id="edicao_descricao"></textarea>
         <button id="edicao_salvar">Salvar Alterações</button>
     </main>

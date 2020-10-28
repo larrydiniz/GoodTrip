@@ -1,5 +1,7 @@
 const inputImg = document.querySelector('input#edicao_perfil_inputImagem');
 const imgPreview = document.querySelector('img#edicao_perfil_img');
+const menuButton = document.querySelector('button.menu-landing');
+const navMenu = document.querySelector('nav#menu');
 
 function imagePreviewer({input, previewBox}){
 	const imgReader = new FileReader();
@@ -14,7 +16,27 @@ function imagePreviewer({input, previewBox}){
 	}
 }
 
+function classToggler({element, toggleClass}){
+	const toggling = new Event('toggling');
+
+	return function(){
+		const classList = element.classList
+
+	    if(classList.contains(toggleClass)){
+			classList.remove(toggleClass);
+
+	    }
+	    else{
+	        classList.add(toggleClass);
+	    }
+
+	    element.dispatchEvent(toggling);
+	}
+}
+
+
 
 /******** MAIN ******/
 
 inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox: imgPreview}));
+menuButton.addEventListener('click', classToggler({element: navMenu, toggleClass: "show"}));

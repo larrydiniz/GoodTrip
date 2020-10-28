@@ -1,3 +1,12 @@
+header .voltar{
+    margin-right: 25px;
+    background-color: white;
+    border: none;
+    width: 30px;
+    height: 25px;
+
+}
+
 main {
     margin-top: 10px;
 }
@@ -72,4 +81,128 @@ main {
 .titulo-viagem > p {
     font-size: 30px;
     font-weight: bold;
+}
+
+
+/* dropdown */
+
+.dropbtn {
+background-color: #DDDDDD;
+border-radius: 8px;
+width: 100%;
+cursor: pointer;
+text-align: left;
+color: #656363;
+border: var(--cinza-bordas) solid 1px;
+border-radius: 8px;
+display: flex;
+justify-content: space-between;
+
+}
+
+.dropbtn > img {
+    display: flex;
+    align-self: center;
+    margin-right: 10px;
+}
+
+.dropbtn > p {
+height: 0;
+display: flex;
+align-self: center;
+align-items: center;
+justify-content: center;
+}
+
+.dropdown {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dropdown-body {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 100px;
+    right: 30px;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 30%;
+margin-top: 30px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: rgb(255, 255, 255);
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+height: 80px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f15b}
+
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+.itens {
+    background-color: var(--cinza-bordas);
+    border: var(--cinza-bordas) solid 1px;
+
+}
+.itens-menu {
+    color: rgb(3, 5, 0);
+    margin: 5px;
+    background-color: none;
+}
+
+.itens-menu:hover {
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+@media (max-width: 425px){
+    .titulo-viagem{
+        background-color: #28de71ab;
+        color: white;
+        height: 40px;   
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        position: absolute;
+        bottom: 13px;
+        left: 20px;
+        border-radius: 8px;
+    }
+    
+    .titulo-viagem > p {
+        font-size: 25px;
+    }
+
+    .dropdown-body {
+        right: 15px;
+    }
+}
+
+@media (min-width: 800px){
+    header .voltar{
+        margin-left: 30px;
+        background-color: white;
+        border: none;
+        width: 30px;
+        height: 25px;
+        position: absolute;
+        right: 0;
+    }
 }
