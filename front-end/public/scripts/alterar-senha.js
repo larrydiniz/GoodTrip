@@ -17,6 +17,14 @@ function passwordVisibility(typeToggler, sourceToggler){
 				confirmPassword: {
 					value: passwordFields.confirmPassword,
 					writable: false
+				},
+				sources: {
+					value: passwordFields.sources,
+					writable: false
+				},
+				types: {
+					value: passwordFields.types,
+					writable: false
 				}
 			}
 	
@@ -27,14 +35,9 @@ function passwordVisibility(typeToggler, sourceToggler){
 
 			if(this.hasValidProps(fields)){
 
-				const types = {
-					primary: "password",
-					secondary: "text"
-				}
-		
-				fields.actualPassword.addEventListener("click", typeToggler({element: fields.actualPassword, toggleTypes: types}));
-				fields.newPassword.addEventListener("click", typeToggler({element: fields.newPassword, toggleTypes: types}));
-				fields.confirmPassword.addEventListener("click", typeToggler({element: fields.confirmPassword, toggleTypes: types}));
+				fields.actualPassword.addEventListener("click", typeToggler({element: fields.actualPassword, toggleTypes: fields.types}));
+				fields.newPassword.addEventListener("click", typeToggler({element: fields.newPassword, toggleTypes: fields.types}));
+				fields.confirmPassword.addEventListener("click", typeToggler({element: fields.confirmPassword, toggleTypes: fields.types}));
 			}
 			
 		},
@@ -42,20 +45,15 @@ function passwordVisibility(typeToggler, sourceToggler){
 		addSourceListeners: function({ fields }){
 
 			if(this.hasValidProps(fields)){
-
-				const sources = {
-					primary: "../public/icons/olho-fechado.svg",
-					secondary: "../public/icons/olho-aberto.svg"
-				}
 				
-				fields.actualPassword.addEventListener("toggling", sourceToggler({element: fields.actualPassword.firstElementChild, toggleSources: sources}));
-				fields.newPassword.addEventListener("toggling", sourceToggler({element: fields.newPassword.firstElementChild, toggleSources: sources}));
-				fields.confirmPassword.addEventListener("toggling", sourceToggler({element: fields.confirmPassword.firstElementChild, toggleSources: sources}));
+				fields.actualPassword.addEventListener("toggling", sourceToggler({element: fields.actualPassword.firstElementChild, toggleSources: fields.sources}));
+				fields.newPassword.addEventListener("toggling", sourceToggler({element: fields.newPassword.firstElementChild, toggleSources: fields.sources}));
+				fields.confirmPassword.addEventListener("toggling", sourceToggler({element: fields.confirmPassword.firstElementChild, toggleSources: fields.sources}));
 			}
 		},
 
 		hasValidProps: function(fieldsProps){
-			if(fieldsProps.actualPassword && fieldsProps.newPassword && fieldsProps.confirmPassword){
+			if(fieldsProps.actualPassword && fieldsProps.newPassword && fieldsProps.confirmPassword && fieldsProps.sources && fieldsProps.types){
 	
 				return true;
 			}
@@ -102,7 +100,11 @@ const newPasswordField = document.querySelector(".olho2");
 const confirmPasswordField = document.querySelector(".olho3");
 
 
-const passwordFields = pv.defineFields({ actualPassword: actualPasswordField, newPassword: newPasswordField, confirmPassword: confirmPasswordField });
+const passwordFields = pv.defineFields({ actualPassword: actualPasswordField, 
+										 newPassword: newPasswordField, 
+										 confirmPassword: confirmPasswordField,
+										 types: { primary: "password", secondary: "text" },
+										 sources: { primary: "../public/icons/olho-fechado.svg", secondary: "../public/icons/olho-aberto.svg" }});
 
 pv.addTypeListeners({ fields: passwordFields });
 pv.addSourceListeners({ fields: passwordFields});
