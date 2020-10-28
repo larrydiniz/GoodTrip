@@ -23,7 +23,7 @@ O desenvolvimento da aplicação foi separado em sprints de 15 dias cada, cada u
 Prototipagem das telas.
 [<img src="https://i.pinimg.com/originals/a5/58/b4/a558b426cb8973523f37bbed94cf0f09.png" widht=auto height=20px>](https://www.figma.com/file/GpPHa0wOt6044Y4OCDwJet/Projeto-Integrador---DH?node-id=282%3A79) 
 
-### Sprint 2 e 3
+### Sprint 2 e 3 
 Front-end das telas, com base apenas no design estabelecido.
 - [X] index / landing page
 - [X] login (modal)
