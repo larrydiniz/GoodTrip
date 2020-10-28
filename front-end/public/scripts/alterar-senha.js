@@ -24,27 +24,45 @@ function passwordVisibility(typeToggler, sourceToggler){
 		},
 	
 		addTypeListeners: function({ fields }){
-	
-			const types = {
-				primary: "password",
-				secondary: "text"
+
+			if(this.hasValidProps(fields)){
+
+				const types = {
+					primary: "password",
+					secondary: "text"
+				}
+		
+				fields.actualPassword.addEventListener("click", typeToggler({element: fields.actualPassword, toggleTypes: types}));
+				fields.newPassword.addEventListener("click", typeToggler({element: fields.newPassword, toggleTypes: types}));
+				fields.confirmPassword.addEventListener("click", typeToggler({element: fields.confirmPassword, toggleTypes: types}));
 			}
-	
-			fields.actualPassword.addEventListener("click", typeToggler({element: fields.actualPassword, toggleTypes: types}));
-			fields.newPassword.addEventListener("click", typeToggler({element: fields.newPassword, toggleTypes: types}));
-			fields.confirmPassword.addEventListener("click", typeToggler({element: fields.confirmPassword, toggleTypes: types}));
 			
 		},
 		
 		addSourceListeners: function({ fields }){
-			const sources = {
-				primary: "../public/icons/olho-fechado.svg",
-				secondary: "../public/icons/olho-aberto.svg"
+
+			if(this.hasValidProps(fields)){
+
+				const sources = {
+					primary: "../public/icons/olho-fechado.svg",
+					secondary: "../public/icons/olho-aberto.svg"
+				}
+				
+				fields.actualPassword.addEventListener("toggling", sourceToggler({element: fields.actualPassword.firstElementChild, toggleSources: sources}));
+				fields.newPassword.addEventListener("toggling", sourceToggler({element: fields.newPassword.firstElementChild, toggleSources: sources}));
+				fields.confirmPassword.addEventListener("toggling", sourceToggler({element: fields.confirmPassword.firstElementChild, toggleSources: sources}));
 			}
-			
-			fields.actualPassword.addEventListener("toggling", sourceToggler({element: fields.actualPassword.firstElementChild, toggleSources: sources}));
-			fields.newPassword.addEventListener("toggling", sourceToggler({element: fields.newPassword.firstElementChild, toggleSources: sources}));
-			fields.confirmPassword.addEventListener("toggling", sourceToggler({element: fields.confirmPassword.firstElementChild, toggleSources: sources}));
+		},
+
+		hasValidProps: function(fieldsProps){
+			if(fieldsProps.actualPassword && fieldsProps.newPassword && fieldsProps.confirmPassword){
+	
+				return true;
+			}
+			else{
+	
+				return false;
+			}
 		}
 	}
 }

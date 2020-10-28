@@ -1,10 +1,10 @@
 function modals(classToggler){
 
 	/** Modals namespace **/
-	return {
 
+	return {
 		defineModal: function (modalProps){
-	
+			
 			if(this.hasValidProps(modalProps)){
 	
 				const properties = {
