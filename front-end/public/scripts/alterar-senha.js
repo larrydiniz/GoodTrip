@@ -1,48 +1,51 @@
-const passwordVisibility = {
+function passwordVisibility(typeToggler, sourceToggler){
 
 	/** Password fields namespace **/
 
-	setFields: function(passwordFields){
-		const properties = {
-			actualPassword: {
-				value: passwordFields.actualPassword,
-				writable: false
-			},
-			newPassword: {
-				value: passwordFields.newPassword,
-				writable: false
-			},
-			confirmPassword: {
-				value: passwordFields.confirmPassword,
-				writable: false
+	return {
+
+		defineFields: function(passwordFields){
+			const properties = {
+				actualPassword: {
+					value: passwordFields.actualPassword,
+					writable: false
+				},
+				newPassword: {
+					value: passwordFields.newPassword,
+					writable: false
+				},
+				confirmPassword: {
+					value: passwordFields.confirmPassword,
+					writable: false
+				}
 			}
-		}
-
-		return Object.defineProperties({}, properties);
-	},
-
-	mountTypeListeners: function({ fields }){
-
-		const toggleTypes = {
-			primary: "password",
-			secondary: "text"
-		}
-
-		fields.actualPassword.addEventListener("click", typeToggler({element: fields.actualPassword, toggleTypes: toggleTypes}));
-		fields.newPassword.addEventListener("click", typeToggler({element: fields.newPassword, toggleTypes: toggleTypes}));
-		fields.confirmPassword.addEventListener("click", typeToggler({element: fields.confirmPassword, toggleTypes: toggleTypes}));
-		
-	},
 	
-	mountSourceListeners: function({ fields }){
-		const toggleSources = {
-			primary: "../public/icons/olho-fechado.svg",
-			secondary: "../public/icons/olho-aberto.svg"
-		}
+			return Object.defineProperties({}, properties);
+		},
+	
+		addTypeListeners: function({ fields }){
+	
+			const types = {
+				primary: "password",
+				secondary: "text"
+			}
+	
+			fields.actualPassword.addEventListener("click", typeToggler({element: fields.actualPassword, toggleTypes: types}));
+			fields.newPassword.addEventListener("click", typeToggler({element: fields.newPassword, toggleTypes: types}));
+			fields.confirmPassword.addEventListener("click", typeToggler({element: fields.confirmPassword, toggleTypes: types}));
+			
+		},
 		
-		fields.actualPassword.addEventListener("toggling", sourceToggler({element: fields.actualPassword.firstElementChild, toggleSources: toggleSources}));
-		fields.newPassword.addEventListener("toggling", sourceToggler({element: fields.newPassword.firstElementChild, toggleSources: toggleSources}));
-		fields.confirmPassword.addEventListener("toggling", sourceToggler({element: fields.confirmPassword.firstElementChild, toggleSources: toggleSources}));
+		addSourceListeners: function({ fields }){
+			const sources = {
+				primary: "../public/icons/olho-fechado.svg",
+				secondary: "../public/icons/olho-aberto.svg"
+			}
+			
+			fields.actualPassword.addEventListener("toggling", sourceToggler({element: fields.actualPassword.firstElementChild, toggleSources: sources}));
+			fields.newPassword.addEventListener("toggling", sourceToggler({element: fields.newPassword.firstElementChild, toggleSources: sources}));
+			fields.confirmPassword.addEventListener("toggling", sourceToggler({element: fields.confirmPassword.firstElementChild, toggleSources: sources}));
+		}
 	}
 }
 
@@ -72,15 +75,18 @@ function visualizar(id, cod){
 }
 
 /******** MAIN ******/
+const pv = passwordVisibility(typeToggler, sourceToggler);
+
 const menuButton = document.querySelector('button.menu-landing');
 const navMenu = document.querySelector('nav#menu');
 const actualPasswordField = document.querySelector(".olho1");
 const newPasswordField = document.querySelector(".olho2");
 const confirmPasswordField = document.querySelector(".olho3");
 
-const passwordFields = passwordVisibility.setFields({ actualPassword: actualPasswordField, newPassword: newPasswordField, confirmPassword: confirmPasswordField });
 
-passwordVisibility.mountTypeListeners({ fields: passwordFields });
-passwordVisibility.mountSourceListeners({ fields: passwordFields});
+const passwordFields = pv.defineFields({ actualPassword: actualPasswordField, newPassword: newPasswordField, confirmPassword: confirmPasswordField });
+
+pv.addTypeListeners({ fields: passwordFields });
+pv.addSourceListeners({ fields: passwordFields});
 
 menuButton.addEventListener('click', classToggler({element: navMenu, toggleClass: "show"}));
