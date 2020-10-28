@@ -1,18 +1,48 @@
-function classToggler({element, toggleClass}){
-	const toggling = new Event('toggling');
+const passwordVisibility = {
+
+	/** Password fields namespace **/
+
+	setFields: function(passwordFields){
+		const properties = {
+			actualPassword: {
+				value: passwordFields.actualPassword,
+				writable: false
+			},
+			newPassword: {
+				value: passwordFields.newPassword,
+				writable: false
+			},
+			confirmPassword: {
+				value: passwordFields.confirmPassword,
+				writable: false
+			}
+		}
+
+		return Object.defineProperties({}, properties);
+	},
+
+	mountTypeListeners: function({ fields }){
+
+		const toggleTypes = {
+			primary: "password",
+			secondary: "text"
+		}
+
+		fields.actualPassword.addEventListener("click", typeToggler({element: fields.actualPassword, toggleTypes: toggleTypes}));
+		fields.newPassword.addEventListener("click", typeToggler({element: fields.newPassword, toggleTypes: toggleTypes}));
+		fields.confirmPassword.addEventListener("click", typeToggler({element: fields.confirmPassword, toggleTypes: toggleTypes}));
+		
+	},
 	
-	return function(){
-		const classList = element.classList
+	mountSourceListeners: function({ fields }){
+		const toggleSources = {
+			primary: "../public/icons/olho-fechado.svg",
+			secondary: "../public/icons/olho-aberto.svg"
+		}
 		
-	    if(classList.contains(toggleClass)){
-			classList.remove(toggleClass);
-			
-	    }
-	    else{
-			classList.add(toggleClass);
-	    }
-		
-	    element.dispatchEvent(toggling);
+		fields.actualPassword.addEventListener("toggling", sourceToggler({element: fields.actualPassword.firstElementChild, toggleSources: toggleSources}));
+		fields.newPassword.addEventListener("toggling", sourceToggler({element: fields.newPassword.firstElementChild, toggleSources: toggleSources}));
+		fields.confirmPassword.addEventListener("toggling", sourceToggler({element: fields.confirmPassword.firstElementChild, toggleSources: toggleSources}));
 	}
 }
 
@@ -44,5 +74,13 @@ function visualizar(id, cod){
 /******** MAIN ******/
 const menuButton = document.querySelector('button.menu-landing');
 const navMenu = document.querySelector('nav#menu');
+const actualPasswordField = document.querySelector(".olho1");
+const newPasswordField = document.querySelector(".olho2");
+const confirmPasswordField = document.querySelector(".olho3");
+
+const passwordFields = passwordVisibility.setFields({ actualPassword: actualPasswordField, newPassword: newPasswordField, confirmPassword: confirmPasswordField });
+
+passwordVisibility.mountTypeListeners({ fields: passwordFields });
+passwordVisibility.mountSourceListeners({ fields: passwordFields});
 
 menuButton.addEventListener('click', classToggler({element: navMenu, toggleClass: "show"}));

@@ -14,13 +14,13 @@ const modals = {
 								writable: false },
 								
 				content: { value: modalProps.content,
-							writable: false},
+							writable: false },
 							
 				modalOverlay: { value: modalProps.modalOverlay,
 								writable: false },
 								
 				visibilityClass: { value: modalProps.visibilityClass,
-									writable: false}
+									writable: false }
 			}
 			
 			/** Immutable modal object **/
@@ -56,24 +56,6 @@ const modals = {
 
 			return false;
 		}
-	}
-}
-
-function classToggler({element, toggleClass}){
-	const toggling = new Event('toggling');
-	
-	return function(){
-		const classList = element.classList
-		
-	    if(classList.contains(toggleClass)){
-			classList.remove(toggleClass);
-			
-	    }
-	    else{
-			classList.add(toggleClass);
-	    }
-		
-	    element.dispatchEvent(toggling);
 	}
 }
 

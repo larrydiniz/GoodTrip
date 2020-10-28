@@ -3,24 +3,6 @@ const navMenu = document.querySelector('nav#menu');
 const configButton = document.querySelector('button.menu-landing');
 const navConfig = document.querySelector('nav#config');
 
-function classToggler({element, toggleClass}){
-	const toggling = new Event('toggling');
-
-	return function(){
-		const classList = element.classList
-
-	    if(classList.contains(toggleClass)){
-			classList.remove(toggleClass);
-
-	    }
-	    else{
-	        classList.add(toggleClass);
-	    }
-
-	    element.dispatchEvent(toggling);
-	}
-}
-
 /********************************************* config ********************************************************/
 expandedMenu = () => {
 	if(!navConfig.classList.contains("mostrar")){

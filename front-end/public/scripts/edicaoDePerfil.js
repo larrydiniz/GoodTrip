@@ -12,23 +12,6 @@ function imagePreviewer({input, previewBox}){
 	}
 }
 
-function classToggler({element, toggleClass}){
-	
-	return function(){
-		const classList = element.classList
-		
-	    if(classList.contains(toggleClass)){
-			classList.remove(toggleClass);
-			
-	    }
-	    else{
-			classList.add(toggleClass);
-	    }
-		
-	    element.dispatchEvent(new Event("toggling"));
-	}
-}
-
 /******** MAIN ******/
 const inputImg = document.querySelector('input#edicao_perfil_inputImagem');
 const imgPreview = document.querySelector('img#edicao_perfil_img');

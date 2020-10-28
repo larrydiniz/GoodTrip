@@ -1,22 +1,3 @@
-function classToggler({element, toggleClass}){
-	const toggling = new Event('toggling');
-	
-	return function(){
-		const classList = element.classList
-		
-	    if(classList.contains(toggleClass)){
-			classList.remove(toggleClass);
-			
-	    }
-	    else{
-			classList.add(toggleClass);
-	    }
-
-	    element.dispatchEvent(toggling);
-	}
-}
-
-
 /************** Visualizador de Imagem ************/
 function PreviewImage() {
 	var imgReader = new FileReader();
