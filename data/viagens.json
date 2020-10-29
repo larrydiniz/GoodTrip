@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1, 
+        "titulo": "Praga", 
+        "inicio": "01-01-2021",
+        "fim": "14-01-2021",
+        "imagem": "../public/icons/imagemViagem.svg"
+    },
+    {
+        "id": 2, 
+        "titulo": "Santiago", 
+        "inicio": "12-06-2021",
+        "fim": "18-06-2021",
+        "imagem": "../public/icons/imagemViagem.svg"
+    },
+    {
+        "id": 3, 
+        "titulo": "Bahia", 
+        "inicio": "20-12-2022",
+        "fim": "27-12-2022",
+        "imagem": "../public/icons/imagemViagem.svg"
+    },
+    {
+        "id": 4, 
+        "titulo": "Narnia", 
+        "inicio": "18-10-2025",
+        "fim": "22-10-2025",
+        "imagem": "../public/icons/imagemViagem.svg"
+    }
+]

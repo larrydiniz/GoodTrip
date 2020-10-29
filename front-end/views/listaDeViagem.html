@@ -87,58 +87,7 @@
                 <input class="pesquisar" type="text" placeholder="Procurar viagem">
             </div>
             <div class="viagens">
-                <a href="agenda-viagem.html">
-                <div class="overlay-imagem">
-                    <div class="destino-viagem">
-                        Praga
-                    </div>
-                    <div class="data-viagem">
-                            Jan
-                            2021  
-                    </div>
-                    <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
-                </div>
-                </a>
-                <div class="overlay-imagem">
-                    <div class="destino-viagem">
-                        Bahia
-                    </div>
-                    <div class="data-viagem">
-                        Jan
-                        2021  
-                    </div>
-                    <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
-                </div>
-                <div class="overlay-imagem">
-                    <div class="destino-viagem">
-                        Chile
-                    </div>
-                    <div class="data-viagem">
-                        Jan
-                        2021  
-                    </div>
-                    <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
-                </div>
-                <div class="overlay-imagem">
-                    <div class="destino-viagem">
-                        Chile
-                    </div>
-                    <div class="data-viagem">
-                        Jan
-                        2021  
-                    </div>
-                    <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
-                </div>
-                <div class="overlay-imagem">
-                    <div class="destino-viagem">
-                        Chile
-                    </div>
-                    <div class="data-viagem">
-                        Jan
-                        2021  
-                    </div>
-                    <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
-                </div>
+                <!-- Viagens adicionadas dinamicamente -->
             </div>
             <div class="btn-cadastrar">
                 <a href="cadastro-viagem.html">
@@ -147,6 +96,21 @@
             </div>
         </div> 
     </main>
+
+    <!-- TEMPLATES -->
+    <template id="t-card-viagem">
+        <a href="agenda-viagem.html">
+            <div class="overlay-imagem">
+                <div class="destino-viagem">
+                    <!-- Titulo adicionado dinamicamente -->>
+                </div>
+                <div class="data-viagem">
+                    <!-- Data adiconada dinamicamente -->
+                </div>
+                <img class="imagem-viagem" src="">   
+            </div>
+        </a>
+    </template>
     <script src="../bundles/mobileMenu.bundle.js"></script>
 
 </body>

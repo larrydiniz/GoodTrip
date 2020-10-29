@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "viagem": 1,
+        "usuario": {
+                        "id": 1,
+                        "nome": "Felipe Marcondes",
+                        "user": "@felipinho13",
+                        "foto": "../public/icons/alex.svg"
+                    }
+    }
+]
