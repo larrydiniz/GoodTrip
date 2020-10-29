@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../public/styles/main.css">
     <link rel="stylesheet" href="../public/styles/alterar-senha.css">
     <link rel="stylesheet" href="../public/styles/menu.css">
-    <script src="../public/scripts/utils/togglers.js"></script>
     
     <title>GoodTrip</title>
 </head>
@@ -81,30 +80,30 @@
     </nav>
     <main>
         <h1>Alterar Senha</h1>
-        <form action="" > <!--  method="post" -->
+        <form action="" method="POST"> <!--  method="post" -->
             <div>
                 <div class="senha">
-                    <input type="password" class="pass" id="1" name="senha-atual" placeholder="Senha Atual">
-                    <button type="button" class="visualizar" id="1" onclick="visualizar(this.id, '1')";>
+                    <input type="password" class="pass" id="senha-atual" name="senha-atual" placeholder="Senha Atual">
+                    <div class="visualizar" id="senha-atual-visibilidade">
                         <img  class = "olho1" src="../public/icons/olho-fechado.svg">
-                    </button>
+                    </div>
                 </div>
                 <div class="senha">
-                    <input type="password" class="pass" id="2" name="nova-senha" placeholder="Nova Senha">  
-                    <button type="button" class="visualizar" id="2" onclick="visualizar(this.id, '2')">
+                    <input type="password" class="pass" id="nova-senha" name="nova-senha" placeholder="Nova Senha">  
+                    <div class="visualizar" id="nova-senha-visibilidade">
                         <img class = "olho2" src="../public/icons/olho-fechado.svg">
-                    </button>
+                    </div>
                 </div>
                 <div class="senha">
-                    <input type="password" class="pass" id="3" name="confirmar-senha" placeholder="Confirmar Senha">
-                    <button type="button" class="visualizar" id="3" onclick="visualizar(this.id, '3')">
+                    <input type="password" class="pass" id="confirmar-senha" name="confirmar-senha" placeholder="Confirmar Senha">
+                    <div class="visualizar" id="confirmar-senha-visibilidade">
                         <img  class ="olho3" src="../public/icons/olho-fechado.svg">
-                    </button>
+                    </div>
                 </div>
             </div>
             <input type="submit" class="salvar" value="Salvar Alterações">
         </form>
     </main>
-    <script src='../public/scripts/alterar-senha.js'></script>
+    <script src='../dist/alterarSenha.bundle.js'></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-function classToggler({element, toggleClass}){
+export function classToggler({element, toggleClass}){
 	
 	return function(event){
 		const classList = element.classList;
@@ -15,7 +15,7 @@ function classToggler({element, toggleClass}){
 	}
 }
 
-function typeToggler({element, toggleTypes}){
+export function typeToggler({element, toggleTypes}){
 	
 	return function(event){
 		
@@ -23,21 +23,21 @@ function typeToggler({element, toggleTypes}){
 			
 			element.type = toggleTypes.secondary;
 
-			element.dispatchEvent( new CustomEvent('toggling', { state: 1 }));
+			element.dispatchEvent( new CustomEvent('toggling', { detail: 1 }));
 	    }
 	    else{
 			
 			element.type = toggleTypes.primary;
 
-			element.dispatchEvent( new CustomEvent('toggling', { state: 0 }));
+			element.dispatchEvent( new CustomEvent('toggling', { detail: 0 }));
 	    }
 	}
 }
 
-function sourceToggler({element, toggleSources}){
+export function sourceToggler({element, toggleSources}){
 
 	return function(event){
-		if(event.state){
+		if(event.detail){
 
 			element.src = toggleSources.primary;
 		}

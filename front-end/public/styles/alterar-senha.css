@@ -67,7 +67,7 @@ input:focus{
     outline: 0;
 }
 
-button.visualizar{
+div.visualizar{
     margin-right: 25px;
     background-color: transparent;
     border: none;
