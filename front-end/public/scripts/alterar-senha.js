@@ -2,9 +2,6 @@ import passwordVisibility from './modules/passwordVisibility.js'
 import menu from './modules/menu.js'
 import { classToggler, typeToggler, sourceToggler } from './utils/togglers.js'
 
-const mnu = menu(classToggler);
-const pv = passwordVisibility(typeToggler, sourceToggler);
-
 const menuButton = document.querySelector('button.menu-landing');
 const navMenu = document.querySelector('nav#menu');
 const actualPasswordInput = document.querySelector("input#senha-atual");
@@ -14,21 +11,27 @@ const newPasswordButton = document.querySelector("div#nova-senha-visibilidade");
 const confirmPasswordInput = document.querySelector("input#confirmar-senha");
 const confirmPasswordButton = document.querySelector("div#confirmar-senha-visibilidade");
 
+const passwordInputTypes = Object.defineProperties({}, { primary: { value: "password", writable: false} , secondary: { value: "text", writable: false }});
+const passwordIconSources = Object.defineProperties({}, { primary: { value: "../public/icons/olho-fechado.svg", writable: false} , secondary: { value: "../public/icons/olho-aberto.svg", writable: false }});
+
+const mnu = menu(classToggler);
+const pv = passwordVisibility(typeToggler, sourceToggler);
+
 const actualPasswordField = pv.defineField({ button: actualPasswordButton, 
 											 input: actualPasswordInput, 
-											 types: { primary: "password", secondary: "text" },
-											 sources: { primary: "../public/icons/olho-fechado.svg", secondary: "../public/icons/olho-aberto.svg" }});
+											 types: passwordInputTypes,
+											 sources: passwordIconSources});
 
 const newPasswordField = pv.defineField({ button: newPasswordButton, 
 										  input: newPasswordInput, 
-										  types: { primary: "password", secondary: "text" },
-										  sources: { primary: "../public/icons/olho-fechado.svg", secondary: "../public/icons/olho-aberto.svg" }});
+										  types: passwordInputTypes,
+										  sources: passwordIconSources});
 
 
 const confirmPasswordField = pv.defineField({ button: confirmPasswordButton,
 											  input: confirmPasswordInput,
-											  types: { primary: "password", secondary: "text" },
-											  sources: { primary: "../public/icons/olho-fechado.svg", secondary: "../public/icons/olho-aberto.svg" }});
+											  types: passwordInputTypes,
+											  sources: passwordIconSources});
 
 const mobileMenu = mnu.defineMenu({ openButton: menuButton,
 									content: navMenu,
