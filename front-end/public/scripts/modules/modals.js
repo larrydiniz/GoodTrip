@@ -59,14 +59,8 @@ export default function modals(classToggler){
 		},
 	
 		hasValidProps: function(modalProps){
-			if(modalProps.openButton && modalProps.closeButton && modalProps.content && modalProps.modalOverlay && modalProps.visibilityClass){
-	
-				return true;
-			}
-			else{
-	
-				return false;
-			}
+			
+			return !!(modalProps.openButton && modalProps.closeButton && modalProps.content && modalProps.modalOverlay && modalProps.visibilityClass)
 		}
 	}
 }

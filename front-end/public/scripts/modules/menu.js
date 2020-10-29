@@ -30,14 +30,8 @@ export default function menu(classToggler){
         },
         
         hasValidProps: function(menu){
-			if(menu.openButton && menu.content && menu.visibilityClass){
-	
-				return true;
-			}
-			else{
-	
-				return false;
-			}
+            
+			return !!(menu.openButton && menu.content && menu.visibilityClass)
 		}
 
     }

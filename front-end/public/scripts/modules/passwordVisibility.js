@@ -48,14 +48,7 @@ export default function passwordVisibility(typeToggler, sourceToggler){
 		},
 
 		hasValidProps: function(fieldProps){
-			if(fieldProps.button && fieldProps.input && fieldProps.sources && fieldProps.types){
-	
-				return true;
-			}
-			else{
-	
-				return false;
-			}
+			return !!(fieldProps.button && fieldProps.input && fieldProps.sources && fieldProps.types)
 		}
 	}
 }
