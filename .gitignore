@@ -1,4 +1,4 @@
-dist/
+bundles/
 node_modules/
 
 # Compiled class file
