@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/styles/main.css">
     <link rel="stylesheet" href="../public/styles/index.css">
+    
     <title>GoodTrip</title>
 </head>
 <body>
@@ -72,10 +73,10 @@
         <form class="login" method="post">
             <input class="login email" type="email" name="loginEmail" placeholder="Digite seu email">
             <div class="senha">
-                <input type="password" class="pass login senha" id="1" name="senha-atual" placeholder="Digite sua senha">
-                <button type="button" class="visualizar" id="1" onclick="visualizar(this.id, '1')";>
+                <input type="password" class="pass login senha" id="senha-login" name="senha-atual" placeholder="Digite sua senha">
+                <div class="visualizar" id="botao-senha-login">
                     <img  class = "olho1" src="../public/icons/olho-fechado.svg">
-                </button>
+                </div>
             </div>
         </form>
         <a class="login esqueci"href="">Esqueceu sua senha?</a>
@@ -124,46 +125,21 @@
             <input class="cadastro email" type="email" name="email" placeholder="Digite seu email">
 
             <div class="senha">
-                <input type="password" class="pass cadastro senha" id="2" name="senha" placeholder="Senha">
-                <button type="button" class="visualizar" id="2" onclick="visualizar(this.id, '2')";>
+                <input type="password" class="pass cadastro senha" id="cadastro-senha" name="senha" placeholder="Senha">
+                <div class="visualizar" id="botao-cadastro-senha">
                     <img  class = "olho2" src="../public/icons/olho-fechado.svg">
-                </button>
+                </div>
             </div>
             <div class="senha">
-                <input type="password" class="pass cadastro confirma" id="3" name="confirma" placeholder="Confirmar senha">  
-                <button type="button" class="visualizar" id="3" onclick="visualizar(this.id, '3')">
+                <input type="password" class="pass cadastro confirma" id="confirma-senha" name="confirma" placeholder="Confirmar senha">  
+                <div class="visualizar" id="botao-confirma-senha">
                     <img class = "olho3" src="../public/icons/olho-fechado.svg">
-                </button>
+                </div>
             </div>
         </form>
         <button class="cadastro cadastrar">Cadastrar</button>
     </div><!-- MODAL -->
     <div class="overlay"></div>
-    <script src='../public/scripts/main.js'></script>
-    <script>
-        function visualizar(id, cod){
-
-        let campo = document.getElementById(id);
-
-        //botão
-        if (cod == '1'){
-            var olho = document.querySelector(".olho1");
-        } else if (cod == '2') {
-            var olho = document.querySelector(".olho2");
-        } else {
-            var olho = document.querySelector(".olho3");
-        }
-
-        //visualização da senha
-        if (campo.type == 'password'){
-            campo.type = 'text';
-            olho.src = "../public/icons/olho-aberto.svg"
-        }
-        else{
-            campo.type = 'password';
-            olho.src = "../public/icons/olho-fechado.svg"
-        }	
-        }
-    </script>
+    <script src='../bundles/index.bundle.js'></script>
 </body>
 </html>

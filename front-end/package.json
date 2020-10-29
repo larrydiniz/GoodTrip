@@ -1,0 +1,16 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "Projeto Integrador do curso Santander Coders - Digital House",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "Larissa Diniz, Lucas Moura Corazim e Hakney Lima",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.3.1",
+    "webpack-cli": "^4.1.0"
+  }
+}
