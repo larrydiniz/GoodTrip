@@ -1,22 +1,17 @@
+import menu from "./modules/menu.js"
+import imagePreviewer from "./utils/imagePreviewer.js"
+import { classToggler } from "./utils/togglers.js"
 
-function imagePreviewer({input, previewBox}){
-	const imgReader = new FileReader();
-	
-	return function(){
-		
-		imgReader.readAsDataURL(input.files[0]);
-		
-		imgReader.onload = function (imgEvent) {
-			previewBox.setAttribute('src', imgEvent.target.result);
-		};	
-	}
-}
+const mnu = menu(classToggler);
 
-/******** MAIN ******/
 const inputImg = document.querySelector('input#edicao_perfil_inputImagem');
 const imgPreview = document.querySelector('img#edicao_perfil_img');
 const menuButton = document.querySelector('button.menu-landing');
 const navMenu = document.querySelector('nav#menu');
 
+const mobileMenu = mnu.defineMenu({ openButton: menuButton,
+									content: navMenu,
+								    visibilityClass: "show" })
 inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox: imgPreview}));
-menuButton.addEventListener('click', classToggler({element: navMenu, toggleClass: "show"}));
+
+mnu.addOpenedListeners({ menu: mobileMenu });

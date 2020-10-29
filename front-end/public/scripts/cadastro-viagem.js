@@ -1,16 +1,18 @@
-/************** Visualizador de Imagem ************/
-function PreviewImage() {
-	var imgReader = new FileReader();
-	imgReader.readAsDataURL(document.getElementById("carregar-imagem").files[0]);
-	
-	imgReader.onload = function (imgEvent) {
-		document.getElementById("preview").src = imgEvent.target.result;
-	};
-};
+import menu from "./modules/menu.js"
+import imagePreviewer from "./utils/imagePreviewer.js"
+import { classToggler } from "./utils/togglers.js"
 
+const mnu = menu(classToggler);
 
-/******** MAIN ******/
+const inputImg = document.querySelector('input#carregar-imagem');
+const imgPreview = document.querySelector('img#preview');
 const menuButton = document.querySelector('button.menu-landing');
 const navMenu = document.querySelector('nav#menu');
 
-menuButton.addEventListener('click', classToggler({element: navMenu, toggleClass: "show"}));
+const mobileMenu = mnu.defineMenu({ openButton: menuButton,
+									content: navMenu,
+									visibilityClass: "show" });
+
+inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox: imgPreview}));
+
+mnu.addOpenedListeners({ menu: mobileMenu });

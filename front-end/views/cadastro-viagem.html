@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../public/styles/main.css">
     <link rel="stylesheet" href="../public/styles/cadastro-viagem.css">
     <link rel="stylesheet" href="../public/styles/menu.css">
-    <script src="../public/scripts/utils/togglers.js"></script>
     
     <title>GoodTrip</title>
 </head>
@@ -94,7 +93,7 @@
                 <input type="date" id="data" name="termino">
             </div>
             <div class="imagem">
-                <input type="file" id="carregar-imagem" name="imagem" accept="image/png, image/jpeg" onchange="PreviewImage();">
+                <input type="file" id="carregar-imagem" name="imagem" accept="image/png, image/jpeg">
                 <label for="carregar-imagem" id="texto">Carregar imagem
                     <img id="preview" width="80px" height="auto">
                     <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,6 +105,6 @@
             <input type="submit" class="cadastrar" value="Cadastrar">
         </form>
     </main>
-    <script src='../public/scripts/cadastro-viagem.js'></script>
+    <script src='../bundles/cadastroDeViagem.bundle.js'></script>
 </body>
 </html>

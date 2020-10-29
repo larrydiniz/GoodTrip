@@ -1,16 +1,10 @@
+import menu from './modules/menu.js';
+import { classToggler } from './utils/togglers.js';
+
 const menuButton = document.querySelector('button.menu-landing');
 const navMenu = document.querySelector('nav#menu');
-const configButton = document.querySelector('button.menu-landing');
-const navConfig = document.querySelector('nav#config');
-
-/********************************************* config ********************************************************/
-expandedMenu = () => {
-	if(!navConfig.classList.contains("mostrar")){
-		navConfig.classList.add("mostrar") 
-	} else {
-		navConfig.classList.remove("mostrar") 
-	}
-}
+const configButton = document.querySelector('button.configuracoes');
+const configNav = document.querySelector('nav#config');
 
 /********************************************* calendário *******************************************************/
 const inicio = "2021-01-07";
@@ -180,4 +174,20 @@ class Calendario {
 }
 
 /************************************************ MAIN *****************************************************/
-menuButton.addEventListener('click', classToggler({element: navMenu, toggleClass: "show"}));
+const mnu = menu(classToggler);
+
+const mobileMenu = mnu.defineMenu({ openButton: menuButton,
+									content: navMenu,
+									visibilityClass: "show" });
+
+const configMenu = mnu.defineMenu({ openButton: configButton,
+	                                content: configNav,
+									visibilityClass: "mostrar" });
+
+mnu.addOpenedListeners({ menu: mobileMenu });
+mnu.addOpenedListeners({ menu: configMenu });
+
+let calendario = new Calendario('calendar');
+calendario.getElement().addEventListener('change', e => {
+	console.log(calendario.value().format('YYYY-MM-DD'));
+})
