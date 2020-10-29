@@ -59,8 +59,8 @@ export default function modals(classToggler){
 		},
 	
 		hasValidProps: function(modalProps){
-			
-			return !!(modalProps.openButton && modalProps.closeButton && modalProps.content && modalProps.modalOverlay && modalProps.visibilityClass)
+
+			return (modalProps.openButton && modalProps.closeButton && modalProps.content && modalProps.modalOverlay && modalProps.visibilityClass)
 		}
 	}
 }

@@ -30,8 +30,8 @@ export default function menu(classToggler){
         },
         
         hasValidProps: function(menu){
-            
-			return !!(menu.openButton && menu.content && menu.visibilityClass)
+
+			return (menu.openButton && menu.content && menu.visibilityClass)
 		}
 
     }
