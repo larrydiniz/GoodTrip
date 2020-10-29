@@ -1,11 +1,9 @@
-import menu from "./modules/menu.js"
 import modals from "./modules/modals.js"
 import passwordVisibility from "./modules/passwordVisibility.js"
 import { classToggler, sourceToggler, typeToggler } from "./utils/togglers.js"
 
-const nav = document.getElementById("menu");
-const btn = document.querySelector(".menu-landing");
 const overlay = document.querySelector("div.overlay");
+const nav = document.querySelector("nav#menu");
 const ulNav = document.querySelector("ul");
 const loginModalOpenButton = document.querySelector("button#entrar.menu");
 const loginModalCloseButton = document.querySelector("button.login.fechar");
@@ -24,7 +22,6 @@ const passwordInputTypes = Object.defineProperties({}, { primary: { value: "pass
 const passwordIconSources = Object.defineProperties({}, { primary: { value: "../public/icons/olho-fechado.svg", writable: false} , secondary: { value: "../public/icons/olho-aberto.svg", writable: false }});
 
 const md = modals(classToggler);
-const mnu = menu(classToggler);
 const pv = passwordVisibility(typeToggler, sourceToggler);
 
 const passwordRegisterField = pv.defineField({ button: passwordRegisterButton, 
@@ -42,10 +39,6 @@ const loginPasswordField = pv.defineField({ button: passwordLoginButton,
 											input: passwordLoginInput,
 											types: passwordInputTypes,
 											sources: passwordIconSources});
-
-const menuMobile = mnu.defineMenu({ openButton: btn,
-								    content: nav, 
-								    visibilityClass: "show" });
 								  
 const loginModal = md.defineModal({ openButton: loginModalOpenButton,
 	                                closeButton: loginModalCloseButton,
@@ -61,8 +54,6 @@ const registerModal = md.defineModal({ openButton: registerModalOpenButton,
 								  
 nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}));
 overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: "hide"}));
-
-mnu.addOpenedListeners({ menu: menuMobile });
 
 md.addOpenedListeners({ modal: loginModal });
 md.addClosedListeners({ modal: loginModal });

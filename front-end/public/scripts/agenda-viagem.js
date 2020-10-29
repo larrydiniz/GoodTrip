@@ -1,8 +1,6 @@
 import menu from './modules/menu.js';
 import { classToggler } from './utils/togglers.js';
 
-const menuButton = document.querySelector('button.menu-landing');
-const navMenu = document.querySelector('nav#menu');
 const configButton = document.querySelector('button.configuracoes');
 const configNav = document.querySelector('nav#config');
 
@@ -176,15 +174,10 @@ class Calendario {
 /************************************************ MAIN *****************************************************/
 const mnu = menu(classToggler);
 
-const mobileMenu = mnu.defineMenu({ openButton: menuButton,
-									content: navMenu,
-									visibilityClass: "show" });
-
 const configMenu = mnu.defineMenu({ openButton: configButton,
 	                                content: configNav,
 									visibilityClass: "mostrar" });
-
-mnu.addOpenedListeners({ menu: mobileMenu });
+									
 mnu.addOpenedListeners({ menu: configMenu });
 
 let calendario = new Calendario('calendar');
