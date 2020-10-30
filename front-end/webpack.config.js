@@ -9,7 +9,8 @@ module.exports = {
       agendaDeViagem: './public/scripts/agenda-viagem.js',
       cadastroDeViagem: './public/scripts/cadastro-viagem.js',
       edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
-      membros: './public/scripts/membros.js'
+      membros: './public/scripts/membros.js',
+      listaDeViagem: './public/scripts/listaDeViagem.js'
   },
   output: {
     filename: '[name].bundle.js',
