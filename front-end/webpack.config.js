@@ -8,7 +8,8 @@ module.exports = {
       edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
       agendaDeViagem: './public/scripts/agenda-viagem.js',
       cadastroDeViagem: './public/scripts/cadastro-viagem.js',
-      edicaoDePerfil: './public/scripts/edicaoDePerfil.js'
+      edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
+      membros: './public/scripts/membros.js'
   },
   output: {
     filename: '[name].bundle.js',
