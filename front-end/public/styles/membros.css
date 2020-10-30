@@ -18,7 +18,7 @@ p#membros_convites_titulo, div#membros_adicionar_titulo{
 
 p.membro_nome_perfil{
     color: var(--fonte-normal);
-    font-size: 18pt;
+    font-size: 14pt;
     font-weight: bold;
 }
 
