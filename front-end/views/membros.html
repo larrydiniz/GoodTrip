@@ -84,8 +84,8 @@
                     Praga
                 </div>
                 <div class="data-viagem">
-                        Jan
-                        2021  
+                    Jan
+                    2021  
                 </div>
                 <div class="nome-tela">
                     Membros
@@ -93,82 +93,12 @@
                 <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
             </div>
             <div id="membros_usuarios">
-                <div class="membro_card">
-                    <img class="membro_imagem" src="" alt="">
-                    <div class="membro_infos">
-                        <p class="membro_nome_perfil">Alex</p>
-                        <p class="membro_nome_usuario">@lexxx</p>
-                    </div>
-                </div>
-                <div class="membro_card">
-                    <img class="membro_imagem" src="" alt="">
-                    <div class="membro_infos">
-                        <p class="membro_nome_perfil">Alex</p>
-                        <p class="membro_nome_usuario">@lexxx</p>
-                    </div>
-                </div>
-                <div class="membro_card">
-                    <img class="membro_imagem" src="" alt="">
-                    <div class="membro_infos">
-                        <p class="membro_nome_perfil">Alex</p>
-                        <p class="membro_nome_usuario">@lexxx</p>
-                    </div>
-                </div>
-                <div class="membro_card">
-                    <img class="membro_imagem" src="" alt="">
-                    <div class="membro_infos">
-                        <p class="membro_nome_perfil">Alex</p>
-                        <p class="membro_nome_usuario">@lexxx</p>
-                    </div>
-                </div>
+                <!-- Menbros adicionados dinamicamente -->
             </div>
             <span class="membros_divisor"></span>
             <p id="membros_convites_titulo">Convites pendentes</p>
             <div id="membros_convidados">
-                <div class="membro_convidado">
-                    <div class="membro_card">
-                        <img class="membro_imagem" src="" alt="">
-                        <div class="membro_infos">
-                            <p class="membro_nome_perfil">Aline</p>
-                            <p class="membro_nome_usuario">@lini</p>
-                        </div>
-                    </div>
-                    <button class="membro_cancelar_convite_web">Cancelar</button>
-                    <button class="membro_cancelar_convite_mobile">X</button>
-                </div>
-                <div class="membro_convidado">
-                    <div class="membro_card">
-                        <img class="membro_imagem" src="" alt="">
-                        <div class="membro_infos">
-                            <p class="membro_nome_perfil">Aline</p>
-                            <p class="membro_nome_usuario">@lini</p>
-                        </div>
-                    </div>
-                    <button class="membro_cancelar_convite_web">Cancelar</button>
-                    <button class="membro_cancelar_convite_mobile">X</button>
-                </div>
-                <div class="membro_convidado">
-                    <div class="membro_card">
-                        <img class="membro_imagem" src="" alt="">
-                        <div class="membro_infos">
-                            <p class="membro_nome_perfil">Aline</p>
-                            <p class="membro_nome_usuario">@lini</p>
-                        </div>
-                    </div>
-                    <button class="membro_cancelar_convite_web">Cancelar</button>
-                    <button class="membro_cancelar_convite_mobile">X</button>
-                </div>
-                <div class="membro_convidado">
-                    <div class="membro_card">
-                        <img class="membro_imagem" src="" alt="">
-                        <div class="membro_infos">
-                            <p class="membro_nome_perfil">Aline</p>
-                            <p class="membro_nome_usuario">@lini</p>
-                        </div>
-                    </div>
-                    <button class="membro_cancelar_convite_web">Cancelar</button>
-                    <button class="membro_cancelar_convite_mobile">X</button>
-                </div>
+                <!--- Convidados adicionados dinamicamente -->
             </div>
             <span class="membros_divisor"></span>
             <div id="membros_convidar">
@@ -179,15 +109,35 @@
                     </svg>
                     <input id="membros_busca_amigo" type="search" name="buscar_amigo" id="" placeholder="Buscar amigo">
                 </div>
+                <!-- Busca dinâmica -->
+            </div>
+        </main>
+
+        <!-- TEMPLATES -->
+        <template id="t_membro_card">
+            <div class="membro_card">
+                <img class="membro_imagem" src="" alt="">
+                <div class="membro_infos">
+                    <p class="membro_nome_perfil"><!-- Nome --></p>
+                    <p class="membro_nome_usuario"><!--- User -->></p>
+                </div>
+            </div>
+        </template>
+
+        <template id="t_membro_convidado">
+            <div class="membro_convidado">
                 <div class="membro_card">
                     <img class="membro_imagem" src="" alt="">
                     <div class="membro_infos">
-                        <p class="membro_nome_perfil">Alex</p>
-                        <p class="membro_nome_usuario">@lexxx</p>
+                        <p class="membro_nome_perfil"><!-- Nome --></p>
+                        <p class="membro_nome_usuario"><!-- User --></p>
                     </div>
                 </div>
+                <button class="membro_cancelar_convite_web">Cancelar</button>
+                <button class="membro_cancelar_convite_mobile">X</button>
             </div>
-        </main>
+        </template>
     </body>
-    <script src='../public/scripts/main.js'></script>
+    <script src="../bundles/mobileMenu.bundle.js"></script>
+    <script src="../bundles/membros.bundle.js"></script>
 </html>

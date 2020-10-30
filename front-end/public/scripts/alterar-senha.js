@@ -1,9 +1,6 @@
 import passwordVisibility from './modules/passwordVisibility.js'
-import menu from './modules/menu.js'
-import { classToggler, typeToggler, sourceToggler } from './utils/togglers.js'
+import { typeToggler, sourceToggler } from './utils/togglers.js'
 
-const menuButton = document.querySelector('button.menu-landing');
-const navMenu = document.querySelector('nav#menu');
 const actualPasswordInput = document.querySelector("input#senha-atual");
 const actualPasswordButton = document.querySelector("div#senha-atual-visibilidade");
 const newPasswordInput = document.querySelector("input#nova-senha");
@@ -14,7 +11,6 @@ const confirmPasswordButton = document.querySelector("div#confirmar-senha-visibi
 const passwordInputTypes = Object.defineProperties({}, { primary: { value: "password", writable: false} , secondary: { value: "text", writable: false }});
 const passwordIconSources = Object.defineProperties({}, { primary: { value: "../public/icons/olho-fechado.svg", writable: false} , secondary: { value: "../public/icons/olho-aberto.svg", writable: false }});
 
-const mnu = menu(classToggler);
 const pv = passwordVisibility(typeToggler, sourceToggler);
 
 const actualPasswordField = pv.defineField({ button: actualPasswordButton, 
@@ -32,12 +28,6 @@ const confirmPasswordField = pv.defineField({ button: confirmPasswordButton,
 											  input: confirmPasswordInput,
 											  types: passwordInputTypes,
 											  sources: passwordIconSources});
-
-const mobileMenu = mnu.defineMenu({ openButton: menuButton,
-									content: navMenu,
-									visibilityClass: "show" });
-
-mnu.addOpenedListeners({ menu: mobileMenu });
 
 pv.addTypeListeners({ field: actualPasswordField });
 pv.addSourceListeners({ field: actualPasswordField });

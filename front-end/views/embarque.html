@@ -86,93 +86,55 @@
                 <h1 class="titulo">Embarque</h1>
             </div>
             <div class="convites-embarque">
-                <!-- Lista de convites -->
-                
-                <div class="convite">
-                    <div class="user">
-                        <div class="user-img">
-                            <img src="../public/icons/alex.svg" alt="" srcset="">
-                        </div>
-                        <div class="user-convite-perfil">
-                            <div id="convite-username">
-                                Alex Rui
-                            </div>
-                            <div id="convite-nickname">
-                                @alexr
-                            </div>
-                        </div>
-                    </div>
-                    <div class="convite-conteudo">
-                        <div class="convite-destino">
-                            <p>
-                                Nova York 
-                            </p>
-                            <p>
-                                Jun | 2021
-                            </p>
-                        </div>
-                        <div class="convite-opcoes">
-                            <div class="convite-aceitar">
-                                <p>
-                                    <span class="desktop-aceitar"> Embarcar </span>
-                                    <span class="mobile-aceitar"> <img src="../public/icons/certo.jpg"> </span>
-                                </p>
-                            </div>
-                            <div class="convite-recusar">
-                                <p>
-                                    <span class="desktop-aceitar"> Recusar </span>
-                                    <span class="mobile-aceitar"> <img src="../public/icons/recusar.jpg"> </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="convite">
-                    <div class="user">
-                        <div class="user-img">
-                            <img src="../public/icons/alex.svg" alt="" srcset="">
-                        </div>
-                        <div class="user-convite-perfil">
-                            <div id="convite-username">
-                                Alex Rui
-                            </div>
-                            <div id="convite-nickname">
-                                @alexr
-                            </div>
-                        </div>
-                    </div>
-                    <div class="convite-conteudo">
-                        <div class="convite-destino">
-                            <p>
-                                Nova York 
-                            </p>
-                            <p>
-                                Jun | 2021
-                            </p>
-                        </div>
-                        <div class="convite-opcoes">
-                            <div class="convite-aceitar">
-                                <p>
-                                    <span class="desktop-aceitar"> Embarcar </span>
-                                    <span class="mobile-aceitar"> <img src="../public/icons/certo.jpg"> </span>
-                                </p>
-                            </div>
-                            <div class="convite-recusar">
-                                <p>
-                                    <span class="desktop-aceitar"> Recusar </span>
-                                    <span class="mobile-aceitar"> <img src="../public/icons/recusar.jpg"> </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fim Lista de convites -->
+                <!-- Lista de convites adicionados dinamicamente -->
             </div>
         </div> 
     </main>
-    <script src='../public/scripts/listaDeViagem.js'></script>
+
+    <!-- TEMPLATES -->
+    <template id="t-convite">
+        <div class="convite">
+            <div class="user">
+                <div class="user-img">
+                    <img src="" alt="" srcset="">
+                </div>
+                <div class="user-convite-perfil">
+                    <div id="convite-username">
+                        <!-- Nome adicionado dinamicamente -->>
+                    </div>
+                    <div id="convite-nickname">
+                        <!-- User adicionado dinamicamente -->
+                    </div>
+                </div>
+            </div>
+            <div class="convite-conteudo">
+                <div class="convite-destino">
+                    <p>
+                        <!-- Titulo de viagem adicionado dinamicamente -->
+                    </p>
+                    <p>
+                        <!-- Data de viagem adicionada dinamicamente-->
+                    </p>
+                </div>
+                <div class="convite-opcoes">
+                    <div class="convite-aceitar">
+                        <p>
+                            <span class="desktop-aceitar"> Embarcar </span>
+                            <span class="mobile-aceitar"> <img src="../public/icons/certo.jpg"> </span>
+                        </p>
+                    </div>
+                    <div class="convite-recusar">
+                        <p>
+                            <span class="desktop-aceitar"> Recusar </span>
+                            <span class="mobile-aceitar"> <img src="../public/icons/recusar.jpg"> </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script src="../bundles/mobileMenu.bundle.js"></script>
+    <script src="../bundles/embarque.bundle.js"></script>
 
 </body>
 </html>

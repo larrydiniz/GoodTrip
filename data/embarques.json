@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "viagem": 1,
+        "aceito": true,
+        "usuario": {
+                        "id": 1,
+                        "nome": "Felipe Marcondes",
+                        "user": "@felipinho13",
+                        "foto": "../public/icons/alex.svg"
+                    }
+    },
+    {
+        "id": 2,
+        "viagem": 1,
+        "aceito": true,
+        "usuario": {
+                        "id": 2,
+                        "nome": "Alex Gaudes",
+                        "user": "@alequatico",
+                        "foto": "../public/icons/alex.svg"
+                    }
+    },
+    {
+        "id": 3,
+        "viagem": 1,
+        "aceito": false,
+        "usuario": {
+                        "id": 3,
+                        "nome": "Astúrio",
+                        "user": "@overDoover",
+                        "foto": "../public/icons/alex.svg"
+                    }
+    }
+]

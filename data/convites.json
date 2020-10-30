@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "aceito": false,
+        "viagem": {
+                    "id": 1,
+                    "titulo": "Nova York", 
+                    "inicio": "01-04-2021",
+                    "fim": "14-04-2021",
+                    "autor": {
+                                "id": 1,
+                                "nome": "Felipe Marcondes",
+                                "user": "@felipinho13",
+                                "foto": "../public/icons/alex.svg"
+                             }
+                  },
+        "usuario": {
+                        "id": 1,
+                        "nome": "Anna Julia",
+                        "user": "@annajd"
+                    }
+    },
+    {
+        "id": 1,
+        "aceito": false,
+        "viagem": {
+                    "id": 1,
+                    "titulo": "Olinda", 
+                    "inicio": "01-07-2026",
+                    "fim": "14-07-2026",
+                    "autor": {
+                                "id": 1,
+                                "nome": "Maico Ualzausqui",
+                                "user": "@verdin",
+                                "foto": "../public/icons/alex.svg"
+                             }
+                  },
+        "usuario": {
+                        "id": 1,
+                        "nome": "Anna Julia",
+                        "user": "@annajd"
+                    }
+    }
+]
