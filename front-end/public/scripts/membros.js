@@ -7,26 +7,31 @@ const templateGuestCard = document.querySelector("template#t_membro_convidado");
 
 const mmbc = membersCards();
 
-function appendCards(element){
+function buildCard(data){
 
-    if(element.aceito){
+    if(data.aceito){
     
         const clonedMemberCard = templateMemberCard.content.cloneNode(true);
         const mappedMemberCard = mmbc.mapCloneMemberCard(clonedMemberCard);
     
-        mmbc.setCloneCardAttributes(mappedMemberCard, element.usuario);
+        mmbc.setCloneCardAttributes(mappedMemberCard, data.usuario);
     
-        membersBlock.appendChild(clonedMemberCard);
+        return { "parent": membersBlock, "card": clonedMemberCard }
     }
     else{
     
         const clonedGuestWrap = templateGuestCard.content.cloneNode(true);
         const mappedGuestCard = mmbc.mapCloneGuestCard(clonedGuestWrap);
     
-        mmbc.setCloneCardAttributes(mappedGuestCard, element.usuario);
+        mmbc.setCloneCardAttributes(mappedGuestCard, data.usuario);
     
-        guestsBlock.appendChild(clonedGuestWrap);
+        return { "parent": guestsBlock, "card": clonedGuestWrap };
     }
 }
 
-fetch("/data/embarques.json").then(res => res.json()).then(json => json.forEach(appendCards));
+function appendCard({ parent, card }){
+
+    parent.appendChild(card);
+}
+
+fetch("/data/embarques.json").then(res => res.json()).then(json => json.forEach(element => appendCard(buildCard(element))));

@@ -1,15 +1,11 @@
 export default function travelCards(){
 
     return {
-        setCloneCardAttributes: function({ imageField, titleField, dateField }, data){
+        setCloneCardAttributes: function({ imageField, titleField, dateField }, parsedData){
 
-            const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-            const splittedDate = data.inicio.split("-");
-            const monthIndex = Number.parseInt(splittedDate[1]) - 1
-
-            imageField.src = data.imagem;
-            titleField.innerText = data.titulo;
-            dateField.innerText = months[monthIndex] + "\n" + splittedDate[2];
+            imageField.src = parsedData.imagem;
+            titleField.innerText = parsedData.titulo;
+            dateField.innerText = parsedData.month + "\n" + parsedData.year;
         },
         
         mapCloneTravelCard: function(fragment){

@@ -2,15 +2,16 @@ const path = require('path');
 
 module.exports = {
   entry: {
-      index: './public/scripts/index.js',
-      mobileMenu: './public/scripts/commons/mobileMenu.js',
-      alterarSenha: './public/scripts/alterar-senha.js',
-      edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
-      agendaDeViagem: './public/scripts/agenda-viagem.js',
-      cadastroDeViagem: './public/scripts/cadastro-viagem.js',
-      edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
-      membros: './public/scripts/membros.js',
-      listaDeViagem: './public/scripts/listaDeViagem.js'
+    index: './public/scripts/index.js',
+    mobileMenu: './public/scripts/commons/mobileMenu.js',
+    alterarSenha: './public/scripts/alterar-senha.js',
+    edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
+    agendaDeViagem: './public/scripts/agenda-viagem.js',
+    cadastroDeViagem: './public/scripts/cadastro-viagem.js',
+    edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
+    membros: './public/scripts/membros.js',
+    listaDeViagem: './public/scripts/listaDeViagem.js',
+    embarque: './public/scripts/embarque.js'
   },
   output: {
     filename: '[name].bundle.js',
