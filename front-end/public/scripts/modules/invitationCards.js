@@ -8,10 +8,10 @@ export default function invitationsCards(){
             usernameField.innerText = data.autor.user;
         },
 
-        setCloneTravelAttributes: function({ titleField, dateField }, parsedData){
+        setCloneTravelAttributes: function({ titleField, dateField }, data){
 
-            titleField.innerText = parsedData.titulo;
-            dateField.innerText = parsedData.month + " | " + parsedData.year;
+            titleField.innerText = data.titulo;
+            dateField.innerText = data.month + " | " + data.year;
         },
         
         mapCloneUserInfos: function(fragment){
