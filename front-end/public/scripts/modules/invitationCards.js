@@ -11,12 +11,12 @@ export default function invitationsCards(){
         setCloneTravelAttributes: function({ titleField, dateField }, parsedData){
 
             titleField.innerText = parsedData.titulo;
-            dateField.innerText = parsedData.month + "\n" + parsedData.year;
+            dateField.innerText = parsedData.month + " | " + parsedData.year;
         },
         
         mapCloneUserInfos: function(fragment){
             const userInfosCard = fragment.children[0].children[0];
-            const image = userInfosCard.children[0].children[0].children[0];
+            const image = userInfosCard.children[0].children[0];
             const name = userInfosCard.children[1].children[0];
             const username = userInfosCard.children[1].children[1];
         
