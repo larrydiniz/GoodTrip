@@ -7,21 +7,6 @@ const templateInvitationCard = document.querySelector("template#t-convite");
 const inttn = invitationCards();
 const dtp = dataParser();
 
-function buildCard(data){
-
-    const clonedInvitationCard = templateInvitationCard.content.cloneNode(true);
-    const mappedInvitationUserInfos = inttn.mapCloneUserInfos(clonedInvitationCard);
-    const mappedInvitationTravelInfos = inttn.mapCloneTravelInfos(clonedInvitationCard);
-    
-    inttn.setCloneUserAttributes(mappedInvitationUserInfos, data.viagem);
-    inttn.setCloneTravelAttributes(mappedInvitationTravelInfos, dtp.dateParser(data.viagem));
-
-    return clonedInvitationCard;
-}
-
-function appendCard(parent, card){
-
-    parent.appendChild(card);
-}
-
-fetch("/data/convites.json").then(res => res.json()).then(json => json.forEach(element => appendCard(invitationsBlock, buildCard(element))))
+fetch("/data/convites.json")
+    .then(res => res.json())
+    .then(json => json.forEach(element => invitationsBlock.appendChild(inttn.buildCard(templateInvitationCard, dtp.dateParser(element)))))

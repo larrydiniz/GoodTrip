@@ -36,6 +36,18 @@ export default function invitationsCards(){
                 "titleField": name,
                 "dateField": date
             }
+        },
+        
+        buildCard: function (template, data){
+
+            const clonedInvitationCard = template.content.cloneNode(true);
+            const mappedInvitationUserInfos = this.mapCloneUserInfos(clonedInvitationCard);
+            const mappedInvitationTravelInfos = this.mapCloneTravelInfos(clonedInvitationCard);
+            
+            this.setCloneUserAttributes(mappedInvitationUserInfos, data);
+            this.setCloneTravelAttributes(mappedInvitationTravelInfos, data);
+        
+            return clonedInvitationCard;
         }
     }
 }

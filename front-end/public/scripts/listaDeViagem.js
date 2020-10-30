@@ -7,19 +7,6 @@ const templateTravelCard = document.querySelector("template#t-card-viagem");
 const dtp = dataParser();
 const trvc = travelCards();
 
-function buildCard(data){
-
-    const clonedTravelCard = templateTravelCard.content.cloneNode(true);
-    const mappedTravelCard = trvc.mapCloneTravelCard(clonedTravelCard);
-    
-    trvc.setCloneCardAttributes(mappedTravelCard, dtp.dateParser(data));
-
-    return clonedTravelCard;
-}
-
-function appendCard(parent, card){
-
-    parent.appendChild(card);
-}
-
-fetch("/data/viagens.json").then(res => res.json()).then(json => json.forEach(element => appendCard(travelsBlock, buildCard(element))))
+fetch("/data/viagens.json")
+    .then(res => res.json())
+    .then(json => json.forEach(element => travelsBlock.appendChild(trvc.buildCard(templateTravelCard, dtp.dateParser(element)))))

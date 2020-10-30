@@ -1,11 +1,11 @@
 export default function travelCards(){
 
     return {
-        setCloneCardAttributes: function({ imageField, titleField, dateField }, parsedData){
+        setCloneCardAttributes: function({ imageField, titleField, dateField }, data){
 
-            imageField.src = parsedData.imagem;
-            titleField.innerText = parsedData.titulo;
-            dateField.innerText = parsedData.month + "\n" + parsedData.year;
+            imageField.src = data.imagem;
+            titleField.innerText = data.titulo;
+            dateField.innerText = data.month + "\n" + data.year;
         },
         
         mapCloneTravelCard: function(fragment){
@@ -19,6 +19,16 @@ export default function travelCards(){
                 "titleField": travelTitle,
                 "dateField": travelDate
             }
+        },
+
+        buildCard: function(template, data){
+            
+            const clonedTravelCard = template.content.cloneNode(true);
+            const mappedTravelCard = this.mapCloneTravelCard(clonedTravelCard);
+            
+            this.setCloneCardAttributes(mappedTravelCard, data);
+        
+            return clonedTravelCard;
         }
     }
 }

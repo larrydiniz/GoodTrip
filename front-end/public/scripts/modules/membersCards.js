@@ -32,6 +32,24 @@ export default function membersCards(){
                 "nameField": memberName,
                 "usernameField": memberUsername
             }
+        },
+
+        buildGuestCard: function(template, data){
+            const clonedGuestWrap = template.content.cloneNode(true);
+            const mappedGuestCard = this.mapCloneGuestCard(clonedGuestWrap);
+        
+            this.setCloneCardAttributes(mappedGuestCard, data);
+        
+            return clonedGuestWrap;
+        },
+
+        buildMemberCard: function(template, data){
+            const clonedMemberCard = template.content.cloneNode(true);
+            const mappedMemberCard = this.mapCloneMemberCard(clonedMemberCard);
+        
+            this.setCloneCardAttributes(mappedMemberCard, data);
+        
+            return clonedMemberCard;
         }
     }
 }
