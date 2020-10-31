@@ -1,7 +1,7 @@
 [
     {
         "id_tarefa": 1,
-        "data": "2020-01-07",
+        "data": "2021-01-07",
         "horario": "09:00",
         "titulo" : "café da manhã",
         "descricao" : "loren ipsum bla bla",
@@ -15,16 +15,16 @@
                         "foto": "../public/icons/alex.svg"
                     },
         "viagem": {
-            "id": 1, 
-            "titulo": "Praga", 
-            "inicio": "01-01-2021",
-            "fim": "14-01-2021",
-            "imagem": "../public/icons/imagemViagem.svg"
+                        "id": 1, 
+                        "titulo": "Praga", 
+                        "inicio": "01-01-2021",
+                        "fim": "14-01-2021",
+                        "imagem": "../public/icons/imagemViagem.svg"
         }
     },
     {
         "id_tarefa": 2,
-        "data": "2020-01-07",
+        "data": "2021-01-07",
         "horario": "09:00",
         "titulo" : "restaurante daqueles",
         "transporte" : 1,
@@ -37,16 +37,16 @@
                         "foto": "../public/icons/alex.svg"
                     },
         "viagem": {
-            "id": 1, 
-            "titulo": "Praga", 
-            "inicio": "01-01-2021",
-            "fim": "14-01-2021",
-            "imagem": "../public/icons/imagemViagem.svg"
+                        "id": 1, 
+                        "titulo": "Praga", 
+                        "inicio": "01-01-2021",
+                        "fim": "14-01-2021",
+                        "imagem": "../public/icons/imagemViagem.svg"
         }
     },
     {
         "id_tarefa": 3,
-        "data": "2020-01-09",
+        "data": "2021-01-09",
         "horario": "09:00",
         "titulo" : "cafés das manhã",
         "descricao" : "loren ipsum bla bla",
@@ -60,16 +60,16 @@
                         "foto": "../public/icons/alex.svg"
                     },
         "viagem": {
-            "id": 1, 
-            "titulo": "Praga", 
-            "inicio": "01-01-2021",
-            "fim": "14-01-2021",
-            "imagem": "../public/icons/imagemViagem.svg"
+                        "id": 1, 
+                        "titulo": "Praga", 
+                        "inicio": "01-01-2021",
+                        "fim": "14-01-2021",
+                        "imagem": "../public/icons/imagemViagem.svg"
         }
     },
     {
         "id_tarefa": 4,
-        "data": "2020-01-10",
+        "data": "2021-01-10",
         "horario": "16:00",
         "titulo" : "café da tarde",
         "descricao" : "loren ipsum bla bla",
@@ -83,11 +83,11 @@
                         "foto": "../public/icons/alex.svg"
                     },
         "viagem": {
-            "id": 1, 
-            "titulo": "Praga", 
-            "inicio": "01-01-2021",
-            "fim": "14-01-2021",
-            "imagem": "../public/icons/imagemViagem.svg"
+                        "id": 1, 
+                        "titulo": "Praga", 
+                        "inicio": "01-01-2021",
+                        "fim": "14-01-2021",
+                        "imagem": "../public/icons/imagemViagem.svg"
         }
     }
     

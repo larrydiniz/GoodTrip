@@ -104,23 +104,14 @@ div.agenda{
     justify-content: center;
 }
 
-.agenda .info-horario{
+.agenda #horario{ 
     width: 190px;
-}
-
-.info-horario #info{
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--fonte-normal);
-}
-
-.info-horario #horario{ 
     font-size: 30px;
     font-weight: 400;
     color: var(--fonte-normal);
 }
 
-.info-horario #horario input{ 
+.agenda #horario input{ 
     margin-top: 10px;
     width: 35%;
     height: 45px;

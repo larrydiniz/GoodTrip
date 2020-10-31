@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
     
     <title>GoodTrip</title>
 </head>
@@ -140,7 +140,12 @@
         </div>
         <div class="data">
             <div class="dia-selecionado">
+                <div id="dia-numero">
 
+                </div>
+                <div id="dia-semana">
+                    
+                </div>
             </div>
 
             <div class="calendario" id="calendar">
@@ -149,22 +154,15 @@
         </div>
 
         <div class="tarefas">
-            <a class="tarefa" href="visualizar-tarefa.html">
-                <div id="horario">
-                    09:00
-                </div>
-                <div id="nome">
-                    Praça da Cidade Antiga
-                </div>
-            </a>
-            <button type="button" class="tarefa"> <!-- qual é melhor? -->
+            
+            <!-- <button type="button" class="tarefa"> 
                 <div id="horario">
                     11:00
                 </div>
                 <div id="nome">
                     Relógio Astronômico
                 </div>
-            </button>
+            </button> -->
         </div>   
         <a class="btn-adicionar" href="nova-tarefa.html?data=12-07-2020">
             <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,6 +170,17 @@
             </svg>
         </a>
     </main>
+    <template id="t-tarefa">
+        <a class="tarefa" href="visualizar-tarefa.html">
+            <div id="horario">
+               <!-- hora -->
+            </div>
+            <div id="nome">
+                <!-- nome card -->
+            </div>
+        </a>
+    </template>
+
     <script src="../bundles/mobileMenu.bundle.js"></script>
     <script src='../bundles/agendaDeViagem.bundle.js'></script>
 </body>

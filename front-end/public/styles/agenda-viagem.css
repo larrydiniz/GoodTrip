@@ -107,8 +107,17 @@ div.data-viagem{
 }
 
 .dia-selecionado{
-    width: 86px;
-    height: 86px;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#dia-numero{
+    width: 75px;
+    height: 75px;
     background-color: var(--azul);
     border-radius: 8px;
     font-size: 48px;
@@ -116,6 +125,13 @@ div.data-viagem{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#dia-semana{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--fonte-normal);
 }
 
 .calendario {
@@ -250,5 +266,14 @@ a.tarefa, button.tarefa{
 
     div.tarefas{
         height: 38%;
+    }
+
+    #dia-numero{
+        width: 86px;
+        height: 86px;
+    }
+    
+    #dia-semana{
+        font-size: 22px;
     }
 }
