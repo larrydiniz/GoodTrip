@@ -3,6 +3,7 @@ import { classToggler } from './utils/togglers.js';
 
 const configButton = document.querySelector('button.configuracoes');
 const configNav = document.querySelector('nav#config');
+const adicionar = document.querySelector('.btn-adicionar');
 
 /********************************************* calendário *******************************************************/
 const inicio = "2021-01-07";
@@ -72,6 +73,9 @@ class Calendario {
 				if(this.cells[i].isInitialDay){
 					periodoViagem = 'period selected';
 					this.selectedDay.innerHTML = `${this.cells[i].date.date()}`;
+					
+					adicionar.href = `nova-tarefa.html?${inicio}`
+
 				} else {
 					periodoViagem = 'period';
 				}
@@ -181,6 +185,11 @@ const configMenu = mnu.defineMenu({ openButton: configButton,
 mnu.addOpenedListeners({ menu: configMenu });
 
 let calendario = new Calendario('calendar');
+
+
 calendario.getElement().addEventListener('change', e => {
-	console.log(calendario.value().format('YYYY-MM-DD'));
+	const dia = calendario.value().format('YYYY-MM-DD');
+	console.log(dia);
+
+	adicionar.href = `nova-tarefa.html?${dia}`
 })
