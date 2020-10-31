@@ -12,7 +12,8 @@ module.exports = {
     membros: './public/scripts/membros.js',
     listaDeViagem: './public/scripts/listaDeViagem.js',
     embarque: './public/scripts/embarque.js',
-    itensDaMala: './public/scripts/itensDaMala.js'
+    itensDaMala: './public/scripts/itensDaMala.js',
+    novaTarefa: './public/scripts/novaTarefa.js'
   },
   output: {
     filename: '[name].bundle.js',
