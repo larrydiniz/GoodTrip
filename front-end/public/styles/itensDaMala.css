@@ -83,92 +83,57 @@ main {
     font-weight: bold;
 }
 
+/* Listas de itens */
 
-/* dropdown */
-
-.dropbtn {
-background-color: #DDDDDD;
-border-radius: 8px;
-width: 100%;
-cursor: pointer;
-text-align: left;
-color: #656363;
-border: var(--cinza-bordas) solid 1px;
-border-radius: 8px;
-display: flex;
-justify-content: space-between;
-
+span#divisoria-listas{
+    background-color: skyblue;
+    margin: 5px 0 5px 10vw;
+    height: 1px;
+    width: 80vw;
 }
 
-.dropbtn > img {
+section#lista-itens{
     display: flex;
-    align-self: center;
-    margin-right: 10px;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.dropbtn > p {
-height: 0;
-display: flex;
-align-self: center;
-align-items: center;
-justify-content: center;
-}
-
-.dropdown {
-    width: 30%;
+ul.lista-itens{
     display: flex;
-    justify-content: flex-end;
+    overflow-y: scroll;
+    margin-top: 5px;
 }
 
-.dropdown-body {
-    width: 100%;
+ul.lista-itens-comuns{
     display: flex;
-    justify-content: flex-end;
-    position: relative;
-    top: 100px;
-    right: 30px;
+    flex-direction: column;
+    height: 560px;
+    margin-top: 5px;
 }
 
-.dropdown-content {
-display: none;
-position: absolute;
-background-color: #f9f9f9;
-min-width: 30%;
-margin-top: 30px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
+li.item-comum{
+    display: flex;
+    flex-direction: row;
 }
 
-.dropdown-content a {
-color: rgb(255, 255, 255);
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-height: 80px;
+div.item-autor{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
 }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f15b}
-
-.dropdown:hover .dropdown-content {
-display: block;
+div.item-autor > p {
+    font-size: 10pt;
+    margin: 0;
 }
 
-.itens {
-    background-color: var(--cinza-bordas);
-    border: var(--cinza-bordas) solid 1px;
-
-}
-.itens-menu {
-    color: rgb(3, 5, 0);
-    margin: 5px;
-    background-color: none;
-}
-
-.itens-menu:hover {
-    font-weight: bold;
-    cursor: pointer;
-
+div.item-autor > img {
+    background-color: skyblue;
+    border-radius: 16px;
+    margin: 0 5px 0 0;
+    height: 32px;
+    width: 32px;
 }
 
 @media (max-width: 425px){
@@ -189,13 +154,30 @@ display: block;
     .titulo-viagem > p {
         font-size: 25px;
     }
-
-    .dropdown-body {
-        right: 15px;
-    }
 }
 
 @media (min-width: 800px){
+
+    span#divisoria-listas{
+        background-color: skyblue;
+        margin: 20px 0 0 0;
+        height: 600px;
+        width: 1px;
+    }
+
+    section#lista-itens{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    ul.lista-itens{
+        height: 120px;
+    }
+
+    ul.lista-itens-comuns{
+        height: 560px;
+    }
+
     header .voltar{
         margin-left: 30px;
         background-color: white;

@@ -11,7 +11,8 @@ module.exports = {
     edicaoDePerfil: './public/scripts/edicaoDePerfil.js',
     membros: './public/scripts/membros.js',
     listaDeViagem: './public/scripts/listaDeViagem.js',
-    embarque: './public/scripts/embarque.js'
+    embarque: './public/scripts/embarque.js',
+    itensDaMala: './public/scripts/itensDaMala.js'
   },
   output: {
     filename: '[name].bundle.js',

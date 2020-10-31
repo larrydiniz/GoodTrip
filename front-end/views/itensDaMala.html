@@ -96,40 +96,77 @@
                         Jan
                         2021  
                 </div>
-                <div class="dropdown-body">
-                    <div class="dropdown">
-                        <button class="dropbtn">
-                            <p>
-                                Adicionar Lista
-                            </p>
-                            <img src="../public/icons/dropdown-visibilidade.svg">
-                        </button>
-                        <div class="dropdown-content">
-                            <div class="itens">
-                                    <div class="itens-menu">
-                                        Roupas
-                                    </div> 
-                                    <div class="itens-menu">
-                                        Higiene
-                                    </div> 
-                                    <div class="itens-menu">
-                                        Acessórios
-                                    </div> 
-                                    <div class="itens-menu">
-                                        Outros
-                                    </div> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-                
-            <div class="viagens">
-               
+        </div>
+        <section id="lista-itens">
+            <div id="itens-pessoais">
+                <h2>Seus itens</h2>
+                <h3 id="titulo-roupas">Roupas</h3>
+                <form id="adicionar-item-roupas" action="">
+                    <input type="hidden" name="categoria" value="1">
+                    <input type="text">
+                    <input type="submit" value="adicionar">
+                </form>
+                <ul id="lista-roupas" class="lista-itens">
+                    <!-- Itens adicionados dinamicamente -->
+                </ul>
+                <h3 id="titulo-higiene">Higiene</h3>
+                <form id="adicionar-item-higiene" action="">
+                    <input type="hidden" name="categoria" value="2">
+                    <input type="text">
+                    <input type="submit" value="adicionar">
+                </form>
+                <ul id="lista-higiene" class="lista-itens">
+                    <!-- Itens adicionados dinamicamente -->
+                </ul>
+                <h3 id="titulo-outros">Outros</h3>
+                <form id="adicionar-item-outros" action="">
+                    <input type="hidden" name="categoria" value="3">
+                    <input type="text">
+                    <input type="submit" value="adicionar">
+                </form>
+                <ul id="lista-outros" class="lista-itens">
+                    <!-- Itens adicionados dinamicamente -->
+                </ul>
             </div>
-        </div> 
+            <span id="divisoria-listas"></span>
+            <div id="itens-viagem">
+                <h2>Itens da viagem</h2>
+                <form id="adicionar-item" action="">
+                    <input type="hidden" name="categoria" value="4">
+                    <input type="text">
+                    <input type="submit" value="adicionar">
+                </form>
+                <ul id="lista-itens-viagem" class="lista-itens-comuns">
+                    <!-- Itens adicionados dinamicamente -->
+                </ul>
+            </div>
+        </section>
     </main>
+
+    <!-- TEMPLATES -->
+    <template id="t-item-pessoal">
+        <li class="item-pessoal">
+            <input type="hidden" name="categoria" value="">
+            <input type="checkbox" name="" id="">
+            <label for=""><!-- Nome de item adicionado dinamicamente --></label>
+        </li>
+    </template>
+
+    <template id="t-item-comum">
+        <li class="item-comum">
+            <div class="botao-check">
+                <input type="checkbox" name="" id="">
+                <label for=""><!-- Nome de item adiciconado dinamicamente --></label>
+            </div>
+            <div class="item-autor">
+                <img src="" alt="">
+                <p class="autor-username"><!-- username adicionado dinamicamente --></p>
+            </div>
+        </li>
+    </template>
     <script src="../bundles/mobileMenu.bundle.js"'></script>
+    <script src="../bundles/itensDaMala.bundle.js"></script>
 
 </body>
 </html>
