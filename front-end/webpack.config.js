@@ -13,7 +13,8 @@ module.exports = {
     embarque: './public/scripts/embarque.js',
     itensDaMala: './public/scripts/itensDaMala.js',
     novaTarefa: './public/scripts/novaTarefa.js',
-    menus: './public/scripts/commons/menus.js'
+    menus: './public/scripts/commons/menus.js',
+    travelHeader: './public/scripts/commons/travelHeader.js'
   },
   output: {
     filename: '[name].bundle.js',
