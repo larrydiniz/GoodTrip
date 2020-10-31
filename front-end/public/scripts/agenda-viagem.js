@@ -74,7 +74,7 @@ class Calendario {
 					periodoViagem = 'period selected';
 					this.selectedDay.innerHTML = `${this.cells[i].date.date()}`;
 					
-					adicionar.href = `nova-tarefa.html?${inicio}`
+					adicionar.href = `nova-tarefa.html?inicio=${inicio}`
 
 				} else {
 					periodoViagem = 'period';
@@ -191,5 +191,5 @@ calendario.getElement().addEventListener('change', e => {
 	const dia = calendario.value().format('YYYY-MM-DD');
 	console.log(dia);
 
-	adicionar.href = `nova-tarefa.html?${dia}`
+	adicionar.href = `nova-tarefa.html?dia=${dia}`
 })
