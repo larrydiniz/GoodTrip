@@ -1,10 +1,14 @@
 import menu from './modules/menu.js';
 import { classToggler } from './utils/togglers.js';
+import urlParser from './modules/urlParser.js';
 
+const membersLink = document.querySelector('a#link-membros');
+const bagLink = document.querySelector('a#link-mala');
 const configButton = document.querySelector('button.configuracoes');
 const configNav = document.querySelector('nav#config');
 const adicionar = document.querySelector('.btn-adicionar');
 const diaSemana = document.getElementById('dia-semana');
+
 
 
 /********************************************* calendário *******************************************************/
@@ -188,6 +192,9 @@ class Calendario {
 	
 /************************************************ MAIN *****************************************************/
 const mnu = menu(classToggler);
+const urlp = urlParser();
+
+const travelId = urlp.mapVariables(location.href).travel_id;
 
 const configMenu = mnu.defineMenu({ openButton: configButton,
 	                                content: configNav,
@@ -206,3 +213,5 @@ calendario.getElement().addEventListener('change', e => {
 	adicionar.href = `nova-tarefa.html?${dia}`
 })
 
+membersLink.href += `?travel_id=${travelId}`;
+bagLink.href += `?travel_id=${travelId}`;

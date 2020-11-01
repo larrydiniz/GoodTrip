@@ -6,7 +6,7 @@ export default function travelCards(){
             imageField.src = data.imagem;
             titleField.innerText = data.titulo;
             dateField.innerText = data.month + "\n" + data.year;
-            linkField.href += `?id=${data.id}&title=${data.titulo}&month=${data.month}&year=${data.year}`;
+            linkField.href += `?travel_id=${data.id}&title=${data.titulo}&month=${data.month}&year=${data.year}`;
         },
         
         mapCloneTravelCard: function(fragment){

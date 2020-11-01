@@ -20,5 +20,5 @@ fetch("/data/viagens.json")
 
         const mappedUrlVariables = urlp.mapVariables(location.href);
 
-        setTravelHeaderAttributes(travelTitleField, travelDateField, travelImageField, dtp.dateParser(json.find(element => element.id == mappedUrlVariables.id ))) //Apenas testes!!!!! Mudar assim que o backend funcionar!!!!!!!!!!!!!
+        setTravelHeaderAttributes(travelTitleField, travelDateField, travelImageField, dtp.dateParser(json.find(element => element.id == mappedUrlVariables.travel_id ))) //Apenas testes!!!!! Mudar assim que o backend funcionar!!!!!!!!!!!!!
 })
