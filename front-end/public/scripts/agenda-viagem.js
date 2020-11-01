@@ -15,6 +15,7 @@ const diaSemana = document.getElementById('dia-semana');
 const inicio = "2021-01-07";
 const termino = "2021-01-20";
 var selecionado;
+var dia;
 
 class Calendario {
 	constructor(id){
@@ -85,9 +86,9 @@ class Calendario {
 					selecionado = ((this.cells[i].date).format('dddd'));
 					this.selectedDayWeek.innerHTML = `${selecionado}`
 
-					/* console.log("esse: " + selecionado) */
-
 					adicionar.href = `nova-tarefa.html?${inicio}`
+
+					dia = (this.cells[i].date).format('YYYY-MM-DD');
 
 				} else {
 					periodoViagem = 'period';
@@ -205,7 +206,7 @@ mnu.addOpenedListeners({ menu: configMenu });
 let calendario = new Calendario('calendar');
 
 calendario.getElement().addEventListener('change', e => {
-	const dia = calendario.value().format('YYYY-MM-DD');
+	dia = calendario.value().format('YYYY-MM-DD');
 	selecionado = (calendario.value()).format('dddd');
 
 	/* mudanças dinâmicas */
@@ -215,3 +216,24 @@ calendario.getElement().addEventListener('change', e => {
 
 membersLink.href += `?travel_id=${travelId}`;
 bagLink.href += `?travel_id=${travelId}`;
+
+/********************************************* tarefas *******************************************************/
+const blocoTarefas = document.querySelector('div.tarefas');
+const templateTarefas = document.getElementById('t-tarefa');
+
+fetch("/data/tarefas.json")
+    .then(res => res.json())
+    .then(json => json.forEach(element => {
+
+		console.log("oioi")
+			
+		console.log(dia)
+
+		console.log(element.data)
+
+        /*
+        if (dia === element.data){
+            console.log("cheguei")
+            blocoTarefas.appendChild(mmbc.buildGuestCard(templateGuestCard, element.usuario))
+        }   */ 
+    }));
