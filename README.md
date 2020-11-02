@@ -46,4 +46,4 @@ Front-end das telas, com base apenas no design estabelecido.
 ### Sprint 4
 Elaboração do banco de dados.
 - [x] Ideação
-- [ ] Modelagem
+- [x] Modelagem
