@@ -25,7 +25,7 @@
     {
         "id_tarefa": 2,
         "data": "2021-01-07",
-        "horario": "09:00",
+        "horario": "12:00",
         "titulo" : "restaurante daqueles",
         "transporte" : 1,
         "moeda": 2,
@@ -88,6 +88,29 @@
                         "inicio": "01-01-2021",
                         "fim": "14-01-2021",
                         "imagem": "../public/icons/imagemViagem.svg"
+        }
+    },
+    {
+        "id_tarefa": 5,
+        "data": "2021-01-10",
+        "horario": "16:00",
+        "titulo" : "café da tarde",
+        "descricao" : "loren ipsum bla bla",
+        "transporte" : 2,
+        "moeda": 1,
+        "custo": 76.99,
+        "usuario": {
+                        "id": 1,
+                        "nome": "Felipe Marcondes",
+                        "user": "@felipinho13",
+                        "foto": "../public/icons/alex.svg"
+                    },
+        "viagem": {
+                    "id": 2, 
+                    "titulo": "Santiago", 
+                    "inicio": "12-06-2021",
+                    "fim": "18-06-2021",
+                    "imagem": "https://sweetway.com.br/wp-content/uploads/2019/01/tudo-o-que-voce-precisa-saber-sobre-santiago-no-chile.jpg"
         }
     }
     

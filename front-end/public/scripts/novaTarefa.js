@@ -1,5 +1,5 @@
 const dia = document.querySelector('div#dia');
-const data = location.href.split("?")[1];
-const diaSelecionado = data.split("-")[2];
+const caminho = location.href.split("?")[1];
+const diaSelecionado = caminho.split("-")[2];
 
 dia.innerHTML = `${diaSelecionado}`;

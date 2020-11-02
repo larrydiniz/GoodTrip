@@ -1,6 +1,7 @@
 import menu from './modules/menu.js';
 import { classToggler } from './utils/togglers.js';
 import urlParser from './modules/urlParser.js';
+import taskCards from './modules/taskCards.js';
 
 const membersLink = document.querySelector('a#link-membros');
 const bagLink = document.querySelector('a#link-mala');
@@ -86,7 +87,7 @@ class Calendario {
 					selecionado = ((this.cells[i].date).format('dddd'));
 					this.selectedDayWeek.innerHTML = `${selecionado}`
 
-					adicionar.href = `nova-tarefa.html?${inicio}`
+					adicionar.href = `nova-tarefa.html?${viagem}&day=${inicio}`
 
 					dia = (this.cells[i].date).format('YYYY-MM-DD');
 
@@ -203,7 +204,28 @@ const configMenu = mnu.defineMenu({ openButton: configButton,
 									
 mnu.addOpenedListeners({ menu: configMenu });
 
+const blocoTarefas = document.querySelector('div.tarefas');
+const templateTarefas = document.getElementById('t-tarefa');
+
+const viagem = location.href.split("?")[1];
+
 let calendario = new Calendario('calendar');
+
+function fetchTarefas() {
+	fetch("/data/tarefas.json")
+		.then(res => res.json())
+		.then(json => json.forEach(element => {
+
+			if(travelId == element.viagem.id){
+
+				if (dia === element.data){
+					console.log("cheguei")
+					blocoTarefas.appendChild(taskCards().buildCard(templateTarefas, element))
+				}   
+			}
+		}))
+	}
+
 
 calendario.getElement().addEventListener('change', e => {
 	dia = calendario.value().format('YYYY-MM-DD');
@@ -211,29 +233,16 @@ calendario.getElement().addEventListener('change', e => {
 
 	/* mudanças dinâmicas */
 	diaSemana.innerHTML = `${selecionado}`;
-	adicionar.href = `nova-tarefa.html?${dia}`
+	adicionar.href = `nova-tarefa.html?${viagem}&day=${dia}`
+
+	blocoTarefas.innerHTML = '';
+	console.log("id=" + travelId)
+	fetchTarefas();
 })
+
 
 membersLink.href += `?travel_id=${travelId}`;
 bagLink.href += `?travel_id=${travelId}`;
 
-/********************************************* tarefas *******************************************************/
-const blocoTarefas = document.querySelector('div.tarefas');
-const templateTarefas = document.getElementById('t-tarefa');
+fetchTarefas();
 
-fetch("/data/tarefas.json")
-    .then(res => res.json())
-    .then(json => json.forEach(element => {
-
-		console.log("oioi")
-			
-		console.log(dia)
-
-		console.log(element.data)
-
-        /*
-        if (dia === element.data){
-            console.log("cheguei")
-            blocoTarefas.appendChild(mmbc.buildGuestCard(templateGuestCard, element.usuario))
-        }   */ 
-    }));

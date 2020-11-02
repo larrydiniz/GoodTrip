@@ -59,10 +59,11 @@
     background-color: rgb(16, 160, 255);
     margin-top: 10px;
     border-radius: 8px;
+    overflow: hidden;
 }
 
 .imagem-viagem {
-    width: 100%;  
+    width: 100%;
 }
 
 .destino-viagem {
