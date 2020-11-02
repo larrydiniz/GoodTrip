@@ -13,6 +13,7 @@ module.exports = {
     embarque: './public/scripts/embarque.js',
     itensDaMala: './public/scripts/itensDaMala.js',
     novaTarefa: './public/scripts/novaTarefa.js',
+    visualizarTarefa:'./public/scripts/visualizarTarefa.js',
     menus: './public/scripts/commons/menus.js',
     travelHeader: './public/scripts/commons/travelHeader.js'
   },

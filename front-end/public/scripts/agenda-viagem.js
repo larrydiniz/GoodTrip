@@ -219,7 +219,6 @@ function fetchTarefas() {
 			if(travelId == element.viagem.id){
 
 				if (dia === element.data){
-					console.log("cheguei")
 					blocoTarefas.appendChild(taskCards().buildCard(templateTarefas, element))
 				}   
 			}
@@ -237,6 +236,7 @@ calendario.getElement().addEventListener('change', e => {
 
 	blocoTarefas.innerHTML = '';
 	console.log("id=" + travelId)
+	console.log("url =" + urlp.mapVariables(location.href));
 	fetchTarefas();
 })
 

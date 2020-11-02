@@ -132,7 +132,7 @@ div.tarefas{
     justify-content: flex-start;
 }
 
-a.tarefa, button.tarefa{
+a.tarefa{
     margin-top: 30px;
     width: 100%;
     display: flex;

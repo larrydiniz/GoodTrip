@@ -193,14 +193,32 @@ section.tarefas{
         flex-direction: column;
     }
 
-    div.card{
-        width: 100%;
+    div.card-tarefa{
+        width: 90%;
+        padding: 0 10px;
         height: 60px;
         margin-bottom: 20px;
         background-color: var(--cinza-fundo-form);
         border-radius: 8px;
         border: var(--cinza-bordas) solid 1px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
     }
+
+    .card-tarefa #horario-tarefa{
+        text-align: center;
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--fonte-normal);
+        border-bottom: var(--azul-seleção) solid 5px;
+    }
+    
+    .card-tarefa #nome-tarefa{
+        font-size: 16px;
+        padding-left: 30px;
+    }
+
 }
 
 @media (min-width: 910px){
