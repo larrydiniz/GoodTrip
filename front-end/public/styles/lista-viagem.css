@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .titulo {
@@ -28,8 +28,7 @@
     font-size: 20px;
 }
 
-.pesquisar {
-    margin-top: 20px ;
+input.pesquisar {
     background-image: url(../icons/pesquisar.svg);
     background-position: 95%;
     background-color: #fafafa;
@@ -39,11 +38,17 @@
     align-self: center;
     justify-content: flex-start;
     padding-left: 5px;
+    position: relative;
     width: 70%;
     height: 25px;
     color: var(--fonte-normal);
     border: var(--cinza-bordas) solid 1px;
     border-radius: 8px;
+
+    margin-bottom: 50px;
+
+    top: 40px;
+    right: 15%;
 }
 
 /************** Cards ************/
