@@ -1,4 +1,4 @@
-export default function viewTaskCard(){
+export default function viewTaskCard(currencySvgIcons, transportSvgIcons){
 
     return {
         setCloneCardAttributes: function({hourField, titleField, priceField, currencyField,
@@ -6,8 +6,8 @@ export default function viewTaskCard(){
             hourField.innerText = data.horario;
             titleField.innerText = data.titulo;
             priceField.innerText = data.custo;
-            currencyField.innerText = data.moeda;
-            transportField.innerText = data.transporte;
+            currencyField.innerHTML = currencySvgIcons[data.moeda];
+            transportField.innerHTML = transportSvgIcons[data.transporte];
             textField.innerText = data.descricao;
         },
         
