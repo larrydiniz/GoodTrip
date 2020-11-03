@@ -11,6 +11,7 @@ main {
     margin-top: 10px;
 }
 
+<<<<<<< HEAD
 input[type="submit"]{
     background-color:  #28de71ab;
     border: none;
@@ -91,6 +92,8 @@ div.data-viagem{
     text-align: center;
 }
 
+=======
+>>>>>>> 9640fcb10d655019ad93c6a6f7fb520e80740ffc
 /************** Cards ************/
 .viagens{
     overflow-y: auto;

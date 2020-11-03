@@ -19,7 +19,6 @@
         "titulo": "Santiago", 
         "inicio": "12-06-2021",
         "fim": "18-06-2021",
-        "imagem": "../public/icons/imagemViagem.svg",
         "categoria": 1,
         "autor":{
                     "id": 1,
@@ -32,14 +31,14 @@
                         "nome": "Felipe Marcondes",
                         "user": "@felipinho13",
                         "foto": "../public/icons/alex.svg"
-                    }]
+                    }],
+        "imagem": "https://sweetway.com.br/wp-content/uploads/2019/01/tudo-o-que-voce-precisa-saber-sobre-santiago-no-chile.jpg"
     },
     {
         "id": 3, 
         "titulo": "Bahia", 
         "inicio": "20-12-2022",
         "fim": "27-12-2022",
-        "imagem": "../public/icons/imagemViagem.svg",
         "categoria": 1,
         "autor":{
                     "id": 1,
@@ -52,14 +51,14 @@
                         "nome": "Felipe Marcondes",
                         "user": "@felipinho13",
                         "foto": "../public/icons/alex.svg"
-                    }]
+                    }],
+        "imagem": "https://www.apabb.org.br/arquivos/upload/regionais/2017/10/09/nucleo-ba_1_29.jpg"
     },
     {
         "id": 4, 
         "titulo": "Narnia", 
         "inicio": "18-10-2025",
         "fim": "22-10-2025",
-        "imagem": "../public/icons/imagemViagem.svg",
         "categoria": 0,
         "autor":{
                     "id": 1,
@@ -67,6 +66,7 @@
                     "user": "@annaj",
                     "foto": "../public/icons/perfil.svg"
                 },  
-        "embarques": []
+        "embarques": [],
+        "imagem": "https://i.pinimg.com/originals/e2/2f/1c/e22f1c6eb19d45e4a51a569fa11b3687.jpg"
     }
 ]
