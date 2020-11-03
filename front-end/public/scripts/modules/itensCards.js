@@ -2,16 +2,16 @@ export default function itensCards(){
 
     return {
 
-        setCheckboxAttributes: function(checkbox, label, value){
+        setCheckboxAttributes: function( identity, checkbox, label, value){
 
-            checkbox.setAttribute('name', value);
+            identity.setAttribute('value', value);
             checkbox.setAttribute('id', value);
             label.setAttribute('for', value);
         },
 
-        setClonePersonalAttributes: function({ categoryField, checkboxField, labelField}, data){
+        setClonePersonalAttributes: function({ identityField, categoryField, checkboxField, labelField}, data){
             
-            this.setCheckboxAttributes(checkboxField, labelField, data.id);
+            this.setCheckboxAttributes(identityField, checkboxField, labelField, data.id);
 
             categoryField.setAttribute('value', data.categoria);
             labelField.innerText = data.nome;
@@ -19,20 +19,22 @@ export default function itensCards(){
         
         mapClonePersonalCard: function(fragment){
             const card = fragment.children[0];
-            const category = card.children[0];
-            const checkBox = card.children[1];
-            const label = card.children[2];
+            const identity = card.children[0];
+            const category = card.children[1];
+            const checkBox = card.children[2];
+            const label = card.children[3];
         
             return {
+                "identityField": identity,
                 "categoryField": category,
                 "checkboxField": checkBox,
                 "labelField": label
             }
         },
 
-        setCloneCommonAttributes: function({ imageField, usernameField, checkboxField, labelField }, data){
+        setCloneCommonAttributes: function({ identityField, imageField, usernameField, checkboxField, labelField }, data){
 
-            this.setCheckboxAttributes(checkboxField, labelField, data.id);
+            this.setCheckboxAttributes(identityField, checkboxField, labelField, data.id);
             
             imageField.src = data.usuario.foto;
             usernameField.innerText = data.usuario.user;
@@ -43,10 +45,12 @@ export default function itensCards(){
             const commonCard = fragment.children[0];
             const authorImg = commonCard.children[1].children[0];
             const user = commonCard.children[1].children[1];
-            const checkbox = commonCard.children[0].children[0];
-            const label = commonCard.children[0].children[1];
+            const identity = commonCard.children[0].children[0];
+            const checkbox = commonCard.children[0].children[2];
+            const label = commonCard.children[0].children[3];
 
             return {
+                "identityField": identity,
                 "imageField": authorImg,
                 "usernameField": user,
                 "checkboxField": checkbox,

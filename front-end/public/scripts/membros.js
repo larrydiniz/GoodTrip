@@ -9,13 +9,21 @@ const mmbc = membersCards();
 
 fetch("/data/embarques.json")
     .then(res => res.json())
-    .then(json => json.forEach(element => {
-        if(element.aceito){
+    .then(json => {
 
-            membersBlock.appendChild(mmbc.buildMemberCard(templateMemberCard, element.usuario))
+        if(json.length){
+
+            json.filter(data => data.aceito)
+                .map(data => mmbc.buildMemberCard(templateMemberCard, data.usuario))
+                .forEach(card => membersBlock.appendChild(card));
+    
+            json.filter(data => !data.aceito)
+                .map(data => mmbc.buildGuestCard(templateGuestCard, data.usuario))
+                .forEach(card => guestsBlock.appendChild(card));        
         }
         else{
 
-            guestsBlock.appendChild(mmbc.buildGuestCard(templateGuestCard, element.usuario))
+            membersBlock.innerHTML = "Não há outros membros..."
+            guestsBlock.innerHTML = "Não há convites..."
         }
-    }));
+    })

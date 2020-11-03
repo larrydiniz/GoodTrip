@@ -98,28 +98,31 @@
             <div id="itens-pessoais">
                 <h2>Seus itens</h2>
                 <h3 id="titulo-roupas">Roupas</h3>
-                <form id="adicionar-item-roupas" action="">
-                    <input type="hidden" name="categoria" value="1">
-                    <input type="text">
-                    <input type="submit" value="adicionar">
+                <form id="adicionar-item-roupas" action="/data/itens.json">
+                    <input type="hidden" name="categoria" value="1" readonly>
+                    <input type="hidden" name="pessoal" value="1" readonly>
+                    <input name="nome" type="text" placeholder="Adicionar roupa...">
+                    <input type="submit" value="+">
                 </form>
                 <ul id="lista-roupas" class="lista-itens">
                     <!-- Itens adicionados dinamicamente -->
                 </ul>
                 <h3 id="titulo-higiene">Higiene</h3>
-                <form id="adicionar-item-higiene" action="">
-                    <input type="hidden" name="categoria" value="2">
-                    <input type="text">
-                    <input type="submit" value="adicionar">
+                <form id="adicionar-item-higiene" action="/data/itens.json">
+                    <input type="hidden" name="categoria" value="0" readonly>
+                    <input type="hidden" name="pessoal" value="1" readonly>
+                    <input name="nome" type="text" placeholder="Adicionar item de higiene...">
+                    <input type="submit" value="+">
                 </form>
                 <ul id="lista-higiene" class="lista-itens">
                     <!-- Itens adicionados dinamicamente -->
                 </ul>
                 <h3 id="titulo-outros">Outros</h3>
-                <form id="adicionar-item-outros" action="">
-                    <input type="hidden" name="categoria" value="3">
-                    <input type="text">
-                    <input type="submit" value="adicionar">
+                <form id="adicionar-item-outros" action="/data/itens.json">
+                    <input type="hidden" name="categoria" value="2" readonly>
+                    <input type="hidden" name="pessoal" value="1" readonly>
+                    <input name="nome" type="text" placeholder="Adicionar item...">
+                    <input type="submit" value="+">
                 </form>
                 <ul id="lista-outros" class="lista-itens">
                     <!-- Itens adicionados dinamicamente -->
@@ -128,10 +131,11 @@
             <span id="divisoria-listas"></span>
             <div id="itens-viagem">
                 <h2>Itens da viagem</h2>
-                <form id="adicionar-item" action="">
-                    <input type="hidden" name="categoria" value="4">
-                    <input type="text">
-                    <input type="submit" value="adicionar">
+                <form id="adicionar-item" action="/data/itens.json">
+                    <input type="hidden" name="categoria" value="3" readonly>
+                    <input type="hidden" name="pessoal" value="0" readonly>
+                    <input name="nome" type="text" placeholder="Adicionar à lista da viagem...">
+                    <input type="submit" value="+">
                 </form>
                 <ul id="lista-itens-viagem" class="lista-itens-comuns">
                     <!-- Itens adicionados dinamicamente -->
@@ -143,8 +147,9 @@
     <!-- TEMPLATES -->
     <template id="t-item-pessoal">
         <li class="item-pessoal">
-            <input type="hidden" name="categoria" value="">
-            <input type="checkbox" name="" id="">
+            <input type="hidden" name="id" value="" readonly>
+            <input type="hidden" name="categoria" value="" readonly>
+            <input type="checkbox" name="checado" id="">
             <label for=""><!-- Nome de item adicionado dinamicamente --></label>
         </li>
     </template>
@@ -152,7 +157,9 @@
     <template id="t-item-comum">
         <li class="item-comum">
             <div class="botao-check">
-                <input type="checkbox" name="" id="">
+                <input type="hidden" name="id" value="" readonly>
+                <input type="hidden" name="categoria" value="3" readonly>
+                <input type="checkbox" name="checado" id="">
                 <label for=""><!-- Nome de item adiciconado dinamicamente --></label>
             </div>
             <div class="item-autor">
@@ -160,6 +167,7 @@
                 <p class="autor-username"><!-- username adicionado dinamicamente --></p>
             </div>
         </li>
+        <span class="divisoria-item-comum"></span>
     </template>
     <script src="../bundles/menus.bundle.js"'></script>
     <script src="../bundles/travelHeader.bundle.js"></script>

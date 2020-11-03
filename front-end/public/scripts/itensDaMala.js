@@ -13,14 +13,17 @@ const itnc = itensCards();
 
 fetch("/data/itens.json")
     .then(res => res.json())
-    .then(json => json.forEach(element => {
-      if(element.pessoal){
-          
-        personalBlocks[element.categoria].appendChild(itnc.buildPersonalCard(templatePersonalItem, element))
-      } 
-      else{
+    .then(json => {
+      
+      if(json.length){
 
-        commonItensBlock.appendChild(itnc.buildCommonCard(templateCommonItem, element))
+        json.filter(data => data.pessoal)
+            .map(data => [data.categoria, itnc.buildPersonalCard(templatePersonalItem, data)])
+            .forEach(tuple => personalBlocks[tuple[0]].appendChild(tuple[1]))
+  
+        json.filter(data => !data.pessoal)
+            .map(data => itnc.buildCommonCard(templateCommonItem, data))
+            .forEach(card => commonItensBlock.appendChild(card))
       }
-}))
+})
 

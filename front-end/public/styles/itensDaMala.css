@@ -11,6 +11,24 @@ main {
     margin-top: 10px;
 }
 
+input[type="submit"]{
+    background-color:  #28de71ab;
+    border: none;
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+span.divisoria-item-comum{
+    width: 250px;
+    height: 1;
+    background-color: skyblue;
+}
+
+h2{
+    width: 70%;
+}
+
 /************** cabeçalho ************/
 div.viagem {  
     width: 100%;
@@ -164,6 +182,7 @@ ul.lista-itens{
     display: flex;
     overflow-y: scroll;
     margin-top: 5px;
+    width: 300px;
 }
 
 ul.lista-itens-comuns{
@@ -176,6 +195,7 @@ ul.lista-itens-comuns{
 li.item-comum{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 div.item-autor{
@@ -196,6 +216,13 @@ div.item-autor > img {
     margin: 0 5px 0 0;
     height: 32px;
     width: 32px;
+}
+
+div#itens-viagem{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media (max-width: 425px){

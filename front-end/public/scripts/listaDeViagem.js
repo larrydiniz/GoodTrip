@@ -9,4 +9,15 @@ const trvc = travelCards();
 
 fetch("/data/viagens.json")
     .then(res => res.json())
-    .then(json => json.forEach(element => travelsBlock.appendChild(trvc.buildCard(templateTravelCard, dtp.dateParser(element)))))
+    .then(json => {
+
+        if(json.length){
+
+            json.map(data => trvc.buildCard(templateTravelCard, dtp.dateParser(data)))
+                .forEach(card => travelsBlock.appendChild(card));
+        }
+        else{
+
+            travelsBlock.innerText = "Sem viagens..."
+        }
+    })
