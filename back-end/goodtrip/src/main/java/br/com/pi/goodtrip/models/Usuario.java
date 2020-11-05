@@ -1,5 +1,6 @@
 package br.com.pi.goodtrip.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,13 +10,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuarios")
 public class Usuario{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_usuario")
 	private int id;
+	
+	@Column(name ="nome")
 	private String nome;
+	
+	@Column(name ="email")
 	private String email;
+	
+	@Column(name = "username")
 	private String username;
+	
+	@Column(name = "senha")
 	private String senha;
+	
+	@Column(name = "ativo")
 	private Boolean ativo;
 	
 	public Usuario() {}
