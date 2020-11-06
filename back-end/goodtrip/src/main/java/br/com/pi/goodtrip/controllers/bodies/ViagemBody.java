@@ -10,6 +10,7 @@ public class ViagemBody {
 	private Boolean finalizada;
 	private Date inicio;
 	private Date termino;
+	private String imagem;
 	
 	public int getUsuarioId() {
 		return usuarioId;
@@ -41,4 +42,11 @@ public class ViagemBody {
 	public void setTermino(Date termino) {
 		this.termino = termino;
 	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+	
 }

@@ -45,6 +45,7 @@ public class ViagemController {
 		viagem.setInicio(body.getInicio());
 		viagem.setTermino(body.getTermino());
 		viagem.setFinalizada(body.getFinalizada());
+		viagem.setImagem(body.getImagem());
 		viagem.setUsuario(usuario);
 		
 		viagemRepo.save(viagem);
