@@ -26,9 +26,11 @@ public class Embarque{
 	private Boolean finalizada;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_id_viagem")
 	private Viagem viagem;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_id_usuario")
 	private Usuario usuario;
 	
 	public Embarque() {}
