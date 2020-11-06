@@ -14,7 +14,7 @@ VALUES  ('2021-01-07', '09:00:00', 'Café da Manhã', 'Café da manhã no grande
 		('2021-01-07', '12:30:00', 'Almoço', 'Restaurante Lokal Dlouhááá', 2, 2, 8.00, 1, 1),
 		('2021-01-09', '09:30:00', 'Café da Manhã', 'Café Domeček', 2, 2, 15.00, 1, 1),
         ('2021-01-14', '08:30:00', 'Café da Manhã', '', 2, 2, 7.00, 1, 1),
-        ('2021-06-13', '16:30:00', 'Café da Tarde', '', 2, 2, 35.00, 2, 2);
+        ('2021-06-13', '16:30:00', 'Café da Tarde', '', 2, 2, 35.00, 2, 3);
         
 INSERT INTO embarques (fk_id_usuario, fk_id_viagem)
 VALUES  (1, 3);
