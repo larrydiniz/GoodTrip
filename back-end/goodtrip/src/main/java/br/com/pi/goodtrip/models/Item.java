@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "itens")
 public class Item{
@@ -35,10 +37,12 @@ public class Item{
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_viagem")
+	@JsonIgnoreProperties("itens")
 	private Viagem viagem;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
+	@JsonIgnoreProperties("itens")
 	private Usuario usuario;
 	
 	public Item() {}

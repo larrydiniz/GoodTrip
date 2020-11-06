@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "viagens")
 public class Viagem{
@@ -41,15 +43,19 @@ public class Viagem{
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
+	@JsonIgnoreProperties("viagens")
 	private Usuario usuario;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("viagens")
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("viagens")
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("viagens")
 	private Set<Item> itens;
 	
 	public Set<Tarefa> getTarefas() {

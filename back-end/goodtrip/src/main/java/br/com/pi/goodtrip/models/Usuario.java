@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario{
@@ -36,15 +38,19 @@ public class Usuario{
 	private Boolean ativo;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuarios")
     private Set<Viagem> viagens;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuarios")
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuarios")
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuarios")
 	private Set<Item> itens;
 	
 	public Set<Tarefa> getTarefas() {

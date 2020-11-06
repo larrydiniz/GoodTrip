@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "tarefas")
 public class Tarefa{
@@ -53,10 +55,12 @@ public class Tarefa{
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_viagem")
+	@JsonIgnoreProperties("tarefas")
 	private Viagem viagem;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
+	@JsonIgnoreProperties("tarefas")
 	private Usuario usuario;
 
 	public int getId() {
