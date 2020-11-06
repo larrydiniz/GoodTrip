@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pi.goodtrip.models.Embarque;
+import br.com.pi.goodtrip.models.Usuario;
+import br.com.pi.goodtrip.models.Viagem;
 import br.com.pi.goodtrip.repositories.EmbarqueRepository;
+import br.com.pi.goodtrip.repositories.UsuarioRepository;
+import br.com.pi.goodtrip.repositories.ViagemRepository;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,17 +25,33 @@ import br.com.pi.goodtrip.repositories.EmbarqueRepository;
 public class EmbarqueController {
 	
 	@Autowired
-	private EmbarqueRepository repository;
+	private EmbarqueRepository embarqueRepo;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepo;
+	
+	@Autowired
+	private ViagemRepository viagemRepo;
 	
 	@GetMapping("ler/{id}")
 	public Optional<Embarque> lerConvite(@PathVariable(value = "id") int id){
 		
-		return repository.findById(id);
+		return embarqueRepo.findById(id);
 	}
 	
-	@PostMapping("escrever")
-	public void escreverConvite(@RequestBody Embarque embarque) {
+	@PostMapping("escrever/params")
+	public void escreverConvite(@RequestParam(name = "usuario_id") int usuarioId, @RequestParam(name = "viagem_id") int viagemId, @RequestBody Embarque body) {
 		
-		repository.save(embarque);
+		Embarque embarque = new Embarque();
+		
+		Usuario usuario = usuarioRepo.findById(usuarioId).orElseThrow();
+		Viagem viagem = viagemRepo.findById(viagemId).orElseThrow();
+		
+		embarque.setAceito(body.getAceito());
+		embarque.setFinalizada(body.getFinalizada());
+		embarque.setUsuario(usuario);
+		embarque.setViagem(viagem);
+				
+		embarqueRepo.save(embarque);
 	}
 }
