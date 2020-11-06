@@ -38,19 +38,19 @@ public class Usuario{
 	private Boolean ativo;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuarios")
+	@JsonIgnoreProperties("usuario")
     private Set<Viagem> viagens;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuarios")
+	@JsonIgnoreProperties("usuario")
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuarios")
+	@JsonIgnoreProperties("usuario")
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuarios")
+	@JsonIgnoreProperties("usuario")
 	private Set<Item> itens;
 	
 	public Set<Tarefa> getTarefas() {

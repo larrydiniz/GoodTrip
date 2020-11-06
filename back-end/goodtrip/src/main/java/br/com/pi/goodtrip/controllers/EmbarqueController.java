@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pi.goodtrip.controllers.bodies.EmbarqueBody;
 import br.com.pi.goodtrip.models.Embarque;
 import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.models.Viagem;
@@ -39,13 +39,13 @@ public class EmbarqueController {
 		return embarqueRepo.findById(id);
 	}
 	
-	@PostMapping("escrever/params")
-	public void escreverConvite(@RequestParam(name = "usuario_id") int usuarioId, @RequestParam(name = "viagem_id") int viagemId, @RequestBody Embarque body) {
+	@PostMapping("escrever")
+	public void escreverConvite(@RequestBody EmbarqueBody body) {
 		
 		Embarque embarque = new Embarque();
 		
-		Usuario usuario = usuarioRepo.findById(usuarioId).orElseThrow();
-		Viagem viagem = viagemRepo.findById(viagemId).orElseThrow();
+		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
+		Viagem viagem = viagemRepo.findById(body.getViagemId()).orElseThrow();
 		
 		embarque.setAceito(body.getAceito());
 		embarque.setFinalizada(body.getFinalizada());

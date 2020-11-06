@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
 import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.models.Viagem;
 import br.com.pi.goodtrip.repositories.UsuarioRepository;
@@ -33,12 +34,12 @@ public class ViagemController {
 		return viagemRepo.findById(id);
 	}
 	
-	@PostMapping("escrever/autor/{id}")
-	public void escreverViagem(@PathVariable(value = "id") int id, @RequestBody Viagem body) {
+	@PostMapping("escrever")
+	public void escreverViagem(@RequestBody ViagemBody body) {
 		
 		Viagem viagem = new Viagem();
 		
-		Usuario usuario = usuarioRepo.findById(id).orElseThrow();
+		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
 		
 		viagem.setDestino(body.getDestino());
 		viagem.setInicio(body.getInicio());
