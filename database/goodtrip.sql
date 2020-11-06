@@ -17,17 +17,17 @@ USE `goodtrip` ;
 -- -----------------------------------------------------
 -- Table `goodtrip`.`usuario`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goodtrip`.`usuario` ;
+DROP TABLE IF EXISTS `goodtrip`.`usuarios` ;
 
-CREATE TABLE IF NOT EXISTS `goodtrip`.`usuario` (
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `goodtrip`.`usuarios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   `email` VARCHAR(150) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
   `ativo` TINYINT NULL DEFAULT 1,
   `cadastro` DATE NULL,
-  PRIMARY KEY (`id_usuario`),
+  PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -36,10 +36,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `goodtrip`.`viagem`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goodtrip`.`viagem` ;
+DROP TABLE IF EXISTS `goodtrip`.`viagens` ;
 
-CREATE TABLE IF NOT EXISTS `goodtrip`.`viagem` (
-  `id_viagem` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `goodtrip`.`viagens` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `destino` VARCHAR(70) NOT NULL,
   `inicio` DATE NOT NULL,
   `termino` DATE NOT NULL,
@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS `goodtrip`.`viagem` (
   `criacao` DATE NULL,
   `finalizada` TINYINT NULL DEFAULT 0,
   `fk_id_usuario` INT NOT NULL,
-  PRIMARY KEY (`id_viagem`),
+  PRIMARY KEY (`id`),
   INDEX `fk_viagem_usuario_idx` (`fk_id_usuario` ASC),
   CONSTRAINT `fk_viagem_usuario`
     FOREIGN KEY (`fk_id_usuario`)
-    REFERENCES `goodtrip`.`usuario` (`id_usuario`)
+    REFERENCES `goodtrip`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -60,26 +60,26 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `goodtrip`.`embarque`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goodtrip`.`embarque` ;
+DROP TABLE IF EXISTS `goodtrip`.`embarques` ;
 
-CREATE TABLE IF NOT EXISTS `goodtrip`.`embarque` (
-  `id_embarque` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `goodtrip`.`embarques` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `aceito` TINYINT NULL,
   `criacao` DATE NULL,
   `finalizada` TINYINT NULL,
   `fk_id_viagem` INT NOT NULL,
   `fk_id_usuario` INT NOT NULL,
-  PRIMARY KEY (`id_embarque`),
+  PRIMARY KEY (`id`),
   INDEX `fk_embarque_viagem1_idx` (`fk_id_viagem` ASC),
   INDEX `fk_embarque_usuario1_idx` (`fk_id_usuario` ASC),
   CONSTRAINT `fk_embarque_viagem1`
     FOREIGN KEY (`fk_id_viagem`)
-    REFERENCES `goodtrip`.`viagem` (`id_viagem`)
+    REFERENCES `goodtrip`.`viagem` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_embarque_usuario1`
     FOREIGN KEY (`fk_id_usuario`)
-    REFERENCES `goodtrip`.`usuario` (`id_usuario`)
+    REFERENCES `goodtrip`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -88,9 +88,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `goodtrip`.`item`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goodtrip`.`item` ;
+DROP TABLE IF EXISTS `goodtrip`.`itens` ;
 
-CREATE TABLE IF NOT EXISTS `goodtrip`.`item` (
+CREATE TABLE IF NOT EXISTS `goodtrip`.`itens` (
   `id_item` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `categoria` VARCHAR(45) NULL,
@@ -119,9 +119,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `goodtrip`.`tarefa`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goodtrip`.`tarefa` ;
+DROP TABLE IF EXISTS `goodtrip`.`tarefas` ;
 
-CREATE TABLE IF NOT EXISTS `goodtrip`.`tarefa` (
+CREATE TABLE IF NOT EXISTS `goodtrip`.`tarefas` (
   `id_tarefa` INT NOT NULL AUTO_INCREMENT,
   `data` DATE NOT NULL,
   `horario` VARCHAR(6) NOT NULL,

@@ -16,8 +16,7 @@ public class Embarque{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_embarque")
-	private int idEmbarque;
+	private int id;
 	
 	@Column(name = "aceito")
 	private Boolean aceito;
@@ -36,11 +35,11 @@ public class Embarque{
 	public Embarque() {}
 	
 	public int getIdEmbarque() {
-		return idEmbarque;
+		return id;
 	}
 	
 	public void setIdEmbarque(int idEmbarque) {
-		this.idEmbarque = idEmbarque;
+		this.id = idEmbarque;
 	}
 	
 	public Boolean getAceito() {

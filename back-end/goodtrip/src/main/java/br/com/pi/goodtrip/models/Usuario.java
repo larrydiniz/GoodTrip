@@ -1,10 +1,15 @@
 package br.com.pi.goodtrip.models;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +18,6 @@ public class Usuario{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_usuario")
 	private int id;
 	
 	@Column(name ="nome")
@@ -31,6 +35,50 @@ public class Usuario{
 	@Column(name = "ativo")
 	private Boolean ativo;
 	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+    private Set<Viagem> viagens;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	private Set<Embarque> embarques;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	private Set<Tarefa> tarefas;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	private Set<Item> itens;
+	
+	public Set<Tarefa> getTarefas() {
+		return tarefas;
+	}
+
+	public void setTarefas(Set<Tarefa> tarefas) {
+		this.tarefas = tarefas;
+	}
+
+	public Set<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<Item> itens) {
+		this.itens = itens;
+	}
+
+	public Set<Viagem> getViagens() {
+		return viagens;
+	}
+
+	public void setViagens(Set<Viagem> viagens) {
+		this.viagens = viagens;
+	}
+
+	public Set<Embarque> getEmbarques() {
+		return embarques;
+	}
+
+	public void setEmbarques(Set<Embarque> embarques) {
+		this.embarques = embarques;
+	}
+
 	public Usuario() {}
 	
 	public int getId() {

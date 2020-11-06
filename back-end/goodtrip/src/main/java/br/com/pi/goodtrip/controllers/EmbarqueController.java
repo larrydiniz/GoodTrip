@@ -27,4 +27,10 @@ public class EmbarqueController {
 		
 		return repository.findById(id);
 	}
+	
+	@PostMapping("escrever")
+	public void escreverConvite(@RequestBody Embarque embarque) {
+		
+		repository.save(embarque);
+	}
 }
