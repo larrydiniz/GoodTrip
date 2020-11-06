@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Usuario{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name ="nome")
@@ -33,6 +33,9 @@ public class Usuario{
 	
 	@Column(name = "senha")
 	private String senha;
+	
+	@Column(name = "foto")
+	private String foto;
 	
 	@Column(name = "ativo")
 	private Boolean ativo;
@@ -52,7 +55,7 @@ public class Usuario{
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
 	private Set<Item> itens;
-	
+
 	public Set<Tarefa> getTarefas() {
 		return tarefas;
 	}
@@ -111,11 +114,14 @@ public class Usuario{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getSenha() {
-		return senha;
-	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	public Boolean getAtivo() {
 		return ativo;

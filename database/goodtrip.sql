@@ -5,6 +5,9 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
 -- Schema goodtrip
 -- -----------------------------------------------------
 
@@ -15,140 +18,127 @@ CREATE SCHEMA IF NOT EXISTS `goodtrip` DEFAULT CHARACTER SET utf8 ;
 USE `goodtrip` ;
 
 -- -----------------------------------------------------
--- Table `goodtrip`.`usuario`
+-- Table `goodtrip`.`usuarios`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goodtrip`.`usuarios` ;
 
 CREATE TABLE IF NOT EXISTS `goodtrip`.`usuarios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(150) NOT NULL,
-  `senha` VARCHAR(45) NOT NULL,
-  `ativo` TINYINT NULL DEFAULT 1,
-  `cadastro` DATE NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ativo` TINYINT(4) NULL DEFAULT '1',
+  `email` VARCHAR(255) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
+  `senha` VARCHAR(255) NOT NULL,
+  `foto` VARCHAR(200) NULL,
+  `username` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `goodtrip`.`viagem`
+-- Table `goodtrip`.`viagens`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goodtrip`.`viagens` ;
 
 CREATE TABLE IF NOT EXISTS `goodtrip`.`viagens` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `destino` VARCHAR(70) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `destino` VARCHAR(255) NOT NULL,
+  `finalizada` TINYINT(4) NULL DEFAULT '0',
   `inicio` DATE NOT NULL,
   `termino` DATE NOT NULL,
   `imagem` VARCHAR(200) NULL,
-  `criacao` DATE NULL,
-  `finalizada` TINYINT NULL DEFAULT 0,
-  `fk_id_usuario` INT NOT NULL,
+  `fk_id_usuario` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_viagem_usuario_idx` (`fk_id_usuario` ASC),
-  CONSTRAINT `fk_viagem_usuario`
+  INDEX `FK6p58i5iuj4b40w1eqdh9kv011` (`fk_id_usuario` ASC),
+  CONSTRAINT `FK6p58i5iuj4b40w1eqdh9kv011`
     FOREIGN KEY (`fk_id_usuario`)
-    REFERENCES `goodtrip`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `goodtrip`.`usuarios` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `goodtrip`.`embarque`
+-- Table `goodtrip`.`embarques`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goodtrip`.`embarques` ;
 
 CREATE TABLE IF NOT EXISTS `goodtrip`.`embarques` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `aceito` TINYINT NULL,
-  `criacao` DATE NULL,
-  `finalizada` TINYINT NULL,
-  `fk_id_viagem` INT NOT NULL,
-  `fk_id_usuario` INT NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `aceito` TINYINT(4) NULL DEFAULT NULL,
+  `finalizada` TINYINT(4) NULL DEFAULT NULL,
+  `fk_id_usuario` INT(11) NOT NULL,
+  `fk_id_viagem` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_embarque_viagem1_idx` (`fk_id_viagem` ASC),
-  INDEX `fk_embarque_usuario1_idx` (`fk_id_usuario` ASC),
-  CONSTRAINT `fk_embarque_viagem1`
+  INDEX `FKhh97iaa9efxigmspd5uad2oe6` (`fk_id_viagem` ASC),
+  INDEX `FKhj2x3lr0kmgxq9pnfl9ev81j7` (`fk_id_usuario` ASC),
+  CONSTRAINT `FKhh97iaa9efxigmspd5uad2oe6`
     FOREIGN KEY (`fk_id_viagem`)
-    REFERENCES `goodtrip`.`viagem` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_embarque_usuario1`
+    REFERENCES `goodtrip`.`viagens` (`id`),
+  CONSTRAINT `FKhj2x3lr0kmgxq9pnfl9ev81j7`
     FOREIGN KEY (`fk_id_usuario`)
-    REFERENCES `goodtrip`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `goodtrip`.`usuarios` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `goodtrip`.`item`
+-- Table `goodtrip`.`itens`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goodtrip`.`itens` ;
 
 CREATE TABLE IF NOT EXISTS `goodtrip`.`itens` (
-  `id_item` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `categoria` VARCHAR(45) NULL,
-  `checado` TINYINT NULL DEFAULT 0,
-  `ativo` TINYINT NULL DEFAULT 1,
-  `criacao` DATE NULL,
-  `pessoal` TINYINT NULL DEFAULT 1,
-  `fk_id_usuario` INT NOT NULL,
-  `fk_id_viagem` INT NOT NULL,
-  PRIMARY KEY (`id_item`),
-  INDEX `fk_item_usuario1_idx` (`fk_id_usuario` ASC),
-  INDEX `fk_item_viagem1_idx` (`fk_id_viagem` ASC),
-  CONSTRAINT `fk_item_usuario1`
-    FOREIGN KEY (`fk_id_usuario`)
-    REFERENCES `goodtrip`.`usuario` (`id_usuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_item_viagem1`
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ativo` TINYINT(4) NULL DEFAULT '1',
+  `categoria` INT(11) NULL DEFAULT NULL,
+  `checado` TINYINT(4) NULL DEFAULT '0',
+  `nome` VARCHAR(255) NOT NULL,
+  `pessoal` TINYINT(4) NULL DEFAULT '1',
+  `fk_id_usuario` INT(11) NOT NULL,
+  `fk_id_viagem` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKlbwvgc81yv312nidaxlca24ox` (`fk_id_viagem` ASC),
+  INDEX `FKqn2d5q0jqiqhelu7cx99ac0lp` (`fk_id_usuario` ASC),
+  CONSTRAINT `FKlbwvgc81yv312nidaxlca24ox`
     FOREIGN KEY (`fk_id_viagem`)
-    REFERENCES `goodtrip`.`viagem` (`id_viagem`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `goodtrip`.`viagens` (`id`),
+  CONSTRAINT `FKqn2d5q0jqiqhelu7cx99ac0lp`
+    FOREIGN KEY (`fk_id_usuario`)
+    REFERENCES `goodtrip`.`usuarios` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `goodtrip`.`tarefa`
+-- Table `goodtrip`.`tarefas`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goodtrip`.`tarefas` ;
 
 CREATE TABLE IF NOT EXISTS `goodtrip`.`tarefas` (
-  `id_tarefa` INT NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `custo` FLOAT NULL DEFAULT '0',
   `data` DATE NOT NULL,
-  `horario` VARCHAR(6) NOT NULL,
-  `titulo` VARCHAR(70) NOT NULL,
-  `descricao` VARCHAR(200) NULL DEFAULT '',
-  `transporte` INT NULL DEFAULT 4,
-  `moeda` INT NULL DEFAULT 3,
-  `custo` DOUBLE NULL DEFAULT 0.00,
-  `finalizada` TINYINT NULL DEFAULT 0,
-  `criacao` DATE NULL,
-  `pessoal` TINYINT NULL DEFAULT 1,
-  `fk_id_viagem` INT NOT NULL,
-  `fk_id_usuario` INT NOT NULL,
-  PRIMARY KEY (`id_tarefa`),
-  INDEX `fk_tarefa_viagem1_idx` (`fk_id_viagem` ASC),
-  INDEX `fk_tarefa_usuario1_idx` (`fk_id_usuario` ASC),
-  CONSTRAINT `fk_tarefa_viagem1`
-    FOREIGN KEY (`fk_id_viagem`)
-    REFERENCES `goodtrip`.`viagem` (`id_viagem`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tarefa_usuario1`
+  `descricao` VARCHAR(255) NULL DEFAULT '',
+  `finalizada` TINYINT(4) NULL DEFAULT '0',
+  `horario` TIME NOT NULL,
+  `moeda` INT(11) NULL DEFAULT '3',
+  `pessoal` TINYINT(4) NULL DEFAULT '1',
+  `titulo` VARCHAR(255) NOT NULL,
+  `transporte` INT(11) NULL DEFAULT '4',
+  `fk_id_usuario` INT(11) NOT NULL,
+  `fk_id_viagem` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKhh9s0olp44wkqppxjblsdjiod` (`fk_id_usuario` ASC),
+  INDEX `FKsrf2pduwxv6mvhdyhsylrt2tm` (`fk_id_viagem` ASC),
+  CONSTRAINT `FKhh9s0olp44wkqppxjblsdjiod`
     FOREIGN KEY (`fk_id_usuario`)
-    REFERENCES `goodtrip`.`usuario` (`id_usuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `goodtrip`.`usuarios` (`id`),
+  CONSTRAINT `FKsrf2pduwxv6mvhdyhsylrt2tm`
+    FOREIGN KEY (`fk_id_viagem`)
+    REFERENCES `goodtrip`.`viagens` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Viagem{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "destino")
@@ -41,21 +41,24 @@ public class Viagem{
 	@Temporal(TemporalType.DATE)
 	private Date termino;
 	
+	@Column(name = "imagem")
+	private String imagem;
+	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
 	@JsonIgnoreProperties("viagens")
 	private Usuario usuario;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("viagens")
+	@JsonIgnoreProperties("viagem")
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("viagens")
+	@JsonIgnoreProperties("viagem")
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("viagens")
+	@JsonIgnoreProperties("viagem")
 	private Set<Item> itens;
 	
 	public Set<Tarefa> getTarefas() {
@@ -131,7 +134,14 @@ public class Viagem{
 	public void setTermino(Date termino) {
 		this.termino = termino;
 	}
+	
+	public String getImagem() {
+		return imagem;
+	}
 
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 
 	public Usuario getUsuario() {
 		return usuario;

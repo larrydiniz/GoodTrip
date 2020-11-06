@@ -17,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Embarque{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "aceito")
 	private Boolean aceito;
 	
