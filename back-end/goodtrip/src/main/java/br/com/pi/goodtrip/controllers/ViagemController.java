@@ -37,17 +37,8 @@ public class ViagemController {
 	@PostMapping("escrever")
 	public void escreverViagem(@RequestBody ViagemBody body) {
 		
-		Viagem viagem = new Viagem();
-		
 		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
 		
-		viagem.setDestino(body.getDestino());
-		viagem.setInicio(body.getInicio());
-		viagem.setTermino(body.getTermino());
-		viagem.setFinalizada(body.getFinalizada());
-		viagem.setImagem(body.getImagem());
-		viagem.setUsuario(usuario);
-		
-		viagemRepo.save(viagem);
+		viagemRepo.save(new Viagem(body, usuario));
 	}
 }

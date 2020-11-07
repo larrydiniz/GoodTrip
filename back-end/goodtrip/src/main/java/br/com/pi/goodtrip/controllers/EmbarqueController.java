@@ -41,17 +41,10 @@ public class EmbarqueController {
 	
 	@PostMapping("escrever")
 	public void escreverConvite(@RequestBody EmbarqueBody body) {
-		
-		Embarque embarque = new Embarque();
-		
+
 		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
 		Viagem viagem = viagemRepo.findById(body.getViagemId()).orElseThrow();
-		
-		embarque.setAceito(body.getAceito());
-		embarque.setFinalizada(body.getFinalizada());
-		embarque.setUsuario(usuario);
-		embarque.setViagem(viagem);
 				
-		embarqueRepo.save(embarque);
+		embarqueRepo.save(new Embarque(body, usuario, viagem));
 	}
 }

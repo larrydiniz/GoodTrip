@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.pi.goodtrip.controllers.bodies.ItemBody;
+
 @Entity
 @Table(name = "itens")
 public class Item{
@@ -46,6 +48,18 @@ public class Item{
 	private Usuario usuario;
 	
 	public Item() {}
+	
+	public Item(ItemBody body, Usuario usuario, Viagem viagem) {
+		
+		this.setNome(body.getNome());
+		this.setCategoria(body.getCategoria());
+		this.setChecado(body.getChecado());
+		this.setPessoal(body.getPessoal());
+		this.setAtivo(body.getAtivo());
+		
+		this.setUsuario(usuario);
+		this.setViagem(viagem);
+	}
 
 	public int getId() {
 		return id;

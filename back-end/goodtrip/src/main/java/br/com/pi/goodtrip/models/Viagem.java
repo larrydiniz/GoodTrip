@@ -19,6 +19,8 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
+
 @Entity
 @Table(name = "viagens")
 public class Viagem{
@@ -61,6 +63,18 @@ public class Viagem{
 	@JsonIgnoreProperties("viagem")
 	private Set<Item> itens;
 	
+	public Viagem() {}
+	
+	public Viagem(ViagemBody body, Usuario usuario) {
+		
+		this.setDestino(body.getDestino());
+		this.setInicio(body.getInicio());
+		this.setTermino(body.getTermino());
+		this.setFinalizada(body.getFinalizada());
+		this.setImagem(body.getImagem());
+		this.setUsuario(usuario);
+	}
+	
 	public Set<Tarefa> getTarefas() {
 		return tarefas;
 	}
@@ -84,8 +98,6 @@ public class Viagem{
 	public void setEmbarques(Set<Embarque> embarques) {
 		this.embarques = embarques;
 	}
-
-	public Viagem() {}
 	
 	public int getId() {
 		return id;

@@ -42,19 +42,9 @@ public class ItemController {
 	@PostMapping("escrever")
 	public void escreverViagem(@RequestBody ItemBody body) {
 		
-		Item item = new Item();
-		
 		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
 		Viagem viagem = viagemRepo.findById(body.getViagemId()).orElseThrow();
 		
-		item.setNome(body.getNome());
-		item.setCategoria(body.getCategoria());
-		item.setChecado(body.getChecado());
-		item.setPessoal(body.getPessoal());
-		item.setAtivo(body.getAtivo());
-		item.setUsuario(usuario);
-		item.setViagem(viagem);
-		
-		itemRepo.save(item);
+		itemRepo.save(new Item(body, usuario, viagem));
 	}
 }

@@ -42,24 +42,9 @@ public class TarefaController {
 	@PostMapping("escrever")
 	public void escreverViagem(@RequestBody TarefaBody body) {
 		
-		Tarefa tarefa = new Tarefa();
-		
 		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
 		Viagem viagem = viagemRepo.findById(body.getViagemId()).orElseThrow();
 		
-		tarefa.setTitulo(body.getTitulo());
-		tarefa.setData(body.getData());
-		tarefa.setHorario(body.getHorario());
-		tarefa.setDescricao(body.getDescricao());
-		tarefa.setCusto(body.getCusto());
-		tarefa.setMoeda(body.getMoeda());
-		tarefa.setTransporte(body.getTransporte());
-		tarefa.setPessoal(body.getPessoal());
-		tarefa.setFinalizada(body.getFinalizada());
-		
-		tarefa.setUsuario(usuario);
-		tarefa.setViagem(viagem);
-		
-		tarefaRepo.save(tarefa);
+		tarefaRepo.save(new Tarefa(body, usuario, viagem));
 	}
 }
