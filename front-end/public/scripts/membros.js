@@ -32,13 +32,11 @@ fetch("http://localhost:3333/viagens/ler/3")
 .then(res => res.json())
 .then(json => {
 
-        const embarques = json.embarques;
+        const embarques = json.embarques.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]})
 
-        embarques.filter(data => data.aceito)
-                 .map(data => mmbc.buildMemberCard(templateMemberCard, data.usuario))
-                 .forEach(card => membersBlock.appendChild(card));
+        embarques.aceitos.map(data => mmbc.buildMemberCard(templateMemberCard, data.usuario))
+                         .forEach(card => membersBlock.appendChild(card));
 
-        embarques.filter(data => !data.aceito)
-                 .map(data => mmbc.buildGuestCard(templateGuestCard, data.usuario))
-                 .forEach(card => guestsBlock.appendChild(card));
+        embarques.pendentes.map(data => mmbc.buildGuestCard(templateGuestCard, data.usuario))
+                           .forEach(card => guestsBlock.appendChild(card));
 })
