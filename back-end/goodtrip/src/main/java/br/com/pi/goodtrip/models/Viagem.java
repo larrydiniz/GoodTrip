@@ -48,19 +48,19 @@ public class Viagem{
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
-	@JsonIgnoreProperties("viagens")
+	@JsonIgnoreProperties({"viagens", "tarefas", "itens"})
 	private Usuario usuario;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("viagem")
+	@JsonIgnoreProperties({"viagem", "tarefas", "itens"})
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("viagem")
+	@JsonIgnoreProperties({"viagem", "usuarios", "itens"})
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("viagem")
+	@JsonIgnoreProperties({"viagem", "usuarios", "tarefas"})
 	private Set<Item> itens;
 	
 	public Viagem() {}

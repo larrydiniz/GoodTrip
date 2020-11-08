@@ -57,12 +57,12 @@ public class Tarefa{
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_viagem")
-	@JsonIgnoreProperties("tarefas")
+	@JsonIgnoreProperties({"tarefas", "itens", "usuarios", "embarques"})
 	private Viagem viagem;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
-	@JsonIgnoreProperties("tarefas")
+	@JsonIgnoreProperties({"tarefas", "itens", "viagens", "embarques"})
 	private Usuario usuario;
 	
 	public Tarefa() {}
