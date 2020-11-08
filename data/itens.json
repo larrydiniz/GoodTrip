@@ -1,0 +1,125 @@
+[
+    {
+        "id": 1,
+        "nome": "escova de dente",
+        "categoria": 0,
+        "checado": true,
+        "pessoal": true
+    },
+    {
+        "id": 2,
+        "nome": "toalha",
+        "categoria": 1,
+        "checado": true,
+        "pessoal": true
+    },
+    {
+        "id": 3,
+        "nome": "pasta de dente",
+        "categoria": 0,
+        "checado": true,
+        "pessoal": true
+    },
+    {
+        "id": 4,
+        "nome": "desodorante",
+        "categoria": 0,
+        "checado": true,
+        "pessoal": true
+    },
+    {
+        "id": 5,
+        "nome": "4 camisetas",
+        "categoria": 1,
+        "checado": false,
+        "pessoal": true
+    },
+    {
+        "id": 6,
+        "nome": "3 calças",
+        "categoria": 1,
+        "checado": false,
+        "pessoal": true
+    },
+    {
+        "id": 7,
+        "nome": "3 meias",
+        "categoria": 1,
+        "checado": true,
+        "pessoal": true
+    },
+    {
+        "id": 8,
+        "nome": "chinelo",
+        "categoria": 1,
+        "checado": true,
+        "pessoal": true
+    },
+    {
+        "id": 9,
+        "nome": "tênis",
+        "categoria": 1,
+        "checado": false,
+        "pessoal": true
+    },
+    {
+        "id": 10,
+        "nome": "sabonete",
+        "categoria": 0,
+        "checado": true,
+        "pessoal": true
+    },
+    {
+        "id": 11,
+        "nome": "shampoo",
+        "categoria": 0,
+        "checado": false,
+        "pessoal": true
+    },
+    {
+        "id": 12,
+        "nome": "pilhas",
+        "categoria": 2,
+        "checado": false,
+        "pessoal": true
+    },
+    {
+        "id": 13,
+        "nome": "câmera fotográfica",
+        "categoria": 3,
+        "checado": false,
+        "pessoal": false,
+        "usuario": {
+                        "id": 1,
+                        "nome": "Maico Ualzausqui",
+                        "user": "@verdin",
+                        "foto": "../public/icons/alex.svg"
+                    }
+    },
+    {
+        "id": 14,
+        "nome": "cabo usb",
+        "categoria": 3,
+        "checado": false,
+        "pessoal": false,
+        "usuario": {
+                        "id": 1,
+                        "nome": "Maico Ualzausqui",
+                        "user": "@verdin",
+                        "foto": "../public/icons/alex.svg"
+                    }
+    },
+    {
+        "id": 15,
+        "nome": "copos",
+        "categoria": 3,
+        "checado": false,
+        "pessoal": false,
+        "usuario": {
+                        "id": 1,
+                        "nome": "Maico Ualzausqui",
+                        "user": "@verdin",
+                        "foto": "../public/icons/alex.svg"
+                    }
+    }
+]

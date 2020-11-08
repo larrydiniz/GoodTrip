@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="../public/styles/main.css">
     <link rel="stylesheet" href="../public/styles/agenda-viagem.css">
     <link rel="stylesheet" href="../public/styles/menu.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="../public/styles/cabecalho.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
     
     <title>GoodTrip</title>
 </head>
@@ -28,14 +28,13 @@
     </header>
     <nav  id="menu">
         <div class="perfil">
-            <div class="img-perfil">
-            </div>
+            <img src="" class="img-perfil">
             <div class="dados-perfil">
                 <div class="dados-perfil" id="nome">
-                    Ana Julia 
+                    <!-- Adição dinâmica -->
                 </div>
                 <div class="dados-perfil" id="user">
-                    @annajd
+                    <!-- Adição dinâmica -->
                 </div>
             </div>
         </div>
@@ -99,13 +98,13 @@
                 </a> 
             </li>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="./membros.html"> 
+                <a class="ancora-lateral" href="./membros.html" id="link-membros"> 
                     <img class="img-menu-lateral" src="../public/icons/membros.svg"> 
                     <p>Membros</p>
                 </a> 
             </li>
             <li class="menu-li"> 
-                <a class="ancora-lateral" href="#"> 
+                <a class="ancora-lateral" href="./itensDaMala.html" id="link-mala"> 
                     <img class="img-menu-lateral" src="../public/icons/mala.svg"> 
                     <p>Mala</p>
                 </a> 
@@ -127,20 +126,24 @@
     <main>
         <div class="viagem">
             <div class="destino-viagem">
-                Praga
+                <!-- Adição dinâmica -->
             </div>
             <div class="data-viagem">
-                    Jan
-                    2021  
+                <!-- Adição dinâmica -->
             </div>
             <div class="nome-tela">
                 Agenda
             </div>
-            <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
+            <img class="imagem-viagem" src="">   
         </div>
         <div class="data">
             <div class="dia-selecionado">
+                <div id="dia-numero">
 
+                </div>
+                <div id="dia-semana">
+                    
+                </div>
             </div>
 
             <div class="calendario" id="calendar">
@@ -149,30 +152,35 @@
         </div>
 
         <div class="tarefas">
-            <a class="tarefa" href="visualizar-tarefa.html">
-                <div id="horario">
-                    09:00
-                </div>
-                <div id="nome">
-                    Praça da Cidade Antiga
-                </div>
-            </a>
-            <button type="button" class="tarefa"> <!-- qual é melhor? -->
+            
+            <!-- <button type="button" class="tarefa"> 
                 <div id="horario">
                     11:00
                 </div>
                 <div id="nome">
                     Relógio Astronômico
                 </div>
-            </button>
+            </button> -->
         </div>   
-        <a class="btn-adicionar" href="nova-tarefa.html">
+        <a class="btn-adicionar" href="nova-tarefa.html?data=12-07-2020">
             <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M23.5 0C10.5416 0 0 10.5416 0 23.5C0 36.4584 10.5416 47 23.5 47C36.4584 47 47 36.4584 47 23.5C47 10.5416 36.4584 0 23.5 0ZM33.7812 25.4582H25.4582V33.7812C25.4582 34.8624 24.5811 35.7395 23.5 35.7395C22.4189 35.7395 21.5418 34.8624 21.5418 33.7812V25.4582H13.2188C12.1376 25.4582 11.2605 24.5811 11.2605 23.5C11.2605 22.4189 12.1376 21.5418 13.2188 21.5418H21.5418V13.2188C21.5418 12.1376 22.4189 11.2605 23.5 11.2605C24.5811 11.2605 25.4582 12.1376 25.4582 13.2188V21.5418H33.7812C34.8624 21.5418 35.7395 22.4189 35.7395 23.5C35.7395 24.5811 34.8624 25.4582 33.7812 25.4582Z" fill="#006478"/>
             </svg>
         </a>
     </main>
-    <script src="../bundles/mobileMenu.bundle.js"></script>
+    <template id="t-tarefa">
+        <a class="tarefa" href="visualizar-tarefa.html">
+            <div id="horario-tarefa">
+               <!-- hora -->
+            </div>
+            <div id="nome-tarefa">
+                <!-- nome card -->
+            </div>
+        </a>
+    </template>
+    
+    <script src="../bundles/menus.bundle.js"></script>
+    <script src="../bundles/travelHeader.bundle.js"></script>
     <script src='../bundles/agendaDeViagem.bundle.js'></script>
 </body>
 </html>

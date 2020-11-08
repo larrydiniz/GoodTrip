@@ -33,67 +33,6 @@ li p.titulo{
     margin: 0;
 }
 
-/************** cabeçalho ************/
-div.viagem {  
-    width: 100%;
-    height: 130px;
-    position: relative;
-    background-color: rgb(16, 160, 255);
-    border-radius: 8px;
-}
-
-img.imagem-viagem {
-    width: 100%;  
-}
-
-div.destino-viagem {
-    background-color: #026e81b9;   
-    color: white;
-    height: 30px;   
-    display: flex; 
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
-    width: 150px;
-    position: absolute;
-    top: 13px;
-    left: 15px;
-    border-radius: 8px;
-    font-weight: bold;
-   }
-
-div.nome-tela {
-    background-color: #28de71ab;   
-    color: white;
-    height: 40px;   
-    display: flex; 
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
-    width: 150px;
-    position: absolute;
-    bottom: 13px;
-    left: 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 22px;
-   }
-   
-div.data-viagem{
-    width: 60px;
-    height: 70px;
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    background-color: #28de71ab;
-    right: 5%;
-    top: 10%;
-    border-radius: 8px;
-    text-align: center;
-}
 
 /********************** Calendário *****************/
 .data {
@@ -107,8 +46,17 @@ div.data-viagem{
 }
 
 .dia-selecionado{
-    width: 86px;
-    height: 86px;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#dia-numero{
+    width: 75px;
+    height: 75px;
     background-color: var(--azul);
     border-radius: 8px;
     font-size: 48px;
@@ -116,6 +64,13 @@ div.data-viagem{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#dia-semana{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--fonte-normal);
 }
 
 .calendario {
@@ -177,7 +132,7 @@ div.tarefas{
     justify-content: flex-start;
 }
 
-a.tarefa, button.tarefa{
+a.tarefa{
     margin-top: 30px;
     width: 100%;
     display: flex;
@@ -188,7 +143,7 @@ a.tarefa, button.tarefa{
     cursor: pointer;
     color: var(--fonte-normal);
 }
-.tarefa #horario{
+.tarefa #horario-tarefa{
     text-align: center;
     font-size: 30px;
     font-weight: 500;
@@ -196,7 +151,7 @@ a.tarefa, button.tarefa{
     border-bottom: var(--azul-seleção) solid 5px;
 }
 
-.tarefa #nome{
+.tarefa #nome-tarefa{
     font-size: 18px;
     padding-left: 30px;
 }
@@ -250,5 +205,14 @@ a.tarefa, button.tarefa{
 
     div.tarefas{
         height: 38%;
+    }
+
+    #dia-numero{
+        width: 86px;
+        height: 86px;
+    }
+    
+    #dia-semana{
+        font-size: 22px;
     }
 }

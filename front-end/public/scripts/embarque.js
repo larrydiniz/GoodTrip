@@ -9,4 +9,11 @@ const dtp = dataParser();
 
 fetch("/data/convites.json")
     .then(res => res.json())
-    .then(json => json.forEach(element => invitationsBlock.appendChild(inttn.buildCard(templateInvitationCard, dtp.dateParser(element.viagem)))))
+    .then(json => {
+        
+        if(json.length){
+
+            json.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser(data.viagem)))
+                .forEach(card => invitationsBlock.appendChild(card))
+        }
+    })

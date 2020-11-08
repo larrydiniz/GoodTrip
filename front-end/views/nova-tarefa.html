@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/styles/main.css">
     <link rel="stylesheet" href="../public/styles/nova-tarefa.css">
+    <link rel="stylesheet" href="../public/styles/cabecalho.css">
     <link rel="stylesheet" href="../public/styles/menu.css">
     
     <title>GoodTrip</title>
@@ -22,14 +23,13 @@
     </header>
     <nav  id="menu">
         <div class="perfil">
-            <div class="img-perfil">
-            </div>
+            <img src="" class="img-perfil">
             <div class="dados-perfil">
                 <div class="dados-perfil" id="nome">
-                    Ana Julia 
+                    <!-- Adição dinâmica -->
                 </div>
                 <div class="dados-perfil" id="user">
-                    @annajd
+                    <!-- Adição dinâmica -->
                 </div>
             </div>
         </div>
@@ -83,40 +83,34 @@
     <main>
         <div class="viagem">
             <div class="destino-viagem">
-                Praga
+                <!-- Adição dinâmica -->
             </div>
             <div class="data-viagem">
-                    Jan
-                    2021  
+                <!-- Adição dinâmica -->
             </div>
             <div class="nome-tela">
                 Nova Tarefa
             </div>
-            <img class="imagem-viagem" src="../public/icons/imagemViagem.svg">   
+            <img class="imagem-viagem" src="">   
         </div>
         <form action="" > <!--  method="post" -->
             <div class="agenda">
                 <div id="dia">
-                    16
+                    <!-- dia -->
                 </div>
-                <div class="info-horario">
-                    <div id="info">
-                        Terça, dia 3
-                    </div>
-                    <div id="horario">
-                        <input type="number" name="hora" min="0" max="23" placeholder="Hora" required/> :
-                        <input type="number" name="min" min="0" max="59" placeholder="Min" required/>
-                    </div>
+                <div id="horario">
+                    <input type="number" name="hora" min="0" max="23" placeholder="Hora" required/> :
+                    <input type="number" name="min" min="0" max="59" placeholder="Min" required/>
                 </div>
             </div>
             <div class="transporte">
-                <input type="radio" name="transporte" id="carro" value="carro" hidden>
+                <input type="radio" name="transporte" id="carro" value="1" hidden>
                     <label for="carro">
                         <svg width="32" height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M28.3023 3.4617C27.9378 2.44556 26.9423 1.72223 25.7778 1.72223H6.22225C5.05783 1.72223 4.06225 2.44556 3.69783 3.4617L0 13.7778V27.5556C0 28.5028 0.8 29.2778 1.77775 29.2778H3.5555C4.54217 29.2778 5.33325 28.5028 5.33325 27.5556V25.8334H26.6666V27.5556C26.6666 28.5028 27.4666 29.2778 28.4443 29.2778H30.2221C31.2088 29.2778 31.9998 28.5028 31.9998 27.5556V13.7778L28.3023 3.4617ZM6.22225 20.6667C4.74667 20.6667 3.55558 19.5128 3.55558 18.0834C3.55558 16.6539 4.74667 15.5 6.22225 15.5C7.69783 15.5 8.88892 16.6539 8.88892 18.0834C8.88892 19.5128 7.69775 20.6667 6.22225 20.6667ZM25.7778 20.6667C24.3022 20.6667 23.1111 19.5128 23.1111 18.0834C23.1111 16.6539 24.3022 15.5 25.7778 15.5C27.2533 15.5 28.4444 16.6539 28.4444 18.0834C28.4444 19.5128 27.2533 20.6667 25.7778 20.6667ZM3.55558 12.0556L6.22225 4.30556H25.7778L28.4445 12.0556H3.55558Z" fill="#DDDDDD"/>
                             </svg>
                     </label>
-                <input type="radio" name="transporte" id="bike" value="bike" hidden>
+                <input type="radio" name="transporte" id="bike" value="2" hidden>
                     <label for="bike">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.6667 7.66669C22.1334 7.66669 23.3334 6.46669 23.3334 5C23.3334 3.53331 22.1334 2.33331 20.6667 2.33331C19.2 2.33331 18 3.53331 18 5C18 6.46669 19.2 7.66669 20.6667 7.66669Z" fill="#DDDDDD"/>
@@ -125,7 +119,7 @@
                             <path d="M25.3333 16.3333C21.6666 16.3333 18.6666 19.3333 18.6666 23C18.6666 26.6667 21.6666 29.6667 25.3333 29.6667C29 29.6667 32 26.6667 32 23C32 19.3333 29 16.3333 25.3333 16.3333ZM25.3333 27.6667C22.7333 27.6667 20.6666 25.6 20.6666 23C20.6666 20.4 22.7333 18.3333 25.3333 18.3333C27.9333 18.3333 30 20.4 30 23C30 25.6 27.9333 27.6667 25.3333 27.6667Z" fill="#DDDDDD"/>
                         </svg>                        
                     </label>
-                <input type="radio" name="transporte" id="trem" value="trem" hidden>
+                <input type="radio" name="transporte" id="trem" value="3" hidden>
                     <label for="trem">
                         <svg width="32" height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
@@ -138,7 +132,7 @@
                             </defs>
                         </svg>
                     </label>
-                <input type="radio" name="transporte" id="andando" value="andando" hidden>
+                <input type="radio" name="transporte" id="andando" value="4" hidden checked>
                     <label for="andando">
                         <svg width="20" height="32" viewBox="0 0 20 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.1628 5.95346C12.8 5.95346 14.1396 4.61393 14.1396 2.9767C14.1395 1.33953 12.8 0 11.1628 0C9.52564 0 8.18604 1.33953 8.18604 2.97677C8.18604 4.614 9.52557 5.95346 11.1628 5.95346Z" fill="#DDDDDD"/>
@@ -151,7 +145,7 @@
                 <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Descrição"></textarea>
             </div>
             <div class="custo">
-                <input type="radio" name="moeda" value="iene" id="iene" hidden>
+                <input type="radio" name="moeda" value="1" id="iene" hidden>
                     <label for="iene" id="yen">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
@@ -164,13 +158,13 @@
                             </defs>
                         </svg>
                     </label>
-                <input type="radio" name="moeda" value="euro" id="euro" hidden>
+                <input type="radio" name="moeda" value="2" id="euro" hidden>
                     <label for="euro">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13.8408 12.6678C12.8957 13.662 11.6857 14.2096 10.4335 14.2096C8.38127 14.2096 6.6043 12.7684 5.768 10.6851H11.4685C11.9628 10.6851 12.3636 10.2843 12.3636 9.78999C12.3636 9.29568 11.9628 8.8949 11.4685 8.8949H5.31313C5.27794 8.60227 5.25871 8.30376 5.25871 7.99978C5.25871 7.6569 5.28285 7.32079 5.32788 6.99278H11.4685C11.9628 6.99278 12.3636 6.592 12.3636 6.09769C12.3636 5.60338 11.9628 5.20256 11.4685 5.20256H5.81562C6.66985 3.18028 8.41843 1.78999 10.4335 1.78999C11.6857 1.78999 12.8957 2.33762 13.8408 3.33164C14.1811 3.68971 14.7473 3.70443 15.1062 3.36388C15.4645 3.02319 15.4787 2.45663 15.1385 2.09837C13.8522 0.745204 12.1814 0 10.4338 0C7.44969 0 4.8989 2.16729 3.90906 5.20282H1.51044C1.01613 5.20282 0.615356 5.6036 0.615356 6.09791C0.615356 6.59222 1.01613 6.993 1.51044 6.993H3.52551C3.48924 7.3233 3.4685 7.65875 3.4685 8C3.4685 8.30287 3.48433 8.60098 3.51328 8.89512H1.51044C1.01613 8.89512 0.615356 9.2959 0.615356 9.79021C0.615356 10.2845 1.01613 10.6853 1.51044 10.6853H3.87353C4.83638 13.7795 7.41294 16 10.4335 16C12.1813 16 13.8518 15.2546 15.1381 13.9017C15.4785 13.5433 15.4645 12.9768 15.1059 12.6362C14.7478 12.2955 14.1811 12.3097 13.8408 12.6678Z" fill="#DDDDDD"/>
                         </svg>
                     </label>
-                <input type="radio" name="moeda" value="real" id="real" hidden>
+                <input type="radio" name="moeda" value="3" id="real" hidden checked>
                     <label for="real">
                         <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
@@ -183,7 +177,7 @@
                             </defs>
                         </svg>
                     </label>
-                <input type="radio" name="moeda" value="dollar" id="dollar" hidden>
+                <input type="radio" name="moeda" value="4" id="dollar" hidden>
                     <label for="dollar">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
@@ -216,11 +210,18 @@
     </main>
 
     <!-- TEMPLATES -->
-    <template id="t-cards-tarefa">
-        <div class="card">
-                    
+    <template id="t-card-tarefa">
+        <div class="card-tarefa">
+            <div id="horario-tarefa">
+                <!-- hora -->
+             </div>
+             <div id="nome-tarefa">
+                 <!-- nome card -->
+             </div>              
         </div>
     </template>
-    <script src="../bundles/mobileMenu.bundle.js"></script>
+    <script src="../bundles/menus.bundle.js"></script>
+    <script src="../bundles/travelHeader.bundle.js"></script>
+    <script src="../bundles/novaTarefa.bundle.js"></script>
 </body>
 </html>

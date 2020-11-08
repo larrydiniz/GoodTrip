@@ -7,7 +7,8 @@
 }
 
 .conteudo{
-    height: 100%;
+    width: 90%;
+    height: 90%;
 }
 
 /************** h1 ************/
@@ -16,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .titulo {
@@ -27,8 +28,7 @@
     font-size: 20px;
 }
 
-.pesquisar {
-    margin-top: 20px ;
+input.pesquisar {
     background-image: url(../icons/pesquisar.svg);
     background-position: 95%;
     background-color: #fafafa;
@@ -38,31 +38,40 @@
     align-self: center;
     justify-content: flex-start;
     padding-left: 5px;
+    position: relative;
     width: 70%;
     height: 25px;
     color: var(--fonte-normal);
     border: var(--cinza-bordas) solid 1px;
     border-radius: 8px;
+
+    margin-bottom: 50px;
+
+    top: 40px;
+    right: 15%;
 }
 
 /************** Cards ************/
 .viagens{
-    overflow-y: auto;
-    width: 90%;
-    height: 70%;
+    overflow-y: scroll;
+    width: 100%;
+    height: 85%;
 }
 
 .overlay-imagem {  
-    width: 100%;
+    width: 95%;
     height: 120px;
     position: relative;
     background-color: rgb(16, 160, 255);
-    margin-top: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px 10px 20px 10px;
     border-radius: 8px;
+    overflow: hidden;
 }
 
 .imagem-viagem {
-    width: 100%;  
+    width: 100%;
 }
 
 .destino-viagem {
@@ -96,12 +105,70 @@
     text-align: center;
 }
 
+.categorias-viagem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    width: 60px;
+
+    top: 40px;
+    left: 30%;
+}
+
 .btn-cadastrar{
     margin-top: 10px;
     position: absolute;
     float: inline-end;
     bottom: 0;
     right: 5%;
+}
+
+svg > path {
+    fill: rgba(200, 200, 200, 0.5);
+}
+
+svg.selecionado > path{
+    fill: #28DE70;
+}
+
+div.membros-fotos{
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    height: 40px;
+    position: relative;
+    width: 200px;
+    
+    top: 10px;
+    left: 2%;
+}
+
+div.membros-fotos.ativa{
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+img.imagem-membro{
+    height: 32px;
+    width: 32px;
+    margin: 4px 4px 4px 4px;
+}
+
+p.autor{
+    align-items: center;
+    background-color: var(--azul);
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    font-size: 10pt;
+    height: 20px;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+    width: 100px;
+
+    top: 30px;
+    left: 80%;
 }
 
 /************** Responsividade ************/

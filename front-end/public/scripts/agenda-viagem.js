@@ -1,12 +1,22 @@
 import menu from './modules/menu.js';
 import { classToggler } from './utils/togglers.js';
+import urlParser from './modules/urlParser.js';
+import taskCards from './modules/taskCards.js';
 
+const membersLink = document.querySelector('a#link-membros');
+const bagLink = document.querySelector('a#link-mala');
 const configButton = document.querySelector('button.configuracoes');
 const configNav = document.querySelector('nav#config');
+const adicionar = document.querySelector('.btn-adicionar');
+const diaSemana = document.getElementById('dia-semana');
+
+
 
 /********************************************* calendário *******************************************************/
 const inicio = "2021-01-07";
-const termino = "2021-01-20"
+const termino = "2021-01-20";
+var selecionado;
+var dia;
 
 class Calendario {
 	constructor(id){
@@ -16,7 +26,8 @@ class Calendario {
 		this.calendar = document.getElementById(id);
 		this.mostrarTemplate();
 		this.gridBody = this.calendar.querySelector('.grid#body');
-		this.selectedDay = document.querySelector('.dia-selecionado');
+		this.selectedDay = document.getElementById('dia-numero');
+		this.selectedDayWeek = document.getElementById('dia-semana')
 		this.mostrarDias();	
 	}
 
@@ -72,6 +83,14 @@ class Calendario {
 				if(this.cells[i].isInitialDay){
 					periodoViagem = 'period selected';
 					this.selectedDay.innerHTML = `${this.cells[i].date.date()}`;
+
+					selecionado = ((this.cells[i].date).format('dddd'));
+					this.selectedDayWeek.innerHTML = `${selecionado}`
+
+					adicionar.href = `nova-tarefa.html?${viagem}&day=${inicio}`
+
+					dia = (this.cells[i].date).format('YYYY-MM-DD');
+
 				} else {
 					periodoViagem = 'period';
 				}
@@ -125,7 +144,6 @@ class Calendario {
 			diaInicial.add(1, 'days');	
 		} while(diaInicial.isSameOrBefore(diaFinal));
 
-		console.log(cells);
 		return cells;
 	}
 
@@ -143,21 +161,23 @@ class Calendario {
 				
 				/* desselecionar dia anterior */
 				let diaSelecionado = this.gridBody.querySelector('.selected');
+				
 				if (diaSelecionado) {
 					diaSelecionado.classList.remove('selected')
 				}
 				/* selecionar novo dia */
 				target.classList.add('selected');
 
-				/* console.log(this.cells[target.dataset.id].date.date()) */
-
 				this.diaSelecionado = this.cells[target.dataset.id].date;
 
 				/* div do dia selecionado*/
 				this.selectedDay.innerHTML = `${this.diaSelecionado.date()}`;
 
+
 				/* change */
-				this.calendar.dispatchEvent(new Event('change'));				
+				this.calendar.dispatchEvent(new Event('change'));	
+				
+				/* console.log(this.cells[target.dataset.id].date.date()) */
 			})
 		})
 	}
@@ -171,8 +191,12 @@ class Calendario {
 	}
 }
 
+	
 /************************************************ MAIN *****************************************************/
 const mnu = menu(classToggler);
+const urlp = urlParser();
+
+const travelId = urlp.mapVariables(location.href).travel_id;
 
 const configMenu = mnu.defineMenu({ openButton: configButton,
 	                                content: configNav,
@@ -180,7 +204,45 @@ const configMenu = mnu.defineMenu({ openButton: configButton,
 									
 mnu.addOpenedListeners({ menu: configMenu });
 
+const blocoTarefas = document.querySelector('div.tarefas');
+const templateTarefas = document.getElementById('t-tarefa');
+
+const viagem = location.href.split("?")[1];
+
 let calendario = new Calendario('calendar');
+
+function fetchTarefas() {
+	fetch("/data/tarefas.json")
+		.then(res => res.json())
+		.then(json => json.forEach(element => {
+
+			if(travelId == element.viagem.id){
+
+				if (dia === element.data){
+					blocoTarefas.appendChild(taskCards().buildCard(templateTarefas, element))
+				}   
+			}
+		}))
+	}
+
+
 calendario.getElement().addEventListener('change', e => {
-	console.log(calendario.value().format('YYYY-MM-DD'));
+	dia = calendario.value().format('YYYY-MM-DD');
+	selecionado = (calendario.value()).format('dddd');
+
+	/* mudanças dinâmicas */
+	diaSemana.innerHTML = `${selecionado}`;
+	adicionar.href = `nova-tarefa.html?${viagem}&day=${dia}`
+
+	blocoTarefas.innerHTML = '';
+	console.log("id=" + travelId)
+	console.log("url =" + urlp.mapVariables(location.href));
+	fetchTarefas();
 })
+
+
+membersLink.href += `?travel_id=${travelId}`;
+bagLink.href += `?travel_id=${travelId}`;
+
+fetchTarefas();
+
