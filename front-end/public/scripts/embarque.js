@@ -7,13 +7,23 @@ const templateInvitationCard = document.querySelector("template#t-convite");
 const inttn = invitationCards();
 const dtp = dataParser();
 
-fetch("/data/convites.json")
+// fetch("/data/convites.json")
+//     .then(res => res.json())
+//     .then(json => {
+        
+//         if(json.length){
+
+//             json.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser(data.viagem)))
+//                 .forEach(card => invitationsBlock.appendChild(card))
+//         }
+//     })
+
+fetch("http://localhost:3333/usuarios/ler/1")
     .then(res => res.json())
     .then(json => {
         
-        if(json.length){
+        const convites = json.embarques.filter(embarque => !embarque.aceito);
 
-            json.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser(data.viagem)))
+        convites.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser(data.viagem)))
                 .forEach(card => invitationsBlock.appendChild(card))
-        }
     })

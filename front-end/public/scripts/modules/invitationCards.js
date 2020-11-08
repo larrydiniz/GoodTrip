@@ -3,14 +3,14 @@ export default function invitationsCards(){
 
         setCloneUserAttributes: function({ imageField, nameField, usernameField }, data){
         
-            imageField.src = data.autor.foto;
-            nameField.innerText = data.autor.nome;
-            usernameField.innerText = data.autor.user;
+            imageField.src = data.usuario.foto;
+            nameField.innerText = data.usuario.nome;
+            usernameField.innerText = data.usuario.username;
         },
 
         setCloneTravelAttributes: function({ titleField, dateField }, data){
 
-            titleField.innerText = data.titulo;
+            titleField.innerText = data.destino;
             dateField.innerText = data.month + " | " + data.year;
         },
         

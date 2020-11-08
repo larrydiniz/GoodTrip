@@ -7,23 +7,38 @@ const templateGuestCard = document.querySelector("template#t_membro_convidado");
 
 const mmbc = membersCards();
 
-fetch("/data/embarques.json")
-    .then(res => res.json())
-    .then(json => {
+// fetch("/data/embarques.json")
+//     .then(res => res.json())
+//     .then(json => {
 
-        if(json.length){
+//         if(json.length){
 
-            json.filter(data => data.aceito)
-                .map(data => mmbc.buildMemberCard(templateMemberCard, data.usuario))
-                .forEach(card => membersBlock.appendChild(card));
+//             json.filter(data => data.aceito)
+//                 .map(data => mmbc.buildMemberCard(templateMemberCard, data.usuario))
+//                 .forEach(card => membersBlock.appendChild(card));
     
-            json.filter(data => !data.aceito)
-                .map(data => mmbc.buildGuestCard(templateGuestCard, data.usuario))
-                .forEach(card => guestsBlock.appendChild(card));        
-        }
-        else{
+//             json.filter(data => !data.aceito)
+//                 .map(data => mmbc.buildGuestCard(templateGuestCard, data.usuario))
+//                 .forEach(card => guestsBlock.appendChild(card));        
+//         }
+//         else{
 
-            membersBlock.innerHTML = "Não há outros membros..."
-            guestsBlock.innerHTML = "Não há convites..."
-        }
-    })
+//             membersBlock.innerHTML = "Não há outros membros..."
+//             guestsBlock.innerHTML = "Não há convites..."
+//         }
+//     })
+
+fetch("http://localhost:3333/viagens/ler/3")
+.then(res => res.json())
+.then(json => {
+
+        const embarques = json.embarques;
+
+        embarques.filter(data => data.aceito)
+                 .map(data => mmbc.buildMemberCard(templateMemberCard, data.usuario))
+                 .forEach(card => membersBlock.appendChild(card));
+
+        embarques.filter(data => !data.aceito)
+                 .map(data => mmbc.buildGuestCard(templateGuestCard, data.usuario))
+                 .forEach(card => guestsBlock.appendChild(card));
+})

@@ -5,7 +5,7 @@ export default function membersCards(){
         
             imageField.src = data.foto;
             nameField.innerText = data.nome;
-            usernameField.innerText = data.user;
+            usernameField.innerText = data.username;
         },
         
         mapCloneGuestCard: function(fragment){

@@ -30,12 +30,12 @@ export default function travelCards(){
         setCloneCardAttributes: function({ imageField, titleField, dateField, linkField, identityField, categoryField, authorField }, data){
 
             imageField.style.backgroundImage = `url(${data.imagem})`;
-            titleField.innerText = data.titulo;
+            titleField.innerText = data.destino;
             dateField.innerText = data.month + "\n" + data.year;
             identityField.value = data.id;
-            categoryField.children[data.categoria].classList.add("selecionado");
+            // categoryField.children[data.categoria].classList.add("selecionado");
             linkField.href += `?travel_id=${data.id}`;
-            authorField.innerText = data.autor.user;
+            //authorField.innerText = data.autor.user;
         },
         
         mapCloneTravelCard: function(fragment){
@@ -66,7 +66,7 @@ export default function travelCards(){
             const mappedTravelCard = this.mapCloneTravelCard(clonedTravelCard);
             
             this.setCloneCardAttributes(mappedTravelCard, data);
-            this.setMembersImages(mappedTravelCard.membersField, data.embarques);
+            //this.setMembersImages(mappedTravelCard.membersField, data.embarques);
         
             return clonedTravelCard;
         }
