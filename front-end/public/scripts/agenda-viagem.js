@@ -212,18 +212,15 @@ const viagem = location.href.split("?")[1];
 let calendario = new Calendario('calendar');
 
 function fetchTarefas() {
-	fetch("/data/tarefas.json")
+	fetch(`http://localhost:3333/viagens/ler/${travelId}`)
 		.then(res => res.json())
-		.then(json => json.forEach(element => {
-
-			if(travelId == element.viagem.id){
-
-				if (dia === element.data){
-					blocoTarefas.appendChild(taskCards().buildCard(templateTarefas, element))
-				}   
-			}
-		}))
-	}
+		.then(json => {
+			
+			json.tarefas.map(tarefa => taskCards().buildCard(templateTarefas, tarefa))
+		                .forEach(card => blocoTarefas.appendChild(card))
+		
+		})
+}
 
 
 calendario.getElement().addEventListener('change', e => {

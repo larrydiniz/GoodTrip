@@ -6,6 +6,9 @@ const templateMemberCard = document.querySelector("template#t_membro_card");
 const templateGuestCard = document.querySelector("template#t_membro_convidado");
 
 const mmbc = membersCards();
+const urlp = urlParser();
+
+const urlParams = urlp.mapVariables(location.href);
 
 // fetch("/data/embarques.json")
 //     .then(res => res.json())
@@ -28,7 +31,7 @@ const mmbc = membersCards();
 //         }
 //     })
 
-fetch("http://localhost:3333/viagens/ler/3")
+fetch(`http://localhost:3333/viagens/ler/${urlParams.travel_id}`)
 .then(res => res.json())
 .then(json => {
 

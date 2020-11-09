@@ -1,4 +1,5 @@
 import itensCards from "./modules/itensCards.js"
+import urlParser from "./modules/urlParser.js"
 
 const personalClothsBlock = document.querySelector("ul#lista-roupas");
 const personalOthersBlock = document.querySelector("ul#lista-outros");
@@ -10,6 +11,9 @@ const templateCommonItem = document.querySelector("template#t-item-comum");
 const personalBlocks = [personalHygieneBlock, personalClothsBlock, personalOthersBlock];
 
 const itnc = itensCards();
+const urlp = urlParser();
+
+const urlParams = urlp.mapVariables(location.href);
 
 // fetch("/data/itens.json")
 //     .then(res => res.json())
@@ -27,7 +31,7 @@ const itnc = itensCards();
 //       }
 // })
 
-fetch("http://localhost:3333/viagens/ler/1")
+fetch(`http://localhost:3333/viagens/ler/${urlParams.travel_id}`)
     .then(res => res.json())
     .then(json => {
 
