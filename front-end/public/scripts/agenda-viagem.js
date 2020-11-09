@@ -235,8 +235,9 @@ calendario.getElement().addEventListener('change', e => {
 	adicionar.href = `nova-tarefa.html?${viagem}&day=${dia}`
 
 	blocoTarefas.innerHTML = '';
-	console.log("id=" + travelId)
-	console.log("url =" + urlp.mapVariables(location.href));
+	/* console.log("id=" + travelId) */
+	console.log(dia)
+	/* console.log("url =" + urlp.mapVariables(location.href)); */
 	fetchTarefas();
 })
 

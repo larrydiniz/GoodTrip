@@ -46,7 +46,7 @@ public class Viagem{
 	@Column(name = "imagem")
 	private String imagem;
 	
-	@ManyToOne(cascade= CascadeType.ALL)
+	@ManyToOne//(cascade= CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
 	@JsonIgnoreProperties({"viagens", "tarefas", "itens"})
 	private Usuario usuario;
