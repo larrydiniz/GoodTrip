@@ -30,18 +30,16 @@ const itnc = itensCards();
 fetch("http://localhost:3333/viagens/ler/1")
     .then(res => res.json())
     .then(json => {
-      
-      const itens = json.itens;
 
       //MUDAR O DEFAULT DE PESSOAL!!!!
       //Falhas devido a erro na filtragem de data.pessoal
       //O controle de pessoal será via input...
 
-      itens.filter(data => data.pessoal)
-           .map(data => [data.categoria, itnc.buildPersonalCard(templatePersonalItem, data)])
-           .forEach(tuple => personalBlocks[tuple[0]].appendChild(tuple[1]))
+      const itens = json.itens.reduce((acc, current) => current.pessoal? (acc.pessoais.push(current), acc): (acc.comuns.push(current), acc), {"comuns":[], "pessoais":[]})
 
-      itens.filter(data => !data.pessoal)
-           .map(data => itnc.buildCommonCard(templateCommonItem, data))
-           .forEach(card => commonItensBlock.appendChild(card))
+      itens.pessoais.map(data => [data.categoria, itnc.buildPersonalCard(templatePersonalItem, data)])
+                     .forEach(tuple => personalBlocks[tuple[0]].appendChild(tuple[1]))
+
+      itens.comuns.map(data => itnc.buildCommonCard(templateCommonItem, data))
+                   .forEach(card => commonItensBlock.appendChild(card))
 })
