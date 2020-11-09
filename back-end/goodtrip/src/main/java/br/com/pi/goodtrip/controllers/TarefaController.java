@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pi.goodtrip.controllers.bodies.TarefaBody;
 import br.com.pi.goodtrip.models.Tarefa;
-import br.com.pi.goodtrip.models.Usuario;
-import br.com.pi.goodtrip.models.Viagem;
+//import br.com.pi.goodtrip.models.Usuario;
+//import br.com.pi.goodtrip.models.Viagem;
 import br.com.pi.goodtrip.repositories.TarefaRepository;
-import br.com.pi.goodtrip.repositories.UsuarioRepository;
-import br.com.pi.goodtrip.repositories.ViagemRepository;
+//import br.com.pi.goodtrip.repositories.UsuarioRepository;
+//import br.com.pi.goodtrip.repositories.ViagemRepository;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,24 +26,16 @@ public class TarefaController {
 	@Autowired
 	private TarefaRepository tarefaRepo;
 	
-	@Autowired
+	/*@Autowired
 	private ViagemRepository viagemRepo;
 	
 	@Autowired
-	private UsuarioRepository usuarioRepo;
+	private UsuarioRepository usuarioRepo;*/
 	
 	@GetMapping("ler/{id}")
 	public Optional<Tarefa> lerViagem(@PathVariable(value = "id") int id){
 		
 		return tarefaRepo.findById(id);
 	}
-	
-	@PostMapping("escrever")
-	public void escreverViagem(@RequestBody TarefaBody body) {
-		
-		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
-		Viagem viagem = viagemRepo.findById(body.getViagemId()).orElseThrow();
-		
-		tarefaRepo.save(new Tarefa(body, usuario, viagem));
-	}
+
 }

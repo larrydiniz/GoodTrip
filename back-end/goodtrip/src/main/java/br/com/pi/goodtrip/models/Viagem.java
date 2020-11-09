@@ -1,6 +1,6 @@
 package br.com.pi.goodtrip.models;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,12 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+/*import javax.persistence.Temporal;
+import javax.persistence.TemporalType;*/
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
 
 @Entity
 @Table(name = "viagens")
@@ -36,12 +34,10 @@ public class Viagem{
 	private Boolean finalizada;
 	
 	@Column(name = "inicio")
-	@Temporal(TemporalType.DATE)
-	private Date inicio;
+	private String inicio;
 	
 	@Column(name = "termino")
-	@Temporal(TemporalType.DATE)
-	private Date termino;
+	private String termino;
 	
 	@Column(name = "imagem")
 	private String imagem;
@@ -65,7 +61,7 @@ public class Viagem{
 	
 	public Viagem() {}
 	
-	public Viagem(ViagemBody body, Usuario usuario) {
+	public Viagem(Viagem body, Usuario usuario) {
 		
 		this.setDestino(body.getDestino());
 		this.setInicio(body.getInicio());
@@ -128,22 +124,22 @@ public class Viagem{
 	}
 
 
-	public Date getInicio() {
+	public String getInicio() {
 		return inicio;
 	}
 
 
-	public void setInicio(Date inicio) {
+	public void setInicio(String inicio) {
 		this.inicio = inicio;
 	}
 
 
-	public Date getTermino() {
+	public String getTermino() {
 		return termino;
 	}
 
 
-	public void setTermino(Date termino) {
+	public void setTermino(String termino) {
 		this.termino = termino;
 	}
 	

@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
-import br.com.pi.goodtrip.models.Usuario;
+/*import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
+import br.com.pi.goodtrip.models.Usuario;*/
 import br.com.pi.goodtrip.models.Viagem;
-import br.com.pi.goodtrip.repositories.UsuarioRepository;
+//import br.com.pi.goodtrip.repositories.UsuarioRepository;
 import br.com.pi.goodtrip.repositories.ViagemRepository;
 
 @RestController
@@ -27,8 +27,8 @@ public class ViagemController {
 	@Autowired
 	private ViagemRepository viagemRepo;
 	
-	@Autowired
-	private UsuarioRepository usuarioRepo;
+/*	@Autowired
+	private UsuarioRepository usuarioRepo;*/
 	
 	@GetMapping("ler/{id}")
 	public Optional<Viagem> lerViagem(@PathVariable(value = "id") int id){
