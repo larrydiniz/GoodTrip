@@ -22,6 +22,6 @@ const menuMobile = mnu.defineMenu({ openButton: menuButton,
     
 mnu.addOpenedListeners({ menu: menuMobile });
 
-fetch("/data/usuario.json")
+fetch(`http://localhost:3333/usuarios/ler/1`)
     .then(res => res.json())
     .then(json => setUserMenuAttributes(userImageField, nameField, usernameField, json))
