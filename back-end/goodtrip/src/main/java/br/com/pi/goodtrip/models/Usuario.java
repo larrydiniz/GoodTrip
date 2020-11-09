@@ -51,12 +51,10 @@ public class Usuario{
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
 	@JsonIgnore
-//	@JsonIgnoreProperties({"usuario", "itens"})
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
 	@JsonIgnore
-//	@JsonIgnoreProperties({"usuario", "tarefas"})
 	private Set<Item> itens;
 
 	public Set<Tarefa> getTarefas() {

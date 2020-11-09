@@ -77,9 +77,14 @@ div.infos{
     fill: var(--verde-seleção);
 }
 
+.infos #transporte{
+    margin-right: 10px;
+}
+
 .infos #transporte svg{
-    width: 78px;
+    width: 60px;
     height: auto;
+    max-height: 70px;
 }
 
 .infos #transporte svg path{
