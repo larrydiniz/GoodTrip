@@ -1,11 +1,16 @@
 import menu from "../modules/menu.js"
 import { classToggler} from "../utils/togglers.js"
 
+const mnu = menu(classToggler);
+
 const navMenu = document.getElementById("menu");
 const menuButton = document.querySelector(".menu-landing");
 const userImageField = document.querySelector("img.img-perfil");
 const nameField = document.querySelector("div#nome");
 const usernameField = document.querySelector("div#user");
+const menuMobile = mnu.defineMenu({ openButton: menuButton,
+                                    content: navMenu, 
+                                    visibilityClass: "show" });
 
 function setUserMenuAttributes(imageField, nameField, usernameField, data){
 
@@ -14,14 +19,12 @@ function setUserMenuAttributes(imageField, nameField, usernameField, data){
     usernameField.innerText = data.user;
 }
 
-const mnu = menu(classToggler);
+window.addEventListener('load', () => {
 
-const menuMobile = mnu.defineMenu({ openButton: menuButton,
-                                    content: navMenu, 
-                                    visibilityClass: "show" });
+    mnu.addOpenedListeners({ menu: menuMobile });
     
-mnu.addOpenedListeners({ menu: menuMobile });
-
-fetch(`http://localhost:3333/usuarios/ler/1`)
-    .then(res => res.json())
-    .then(json => setUserMenuAttributes(userImageField, nameField, usernameField, json))
+    fetch(`http://localhost:3333/usuarios/ler/1`)
+        .then(res => res.json())
+        .then(json => setUserMenuAttributes(userImageField, nameField, usernameField, json))
+})
+    

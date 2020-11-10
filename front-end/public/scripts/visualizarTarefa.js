@@ -1,9 +1,11 @@
 import viewTaskCard from "./modules/viewTaskCard.js"
+import urlParser from "./modules/urlParser.js"
 
-const idTarefa = location.href.split("?")[1];
+const urlp = urlParser();
 
 const blocoTarefa = document.querySelector('div.tarefa');
 const templateTarefa = document.getElementById('t-tarefa-atual');
+const mappedUrlParams = urlp.mapVariables(location.href);
 
 // fetch("/data/tarefas.json")
 //     .then(res => res.json())
@@ -16,10 +18,12 @@ const templateTarefa = document.getElementById('t-tarefa-atual');
 //                 .forEach(card => blocoTarefa.appendChild(card))
 //         }
 //     });
+window.addEventListener('load', () => {
 
-fetch("http://localhost:3333/tarefas/ler/2")
-.then(res => res.json())
-.then(json => {
-    const card = viewTaskCard().buildCard(templateTarefa, json);
-    blocoTarefa.appendChild(card);
-});
+    fetch(`http://localhost:3333/tarefas/ler/${mappedUrlParams.task_id}`)
+        .then(res => res.json())
+        .then(json => {
+            const card = viewTaskCard().buildCard(templateTarefa, json);
+            blocoTarefa.appendChild(card);
+        });
+})

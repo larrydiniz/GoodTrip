@@ -6,7 +6,6 @@ const inputEnd = document.querySelector('input#data-termino');
 const inputImg = document.querySelector('input#carregar-imagem');
 const imgPreview = document.querySelector('img#preview');
 const sendButton = document.querySelector('button.cadastrar');
-
 const inputsList = [inputTitle, inputInit, inputEnd, inputImg];
 
 inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox: imgPreview}));

@@ -2,7 +2,7 @@ export default function taskCards(){
 
     return {
         setCloneCardAttributes: function({ idField, hourField, titleField}, data){
-            idField.href = `visualizar-tarefa.html?${data.id_tarefa}`;
+            idField.href = `visualizar-tarefa.html?task_id=${data.id}`;
             hourField.innerText = data.horario;
             titleField.innerText = data.titulo;
         },

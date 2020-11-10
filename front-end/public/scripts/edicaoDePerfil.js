@@ -6,7 +6,6 @@ const inputName = document.querySelector('input#edicao_nome_perfil');
 const inputImg = document.querySelector('input#edicao_perfil_inputImagem');
 const imgPreview = document.querySelector('img#edicao_perfil_img');
 const sendButton = document.querySelector('button#edicao_salvar');
-
 const inputsList = [inputName, inputUsername, inputImg, inputDescription];
 									
 inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox: imgPreview}));
