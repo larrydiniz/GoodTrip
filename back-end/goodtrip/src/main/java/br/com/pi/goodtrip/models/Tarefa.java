@@ -16,8 +16,6 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.pi.goodtrip.controllers.bodies.TarefaBody;
-
 @Entity
 @Table(name = "tarefas")
 public class Tarefa{
@@ -67,7 +65,7 @@ public class Tarefa{
 	
 	public Tarefa() {}
 	
-	public Tarefa(TarefaBody body, Usuario usuario, Viagem viagem) {
+	public Tarefa(Tarefa body, Usuario usuario, Viagem viagem) {
 		
 		this.setTitulo(body.getTitulo());
 		this.setData(body.getData());

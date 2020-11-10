@@ -1,6 +1,6 @@
 package br.com.pi.goodtrip.models;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import br.com.pi.goodtrip.controllers.bodies.ItemBody;
 
 @Entity
 @Table(name = "itens")
@@ -37,25 +35,25 @@ public class Item{
 	@Column(name = "pessoal")
 	private Boolean pessoal;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_viagem")
 	@JsonIgnoreProperties({"itens", "usuarios", "tarefas", "embarques"})
 	private Viagem viagem;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
 	@JsonIgnoreProperties({"itens", "viagens", "tarefas", "embarques"})
 	private Usuario usuario;
 	
 	public Item() {}
 	
-	public Item(ItemBody body, Usuario usuario, Viagem viagem) {
+	public Item(Item item, Usuario usuario, Viagem viagem) {
 		
-		this.setNome(body.getNome());
-		this.setCategoria(body.getCategoria());
-		this.setChecado(body.getChecado());
-		this.setPessoal(body.getPessoal());
-		this.setAtivo(body.getAtivo());
+		this.setNome(item.getNome());
+		this.setCategoria(item.getCategoria());
+		this.setChecado(item.getChecado());
+		this.setPessoal(item.getPessoal());
+		this.setAtivo(item.getAtivo());
 		
 		this.setUsuario(usuario);
 		this.setViagem(viagem);
