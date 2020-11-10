@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +33,7 @@ public class ItemController {
 	private UsuarioRepository usuarioRepo;
 	
 	@GetMapping("ler/{id}")
-	public Optional<Item> lerViagem(@PathVariable(value = "id") int id){
+	public Optional<Item> lerItem(@PathVariable(value = "id") int id){
 		
 		return itemRepo.findById(id);
 	}
