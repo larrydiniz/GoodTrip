@@ -13,6 +13,14 @@ export default function invitationsCards(){
             titleField.innerText = data.destino;
             dateField.innerText = data.month + " | " + data.year;
         },
+
+        setCloneButtonsListeners: function(buttonsList, data){
+
+            buttonsList.forEach(button => {
+                
+                button.onclick = () => window.dispatchEvent(new CustomEvent("invitation-click", { detail: { "invitation": data.id, "action": button.name }}));
+            })
+        },
         
         mapCloneUserInfos: function(fragment){
             const userInfosCard = fragment.children[0].children[0];
@@ -37,15 +45,25 @@ export default function invitationsCards(){
                 "dateField": date
             }
         },
+
+        mapCloneButtons: function(fragment){
+            const buttonsCard = fragment.children[0].children[1];
+            const acceptButton = buttonsCard.children[1].children[0].children[0];
+            const refuseButton = buttonsCard.children[1].children[1].children[0];
+
+            return [acceptButton, refuseButton];
+        },
         
         buildCard: function (template, data){
 
             const clonedInvitationCard = template.content.cloneNode(true);
             const mappedInvitationUserInfos = this.mapCloneUserInfos(clonedInvitationCard);
             const mappedInvitationTravelInfos = this.mapCloneTravelInfos(clonedInvitationCard);
+            const mappedButtons = this.mapCloneButtons(clonedInvitationCard);
             
             this.setCloneUserAttributes(mappedInvitationUserInfos, data);
             this.setCloneTravelAttributes(mappedInvitationTravelInfos, data);
+            this.setCloneButtonsListeners(mappedButtons, data);
         
             return clonedInvitationCard;
         }
