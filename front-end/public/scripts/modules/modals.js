@@ -1,66 +1,53 @@
-export default function modals(classToggler){
+export default function modals(classToggler, modalOverlay, visibilityClass){
 
 	/** Modals namespace **/
 
 	return {
-		defineModal: function (modalProps){
-			
-			if(this.hasValidProps(modalProps)){
+		defineModal: function (openButton, closeButton, content){
 	
-				const properties = {
-					openButton: { value: modalProps.openButton,
-									writable: false },
-									
-					closeButton: { value: modalProps.closeButton,
-									writable: false },
-									
-					content: { value: modalProps.content,
+			const properties = {
+				openButton: { value: openButton,
 								writable: false },
 								
-					modalOverlay: { value: modalProps.modalOverlay,
-									writable: false },
-									
-					visibilityClass: { value: modalProps.visibilityClass,
-										writable: false }
-				}
-				
-				/** Immutable modal object **/
-		
-				return Object.defineProperties({}, properties);
+				closeButton: { value: closeButton,
+								writable: false },
+								
+				content: { value: content,
+							writable: false }
 			}
-			else{
+			
+			/** Immutable modal object **/
 	
-				return console.error("Propriedades inválidas para montar um modal");
-			}
+			return Object.defineProperties({}, properties);
 		},
 		
-		addOpenedListeners: function({ modal }){
+		addOpenedListeners: function( modal ){
 	
 			if(this.hasValidProps(modal)){
 	
-				modal.openButton.addEventListener("click", classToggler({element: modal.content, toggleClass: modal.visibilityClass}));
+				modal.openButton.addEventListener("click", classToggler({element: modal.content, toggleClass: visibilityClass}));
 			}
 		},
 
-		addClosedListeners: function({ modal }){
+		addClosedListeners: function( modal ){
 	
 			if(this.hasValidProps(modal)){
 
-				modal.closeButton.addEventListener("click", classToggler({element: modal.content, toggleClass: modal.visibilityClass}));
+				modal.closeButton.addEventListener("click", classToggler({element: modal.content, toggleClass: visibilityClass}));
 			}
 		},
 
-		addTogglingListeners: function({ modal }){
+		addTogglingListeners: function( modal ){
 	
 			if(this.hasValidProps(modal)){
 	
-				modal.content.addEventListener("toggling", classToggler({element: modal.modalOverlay, toggleClass: modal.visibilityClass}));
+				modal.content.addEventListener("toggling", classToggler({element: modalOverlay, toggleClass: visibilityClass}));
 			}
 		},
 	
 		hasValidProps: function(modalProps){
 
-			return (modalProps.openButton && modalProps.closeButton && modalProps.content && modalProps.modalOverlay && modalProps.visibilityClass)
+			return (modalProps.openButton && modalProps.closeButton && modalProps.content)
 		}
 	}
 }

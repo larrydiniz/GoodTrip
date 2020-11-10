@@ -1,54 +1,44 @@
-export default function passwordVisibility(typeToggler, sourceToggler){
+export default function passwordVisibility(typeToggler, sourceToggler, types, icons){
 
 	/** Password fields namespace **/
 
 	return {
 
-		defineField: function(passwordField){
-			if(this.hasValidProps(passwordField)){
+		defineField: function(button, input){
 
-				const properties = {
-					button: {
-						value: passwordField.button,
-						writable: false
-					},
-					input: {
-						value: passwordField.input,
-						writable: false
-					},
-					sources: {
-						value: passwordField.sources,
-						writable: false
-					},
-					types: {
-						value: passwordField.types,
-						writable: false
-					}
+			const properties = {
+				"button": {
+					value: button,
+					writable: false
+				},
+				"input": {
+					value: input,
+					writable: false
 				}
-		
-				return Object.defineProperties({}, properties);
 			}
+	
+			return Object.defineProperties({}, properties);
 		},
 	
-		addTypeListeners: function({ field }){
+		addTypeListeners: function(field){
 
 			if(this.hasValidProps(field)){
 
-				field.button.addEventListener("click", typeToggler({element: field.input, toggleTypes: field.types}));
+				field.button.addEventListener("click", typeToggler({element: field.input, toggleTypes: types}));
 			}
 			
 		},
 		
-		addSourceListeners: function({ field }){
+		addSourceListeners: function(field){
 
 			if(this.hasValidProps(field)){
 				
-				field.input.addEventListener("toggling", sourceToggler({element: field.button.firstElementChild, toggleSources: field.sources}));
+				field.input.addEventListener("toggling", sourceToggler({element: field.button.firstElementChild, toggleSources: icons}));
 			}
 		},
 
-		hasValidProps: function(fieldProps){
-			return (fieldProps.button && fieldProps.input && fieldProps.sources && fieldProps.types)
+		hasValidProps: function(field){
+			return (field.button && field.input)
 		}
 	}
 }

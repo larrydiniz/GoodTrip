@@ -16,8 +16,6 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.pi.goodtrip.controllers.bodies.TarefaBody;
-
 @Entity
 @Table(name = "tarefas")
 public class Tarefa{
@@ -33,12 +31,12 @@ public class Tarefa{
 	private String descricao;
 	
 	@Column(name = "data")
-	@Temporal(TemporalType.DATE)
-	private Date data;
+	//@Temporal(TemporalType.DATE)
+	private String data;
 	
 	@Column(name = "horario")
-	@Temporal(TemporalType.TIME)
-	private Date horario;
+	//@Temporal(TemporalType.TIME)
+	private String horario;
 	
 	@Column(name = "custo")
 	private float custo;
@@ -55,19 +53,19 @@ public class Tarefa{
 	@Column(name = "pessoal")
 	private Boolean pessoal;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "fk_id_viagem")
 	@JsonIgnoreProperties({"tarefas", "itens", "usuarios", "embarques"})
 	private Viagem viagem;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "fk_id_usuario")
 	@JsonIgnoreProperties({"tarefas", "itens", "viagens", "embarques"})
 	private Usuario usuario;
 	
 	public Tarefa() {}
 	
-	public Tarefa(TarefaBody body, Usuario usuario, Viagem viagem) {
+	public Tarefa(Tarefa body, Usuario usuario, Viagem viagem) {
 		
 		this.setTitulo(body.getTitulo());
 		this.setData(body.getData());
@@ -107,19 +105,19 @@ public class Tarefa{
 		this.descricao = descricao;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
-	public Date getHorario() {
+	public String getHorario() {
 		return horario;
 	}
 
-	public void setHorario(Date horario) {
+	public void setHorario(String horario) {
 		this.horario = horario;
 	}
 

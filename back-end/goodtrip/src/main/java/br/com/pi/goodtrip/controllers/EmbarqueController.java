@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pi.goodtrip.controllers.bodies.EmbarqueBody;
 import br.com.pi.goodtrip.models.Embarque;
-import br.com.pi.goodtrip.models.Usuario;
-import br.com.pi.goodtrip.models.Viagem;
+//import br.com.pi.goodtrip.models.Usuario;
+//import br.com.pi.goodtrip.models.Viagem;
 import br.com.pi.goodtrip.repositories.EmbarqueRepository;
-import br.com.pi.goodtrip.repositories.UsuarioRepository;
-import br.com.pi.goodtrip.repositories.ViagemRepository;
+//import br.com.pi.goodtrip.repositories.UsuarioRepository;
+//import br.com.pi.goodtrip.repositories.ViagemRepository;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,24 +26,15 @@ public class EmbarqueController {
 	@Autowired
 	private EmbarqueRepository embarqueRepo;
 	
-	@Autowired
+	/*@Autowired
 	private UsuarioRepository usuarioRepo;
 	
 	@Autowired
-	private ViagemRepository viagemRepo;
+	private ViagemRepository viagemRepo;*/
 	
 	@GetMapping("ler/{id}")
 	public Optional<Embarque> lerConvite(@PathVariable(value = "id") int id){
 		
 		return embarqueRepo.findById(id);
-	}
-	
-	@PostMapping("escrever")
-	public void escreverConvite(@RequestBody EmbarqueBody body) {
-
-		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
-		Viagem viagem = viagemRepo.findById(body.getViagemId()).orElseThrow();
-				
-		embarqueRepo.save(new Embarque(body, usuario, viagem));
 	}
 }

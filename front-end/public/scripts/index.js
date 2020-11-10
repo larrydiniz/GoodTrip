@@ -17,57 +17,35 @@ const passwordConfirmButton = document.querySelector("div#botao-confirma-senha")
 const passwordConfirmInput = document.querySelector("input#confirma-senha");
 const passwordLoginButton = document.querySelector("div#botao-senha-login");
 const passwordLoginInput = document.querySelector("input#senha-login");
-
 const passwordInputTypes = Object.defineProperties({}, { primary: { value: "password", writable: false} , secondary: { value: "text", writable: false }});
 const passwordIconSources = Object.defineProperties({}, { primary: { value: "../public/icons/olho-fechado.svg", writable: false} , secondary: { value: "../public/icons/olho-aberto.svg", writable: false }});
 
-const md = modals(classToggler);
-const pv = passwordVisibility(typeToggler, sourceToggler);
+const md = modals(classToggler, overlay, "show");
+const pv = passwordVisibility(typeToggler, sourceToggler, passwordInputTypes, passwordIconSources);
 
-const passwordRegisterField = pv.defineField({ button: passwordRegisterButton, 
-									           input: passwordRegisterInput, 
-									           types: passwordInputTypes,
-									           sources: passwordIconSources});
+const passwordRegisterField = pv.defineField(passwordRegisterButton, passwordRegisterInput);   
+const confirmPasswordField = pv.defineField(passwordConfirmButton, passwordConfirmInput);
+const loginPasswordField = pv.defineField(passwordLoginButton, passwordLoginInput);
+const passwordFieldsList = [loginPasswordField, passwordRegisterField, confirmPasswordField];
 
-
-const confirmPasswordField = pv.defineField({ button: passwordConfirmButton,
-		                                      input: passwordConfirmInput,
-		                                      types: passwordInputTypes,
-											  sources: passwordIconSources});
-
-const loginPasswordField = pv.defineField({ button: passwordLoginButton,
-											input: passwordLoginInput,
-											types: passwordInputTypes,
-											sources: passwordIconSources});
-								  
-const loginModal = md.defineModal({ openButton: loginModalOpenButton,
-	                                closeButton: loginModalCloseButton,
-	                                content: loginModalContent,
-	                                modalOverlay: overlay,
-	                                visibilityClass: "show" });
-
-const registerModal = md.defineModal({ openButton: registerModalOpenButton,
-                                       closeButton: registerModalCloseButton,
-                                       content: registerModalContent,
-                                       modalOverlay: overlay,
-                                       visibilityClass: "show" });
+const loginModal = md.defineModal(loginModalOpenButton, loginModalCloseButton, loginModalContent);					
+const registerModal = md.defineModal(registerModalOpenButton, registerModalCloseButton, registerModalContent);
+const definedModalsList = [loginModal, registerModal];
 								  
 nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}));
+
 overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: "hide"}));
 
-md.addOpenedListeners({ modal: loginModal });
-md.addClosedListeners({ modal: loginModal });
-md.addTogglingListeners({ modal: loginModal });
+window.addEventListener('load', () => {
 
-md.addOpenedListeners({ modal: registerModal });
-md.addClosedListeners({ modal: registerModal });
-md.addTogglingListeners({ modal: registerModal });
+	passwordFieldsList.forEach(field => { 
+		pv.addTypeListeners(field); 
+		pv.addSourceListeners(field) 
+	})
 
-pv.addTypeListeners({ field: passwordRegisterField });
-pv.addSourceListeners({ field: passwordRegisterField });
-
-pv.addTypeListeners({ field: confirmPasswordField });
-pv.addSourceListeners({ field: confirmPasswordField });
-
-pv.addTypeListeners({ field: loginPasswordField });
-pv.addSourceListeners({ field: loginPasswordField });
+	definedModalsList.forEach(modal => {
+		md.addOpenedListeners(modal);
+		md.addClosedListeners(modal);
+		md.addTogglingListeners(modal);
+	})
+})

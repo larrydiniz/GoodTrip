@@ -7,6 +7,7 @@ export default function imagePreviewer({input, previewBox}){
 		
 		imgReader.onload = function (imgEvent) {
 			previewBox.setAttribute('src', imgEvent.target.result);
+			input.setAttribute('value', imgEvent.target.result);
 		};	
 	}
 }

@@ -16,7 +16,7 @@ main{
 
 
 /************** form de cadastro de tarefa ************/
-form{
+#criar-nova-tarefa{
     width: 90%;
     max-height: 100vh;
     display: flex;
@@ -43,14 +43,14 @@ div.agenda{
     justify-content: center;
 }
 
-.agenda #horario{ 
+.agenda #horarios{ 
     width: 190px;
     font-size: 30px;
     font-weight: 400;
     color: var(--fonte-normal);
 }
 
-.agenda #horario input{ 
+.agenda #horarios input{ 
     margin-top: 10px;
     width: 35%;
     height: 45px;
@@ -122,6 +122,8 @@ div.custo{
 }
 
 .btn-salvar{
+    background-color: transparent;
+    border: none;
     width: 50px;
     margin-top: 10px;
     position: relative;
@@ -136,13 +138,13 @@ section.tarefas{
 
 /************** Responsividade ************/
 @media(min-width:370px){
-    form{
+    #criar-nova-tarefa{
         width: 80%;
     }
 }
 
 @media (min-width: 500px){
-    form{
+    #criar-nova-tarefa{
         width: 60%;
     }
 }
@@ -164,7 +166,7 @@ section.tarefas{
         align-items: flex-start;
     }
 
-    form{
+    #criar-nova-tarefa{
         max-height: 90vh;
         margin: 0 6%;
         width: 50%;
