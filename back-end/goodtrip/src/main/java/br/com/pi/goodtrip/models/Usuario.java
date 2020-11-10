@@ -49,7 +49,7 @@ public class Usuario{
 	@JsonIgnoreProperties({"usuario", "tarefas", "itens"})
 	private Set<Embarque> embarques;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.MERGE)
 	@JsonIgnore
 	private Set<Tarefa> tarefas;
 	

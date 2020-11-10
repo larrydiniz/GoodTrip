@@ -37,5 +37,11 @@ public class TarefaController {
 		
 		return tarefaRepo.findById(id);
 	}
+	
+	@PostMapping("escrever")
+	public Tarefa escreverTarefa(@RequestBody Tarefa tarefa) {
+		tarefaRepo.save(tarefa);
+		return tarefa;
+	}
 
 }
