@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,11 +38,6 @@ public class ViagemController {
 	public Viagem escreverViagem(@RequestBody Viagem viagem) {
 		viagemRepo.save(viagem);
 		return viagem;
-	}
-	
-	@DeleteMapping("apagar/{id}")
-	public void deletarViagem(@PathVariable int id) {
-		viagemRepo.deleteById(id);
 	}
 	
 	@PutMapping("/editar/{id}")
