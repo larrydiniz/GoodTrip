@@ -21,7 +21,7 @@ h1{
     font-size: 20px;
 }
 
-form{
+#cadastro-viagem{
     width: 80%;
     height: 75vh;
     display: flex;
@@ -80,8 +80,8 @@ img{
     position: relative;
 }
 
-input.cadastrar{
-    width: 100%;
+button.cadastrar{
+    width: 50%;
     height: 55px;
     border-radius: 8px;
     font-size: 20px;
@@ -89,11 +89,11 @@ input.cadastrar{
     background-color: var(--azul);
     color: white;
     border: var(--azul) solid 1px;
-    margin: 45px 0 10px 0;
+    margin: 10px 0 45px 0;
 }
 
 @media (min-width: 500px){
-    form{
+    #cadastro-viagem{
         width: 60%;
     }
 }
@@ -113,7 +113,8 @@ input.cadastrar{
     h1{
         font-size: 25px;
     }
-    form{
+    
+    #cadastro-viagem{
         width: 50%;
     }
 }

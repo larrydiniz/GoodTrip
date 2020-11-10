@@ -21,7 +21,7 @@ h1{
     font-size: 20px;
 }
 
-form{
+#alterar-senha{
     width: 80%;
     height: 75vh;
     display: flex;
@@ -50,8 +50,8 @@ input.pass{
     border: 0;
 }
 
-input.salvar{
-    width: 100%;
+button.salvar{
+    width: 50%;
     min-height: 55px;
     border-radius: 8px;
     font-size: 20px;
@@ -59,7 +59,7 @@ input.salvar{
     background-color: var(--azul);
     color: white;
     border: var(--azul) solid 1px;
-    margin: 45px 0 10px 0;
+    margin: 10px 0 50px 0;
 }
 
 input:focus{
@@ -91,7 +91,7 @@ button:focus{
     h1{
         font-size: 25px;
     }
-    form{
+    #alterar-senha{
         width: 50%;
     }
 }
