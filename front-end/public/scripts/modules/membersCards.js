@@ -9,8 +9,8 @@ export default function membersCards(){
         },
 
         setGuestCardCancelButton: function(button, data){
-
-            button.addEventListener("click", () => window.dispatchEvent(new CustomEvent("cancel-button-clicked", { detail: data.id })))
+            
+            button.addEventListener("click", () => window.dispatchEvent(new CustomEvent("cancel-button-clicked", { detail: data.idEmbarque })))
         },
 
         setInviteButton: function(button, data){

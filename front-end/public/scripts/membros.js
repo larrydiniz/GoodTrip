@@ -62,4 +62,4 @@ window.addEventListener('load', () => {
 })
 
 window.addEventListener("cancel-button-clicked", e => console.log(e.detail))
-window.addEventListener("invite", e => console.log(e.detail))
+window.addEventListener("invite", e => fetch(`http://localhost:3333/embarques/escrever`, { headers: { "Content-Type": "application/json" }, method: "POST", body: JSON.stringify(e.detail), redirect:"follow" }))
