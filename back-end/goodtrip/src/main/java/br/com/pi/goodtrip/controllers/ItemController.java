@@ -56,7 +56,7 @@ public class ItemController {
 		Item itemDB = itemRepo.findById(id)
 				.orElseThrow(() -> new IllegalAccessException());
 		
-		itemDB.setNome(dadosItem.getNome());;
+		itemDB.setNome(dadosItem.getNome());
 		
 		itemRepo.save(itemDB);
 		

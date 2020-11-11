@@ -26,12 +26,12 @@ public class Embarque{
 	@Column(name = "finalizada")
 	private Boolean finalizada;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_viagem")
 	@JsonIgnoreProperties({"embarques", "tarefas", "itens"})
 	private Viagem viagem;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
 	@JsonIgnoreProperties({"embarques", "viagens", "tarefas", "itens"})
 	private Usuario usuario;
