@@ -46,15 +46,15 @@ public class Usuario{
     private Set<Viagem> viagens;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonIgnoreProperties({"usuario", "tarefas", "itens", "embarques"})
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.MERGE)
-	@JsonIgnore
+	@JsonIgnoreProperties({"usuario", "tarefas", "itens", "embarques"})
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonIgnoreProperties({"usuario", "tarefas", "itens", "embarques"})
 	private Set<Item> itens;
 
 	public Set<Tarefa> getTarefas() {

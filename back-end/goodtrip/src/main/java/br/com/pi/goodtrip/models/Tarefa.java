@@ -55,7 +55,7 @@ public class Tarefa{
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "fk_id_viagem")
-	@JsonIgnoreProperties({"tarefas", "itens", "usuarios", "embarques"})
+	@JsonIgnoreProperties({"tarefas", "itens", "usuario", "embarques"})
 	private Viagem viagem;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
