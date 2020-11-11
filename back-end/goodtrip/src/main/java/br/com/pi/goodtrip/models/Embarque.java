@@ -27,7 +27,7 @@ public class Embarque{
 	
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_viagem")
-	@JsonIgnoreProperties({"embarques", "tarefas", "itens"})
+	@JsonIgnoreProperties({"embarques", "tarefas", "itens", "usuario"})
 	private Viagem viagem;
 	
 	@ManyToOne//(cascade = CascadeType.ALL)

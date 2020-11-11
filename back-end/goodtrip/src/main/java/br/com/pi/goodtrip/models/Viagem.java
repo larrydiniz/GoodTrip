@@ -52,11 +52,11 @@ public class Viagem{
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.MERGE)
-	@JsonIgnoreProperties({"viagem", "usuarios", "itens"})
+	@JsonIgnoreProperties({"viagem", "usuario", "itens"})
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({"viagem", "usuarios", "tarefas"})
+	@JsonIgnoreProperties({"viagem", "usuario", "tarefas"})
 	private Set<Item> itens;
 	
 	public Viagem() {}
