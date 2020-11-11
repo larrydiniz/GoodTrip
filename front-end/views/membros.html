@@ -103,10 +103,10 @@
             <div id="membros_convidar">
                 <div id="membros_adicionar_titulo">
                     <p>Convidar</p>
-                    <svg width="15" height="15" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="button_search" width="15" height="15" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.56202 14.4654H7.60747L7.96913 14.1038C6.68037 12.6112 5.90454 10.6715 5.90454 8.54776C5.90454 3.82676 9.7313 0 14.4522 0C19.1732 0 23 3.82676 23 8.54776C23 13.2688 19.1732 17.0955 14.4522 17.0955C12.3285 17.0955 10.3888 16.3196 8.89623 15.0375L8.53457 15.3991V16.438L1.95942 23L0 21.0406L6.56202 14.4654ZM14.4522 14.4654C17.7201 14.4654 20.3699 11.8156 20.3699 8.54776C20.3699 5.27992 17.7201 2.63009 14.4522 2.63009C11.1844 2.63009 8.53457 5.27992 8.53457 8.54776C8.53457 11.8156 11.1844 14.4654 14.4522 14.4654Z" fill="#026F81"/>
                     </svg>
-                    <input id="membros_busca_amigo" type="search" name="buscar_amigo" id="" placeholder="Buscar amigo">
+                    <input id="membros_busca_amigo" type="search" name="buscar_amigo" placeholder="Buscar amigo">
                 </div>
                 <!-- Busca dinâmica -->
             </div>
@@ -132,8 +132,23 @@
                         <p class="membro_nome_usuario"><!-- User --></p>
                     </div>
                 </div>
-                <button class="membro_cancelar_convite_web">Cancelar</button>
-                <button class="membro_cancelar_convite_mobile">X</button>
+                <button class="membro_cancelar_convite">
+                    <span class="membro_cancelar_convite_web">Cancelar</span>
+                    <span class="membro_cancelar_convite_mobile">X</span>
+                </button>
+            </div>
+        </template>
+
+        <template id="t_membro_busca">
+            <div class="membro_convidado">
+                <div class="membro_card">
+                    <img class="membro_imagem" src="" alt="">
+                    <div class="membro_infos">
+                        <p class="membro_nome_perfil"><!-- Nome --></p>
+                        <p class="membro_nome_usuario"><!-- User --></p>
+                    </div>
+                </div>
+                <button class="membro_convidar">Convidar</button>
             </div>
         </template>
     </body>
