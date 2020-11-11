@@ -32,7 +32,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/buscar")
-	public List<Object[]> getByNome(@RequestParam String q) {
+	public List<Usuario> getByNome(@RequestParam String q) {
 		return repository.encontrarUsuario(q);
 	}
 	

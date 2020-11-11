@@ -1,8 +1,16 @@
 package br.com.pi.goodtrip.repositories;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import br.com.pi.goodtrip.models.Embarque;
 
 @Repository
-public interface EmbarqueRepository extends CrudRepository <Embarque, Integer>{}
+public interface EmbarqueRepository extends CrudRepository <Embarque, Integer>{
+	
+	String query = "SELECT * FROM embarques WHERE fk_id_usuario=:iduser AND fk_id_viagem=:idtrip";
+	@Query(value = query, nativeQuery = true)
+	List<Embarque> encontrarEmbarque(int iduser, int idtrip);
+}

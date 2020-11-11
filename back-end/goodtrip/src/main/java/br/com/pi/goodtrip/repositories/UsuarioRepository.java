@@ -12,5 +12,5 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
 	
 	String query = "SELECT * FROM usuarios WHERE email LIKE %:q% OR username LIKE %:q%";
 	@Query(value = query, nativeQuery = true)
-	List<Object[]> encontrarUsuario(String q);
+	List<Usuario> encontrarUsuario(String q);
 }

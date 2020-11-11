@@ -40,10 +40,21 @@ public class EmbarqueController {
 	
 	@PostMapping("escrever")
 	public Embarque novoEmbarque(@RequestBody Embarque embarque) {
-		embarqueRepo.save(embarque);
-		return embarque;
+
+		if(embarqueRepo.encontrarEmbarque((embarque.getUsuario().getId()),
+			(embarque.getViagem().getId())).isEmpty()) {
+
+				embarqueRepo.save(embarque);
+				return embarque;
+		}
+		
+		return Erro();
 	}
 	
+	private Embarque Erro() {
+		return null;
+	}
+
 	@PutMapping("aceitar/{id}")
 	public Embarque responderEmbarque(@PathVariable int id, @RequestBody Embarque resposta) throws Exception{
 		Embarque embarcar = embarqueRepo.findById(id)
