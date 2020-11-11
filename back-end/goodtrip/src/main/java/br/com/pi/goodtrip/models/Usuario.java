@@ -46,7 +46,7 @@ public class Usuario{
     private Set<Viagem> viagens;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({"usuario", "tarefas", "itens"})
+	@JsonIgnore
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.MERGE)
@@ -115,6 +115,11 @@ public class Usuario{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
