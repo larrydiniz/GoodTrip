@@ -40,9 +40,14 @@ public class EmbarqueController {
 		return embarqueRepo.findById(id);
 	}
 	
-	@GetMapping("ler/todos")
-	public List<Embarque> lerTodosEmbarquesPeloIdUsuario(@RequestParam(value="id_usuario") String id, @RequestParam(value="aceito") Boolean aceito){
-		return embarqueRepo.encontrarEmbarquesDeUsuario(id, aceito);
+	@GetMapping("usuario/ler")
+	public List<Embarque> lerTodosEmbarquesPeloIdUsuario(@RequestParam String id_usuario, Boolean aceito){
+		return embarqueRepo.encontrarEmbarquesDeUsuario(id_usuario, aceito);
+	}
+	
+	@GetMapping("viagem/ler")
+	public List<Embarque> lerTodosEmbarquesPeloIdViagem(@RequestParam String id_viagem, Boolean finalizada){
+		return embarqueRepo.encontrarEmbarquesDeViagem(id_viagem, finalizada);
 	}
 	
 	@PostMapping("escrever")

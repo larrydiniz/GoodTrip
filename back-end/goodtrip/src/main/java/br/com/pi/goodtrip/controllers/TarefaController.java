@@ -40,6 +40,11 @@ public class TarefaController {
 		return tarefaRepo.findById(id);
 	}
 	
+	@GetMapping("viagem/ler")
+	public List<Tarefa> lerTarefasDeViagem(@RequestParam int id_viagem,  Boolean finalizada){
+		return tarefaRepo.encontrarTarefasPorIdViagem(id_viagem, finalizada);
+	}
+	
 	@GetMapping("/buscar")
 	public List<Tarefa> getByData(@RequestParam String data, int idviagem) {
 		return tarefaRepo.encontrarTarefas(data, idviagem);

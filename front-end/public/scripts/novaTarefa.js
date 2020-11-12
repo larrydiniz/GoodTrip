@@ -30,7 +30,9 @@ sendButton.addEventListener('click', () => {
 
 	const paramsValues = { "data": urlParams.day,
 						   "viagem": { "id": Number.parseInt(urlParams.travel_id) },
-	                       "usuario": { "id": 1 }}
+						   "usuario": { "id": 1 },
+						   "finalizada": false 
+						 }
 
 	console.log(inputsValues, paramsValues);
 

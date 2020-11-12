@@ -212,12 +212,12 @@ const viagem = location.href.split("?")[1];
 let calendario = new Calendario('calendar');
 
 function fetchTarefas() {
-	fetch(`http://localhost:3333/viagens/ler/${travelId}`)
+	fetch(`http://localhost:3333/tarefas/viagem/ler?id_viagem=${travelId}&finalizada=false`)
 		.then(res => res.json())
 		.then(json => {
 			
-			json.tarefas.map(tarefa => taskCards().buildCard(templateTarefas, tarefa))
-		                .forEach(card => blocoTarefas.appendChild(card))
+			json.map(tarefa => taskCards().buildCard(templateTarefas, tarefa))
+		        .forEach(card => blocoTarefas.appendChild(card))
 		
 		})
 }

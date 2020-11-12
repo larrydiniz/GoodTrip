@@ -1,5 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /*import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
@@ -32,6 +34,11 @@ public class ViagemController {
 	@GetMapping("ler/{id}")
 	public Optional<Viagem> lerViagem(@PathVariable(value = "id") int id){
 		return viagemRepo.findById(id);
+	}
+	
+	@GetMapping("usuario/ler")
+	public List<Viagem> lerViagensDeUsuario(@RequestParam String id_usuario, Boolean finalizada){
+		return viagemRepo.encontrarViagensDeUsuario(id_usuario, finalizada);
 	}
 	
 	@PostMapping("escrever")

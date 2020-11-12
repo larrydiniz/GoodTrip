@@ -27,11 +27,11 @@ searchButton.addEventListener('click', () => {
 
 window.addEventListener('load', () => {
 
-        fetch(`http://localhost:3333/viagens/ler/${urlParams.travel_id}`)
+        fetch(`http://localhost:3333/embarques/viagem/ler?id_viagem=${urlParams.travel_id}&finalizada=false`)
                 .then(res => res.json())
                 .then(json => {
         
-                        const embarques = json.embarques.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]})
+                        const embarques = json.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]})
         
                         embarques.aceitos.map(data => mmbc.buildMemberCard(templateMemberCard, data))
                                          .forEach(card => membersBlock.appendChild(card));
