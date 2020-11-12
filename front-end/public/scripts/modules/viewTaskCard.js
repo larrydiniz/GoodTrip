@@ -75,7 +75,7 @@ export default function viewTaskCard(){
         setCloneCardAttributes: function({hourField, titleField, priceField, currencyField,
                                         transportField, textField}, data){
             
-            hourField.innerText = data.horario;
+            hourField.innerText = data.horario.substring(0, 5);
             titleField.innerText = data.titulo;
             priceField.innerText = data.custo;
             currencyField.innerHTML = this.getCurrencySvgIcon(data.moeda);

@@ -1,6 +1,5 @@
 package br.com.pi.goodtrip.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,16 +25,37 @@ public class Embarque{
 	@Column(name = "finalizada")
 	private Boolean finalizada;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_viagem")
-	@JsonIgnoreProperties({"embarques", "tarefas", "itens"})
+	@JsonIgnoreProperties({"embarques", "tarefas", "itens", "usuario"})
 	private Viagem viagem;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
 	@JsonIgnoreProperties({"embarques", "viagens", "tarefas", "itens"})
 	private Usuario usuario;
 	
+	@ManyToOne//(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_id_autor")
+	@JsonIgnoreProperties({"embarques", "tarefas", "itens", "usuario"})
+	private Usuario autor;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Usuario getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Usuario autor) {
+		this.autor = autor;
+	}
+
 	public Embarque() {}
 	
 	public Embarque(Embarque body, Usuario usuario, Viagem viagem) {

@@ -19,9 +19,11 @@ export default function travelCards(){
 
             if(members.length){
 
+                console.log(members)
+
                 membersBlock.classList.add('ativa');
 
-                members.map(member => this.mapMemberImage(member.foto))
+                members.map(member => this.mapMemberImage(member.usuario.foto))
                        .map(({ element, source }) => this.setMembersImagesAttributes(element, source))
                        .forEach(image => membersBlock.appendChild(image))
             }
@@ -66,7 +68,7 @@ export default function travelCards(){
             const mappedTravelCard = this.mapCloneTravelCard(clonedTravelCard);
             
             this.setCloneCardAttributes(mappedTravelCard, data);
-            //this.setMembersImages(mappedTravelCard.membersField, data.embarques);
+            this.setMembersImages(mappedTravelCard.membersField, data.embarques);
         
             return clonedTravelCard;
         }

@@ -100,7 +100,9 @@
     border-radius: 8px;    
 }
 
-.convite-aceitar > p {
+.convite-aceitar > button {
+    border: none;
+    background-color: transparent;
     display: flex;
     align-self: center;
     color: #FFFFFF;
@@ -123,7 +125,9 @@
     border-radius: 8px;  
 }
 
-.convite-recusar > p {
+.convite-recusar > button {
+    border: none;
+    background-color: transparent;
     display: flex;
     align-self: center;
     color: #FFFFFF;

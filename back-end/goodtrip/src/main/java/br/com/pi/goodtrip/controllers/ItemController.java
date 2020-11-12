@@ -1,14 +1,18 @@
 package br.com.pi.goodtrip.controllers;
 
+import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 //import br.com.pi.goodtrip.controllers.bodies.ItemBody;
@@ -39,15 +43,32 @@ public class ItemController {
 		return itemRepo.findById(id);
 	}
 	
+	@GetMapping("/viagem/ler")
+	public List<Item> lerItensDeCategoriaEViagem(@RequestParam int viagem, String categoria){
+		return itemRepo.lerItensPorCategoriaEViagem(viagem, categoria);
+	}
+	
 	@PostMapping("escrever")
 	public Item escreverItem(@RequestBody Item item) {
 		itemRepo.save(item);
 		return item;
 	}
 	
-	@DeleteMapping("apagar/{id}")
-	public void deletarItem(@PathVariable int id) {
-		itemRepo.deleteById(id);
+	@DeleteMapping("apagar")
+	public void deletarItem(@RequestParam int id) {
+		itemRepo.apagarItem(id);
+	}
+	
+	@PutMapping("/editar/{id}")
+	public Item editarItem(@PathVariable int id, @RequestBody Item dadosItem) throws Exception{
+		Item itemDB = itemRepo.findById(id)
+				.orElseThrow(() -> new IllegalAccessException());
+		
+		itemDB.setNome(dadosItem.getNome());
+		
+		itemRepo.save(itemDB);
+		
+		return itemDB;
 	}
 	
 	/*@PostMapping("escrever")

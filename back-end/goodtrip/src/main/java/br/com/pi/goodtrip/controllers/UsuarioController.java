@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pi.goodtrip.controllers.bodies.Senha;
 import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.repositories.UsuarioRepository;
 
@@ -31,7 +32,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/buscar")
-	public List<Object[]> getByNome(@RequestParam String q) {
+	public List<Usuario> getByNome(@RequestParam String q) {
 		return repository.encontrarUsuario(q);
 	}
 	
@@ -53,6 +54,26 @@ public class UsuarioController {
 		repository.save(userDB);
 		
 		return userDB;
+	}
+	
+	
+	@PutMapping("/alterarSenha/{id}")
+	public Usuario editarSenha(@PathVariable int id, @RequestBody Senha alterarSenha) throws Exception{
+		Usuario senhaUser = repository.findById(id)
+				.orElseThrow(() -> new IllegalAccessException());
+		
+		if(senhaUser.getSenha().equals(alterarSenha.getSenha_atual())) {
+			
+			if(alterarSenha.getNova_senha().equals(alterarSenha.getConfirmar_senha())) {
+				
+				senhaUser.setSenha(alterarSenha.getNova_senha());
+				repository.save(senhaUser);
+				
+				return senhaUser;
+			}
+		}
+		
+		return senhaUser;
 	}
 	
 }

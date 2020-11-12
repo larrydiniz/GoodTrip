@@ -1,3 +1,4 @@
+import postNewtravel from "./requests/postNewTravel.js";
 import imagePreviewer from "./utils/imagePreviewer.js"
 
 const inputTitle = document.querySelector('input#viagem-destino');
@@ -12,7 +13,9 @@ inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox:
 
 sendButton.addEventListener('click', () => {
 
-    const requestBody = inputsList.reduce((acc, currentInput) => { acc[currentInput.name] = currentInput.value; return acc }, { "usuario": { "id": 1 } });
+    const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc ), { "usuario": { "id": 1 } });
 
-    fetch(`http://localhost:3333/viagens/escrever`, { headers: { "Content-Type": "application/json" }, method: "POST", body: JSON.stringify(requestBody), redirect: "follow"})
+    const request = postNewtravel(requestBody)
+
+    fetch(request.url, request.init)
 })

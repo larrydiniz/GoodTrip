@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -32,6 +33,7 @@ public class Usuario{
 	@Column(name = "username")
 	private String username;
 	
+	@JsonIgnore
 	@Column(name = "senha")
 	private String senha;
 	
@@ -46,15 +48,15 @@ public class Usuario{
     private Set<Viagem> viagens;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({"usuario", "tarefas", "itens"})
+	@JsonIgnoreProperties({"usuario", "tarefas", "itens", "embarques"})
 	private Set<Embarque> embarques;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.MERGE)
-	@JsonIgnore
+	@JsonIgnoreProperties({"usuario", "tarefas", "itens", "embarques"})
 	private Set<Tarefa> tarefas;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonIgnoreProperties({"usuario", "tarefas", "itens", "embarques"})
 	private Set<Item> itens;
 
 	public Set<Tarefa> getTarefas() {
@@ -115,6 +117,11 @@ public class Usuario{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}

@@ -1,6 +1,5 @@
 package br.com.pi.goodtrip.models;
 
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -55,7 +52,7 @@ public class Tarefa{
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "fk_id_viagem")
-	@JsonIgnoreProperties({"tarefas", "itens", "usuarios", "embarques"})
+	@JsonIgnoreProperties({"tarefas", "itens", "usuario", "embarques"})
 	private Viagem viagem;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)

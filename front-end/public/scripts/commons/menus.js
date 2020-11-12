@@ -16,7 +16,7 @@ function setUserMenuAttributes(imageField, nameField, usernameField, data){
 
     imageField.src = data.foto;
     nameField.innerText = data.nome;
-    usernameField.innerText = data.user;
+    usernameField.innerText = data.username;
 }
 
 window.addEventListener('load', () => {
