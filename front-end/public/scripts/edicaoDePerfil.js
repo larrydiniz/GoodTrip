@@ -1,4 +1,4 @@
-import updateUserInfos from "./requests/updateUserInfos.js";
+import updateUserInfos from "./requests/updateUserInfos.js"
 import imagePreviewer from "./utils/imagePreviewer.js"
 
 const inputDescription = document.querySelector('textarea#edicao_descricao');

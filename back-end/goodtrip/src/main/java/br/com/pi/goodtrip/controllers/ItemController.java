@@ -1,5 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,11 @@ public class ItemController {
 	public Optional<Item> lerItem(@PathVariable(value = "id") int id){
 		
 		return itemRepo.findById(id);
+	}
+	
+	@GetMapping("/viagem/ler")
+	public List<Item> lerItensDeCategoriaEViagem(@RequestParam int viagem, String categoria){
+		return itemRepo.lerItensPorCategoriaEViagem(viagem, categoria);
 	}
 	
 	@PostMapping("escrever")
