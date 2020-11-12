@@ -12,7 +12,7 @@ inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox:
 
 sendButton.addEventListener('click', () => {
 
-    const requestBody = inputsList.reduce((acc, currentInput) => { acc[currentInput.name] = currentInput.value; return acc }, {});
+    const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc), {});
 
     fetch(`http://localhost:3333/usuarios/editar/1`, { headers: { "Content-Type": "application/json" }, mode: "cors", method: "PUT", body: JSON.stringify(requestBody), redirect: "follow" })
 })

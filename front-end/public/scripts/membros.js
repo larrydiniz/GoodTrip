@@ -14,26 +14,6 @@ const templateGuestCard = document.querySelector("template#t_membro_convidado");
 const templateInvitedCard = document.querySelector("template#t_membro_busca");
 const urlParams = urlp.mapVariables(location.href);
 
-// fetch("/data/embarques.json")
-//     .then(res => res.json())
-//     .then(json => {
-
-//         if(json.length){
-
-//             json.filter(data => data.aceito)
-//                 .map(data => mmbc.buildMemberCard(templateMemberCard, data.usuario))
-//                 .forEach(card => membersBlock.appendChild(card));
-    
-//             json.filter(data => !data.aceito)
-//                 .map(data => mmbc.buildGuestCard(templateGuestCard, data.usuario))
-//                 .forEach(card => guestsBlock.appendChild(card));        
-//         }
-//         else{
-
-//             membersBlock.innerHTML = "Não há outros membros..."
-//             guestsBlock.innerHTML = "Não há convites..."
-//         }
-//     })
 searchButton.addEventListener('click', () => {
 
         fetch(`http://localhost:3333/usuarios/buscar?q=${searchInput.value}`)

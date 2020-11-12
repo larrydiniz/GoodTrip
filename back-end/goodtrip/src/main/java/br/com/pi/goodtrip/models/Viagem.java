@@ -44,7 +44,7 @@ public class Viagem{
 	
 	@ManyToOne//(cascade= CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
-	@JsonIgnoreProperties({"viagens", "tarefas", "itens"})
+	@JsonIgnoreProperties({ "tarefas", "itens"})
 	private Usuario usuario;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="viagem", cascade = CascadeType.ALL)

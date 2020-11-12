@@ -13,21 +13,6 @@ const templateCommonItem = document.querySelector("template#t-item-comum");
 const personalBlocks = [personalHygieneBlock, personalClothsBlock, personalOthersBlock];
 const urlParams = urlp.mapVariables(location.href);
 
-// fetch("/data/itens.json")
-//     .then(res => res.json())
-//     .then(json => {
-      
-//       if(json.length){
-
-//         json.filter(data => data.pessoal)
-//             .map(data => [data.categoria, itnc.buildPersonalCard(templatePersonalItem, data)])
-//             .forEach(tuple => personalBlocks[tuple[0]].appendChild(tuple[1]))
-  
-//         json.filter(data => !data.pessoal)
-//             .map(data => itnc.buildCommonCard(templateCommonItem, data))
-//             .forEach(card => commonItensBlock.appendChild(card))
-//       }
-// })
 window.addEventListener('load', () => {
 
   fetch(`http://localhost:3333/viagens/ler/${urlParams.travel_id}`)
