@@ -13,5 +13,5 @@ public interface TarefaRepository extends CrudRepository<Tarefa, Integer>{
 			
 	String query = "SELECT * FROM tarefas WHERE data LIKE %:data% AND fk_id_viagem=:idviagem";
 	@Query(value = query, nativeQuery = true)
-	List<Object[]> encontrarTarefas(String data, int idviagem);
+	List<Tarefa> encontrarTarefas(String data, int idviagem);
 }

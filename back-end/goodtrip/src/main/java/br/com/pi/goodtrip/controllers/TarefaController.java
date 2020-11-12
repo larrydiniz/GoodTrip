@@ -41,7 +41,7 @@ public class TarefaController {
 	}
 	
 	@GetMapping("/buscar")
-	public List<Object[]> getByData(@RequestParam String data, int idviagem) {
+	public List<Tarefa> getByData(@RequestParam String data, int idviagem) {
 		return tarefaRepo.encontrarTarefas(data, idviagem);
 	}
 	
