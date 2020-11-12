@@ -2,10 +2,8 @@ export default function initPostNewTask(requestBody){
 
     const url = `http://localhost:3333/tarefas/escrever`
 
-	const headers = {
-		"Authorization": "Token " + "JWT by localstorage", 
-		"Content-Type": "application/json"
-	}
+	const headers = { "Authorization": "Token " + "JWT by localstorage", 
+		              "Content-Type": "application/json" }
 
 	const body = JSON.stringify(requestBody)
 
@@ -14,6 +12,5 @@ export default function initPostNewTask(requestBody){
 				   "body": body, 
                    "redirect": "follow" }
     
-    return { "url": url, 
-             "init": init }
+    return { "url": url, "init": init }
 }
