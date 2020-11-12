@@ -2,9 +2,11 @@ package br.com.pi.goodtrip.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.pi.goodtrip.models.Tarefa;
 
@@ -13,11 +15,19 @@ public interface TarefaRepository extends CrudRepository<Tarefa, Integer>{
 	
 	String selectByTravelId = "SELECT * FROM tarefas WHERE fk_id_viagem = ?1 AND finalizada = ?2";
 	
-	String query = "SELECT * FROM tarefas WHERE data LIKE %:data% AND fk_id_viagem=:idviagem";
+	String selectByDateAndTravelId = "SELECT * FROM tarefas WHERE data LIKE %:data% AND fk_id_viagem=:idviagem";
+	
+	String deleteTaskById = "DELETE FROM tarefas WHERE id=:id";
+	
+	@Modifying
+	@Transactional
+	@Query(value = deleteTaskById, nativeQuery = true)
+	void apagarTarefa(int id);
 	
 	@Query(value = selectByTravelId, nativeQuery = true)
 	List<Tarefa> encontrarTarefasPorIdViagem(int viagem, Boolean finalizada);
 	
-	@Query(value = query, nativeQuery = true)
+	@Query(value = selectByDateAndTravelId, nativeQuery = true)
 	List<Tarefa> encontrarTarefas(String data, int idviagem);
+	
 }

@@ -11,11 +11,11 @@ import br.com.pi.goodtrip.models.Item;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Integer>{
 	
-	String query = "DELETE FROM itens WHERE id=:id";
+	String deleteItenById = "DELETE FROM itens WHERE id=:id";
 	
 	@Modifying
 	@Transactional
-	@Query(value = query, nativeQuery = true)
+	@Query(value = deleteItenById, nativeQuery = true)
 	void apagarItem(int id);
 	
 }
