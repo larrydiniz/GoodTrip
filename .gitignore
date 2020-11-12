@@ -1,8 +1,5 @@
 bundles/
 node_modules/
-application.properties
-*.properties
-back-end/**/**/**/resources/*
 
 # Compiled class file
 *.class
