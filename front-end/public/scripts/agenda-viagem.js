@@ -212,7 +212,10 @@ const viagem = location.href.split("?")[1];
 let calendario = new Calendario('calendar');
 
 function fetchTarefas() {
-	fetch(`http://localhost:3333/tarefas/viagem/ler?id_viagem=${travelId}&finalizada=false`)
+	
+	const urlToGetTasksBelongsToTravel = `http://localhost:3333/tarefas/viagem/ler?id_viagem=${travelId}&finalizada=false`
+
+	fetch(urlToGetTasksBelongsToTravel)
 		.then(res => res.json())
 		.then(json => {
 			

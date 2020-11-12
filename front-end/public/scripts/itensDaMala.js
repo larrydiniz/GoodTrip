@@ -15,7 +15,9 @@ const urlParams = urlp.mapVariables(location.href);
 
 window.addEventListener('load', () => {
 
-  fetch(`http://localhost:3333/viagens/ler/${urlParams.travel_id}`)
+  const urlToGetTravelById = `http://localhost:3333/viagens/ler/${urlParams.travel_id}`
+
+  fetch(urlToGetTravelById)
     .then(res => res.json())
     .then(json => {
 

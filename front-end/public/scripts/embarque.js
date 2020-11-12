@@ -8,7 +8,10 @@ const invitationsBlock = document.querySelector("div.convites-embarque");
 const templateInvitationCard = document.querySelector("template#t-convite");
         
 window.addEventListener('load', () => {
-    fetch("http://localhost:3333/embarques/usuario/ler?id_usuario=1&aceito=false")
+
+    const urlToGetTravelsWhereUserWasInvited = "http://localhost:3333/embarques/usuario/ler?id_usuario=1&aceito=false"
+
+    fetch(urlToGetTravelsWhereUserWasInvited)
         .then(res => res.json())
         .then(json => {
 

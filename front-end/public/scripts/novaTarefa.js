@@ -1,5 +1,6 @@
-import urlParser from './modules/urlParser.js';
+import urlParser from './modules/urlParser.js'
 import taskCards from "./modules/taskCards.js"
+import postNewTask from "./requests/postNewTask.js"
 
 const urlp = urlParser();
 
@@ -31,12 +32,11 @@ sendButton.addEventListener('click', () => {
 	const paramsValues = { "data": urlParams.day,
 						   "viagem": { "id": Number.parseInt(urlParams.travel_id) },
 						   "usuario": { "id": 1 },
-						   "finalizada": false 
-						 }
+						   "finalizada": false }
 
-	console.log(inputsValues, paramsValues);
+    const request = postNewTask({...inputsValues, ...paramsValues})
 
-	fetch(`http://localhost:3333/tarefas/escrever`, { headers: { "Content-Type": "application/json" }, method: "POST", body: JSON.stringify({...inputsValues, ...paramsValues}), redirect: "follow"})
+	fetch(request.url, request.init)
 })
 
 window.addEventListener('load', () => {
