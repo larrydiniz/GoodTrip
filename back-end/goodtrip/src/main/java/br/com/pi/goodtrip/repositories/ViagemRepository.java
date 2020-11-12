@@ -11,7 +11,7 @@ import br.com.pi.goodtrip.models.Viagem;
 @Repository
 public interface ViagemRepository extends CrudRepository<Viagem, Integer>{
 	
-	String selectByUserId = "SELECT * FROM viagens WHERE fk_id_usuario = ?1 AND finalizada = ?2";
+	String selectByUserId = "SELECT * FROM viagens WHERE fk_id_usuario = :usuario AND finalizada = :finalizada";
 	
 	@Query(value = selectByUserId, nativeQuery = true)
 	List<Viagem> encontrarViagensDeUsuario(String usuario, Boolean finalizada);

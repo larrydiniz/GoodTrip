@@ -10,20 +10,21 @@ export default function membersCards(){
 
         setGuestCardCancelButton: function(button, data){
             
-            button.addEventListener("click", () => window.dispatchEvent(new CustomEvent("cancel-button-clicked", { detail: data.idEmbarque })))
+            button.addEventListener("click", () => window.dispatchEvent(new CustomEvent("guestCardCancelButtonClick", { detail: data.idEmbarque })))
         },
 
         setInviteButton: function(button, data){
 
             const body = {
 
-                "viagem": { "id": data.viagem },
-                "usuario": {"id": data.id },
+                "viagem": { "id": data.viagem.id },
+                "usuario": { "id": data.usuario.id },
+                "autor": { "id": data.viagem.usuario.id },
                 "finalizada": false,
                 "aceito": false
             }
 
-            button.addEventListener("click", () => window.dispatchEvent(new CustomEvent("invite", {detail: body})))
+            button.addEventListener("click", () => window.dispatchEvent(new CustomEvent("guestCardInviteButtonClick", {detail: body})))
         },
         
         mapCloneGuestCard: function(fragment){

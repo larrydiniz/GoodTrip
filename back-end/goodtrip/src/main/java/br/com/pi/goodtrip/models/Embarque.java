@@ -35,6 +35,27 @@ public class Embarque{
 	@JsonIgnoreProperties({"embarques", "viagens", "tarefas", "itens"})
 	private Usuario usuario;
 	
+	@ManyToOne//(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_id_autor")
+	@JsonIgnoreProperties({"embarques", "tarefas", "itens", "usuario"})
+	private Usuario autor;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Usuario getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Usuario autor) {
+		this.autor = autor;
+	}
+
 	public Embarque() {}
 	
 	public Embarque(Embarque body, Usuario usuario, Viagem viagem) {

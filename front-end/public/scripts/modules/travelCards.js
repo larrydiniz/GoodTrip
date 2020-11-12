@@ -66,7 +66,7 @@ export default function travelCards(){
             const mappedTravelCard = this.mapCloneTravelCard(clonedTravelCard);
             
             this.setCloneCardAttributes(mappedTravelCard, data);
-            //this.setMembersImages(mappedTravelCard.membersField, data.embarques);
+            this.setMembersImages(mappedTravelCard.membersField, data.embarques);
         
             return clonedTravelCard;
         }

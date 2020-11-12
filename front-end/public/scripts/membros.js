@@ -16,12 +16,20 @@ const urlParams = urlp.mapVariables(location.href);
 
 searchButton.addEventListener('click', () => {
 
-        fetch(`http://localhost:3333/usuarios/buscar?q=${searchInput.value}`)
-                .then(res => res.json())
-                .then( json => {
+        Promise.all([
+                        fetch(`http://localhost:3333/usuarios/buscar?q=${searchInput.value}`),
+                        fetch(`http://localhost:3333/viagens/ler/${urlParams.travel_id}`)
+                ])
+                .then(values => ({"usuario": values[0], "viagem": values[1]}))
+                .then(objectResponses => Promise.all([objectResponses.usuario.json(), objectResponses.viagem.json()]))
+                .then(values => ({"usuario": values[0][0], "viagem": values[1]}))
+                .then(json => {
 
-                        json.map(data => mmbc.buildToInviteCard(templateInvitedCard, {...data, "viagem": Number.parseInt(urlParams.travel_id)}))
-                            .forEach(card => inviteBlock.appendChild(card))
+                        console.log(json)
+                        
+                        const card = mmbc.buildToInviteCard(templateInvitedCard, json)
+                            
+                        inviteBlock.appendChild(card)
                 })
 })
 
@@ -41,5 +49,5 @@ window.addEventListener('load', () => {
                 })
 })
 
-window.addEventListener("cancel-button-clicked", e => fetch(`http://localhost:3333/embarques/apagar?id=${e.detail}`, { method: "DELETE", redirect:"follow" }))
-window.addEventListener("invite", e => fetch(`http://localhost:3333/embarques/escrever`, { headers: { "Content-Type": "application/json" }, method: "POST", body: JSON.stringify(e.detail), redirect:"follow" }))
+window.addEventListener("guestCardCancelButtonClick", e => fetch(`http://localhost:3333/embarques/apagar?id=${e.detail}`, { method: "DELETE", redirect:"follow" }))
+window.addEventListener("guestCardInviteButtonClick", e => fetch(`http://localhost:3333/embarques/escrever`, { headers: { "Content-Type": "application/json" }, method: "POST", body: JSON.stringify(e.detail), redirect:"follow" }))

@@ -13,9 +13,9 @@ import br.com.pi.goodtrip.models.Embarque;
 @Repository
 public interface EmbarqueRepository extends CrudRepository <Embarque, Integer>{
 	
-	String selectByTravelId = "SELECT * FROM embarques WHERE fk_id_viagem = ?1 AND finalizada = ?2";
+	String selectByTravelId = "SELECT * FROM embarques WHERE fk_id_viagem=:viagem AND finalizada=:finalizada";
 	
-	String selectByUserId = "SELECT * FROM embarques WHERE fk_id_usuario = ?1 AND aceito = ?2";
+	String selectByUserId = "SELECT * FROM embarques WHERE fk_id_usuario=:usuario AND aceito=:aceito";
 	
 	String deleteById = "DELETE FROM embarques WHERE id=:id";
 	

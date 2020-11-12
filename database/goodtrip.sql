@@ -66,13 +66,18 @@ DROP TABLE IF EXISTS `goodtrip`.`embarques` ;
 
 CREATE TABLE IF NOT EXISTS `goodtrip`.`embarques` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `aceito` TINYINT(4) NULL DEFAULT NULL,
-  `finalizada` TINYINT(4) NULL DEFAULT NULL,
+  `aceito` TINYINT(4) NULL DEFAULT '0',
+  `finalizada` TINYINT(4) NULL DEFAULT '0',
   `fk_id_usuario` INT(11) NOT NULL,
   `fk_id_viagem` INT(11) NOT NULL,
+  `fk_id_autor` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
+  INDEX `FKhkoaeisdopwedw5oewojio7e3` (`fk_id_autor` ASC),
   INDEX `FKhh97iaa9efxigmspd5uad2oe6` (`fk_id_viagem` ASC),
   INDEX `FKhj2x3lr0kmgxq9pnfl9ev81j7` (`fk_id_usuario` ASC),
+  CONSTRAINT `FKhkoaeisdopwedw5oewojio7e3`
+	FOREIGN KEY (`fk_id_autor`)
+    REFERENCES `goodtrip`.`usuarios` (`id`),
   CONSTRAINT `FKhh97iaa9efxigmspd5uad2oe6`
     FOREIGN KEY (`fk_id_viagem`)
     REFERENCES `goodtrip`.`viagens` (`id`),
