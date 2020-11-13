@@ -87,6 +87,8 @@ public class ViagemService {
 		viagemDB.setTermino(verifiedEnd);
 		viagemDB.setImagem(data.getImagem());
 		
+		/*se imagem for vazia, setar a padrão do sistema*/
+		
 		return viagemRepo.save(viagemDB);
 	}
 }

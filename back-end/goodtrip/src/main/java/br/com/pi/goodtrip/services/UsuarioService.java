@@ -33,7 +33,7 @@ public class UsuarioService {
 
 	public Usuario writeAnUser(Usuario user) {
 		Optional.of(user.getUsername())
-				.map(n -> !repository.selectUserByEmailOrUsername(n).isEmpty()? null: n)
+				.map(n -> !repository.checkUsernameExists(n).isEmpty()? null: n)
 				.map(n -> n.length() < 3? null: n)
 				.map(n -> n.contains("  ")? null: n)
 				.map(n -> !n.contains("@")? null: n)
@@ -45,7 +45,7 @@ public class UsuarioService {
         		.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
         
         Optional.of(user.getEmail())
-        		.map(email -> !repository.selectUserByEmailOrUsername(email).isEmpty()? null: email)
+        		.map(email -> !repository.checkEmailExists(email).isEmpty()? null: email)
         		.map(email -> email.substring(0, email.indexOf("@")))
         		.map(username -> username.length() < 1? null: username)
         		.map(username -> username.contains("@")? null: username)
@@ -72,7 +72,7 @@ public class UsuarioService {
 		
 		String verifiedUsername =
 			Optional.of(data.getUsername())
-				.map(n -> !repository.selectUserByEmailOrUsername(n).isEmpty()? null: n)
+				.map(n -> !repository.checkUsernameExists(n).isEmpty()? null: n)
 				.map(n -> n.length() < 3? null: n)
 				.map(n -> n.contains("  ")? null: n)
 				.map(n -> !n.contains("@")? null: n)
@@ -91,7 +91,7 @@ public class UsuarioService {
 		return repository.save(userDB);
 	}
 	
-	public Usuario editUserPassword( int id, Senha alterarSenha) {
+	public Usuario editUserPassword(int id, Senha alterarSenha) {
 		Usuario senhaUser = repository.findById(id)
 				                      .orElseThrow(() -> new NoSuchElementException());
 		

@@ -14,4 +14,16 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
 	
 	@Query(value = selectUserByEmailOrUsername, nativeQuery = true)
 	List<Usuario> selectUserByEmailOrUsername(String q);
+	
+	
+	String checkUsernameExists = "SELECT * FROM usuarios WHERE username=:user";
+	
+	@Query(value = checkUsernameExists, nativeQuery = true)
+	List<Usuario> checkUsernameExists(String user);
+	
+	
+	String checkEmailExists = "SELECT * FROM usuarios WHERE email=:email";
+	
+	@Query(value = checkEmailExists, nativeQuery = true)
+	List<Usuario> checkEmailExists(String email);
 }
