@@ -37,6 +37,8 @@ sendButton.addEventListener('click', () => {
     const request = postNewTask({...inputsValues, ...paramsValues})
 
 	fetch(request.url, request.init)
+		.then(res => res.json())
+		.then(json => console.log(json))
 })
 
 window.addEventListener('load', () => {
