@@ -21,8 +21,11 @@ public class TarefaService {
 	}
 	
 	public List<Tarefa> readTasksBelongToTravelWhereFinalised(int travel,  Boolean finalised){
-		return tarefaRepo.selectTasksByTravelIdWhereFinalised(travel, finalised)
-						 .orElseThrow(() -> new NoSuchElementException("Tarefa de viagem não encontrada"));
+		List<Tarefa> tasks = tarefaRepo.selectTasksByTravelIdWhereFinalised(travel, finalised);
+		
+		return Optional.of(tasks)
+					   .map(list -> list.isEmpty()? null: list)
+					   .orElseThrow(() -> new NoSuchElementException("Tarefa de viagem não encontrada"));
 	}
 	
 	public List<Tarefa> readTasksByTravelIdAndDate(String date, int travel) {
@@ -32,8 +35,11 @@ public class TarefaService {
 					.map(d -> d.length() < 1? null: d)
 					.orElseThrow(() -> new IllegalArgumentException("Data não recebida"));
 		
-		return tarefaRepo.selectTasksByDateAndTravelID(verifiedDate, travel)
-						 .orElseThrow(() -> new NoSuchElementException("Tarefas do dia de viagem não encontradas"));
+		List<Tarefa> tasks = tarefaRepo.selectTasksByDateAndTravelID(verifiedDate, travel);
+				
+		return Optional.of(tasks)
+				       .map(list -> list.isEmpty()? null: list)
+				       .orElseThrow(() -> new NoSuchElementException("Tarefas do dia de viagem não encontradas"));
 	}
 	
 	public Tarefa writeATask(Tarefa data) {

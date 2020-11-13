@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,6 +23,6 @@ public interface ItemRepository extends CrudRepository<Item, Integer>{
 	void deleteItemById(int id);
 	
 	@Query(value = selectItensByCategoryAndTravelId, nativeQuery = true)
-	Optional<List<Item>> readItensByCategoryAndTravelId(int travel, int category);
+	List<Item> readItensByCategoryAndTravelId(int travel, int category);
 	
 }

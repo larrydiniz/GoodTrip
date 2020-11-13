@@ -38,10 +38,11 @@ public class ItemService {
 						.map(c -> c > 4? null: c)
 						.orElseThrow(() -> new IllegalArgumentException("Categoria inexistente"));
 		
-		List<Item> itens = 
-				itemRepo.readItensByCategoryAndTravelId(travel, verifiedCategory)
-	                    .orElseThrow(() -> new NoSuchElementException("Itens de viagem não encontrados"));
-		return itens;
+		List<Item> itens = itemRepo.readItensByCategoryAndTravelId(travel, verifiedCategory);
+		
+		return Optional.of(itens)
+					   .map(list -> list.isEmpty()? null: list)
+					   .orElseThrow(() -> new NoSuchElementException("Itens de viagem não encontrados"));
 	}
 	
 	public Item deleteItemById(int id) {

@@ -23,9 +23,11 @@ public class UsuarioService {
 	}
 	
 	public List<Usuario> readUserByEmailOrUsername(String q) {
-		return repository.selectUserByEmailOrUsername(q)
-						 .map(list -> list.isEmpty()? null: list)
-						 .orElseThrow(() -> new NoSuchElementException());
+		List<Usuario> users = repository.selectUserByEmailOrUsername(q);
+		
+		return Optional.of(users)
+					   .map(list -> list.isEmpty()? null: list)
+					   .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 	}
 	
 

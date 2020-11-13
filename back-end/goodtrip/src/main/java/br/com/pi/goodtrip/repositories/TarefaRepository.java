@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -26,9 +25,9 @@ public interface TarefaRepository extends CrudRepository<Tarefa, Integer>{
 	void deleteTaskById(int id);
 	
 	@Query(value = selectByTravelId, nativeQuery = true)
-	Optional<List<Tarefa>> selectTasksByTravelIdWhereFinalised(int viagem, Boolean finalizada);
+	List<Tarefa> selectTasksByTravelIdWhereFinalised(int viagem, Boolean finalizada);
 	
 	@Query(value = selectByDateAndTravelId, nativeQuery = true)
-	Optional<List<Tarefa>> selectTasksByDateAndTravelID(String data, int idviagem);
+	List<Tarefa> selectTasksByDateAndTravelID(String data, int idviagem);
 	
 }
