@@ -17,71 +17,73 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository repository;
 	
-	public Usuario readUserById(int id){
-		return repository.findById(id)
-						 .orElseThrow(() -> new NoSuchElementException());
+	public Usuario readUserById(int id) throws NoSuchElementException{
+		Usuario user = repository.findById(id)
+						         .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+		
+		return user;
 	}
 	
-	public List<Usuario> readUserByEmailOrUsername(String q) {
+	public List<Usuario> readUserByEmailOrUsername(String q) throws NoSuchElementException{
 		List<Usuario> users = repository.selectUserByEmailOrUsername(q);
 		
 		return Optional.of(users)
-					   .map(list -> list.isEmpty()? null: list)
+					   .filter(list -> !list.isEmpty())
 					   .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 	}
 	
 
-	public Usuario writeAnUser(Usuario user) {
+	public Usuario writeAnUser(Usuario user) throws IllegalArgumentException{
 		Optional.of(user.getUsername())
-				.map(n -> !repository.checkUsernameExists(n).isEmpty()? null: n)
-				.map(n -> n.length() < 3? null: n)
-				.map(n -> n.contains("  ")? null: n)
-				.map(n -> !n.contains("@")? null: n)
+				.filter(n -> repository.checkUsernameExists(n).isEmpty())
+				.filter(n -> n.length() > 2)
+				.filter(n -> !n.contains("  "))
+				.filter(n -> n.contains("@"))
 				.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
 		
         Optional.of(user.getNome())
-        		.map(n -> n.length() < 3? null: n)
-        		.map(n -> n.contains("  ")? null: n)
+        		.filter(n -> n.length() > 2)
+        		.filter(n -> !n.contains("  "))
         		.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
         
         Optional.of(user.getEmail())
-        		.map(email -> !repository.checkEmailExists(email).isEmpty()? null: email)
+        		.filter(email -> repository.checkEmailExists(email).isEmpty())
         		.map(email -> email.substring(0, email.indexOf("@")))
-        		.map(username -> username.length() < 1? null: username)
-        		.map(username -> username.contains("@")? null: username)
-        		.map(username -> username.contains(" ")? null: username)
+        		.filter(username -> username.length() > 0)
+        		.filter(username -> !username.contains("@"))
+        		.filter(username -> !username.contains(" "))
         		.orElseThrow(() -> new IllegalArgumentException("Email com usuário inválido"));
         
 		Optional.of(user.getEmail())
 				.map(email -> email.substring(email.indexOf("@") + 1, email.length()))
-				.map(domain -> domain.length() < 3? null: domain)
-				.map(domain -> domain.contains("@")? null: domain)
-				.map(domain -> domain.contains(" ")? null: domain)
-				.map(domain -> domain.indexOf(".") < 1? null: domain)
-				.map(domain -> domain.lastIndexOf(".") > domain.length() - 1? null: domain)
+				.filter(domain -> domain.length() > 2)
+				.filter(domain -> !domain.contains("@"))
+				.filter(domain -> !domain.contains(" "))
+				.filter(domain -> domain.indexOf(".") > 0)
+				.filter(domain -> domain.lastIndexOf(".") < domain.length() - 1)
 				.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
 		
 		return repository.save(user);
 	}
 	
 
-	public Usuario editUserById( int id,  Usuario data){
+	public Usuario editUserById( int id,  Usuario data) throws NoSuchElementException, IllegalArgumentException{
 		Usuario userDB = 
 			repository.findById(id)
 					  .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
 		String verifiedUsername =
 			Optional.of(data.getUsername())
-				.map(n -> !repository.checkUsernameExists(n).isEmpty()? null: n)
-				.map(n -> n.length() < 3? null: n)
-				.map(n -> n.contains("  ")? null: n)
-				.map(n -> !n.contains("@")? null: n)
+				.filter(n -> repository.checkUsernameExists(n).isEmpty())
+				.filter(n -> n.length() >= 3)
+				.filter(n -> !n.contains("  "))
+				.filter(n -> n.contains("@"))
 				.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
 
 		String verifiedName =
 			Optional.of(data.getNome())
-				.map(n -> n.length() < 3? null: n)
-				.map(n -> n.contains("  ")? null: n)
+				.filter(n -> n.length() > 2)
+				.filter(n -> !n.contains("  "))
 				.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
 		
 		userDB.setFoto(data.getFoto());

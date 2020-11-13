@@ -14,6 +14,9 @@ window.addEventListener('load', function getTask(){
     fetch(urlToGetTaskById)
         .then(res => res.json())
         .then(json => {
+
+            if(json.message) return console.log(json)
+
             const card = viewTaskCard().buildCard(templateTarefa, json);
             blocoTarefa.appendChild(card);
         });

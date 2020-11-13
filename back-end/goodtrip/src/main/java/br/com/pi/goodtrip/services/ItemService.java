@@ -16,11 +16,11 @@ public class ItemService {
 	@Autowired
 	private ItemRepository itemRepo;
 	
-	public Item editItem(int id, Item newItem) {
+	public Item editItem(int id, Item newItem) throws NoSuchElementException, IllegalArgumentException{
 		String newName = 
 				Optional.of(newItem.getNome())
-						.map(n -> n.isBlank()? null: n)
-						.map(n -> n.length() < 3? null: n)
+						.filter(n -> !n.isBlank())
+						.filter(n -> n.length() > 2)
 						.orElseThrow(() -> new IllegalArgumentException("Nome de item não pode ser vazio"));
 		
 		Item itemDB = 
@@ -31,21 +31,21 @@ public class ItemService {
 		return itemRepo.save(itemDB);
 	}
 	
-	public List<Item> readByCategoryAndTravelId(int travel, int category) {
+	public List<Item> readByCategoryAndTravelId(int travel, int category) throws NoSuchElementException, IllegalArgumentException{
 		int verifiedCategory =
 				Optional.of(category)
-						.map(c -> c < 0? null: c)
-						.map(c -> c > 4? null: c)
+						.filter(c -> c > -1)
+						.filter(c -> c < 4)
 						.orElseThrow(() -> new IllegalArgumentException("Categoria inexistente"));
 		
 		List<Item> itens = itemRepo.readItensByCategoryAndTravelId(travel, verifiedCategory);
 		
 		return Optional.of(itens)
-					   .map(list -> list.isEmpty()? null: list)
+					   .filter(list -> !list.isEmpty())
 					   .orElseThrow(() -> new NoSuchElementException("Itens de viagem não encontrados"));
 	}
 	
-	public Item deleteItemById(int id) {
+	public Item deleteItemById(int id) throws NoSuchElementException{
 		Item toDelete =
 				itemRepo.findById(id)
 				        .orElseThrow(() -> new NoSuchElementException("Não é possível deletar um item inexistente"));
@@ -55,16 +55,16 @@ public class ItemService {
 		return toDelete;
 	}
 	
-	public Item writeAnItem(Item item) {
+	public Item writeAnItem(Item item) throws NoSuchElementException, IllegalArgumentException{
 		Optional.of(item.getNome())
-				.map(n -> n.isBlank()? null: n)
-				.map(n -> n.length() > 20? null: n)
+				.filter(n -> !n.isBlank())
+				.filter(n -> n.length() < 20)
 				.orElseThrow(() -> new IllegalArgumentException("Nome inválido"));
 						
 		Optional.of(item.getCategoria())
-				.map(c -> c > 4? null: c)
-				.map(c -> c < 0? null: c)
-				.orElseThrow(() -> new IllegalArgumentException("Categoria de item inexistente"));
+				.filter(c -> c > -1)
+				.filter(c -> c < 4)
+				.orElseThrow(() -> new IllegalArgumentException("Categoria inexistente"));
 		
 		return itemRepo.save(item);
 	}

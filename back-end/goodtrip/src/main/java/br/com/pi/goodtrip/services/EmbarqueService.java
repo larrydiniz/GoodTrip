@@ -15,28 +15,34 @@ public class EmbarqueService {
 	@Autowired
 	private EmbarqueRepository embarqueRepo;
 	
-	public Embarque readAInvitationById(int id){
+	public Embarque readAInvitationById(int id) throws NoSuchElementException{
 			return embarqueRepo.findById(id)
 					           .orElseThrow(() -> new NoSuchElementException("Embarque não encontrado"));
 	}
 	
-	public List<Embarque> readAllByIdWhereAccepted(int usuario, Boolean aceito){
+	public List<Embarque> readAllByIdWhereAccepted(int usuario, Boolean aceito) throws NoSuchElementException{
 		
-		return embarqueRepo.selectInvitationsByUserId(usuario, aceito);
+		List<Embarque> userInvitations = embarqueRepo.selectInvitationsByUserId(usuario, aceito);
+		
+		List<Embarque> verifiedUserInvitations =
+						Optional.of(userInvitations)
+							    .orElseThrow(() -> new NoSuchElementException("Embarques de usuário não encontrados"));
+		
+		return verifiedUserInvitations;
 	}
 	
-	public List<Embarque> readAllByTravelIdWhereFinalised(int travel, Boolean isFinalised){
+	public List<Embarque> readAllByTravelIdWhereFinalised(int travel, Boolean isFinalised) throws NoSuchElementException{
 
-		List<Embarque> response = embarqueRepo.selectInvitationsByTravelId(travel, isFinalised);
-				
-		Optional.of(response)
-				.map(list -> list.isEmpty()? null: list)
-				.orElseThrow(() -> new NoSuchElementException());
+		List<Embarque> travelInvitations = embarqueRepo.selectInvitationsByTravelId(travel, isFinalised);
 		
-		return response;
+		List<Embarque> verifiedTravelInvitations =
+							Optional.of(travelInvitations)
+									.orElseThrow(() -> new NoSuchElementException("Embarques de viagem não encontrados"));
+		
+		return verifiedTravelInvitations;
 	}
 	
-	public Embarque writeAnInvitation(Embarque embarque) {
+	public Embarque writeAnInvitation(Embarque embarque) throws IllegalArgumentException{
 		
 		int userId = embarque.getUsuario().getId();
 		int travelId = embarque.getViagem().getId();
@@ -44,13 +50,13 @@ public class EmbarqueService {
 		List<Embarque> list = embarqueRepo.selectInvitationByUserIdAndTravelId(userId, travelId);
 		
 		Optional.of(list)
-				.map(l -> l.isEmpty() ? l.add(embarque): null)
-				.orElseThrow(() -> new IllegalArgumentException());
+				.filter(l -> l.isEmpty())
+				.orElseThrow(() -> new IllegalArgumentException("Embarque já existe"));
 		
 		return embarqueRepo.save(embarque);
 	}
 	
-	public Embarque acceptOrNotAnInvitation(int id, Embarque resposta){
+	public Embarque acceptOrNotAnInvitation(int id, Embarque resposta) throws NoSuchElementException{
 		Boolean newAceito = resposta.getAceito();
 		
 		Embarque embarcar = 
@@ -62,7 +68,7 @@ public class EmbarqueService {
 		return embarqueRepo.save(embarcar);
 	}
 	
-	public Embarque deleteInvitationById(int id) {
+	public Embarque deleteInvitationById(int id) throws NoSuchElementException{
 		Embarque toDelete = 
 				embarqueRepo.findById(id)
 							.orElseThrow(() -> new NoSuchElementException());
