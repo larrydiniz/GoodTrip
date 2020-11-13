@@ -1,18 +1,26 @@
 package br.com.pi.goodtrip.services;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pi.goodtrip.controllers.bodies.Senha;
 import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.repositories.UsuarioRepository;
+import br.com.pi.goodtrip.utils.FileUpload;
 
 @Service
 public class UsuarioService {
+	
+	@Autowired
+	private FileUpload fileUpload;
 	
 	@Autowired
 	private UsuarioRepository repository;
@@ -69,28 +77,47 @@ public class UsuarioService {
 
 	public Usuario editUserById( int id,  Usuario data) throws NoSuchElementException, IllegalArgumentException{
 		Usuario userDB = 
-			repository.findById(id)
-					  .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+				 repository.findById(id)
+					  	   .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
 		String verifiedUsername =
-			Optional.of(data.getUsername())
-				.filter(n -> repository.selectUserByEmailOrUsername(n).isEmpty())
-				.filter(n -> n.length() >= 3)
-				.filter(n -> !n.contains("  "))
-				.filter(n -> !n.contains("@"))
-				.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
+				Optional.of(data.getUsername())
+						.filter(n -> repository.selectUserByEmailOrUsername(n).isEmpty())
+						.filter(n -> n.length() >= 3)
+						.filter(n -> !n.contains("  "))
+						.filter(n -> n.contains("@"))
+						.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
 
 		String verifiedName =
-			Optional.of(data.getNome())
-				.filter(n -> n.length() > 2)
-				.filter(n -> !n.contains("  "))
-				.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
+				Optional.of(data.getNome())
+						.filter(n -> n.length() > 2)
+						.filter(n -> !n.contains("  "))
+						.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
 		
-		userDB.setFoto(data.getFoto());
 		userDB.setNome(verifiedName);
 		userDB.setUsername(verifiedUsername);
 		
 		return repository.save(userDB);
+	}
+	
+	public Usuario uploadUserImage(int user, MultipartFile file) throws NoSuchElementException, IOException{
+		Date date = new Date();
+		
+		Usuario findUser = 
+				 repository.findById(user)
+						   .orElseThrow(() -> new NoSuchElementException("Não foi possível alterar foto de usuário. Usuário não encontrado"));
+		String filename =
+				Optional.of(file)
+						.map(f -> f.getOriginalFilename())
+						.map(n -> StringUtils.cleanPath(n))
+						.map(n -> date.getTime() + "-" + n)
+						.orElseThrow(() -> new IOException("..."));
+		
+		fileUpload.saveFile("images", filename, file);
+		
+		findUser.setFoto(filename);
+			
+		return repository.save(findUser);
 	}
 	
 	public Usuario editUserPassword( int id, Senha alterarSenha) {

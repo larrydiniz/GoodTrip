@@ -1,7 +1,8 @@
 package br.com.pi.goodtrip.controllers;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,14 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-/*import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
-import br.com.pi.goodtrip.models.Usuario;*/
 import br.com.pi.goodtrip.models.Viagem;
-//import br.com.pi.goodtrip.repositories.UsuarioRepository;
-import br.com.pi.goodtrip.repositories.ViagemRepository;
 import br.com.pi.goodtrip.services.ViagemService;
 
 @RestController
@@ -48,5 +46,11 @@ public class ViagemController {
 	@PutMapping("/editar/{id}")
 	public Viagem editarViagem(@PathVariable int id, @RequestBody Viagem dados){
 		return viagemService.editATravel(id, dados);
+	}
+	
+	@PostMapping("/upload/imagem/{id}")
+	public Viagem editarImagemViagem(@PathVariable int id, @RequestPart("imagem-viagem") MultipartFile file) throws NoSuchElementException, IOException{
+		
+		return viagemService.uploadTravelImage(id, file);
 	}
 }

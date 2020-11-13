@@ -71,7 +71,7 @@ public class EmbarqueService {
 	public Embarque deleteInvitationById(int id) throws NoSuchElementException{
 		Embarque toDelete = 
 				embarqueRepo.findById(id)
-							.orElseThrow(() -> new NoSuchElementException());
+							.orElseThrow(() -> new NoSuchElementException("Não foi possível deletar embarque"));
 		
 		embarqueRepo.deleteInvitationById(id);
 		
