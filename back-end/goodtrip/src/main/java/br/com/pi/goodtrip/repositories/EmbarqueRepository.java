@@ -1,6 +1,7 @@
 package br.com.pi.goodtrip.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,14 +25,14 @@ public interface EmbarqueRepository extends CrudRepository <Embarque, Integer>{
 	@Modifying
 	@Transactional
 	@Query(value = deleteById, nativeQuery = true)
-	void apagarEmbarque(int id);
+	void deleteInvitationById(int id);
 	
 	@Query(value = selectByTravelId, nativeQuery = true)
-	List<Embarque> encontrarEmbarquesDeViagem(String viagem, Boolean finalizada);
+	List<Embarque> selectInvitationsByTravelId(int viagem, Boolean finalizada);
 	
 	@Query(value = selectByUserId, nativeQuery = true)
-	List<Embarque> encontrarEmbarquesDeUsuario(String usuario, Boolean aceito);
+	List<Embarque> selectInvitationsByUserId(int usuario, Boolean aceito);
 	
 	@Query(value = selectByUserIdAndTravelId, nativeQuery = true)
-	List<Embarque> encontrarEmbarque(int iduser, int idtrip);
+	List<Embarque> selectInvitationByUserIdAndTravelId(int iduser, int idtrip);
 }

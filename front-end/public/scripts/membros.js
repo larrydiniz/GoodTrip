@@ -43,6 +43,8 @@ window.addEventListener('load', function getActiveTravels(){
                 .then(res => res.json())
                 .then(json => {
 
+                        console.log(json)
+
                         const embarques = json.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]})
 
                         embarques.aceitos.map(data => mmbc.buildMemberCard(templateMemberCard, data))
@@ -65,4 +67,6 @@ window.addEventListener("guestCardInviteButtonClick", function inviteToTravel(e)
         const request = postNewMember(e.detail)
 
         fetch(request.url, request.init)
+                .then(res => res.json())
+                .then(res => console.log(res))
 })

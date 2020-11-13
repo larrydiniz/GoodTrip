@@ -105,4 +105,10 @@ public class Embarque{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Embarque setAceitoThenReturnSelf(Boolean aceito) {
+		this.aceito = aceito;
+		
+		return this;
+	}
 }

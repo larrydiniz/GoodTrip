@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /*import br.com.pi.goodtrip.controllers.bodies.ViagemBody;
@@ -19,6 +20,7 @@ import br.com.pi.goodtrip.models.Usuario;*/
 import br.com.pi.goodtrip.models.Viagem;
 //import br.com.pi.goodtrip.repositories.UsuarioRepository;
 import br.com.pi.goodtrip.repositories.ViagemRepository;
+import br.com.pi.goodtrip.services.ViagemService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,47 +28,25 @@ import br.com.pi.goodtrip.repositories.ViagemRepository;
 public class ViagemController {
 	
 	@Autowired
-	private ViagemRepository viagemRepo;
-	
-/*	@Autowired
-	private UsuarioRepository usuarioRepo;*/
+	private ViagemService viagemService;
 	
 	@GetMapping("ler/{id}")
-	public Optional<Viagem> lerViagem(@PathVariable(value = "id") int id){
-		return viagemRepo.findById(id);
+	public Viagem lerViagem(@PathVariable(value = "id") int id){
+		return viagemService.readATravelById(id);
 	}
 	
 	@GetMapping("usuario/ler")
-	public List<Viagem> lerViagensDeUsuario(@RequestParam String id_usuario, Boolean finalizada){
-		return viagemRepo.encontrarViagensDeUsuario(id_usuario, finalizada);
+	public List<Viagem> lerViagensDeUsuario(@RequestParam int id_usuario, Boolean finalizada){
+		return viagemService.readTravelsBelongToUser(id_usuario, finalizada);
 	}
 	
 	@PostMapping("escrever")
-	public Viagem escreverViagem(@RequestBody Viagem viagem) {
-		viagemRepo.save(viagem);
-		return viagem;
+	public Viagem escreverViagem(@RequestBody Viagem viagem){
+		return viagemService.writeAnTravel(viagem);
 	}
 	
 	@PutMapping("/editar/{id}")
-	public Viagem editarViagem(@PathVariable int id, @RequestBody Viagem dados) throws Exception{
-		Viagem viagemDB = viagemRepo.findById(id)
-				.orElseThrow(() -> new IllegalAccessException());
-		
-		viagemDB.setDestino(dados.getDestino());
-		viagemDB.setInicio(dados.getInicio());
-		viagemDB.setTermino(dados.getTermino());
-		viagemDB.setImagem(dados.getImagem());
-		
-		viagemRepo.save(viagemDB);
-		
-		return viagemDB;
+	public Viagem editarViagem(@PathVariable int id, @RequestBody Viagem dados){
+		return viagemService.editATravel(id, dados);
 	}
-	
-	
-	
-	/*@PostMapping("escrever")
-	public void escreverViagem(@RequestBody ViagemBody body) {
-		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
-		viagemRepo.save(new Viagem(body, usuario));
-	}*/
 }

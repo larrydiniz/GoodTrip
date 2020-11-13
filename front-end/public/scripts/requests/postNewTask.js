@@ -1,4 +1,4 @@
-export default function initPostNewTask(requestBody){
+export default function postNewTask(requestBody){
 
     const url = `http://localhost:3333/tarefas/escrever`
 

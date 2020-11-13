@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pi.goodtrip.controllers.bodies.Senha;
 import br.com.pi.goodtrip.models.Usuario;
-import br.com.pi.goodtrip.repositories.UsuarioRepository;
+import br.com.pi.goodtrip.services.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,56 +23,32 @@ import br.com.pi.goodtrip.repositories.UsuarioRepository;
 public class UsuarioController {
 	
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioService usuarioService;
 	
 	@GetMapping("ler/{id}")
-	public Optional<Usuario> lerConvite(@PathVariable(value = "id") int id){
-		return repository.findById(id);
+	public Usuario lerConvite(@PathVariable(value = "id") int id){
+		return usuarioService.readUserById(id);
 	}
 	
 	@GetMapping("/buscar")
-	public List<Usuario> getByNome(@RequestParam String q) {
-		return repository.encontrarUsuario(q);
+	public List<Usuario> searchByUsernameOrEmail(@RequestParam String q) {
+		return usuarioService.readUserByEmailOrUsername(q);
 	}
 	
 	@PostMapping("escrever")
 	public Usuario escreverUsuario(@RequestBody Usuario usuario) {
-		repository.save(usuario);
-		return usuario;
+		return usuarioService.writeAnUser(usuario);
 	}
 	
 	@PutMapping("/editar/{id}")
-	public Usuario editarUsuario(@PathVariable int id, @RequestBody Usuario dadosUser) throws Exception{
-		Usuario userDB = repository.findById(id)
-				.orElseThrow(() -> new IllegalAccessException());
-		
-		userDB.setFoto(dadosUser.getFoto());
-		userDB.setNome(dadosUser.getNome());
-		userDB.setUsername(dadosUser.getUsername());
-		
-		repository.save(userDB);
-		
-		return userDB;
+	public Usuario editarUsuario(@PathVariable int id, @RequestBody Usuario dadosUser){
+		return usuarioService.editUserById(id, dadosUser);
 	}
 	
 	
 	@PutMapping("/alterarSenha/{id}")
-	public Usuario editarSenha(@PathVariable int id, @RequestBody Senha alterarSenha) throws Exception{
-		Usuario senhaUser = repository.findById(id)
-				.orElseThrow(() -> new IllegalAccessException());
-		
-		if(senhaUser.getSenha().equals(alterarSenha.getSenha_atual())) {
-			
-			if(alterarSenha.getNova_senha().equals(alterarSenha.getConfirmar_senha())) {
-				
-				senhaUser.setSenha(alterarSenha.getNova_senha());
-				repository.save(senhaUser);
-				
-				return senhaUser;
-			}
-		}
-		
-		return senhaUser;
+	public Usuario editarSenha(@PathVariable int id, @RequestBody Senha alterarSenha){
+		return usuarioService.editUserPassword(id, alterarSenha);
 	}
 	
 }

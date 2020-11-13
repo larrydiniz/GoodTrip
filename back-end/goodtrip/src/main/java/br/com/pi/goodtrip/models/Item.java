@@ -122,5 +122,11 @@ public class Item{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Item setNomeThenReturnSelf(String nome) {
+		this.nome = nome;
+		
+		return this;
+	}
 
 }

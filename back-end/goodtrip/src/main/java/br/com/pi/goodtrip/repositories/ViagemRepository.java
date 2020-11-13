@@ -14,5 +14,5 @@ public interface ViagemRepository extends CrudRepository<Viagem, Integer>{
 	String selectByUserId = "SELECT * FROM viagens WHERE fk_id_usuario = :usuario AND finalizada = :finalizada";
 	
 	@Query(value = selectByUserId, nativeQuery = true)
-	List<Viagem> encontrarViagensDeUsuario(String usuario, Boolean finalizada);
+	List<Viagem> selectTravelsByUserIdWhereFinalised(int usuario, Boolean finalizada);
 }
