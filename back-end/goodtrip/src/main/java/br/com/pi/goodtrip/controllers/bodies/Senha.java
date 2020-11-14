@@ -31,7 +31,4 @@ public class Senha {
 	public void setConfirmar_senha(String confirmar_senha) {
 		this.confirmar_senha = confirmar_senha;
 	}
-	
-	
-	
 }
