@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class IOExceptionAdvice {
 	@ExceptionHandler(IOException.class)
 	@ResponseStatus(code = HttpStatus.OK)
-	IOException ioExceptionAdvice(IOException ex) {
+	String ioExceptionAdvice(IOException ex) {
 		
-		return ex;
+		return ex.getMessage();
 	}
 }

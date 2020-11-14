@@ -36,8 +36,8 @@ public class EmbarqueService {
 		List<Embarque> travelInvitations = embarqueRepo.selectInvitationsByTravelId(travel, isFinalised);
 		
 		List<Embarque> verifiedTravelInvitations =
-							Optional.of(travelInvitations)
-									.orElseThrow(() -> new NoSuchElementException("Embarques de viagem não encontrados"));
+						Optional.of(travelInvitations)
+								.orElseThrow(() -> new NoSuchElementException("Embarques de viagem não encontrados"));
 		
 		return verifiedTravelInvitations;
 	}
@@ -60,9 +60,9 @@ public class EmbarqueService {
 		Boolean newAceito = resposta.getAceito();
 		
 		Embarque embarcar = 
-				embarqueRepo.findById(id)
-							.map(embarque -> embarque.setAceitoThenReturnSelf(newAceito))
-							.orElseThrow(() -> new NoSuchElementException("Embarque não encontrado, impossível aceitar"));
+				  embarqueRepo.findById(id)
+							  .map(embarque -> embarque.setAceitoThenReturnSelf(newAceito))
+							  .orElseThrow(() -> new NoSuchElementException("Embarque não encontrado, impossível aceitar"));
 
 		
 		return embarqueRepo.save(embarcar);
@@ -70,8 +70,8 @@ public class EmbarqueService {
 	
 	public Embarque deleteInvitationById(int id) throws NoSuchElementException{
 		Embarque toDelete = 
-				embarqueRepo.findById(id)
-							.orElseThrow(() -> new NoSuchElementException("Não foi possível deletar embarque"));
+				  embarqueRepo.findById(id)
+							  .orElseThrow(() -> new NoSuchElementException("Não foi possível deletar embarque"));
 		
 		embarqueRepo.deleteInvitationById(id);
 		

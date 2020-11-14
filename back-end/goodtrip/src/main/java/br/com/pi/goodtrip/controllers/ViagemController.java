@@ -50,7 +50,6 @@ public class ViagemController {
 	
 	@PostMapping("/upload/imagem/{id}")
 	public Viagem editarImagemViagem(@PathVariable int id, @RequestPart("imagem-viagem") MultipartFile file) throws NoSuchElementException, IOException{
-		
 		return viagemService.uploadTravelImage(id, file);
 	}
 }

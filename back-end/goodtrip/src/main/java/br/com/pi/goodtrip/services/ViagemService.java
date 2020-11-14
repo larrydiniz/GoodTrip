@@ -1,14 +1,12 @@
 package br.com.pi.goodtrip.services;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pi.goodtrip.models.Viagem;
@@ -64,20 +62,16 @@ public class ViagemService {
 	}
 	
 	public Viagem uploadTravelImage(int travel, MultipartFile file) throws NoSuchElementException, IOException{
-		Date date = new Date();
-		
 		Viagem findTravel = 
 				viagemRepo.findById(travel)
 						  .orElseThrow(() -> new NoSuchElementException("Não foi possível alterar imagem de viagem. Viagem não encontrada"));
-		String filename =
-				Optional.ofNullable(file.getOriginalFilename())
-					    .map(n -> StringUtils.cleanPath(n))
-					    .map(n -> date.getTime() + "-" + n)
-					    .orElseThrow(() -> new IOException("..."));
 		
-		fileUpload.saveFile("images", filename, file);
+		String toSaveFilename = 
+				Optional.ofNullable(file)
+						.map(f -> fileUpload.saveFileTimestampNamed("images", f))
+						.orElse("default_travel_image.png");
 		
-		findTravel.setImagem(filename);
+		findTravel.setImagem(toSaveFilename);
 			
 		return viagemRepo.save(findTravel);
 	}
@@ -112,8 +106,6 @@ public class ViagemService {
 		viagemDB.setDestino(verifiedDestination);
 		viagemDB.setInicio(verifiedInit);
 		viagemDB.setTermino(verifiedEnd);
-		
-		/*se imagem for vazia, setar a padrão do sistema*/
 		
 		return viagemRepo.save(viagemDB);
 	}

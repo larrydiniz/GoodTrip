@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class NoSuchElementAdvice {
 	@ExceptionHandler(NoSuchElementException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	NoSuchElementException noSuchElementHandler(NoSuchElementException ex) {
-		return ex;
+	String noSuchElementHandler(NoSuchElementException ex) {
+		return ex.getMessage();
 	}
 }

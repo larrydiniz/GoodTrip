@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class IllegalArgumentAdvice {
 	@ExceptionHandler(IllegalArgumentException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	IllegalArgumentException illegalExceptionAdvice(IllegalArgumentException ex) {
+	String illegalExceptionAdvice(IllegalArgumentException ex) {
 		
-		return ex;
+		return ex.getMessage();
 	}
 }
