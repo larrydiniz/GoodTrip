@@ -22,47 +22,64 @@ public class ViagemService {
 	@Autowired
 	private ViagemRepository viagemRepo;
 	
+	private Optional<String> hasValidDestination(Viagem travel){
+		return Optional.of(travel.getDestino())
+					   .filter(d -> d.length() > 3)
+					   .filter(d -> !d.contains("  "))
+					   .filter(d -> d.length() < 20);
+	}
+	
+	private Optional<String> hasValidInit(Viagem travel){
+		return Optional.of(travel.getInicio())
+				       .filter(ini -> !(ini.length() > 10))
+				       .filter(ini -> !(ini.length() < 8))
+				       .filter(ini -> !ini.contains(" "));
+	}
+	
+	private Optional<String> hasValidEnd(Viagem travel){
+		return Optional.of(travel.getInicio())
+				       .filter(ini -> !(ini.length() > 10))
+				       .filter(ini -> !(ini.length() < 8))
+				       .filter(ini -> !ini.contains(" "));
+	}
+	
 	public Viagem readATravelById(int id) throws NoSuchElementException{
-		return viagemRepo.findById(id)
-						 .orElseThrow(() -> new NoSuchElementException("Viagem não encontrada"));
+		Viagem foundTravel = 
+				viagemRepo.findById(id)
+						  .orElseThrow(() -> new NoSuchElementException("Viagem não encontrada"));
+		
+		return foundTravel;
 	}
 	
 
 	public List<Viagem> readTravelsBelongToUser(int user, Boolean finalised) throws NoSuchElementException{
-		List<Viagem> response = viagemRepo.selectTravelsByUserIdWhereFinalised(user, finalised);
+		
+		List<Viagem> belongsToUser = viagemRepo.selectTravelsByUserIdWhereFinalised(user, finalised);
 				
-		Optional.of(response)
+		Optional.of(belongsToUser)
 				.filter(list -> !list.isEmpty())
 				.orElseThrow(() -> new NoSuchElementException("Viagens de usuário não encontradas"));
 		
-		return response;
+		return belongsToUser;
 	}
 	
 
 	public Viagem writeAnTravel(Viagem travel) throws IllegalArgumentException{
-		Optional.of(travel.getDestino())
-				.filter(d -> d.length() > 3)
-				.filter(d -> !d.contains("  "))
-				.filter(d -> d.length() < 20)
+		
+		hasValidDestination(travel)
 				.orElseThrow(() -> new IllegalArgumentException("Destino de viagem inválido"));
 		
-		Optional.of(travel.getInicio())
-				.filter(ini -> !(ini.length() > 10))
-				.filter(ini -> !(ini.length() < 8))
-				.filter(ini -> !ini.contains(" "))
+		hasValidInit(travel)
 				.orElseThrow(() -> new IllegalArgumentException("Inicio de viagem inválido"));
 		
-		Optional.of(travel.getTermino())
-				.filter(t -> !(t.length() > 10))
-				.filter(t -> !(t.length() < 8))
-				.filter(t -> !t.contains(" "))
+		hasValidEnd(travel)
 				.orElseThrow(() -> new IllegalArgumentException("Término de viagem inválido"));
 		
 		return viagemRepo.save(travel);
 	}
 	
 	public Viagem uploadTravelImage(int travel, MultipartFile file) throws NoSuchElementException, IOException{
-		Viagem findTravel = 
+		Viagem toUpdate = 
 				viagemRepo.findById(travel)
 						  .orElseThrow(() -> new NoSuchElementException("Não foi possível alterar imagem de viagem. Viagem não encontrada"));
 		
@@ -71,42 +88,33 @@ public class ViagemService {
 						.map(f -> fileUpload.saveFileTimestampNamed("images", f))
 						.orElse("default_travel_image.png");
 		
-		findTravel.setImagem(toSaveFilename);
+		toUpdate.setImagem(toSaveFilename);
 			
-		return viagemRepo.save(findTravel);
+		return viagemRepo.save(toUpdate);
 	}
 	
 
 	public Viagem editATravel( int id,  Viagem data) throws NoSuchElementException, IllegalArgumentException{
-		Viagem viagemDB = 
+		Viagem toUpdate = 
 				viagemRepo.findById(id)
 				          .orElseThrow(() -> new NoSuchElementException("Não foi possível fazer a edição, viagem não encotrada"));
 		
 		String verifiedDestination =
-				Optional.of(data.getDestino())
-						.filter(d -> d.length() > 3)
-						.filter(d -> !d.contains("  "))
-						.filter(d -> d.length() < 20)
-						.orElseThrow(() -> new IllegalArgumentException("Destino de viagem inválido"));
-		
+				hasValidDestination(data)
+						  .orElseThrow(() -> new IllegalArgumentException("Destino de viagem inválido"));
+		 
 		String verifiedInit =
-				Optional.of(data.getInicio())
-						.filter(ini -> !(ini.length() > 10))
-						.filter(ini -> !(ini.length() < 8))
-						.filter(ini -> !ini.contains(" "))
-						.orElseThrow(() -> new IllegalArgumentException("Inicio de viagem inválido"));
+				hasValidInit(data)
+						  .orElseThrow(() -> new IllegalArgumentException("Inicio de viagem inválido"));
 
 		String verifiedEnd =
-				Optional.of(data.getTermino())
-						.filter(t -> !(t.length() > 10))
-						.filter(t -> !(t.length() < 8))
-						.filter(t -> !t.contains(" "))
-						.orElseThrow(() -> new IllegalArgumentException("Término de viagem inválido"));
+				hasValidEnd(data)
+						  .orElseThrow(() -> new IllegalArgumentException("Término de viagem inválido"));
 		
-		viagemDB.setDestino(verifiedDestination);
-		viagemDB.setInicio(verifiedInit);
-		viagemDB.setTermino(verifiedEnd);
+		toUpdate.setDestino(verifiedDestination);
+		toUpdate.setInicio(verifiedInit);
+		toUpdate.setTermino(verifiedEnd);
 		
-		return viagemRepo.save(viagemDB);
+		return viagemRepo.save(toUpdate);
 	}
 }

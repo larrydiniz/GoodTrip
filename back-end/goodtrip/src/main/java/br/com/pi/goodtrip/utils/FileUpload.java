@@ -34,15 +34,15 @@ public class FileUpload {
 						 Optional.of(file.getInputStream())
 					             .orElseThrow(() -> new IOException("Conteúdo de arquivo com erro"));
 			
-			Path uploadPath =
+			Path filePath =
 				  Optional.of(path)
 					      .filter(p -> Files.exists(p))
 					      .orElseThrow(() -> new IOException("Diretório para upload não existe"))
 					      .resolve(filename);
 			
-			Files.copy(inputStream, uploadPath, StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
 			
-			return filename;
+			return path + "/" + filename;
 		}
 		catch(IOException e) {
 			

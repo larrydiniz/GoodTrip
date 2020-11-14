@@ -16,8 +16,11 @@ public class EmbarqueService {
 	private EmbarqueRepository embarqueRepo;
 	
 	public Embarque readAInvitationById(int id) throws NoSuchElementException{
-			return embarqueRepo.findById(id)
+			Embarque found = 
+					  embarqueRepo.findById(id)
 					           .orElseThrow(() -> new NoSuchElementException("Embarque não encontrado"));
+			
+			return found;
 	}
 	
 	public List<Embarque> readAllByIdWhereAccepted(int usuario, Boolean aceito) throws NoSuchElementException{
@@ -59,13 +62,13 @@ public class EmbarqueService {
 	public Embarque acceptOrNotAnInvitation(int id, Embarque resposta) throws NoSuchElementException{
 		Boolean newAceito = resposta.getAceito();
 		
-		Embarque embarcar = 
+		Embarque toUpdate = 
 				  embarqueRepo.findById(id)
 							  .map(embarque -> embarque.setAceitoThenReturnSelf(newAceito))
 							  .orElseThrow(() -> new NoSuchElementException("Embarque não encontrado, impossível aceitar"));
 
 		
-		return embarqueRepo.save(embarcar);
+		return embarqueRepo.save(toUpdate);
 	}
 	
 	public Embarque deleteInvitationById(int id) throws NoSuchElementException{

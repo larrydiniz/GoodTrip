@@ -1,5 +1,8 @@
 package br.com.pi.goodtrip.controllers.bodies;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Senha {
 	
 	private String senha_atual;

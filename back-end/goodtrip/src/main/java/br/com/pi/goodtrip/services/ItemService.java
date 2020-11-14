@@ -16,19 +16,29 @@ public class ItemService {
 	@Autowired
 	private ItemRepository itemRepo;
 	
+	private Optional<String> hasValidName(Item item) {
+		return Optional.of(item.getNome())
+				       .filter(n -> !n.isBlank())
+				       .filter(n -> n.length() > 2);
+	}
+	
+	private Optional<Integer> hasValidCategory(Item item){
+		return Optional.of(item.getCategoria())
+				       .filter(c -> c > -1)
+				       .filter(c -> c < 4);
+	}
+	
 	public Item editItem(int id, Item newItem) throws NoSuchElementException, IllegalArgumentException{
 		String newName = 
-				Optional.of(newItem.getNome())
-						.filter(n -> !n.isBlank())
-						.filter(n -> n.length() > 2)
+				hasValidName(newItem)
 						.orElseThrow(() -> new IllegalArgumentException("Nome de item não pode ser vazio"));
 		
-		Item itemDB = 
+		Item toUpdate = 
 				itemRepo.findById(id)
 						.map(item -> item.setNomeThenReturnSelf(newName))
 						.orElseThrow(() -> new NoSuchElementException("Item não encontrado"));
 		
-		return itemRepo.save(itemDB);
+		return itemRepo.save(toUpdate);
 	}
 	
 	public List<Item> readByCategoryAndTravelId(int travel, int category) throws NoSuchElementException, IllegalArgumentException{
@@ -40,9 +50,12 @@ public class ItemService {
 		
 		List<Item> itens = itemRepo.readItensByCategoryAndTravelId(travel, verifiedCategory);
 		
-		return Optional.of(itens)
-					   .filter(list -> !list.isEmpty())
-					   .orElseThrow(() -> new NoSuchElementException("Itens de viagem não encontrados"));
+		List<Item> verifiedListItem =
+					Optional.of(itens)
+					        .filter(list -> !list.isEmpty())
+					        .orElseThrow(() -> new NoSuchElementException("Itens de viagem não encontrados"));
+		
+		return verifiedListItem;
 	}
 	
 	public Item deleteItemById(int id) throws NoSuchElementException{
@@ -56,21 +69,21 @@ public class ItemService {
 	}
 	
 	public Item writeAnItem(Item item) throws NoSuchElementException, IllegalArgumentException{
-		Optional.of(item.getNome())
-				.filter(n -> !n.isBlank())
-				.filter(n -> n.length() < 20)
+		
+		hasValidName(item)
 				.orElseThrow(() -> new IllegalArgumentException("Nome inválido"));
 						
-		Optional.of(item.getCategoria())
-				.filter(c -> c > -1)
-				.filter(c -> c < 4)
+		hasValidCategory(item)
 				.orElseThrow(() -> new IllegalArgumentException("Categoria inexistente"));
 		
 		return itemRepo.save(item);
 	}
 	
 	public Item readById(int id) {
-		return itemRepo.findById(id)
+		Item foundItem = 
+			  itemRepo.findById(id)
 					  .orElseThrow(() -> new NoSuchElementException("Item não encontrado"));
+		
+		return foundItem;
 	}
 }
