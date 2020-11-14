@@ -43,7 +43,7 @@ public class UsuarioService {
 
 	public Usuario writeAnUser(Usuario user) throws IllegalArgumentException{
 		Optional.of(user.getUsername())
-				.filter(n -> repository.selectUserByEmailOrUsername(n).isEmpty())
+				.filter(n -> repository.checkUsernameExists(n).isEmpty())
 				.filter(n -> n.length() > 2)
 				.filter(n -> !n.contains("  "))
 				.filter(n -> n.contains("@"))
@@ -55,7 +55,7 @@ public class UsuarioService {
         		.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
         
         Optional.of(user.getEmail())
-        		.filter(email -> repository.selectUserByEmailOrUsername(email).isEmpty())
+        		.filter(email -> repository.checkEmailExists(email).isEmpty())
         		.map(email -> email.substring(0, email.indexOf("@")))
         		.filter(username -> username.length() > 0)
         		.filter(username -> !username.contains("@"))
@@ -81,12 +81,12 @@ public class UsuarioService {
 					  	   .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
 		String verifiedUsername =
-				Optional.of(data.getUsername())
-						.filter(n -> repository.selectUserByEmailOrUsername(n).isEmpty())
-						.filter(n -> n.length() >= 3)
-						.filter(n -> !n.contains("  "))
-						.filter(n -> n.contains("@"))
-						.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
+			Optional.of(data.getUsername())
+				.filter(n -> repository.checkUsernameExists(n).isEmpty())
+				.filter(n -> n.length() >= 3)
+				.filter(n -> !n.contains("  "))
+				.filter(n -> n.contains("@"))
+				.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
 
 		String verifiedName =
 				Optional.of(data.getNome())

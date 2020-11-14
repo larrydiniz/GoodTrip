@@ -113,6 +113,8 @@ public class ViagemService {
 		viagemDB.setInicio(verifiedInit);
 		viagemDB.setTermino(verifiedEnd);
 		
+		/*se imagem for vazia, setar a padrão do sistema*/
+		
 		return viagemRepo.save(viagemDB);
 	}
 }
