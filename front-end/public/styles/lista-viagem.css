@@ -1,4 +1,5 @@
 /************** Div Principal ************/
+
 .secao-principal, .conteudo{
     display: flex;
     flex-direction: column;
@@ -185,5 +186,12 @@ p.autor{
     }
     nav{
         display: flex;
+    }
+
+    div.overlay-imagem:hover{
+        margin-left: 12px;
+        border-left: solid;
+        border-left-color: var(--verde-seleção);
+        transition: 0.1s;
     }
 }

@@ -77,5 +77,10 @@ button:focus{
         width: 140px;
         margin-left: 55%;
     }
-    
+
+    svg:hover > path, svg:hover > g > path{
+        cursor: pointer;
+        transition: 0.5s;
+        fill: var(--amarelo);
+    }
 }

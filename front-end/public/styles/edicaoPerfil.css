@@ -233,10 +233,10 @@ main#edicao_perfil_inputs{
         margin: 45px 0 10px 0;
     }
 /***** CAMPOS ******/
-    div#edicao_campos{
+    /* div#edicao_campos{
         flex-direction: row;
         align-items: space-around;
         justify-content: space-around;
         width: 100%;
-    }
+    } */
 }

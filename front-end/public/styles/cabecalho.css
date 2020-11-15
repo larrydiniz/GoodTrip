@@ -7,6 +7,39 @@ div.viagem {
     overflow: hidden;
 }
 
+div.viagem:hover{
+    transition: 0.8s;
+    transition-delay: 0.3s;
+    height: 50%;
+    z-index: 12;
+}
+
+div.viagem:hover ~ div ~ span ~ p ~ div{
+    transition: 0.3s;
+    opacity: 0;
+}
+
+div.viagem:hover > div{
+    transition: 0.3s;
+    transition-delay: 0.6s;
+    opacity: 0;
+}
+
+div.viagem:hover ~ a{
+    transition: 0.3s;
+    opacity: 0;
+}
+
+div.viagem:hover ~ span{
+    transition: 0.3s;
+    opacity: 0;
+}
+
+div.viagem:hover ~ p{
+    transition: 0.3s;
+    opacity: 0;
+}
+
 img.imagem-viagem {
     width: 100%; 
 }
