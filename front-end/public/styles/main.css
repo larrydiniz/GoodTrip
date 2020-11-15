@@ -47,7 +47,6 @@ button:focus{
 
 button:hover {
     cursor: pointer;
-    background-color: var(--fonte-normal);
 }
 
 .h1{

@@ -64,9 +64,17 @@ div.membro_infos{
 div#membros_usuarios, div#membros_convidados{
     display: flex;
     flex-direction: column;
+    border-bottom: var(--cinza-bordas) solid 1px;
     margin-top: 25px;
     height: 230px;
     overflow: scroll;
+    position: relative;
+    top: 130px;
+}
+
+div#membros_convidar{
+    position: relative;
+    top: 130px;
 }
 
 div#membros_adicionar_titulo > svg{

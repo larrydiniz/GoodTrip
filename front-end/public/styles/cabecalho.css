@@ -13,42 +13,11 @@ div.viagem:hover{
     height: 50%;
 }
 
-div.viagem ~ div ~ span ~ p ~ div{
-    transition: 0.1s;
-}
-
-div.viagem:hover ~ div ~ span ~ p ~ div{
-    opacity: 0;
-}
-
 div.viagem > div{
     transition: 0.1s;
 }
 
 div.viagem:hover > div{
-    opacity: 0;
-}
-
-div.viagem ~ a{
-    transition: 0.1s;
-}
-
-div.viagem:hover ~ a{
-    opacity: 0;
-}
-div.viagem ~ span{
-    transition: 0.3s;
-}
-
-div.viagem:hover ~ span{
-    opacity: 0;
-}
-
-div.viagem ~ p{
-    transition: 0.3s;
-}
-
-div.viagem:hover ~ p{
     opacity: 0;
 }
 
