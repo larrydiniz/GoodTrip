@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 :root {  /* referencia a raiz do documento*/
     --cinza-bordas: #dddddd; 
     --fonte-normal:#656363;
@@ -22,7 +23,6 @@
     scrollbar-base-color: #dddddda2;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 html {
     font-family: Roboto, sans-serif;
     }
@@ -43,6 +43,11 @@ a {
 button:focus{
     box-shadow: 0 0 0 0;
     outline: 0;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--fonte-normal);
 }
 
 .h1{

@@ -40,8 +40,10 @@ li p.titulo{
     width: 90%;
     height: 30%;
     padding: 0 15px;
+    position: relative;
     display: flex;
     justify-content: center;
+    top: 130px;
     align-items: center;
 }
 
@@ -113,11 +115,19 @@ li p.titulo{
     border: var(--fonte-normal) solid 1px;
     color: var(--fonte-normal);
     background-color: var(--verde-seleção);
+    transition: 0.2s;
+}
+
+.period:hover{
+    color: black;
+    border-color: var(--verde-logo);
 }
 
 .selected {
     background-color: transparent;
     background-color: var(--azul-seleção);
+    border-color: var(--azul);
+    color: black;
 }
 
 .disabled{
@@ -131,10 +141,12 @@ div.tarefas{
     height: 42%;
     padding-top: 20px;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     border-top: #eeeeee solid 1px;
+    top: 140px;
 }
 
 a.tarefa{
@@ -166,6 +178,7 @@ a.tarefa{
     margin-top: 10px;
     position: relative;
     left: 40%;
+    top: 140px;
 }
 
 /************** Responsividade ************/
@@ -181,10 +194,12 @@ a.tarefa{
 
 @media (min-width: 500px){
     .dia-selecionado{
-        margin-right: 50px;
+        margin-right: 70px;
     }
 }
 
+@media (min-width: 600px){
+}
 
 @media (min-width: 800px){
     header .configuracoes{
@@ -218,7 +233,7 @@ a.tarefa{
     }
     
     #dia-semana{
-        font-size: 22px;
+        font-size: 20pt;
         margin-top: 30px;
     }
 
