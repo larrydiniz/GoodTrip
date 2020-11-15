@@ -6,6 +6,7 @@ div.viagem {
     border-radius: 8px;
     overflow: hidden;
     transition: 0.8s;
+    transition-delay: 0.3s;
     z-index: 9;
 }
 
@@ -14,7 +15,7 @@ div.viagem:hover{
 }
 
 div.viagem > div{
-    transition: 0.1s;
+    transition: 0.2s;
 }
 
 div.viagem:hover > div{
