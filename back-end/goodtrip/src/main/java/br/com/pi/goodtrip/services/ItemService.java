@@ -17,13 +17,13 @@ public class ItemService {
 	private ItemRepository itemRepo;
 	
 	private Optional<String> hasValidName(Item item) {
-		return Optional.of(item.getNome())
+		return Optional.ofNullable(item.getNome())
 				       .filter(n -> !n.isBlank())
 				       .filter(n -> n.length() > 2);
 	}
 	
 	private Optional<Integer> hasValidCategory(Item item){
-		return Optional.of(item.getCategoria())
+		return Optional.ofNullable(item.getCategoria())
 				       .filter(c -> c > -1)
 				       .filter(c -> c < 4);
 	}

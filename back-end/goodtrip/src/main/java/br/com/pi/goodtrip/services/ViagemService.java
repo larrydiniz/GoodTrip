@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pi.goodtrip.models.Viagem;
+import br.com.pi.goodtrip.repositories.UsuarioRepository;
 import br.com.pi.goodtrip.repositories.ViagemRepository;
 import br.com.pi.goodtrip.utils.FileUpload;
 
@@ -22,22 +23,24 @@ public class ViagemService {
 	@Autowired
 	private ViagemRepository viagemRepo;
 	
+	@Autowired UsuarioRepository usuarioRepo;
+	
 	private Optional<String> hasValidDestination(Viagem travel){
-		return Optional.of(travel.getDestino())
+		return Optional.ofNullable(travel.getDestino())
 					   .filter(d -> d.length() > 3)
 					   .filter(d -> !d.contains("  "))
 					   .filter(d -> d.length() < 20);
 	}
 	
 	private Optional<String> hasValidInit(Viagem travel){
-		return Optional.of(travel.getInicio())
+		return Optional.ofNullable(travel.getInicio())
 				       .filter(ini -> !(ini.length() > 10))
 				       .filter(ini -> !(ini.length() < 8))
 				       .filter(ini -> !ini.contains(" "));
 	}
 	
 	private Optional<String> hasValidEnd(Viagem travel){
-		return Optional.of(travel.getInicio())
+		return Optional.ofNullable(travel.getInicio())
 				       .filter(ini -> !(ini.length() > 10))
 				       .filter(ini -> !(ini.length() < 8))
 				       .filter(ini -> !ini.contains(" "));

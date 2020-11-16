@@ -24,7 +24,7 @@ public class UsuarioService {
 	private UsuarioRepository repository;
 	
 	private Optional<String> hasValidEmailUserField(Usuario user){
-		return Optional.of(user.getEmail())
+		return Optional.ofNullable(user.getEmail())
 						.filter(email -> repository.checkEmailExists(email).isEmpty())
 						.map(email -> email.substring(0, email.indexOf("@")))
 						.filter(username -> username.length() > 0)
@@ -33,7 +33,7 @@ public class UsuarioService {
 	}
 	
 	private Optional<String> hasValidEmailDomain(Usuario user){
-		return	Optional.of(user.getEmail())
+		return	Optional.ofNullable(user.getEmail())
 						.map(email -> email.substring(email.indexOf("@") + 1, email.length()))
 						.filter(domain -> domain.length() > 2)
 						.filter(domain -> !domain.contains("@"))
@@ -43,7 +43,7 @@ public class UsuarioService {
 	}
 	
 	private Optional<String> hasValidUsername(Usuario user){
-		return	Optional.of(user.getUsername())
+		return	Optional.ofNullable(user.getUsername())
 					    .filter(n -> repository.checkUsernameExists(n).isEmpty())
 					    .filter(n -> n.length() > 2)
 					    .filter(n -> !n.contains("  "))
@@ -51,7 +51,7 @@ public class UsuarioService {
 	}
 	
 	private Optional<String> hasValidName(Usuario user){
-		return  Optional.of(user.getNome())
+		return  Optional.ofNullable(user.getNome())
 		                .filter(n -> n.length() > 2)
 		                .filter(n -> !n.contains("  "));
 	}
