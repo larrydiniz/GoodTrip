@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.pi.goodtrip.controllers.bodies.Senha;
 import br.com.pi.goodtrip.dto.CredenciaisDTO;
+import br.com.pi.goodtrip.dto.Senha;
 import br.com.pi.goodtrip.dto.TokenDTO;
 import br.com.pi.goodtrip.exceptions.SenhaInvalidaException;
 import br.com.pi.goodtrip.models.Usuario;
@@ -145,22 +145,26 @@ public class UsuarioService {
 		return repository.save(toUpdate);
 	}
 	
-	public Usuario editUserPassword( int id, Senha alterarSenha) {
-		Usuario senhaUser = repository.findById(id)
+	public Usuario editUserPassword(int id, Senha senha) {
+		Usuario user = repository.findById(id)
 				                      .orElseThrow(() -> new NoSuchElementException());
 		
-		if(senhaUser.getSenha().equals(alterarSenha.getSenha_atual())) {
-			
-			if(alterarSenha.getNova_senha().equals(alterarSenha.getConfirmar_senha())) {
-				
-				senhaUser.setSenha(alterarSenha.getNova_senha());
-				repository.save(senhaUser);
-				
-				return senhaUser;
-			}
-		}
+		boolean senhasBatem = passwordEncoder.matches(senha.getSenha_atual(), user.getSenha());
 		
-		return senhaUser;
+		if(senhasBatem) {
+			
+			if(senha.getNova_senha().equals(senha.getConfirmar_senha())) {
+				
+				String cryptPassword = passwordEncoder.encode(senha.getNova_senha());
+
+				user.setSenha(cryptPassword);
+				repository.save(user);
+				
+				return user;
+				
+			} else throw new IllegalArgumentException("As senhas não batem");
+			
+		} else throw new IllegalArgumentException("Senha inválida");
 	}
 	
 	public Usuario softDeleteUser(int id) throws NoSuchElementException{

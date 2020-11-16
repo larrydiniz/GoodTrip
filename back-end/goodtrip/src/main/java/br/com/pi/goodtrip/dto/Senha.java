@@ -1,4 +1,4 @@
-package br.com.pi.goodtrip.controllers.bodies;
+package br.com.pi.goodtrip.dto;
 
 import org.springframework.stereotype.Component;
 
@@ -8,8 +8,6 @@ public class Senha {
 	private String senha_atual;
 	private String nova_senha;
 	private String confirmar_senha;
-	
-	
 	
 	public Senha(){}
 	

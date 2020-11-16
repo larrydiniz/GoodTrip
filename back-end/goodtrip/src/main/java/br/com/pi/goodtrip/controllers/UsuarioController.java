@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.pi.goodtrip.controllers.bodies.Senha;
 import br.com.pi.goodtrip.dto.CredenciaisDTO;
+import br.com.pi.goodtrip.dto.Senha;
 import br.com.pi.goodtrip.dto.TokenDTO;
 import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.services.UsuarioService;

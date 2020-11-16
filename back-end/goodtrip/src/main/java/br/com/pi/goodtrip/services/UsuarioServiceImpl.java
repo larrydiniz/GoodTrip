@@ -44,6 +44,10 @@ public class UsuarioServiceImpl implements UserDetailsService{
 
         String[] roles = usuario.isAdmin() ?
                 new String[]{"ADMIN", "USER"} : new String[]{"USER"};
+                
+                for (int i = 0; i < roles.length; i++) {
+                	String s = roles[i];
+                	System.out.println(s);}
 
         return User
                 .builder()
