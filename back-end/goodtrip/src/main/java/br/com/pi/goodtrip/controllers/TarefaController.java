@@ -51,7 +51,7 @@ public class TarefaController {
 	}
 	
 	@DeleteMapping("apagar")
-	public Tarefa deletarItem(@RequestParam int id) {
+	public Tarefa deletarTarefa(@RequestParam int id) {
 		return tarefaService.deleteAnTaskById(id);
 	}
 }
