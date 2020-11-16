@@ -6,17 +6,30 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.pi.goodtrip.controllers.bodies.Senha;
+import br.com.pi.goodtrip.dto.CredenciaisDTO;
+import br.com.pi.goodtrip.dto.TokenDTO;
+import br.com.pi.goodtrip.exceptions.SenhaInvalidaException;
 import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.repositories.UsuarioRepository;
 import br.com.pi.goodtrip.utils.FileUpload;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
 	
+	private final UsuarioServiceImpl usuarioServiceImpl;
+	private final PasswordEncoder passwordEncoder;
+	private final JwtService jwtService;
+
 	@Autowired
 	private FileUpload fileUpload;
 	
@@ -89,8 +102,12 @@ public class UsuarioService {
         
         hasValidEmailDomain(user)
         	.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
+        
+        String cryptPassword = passwordEncoder.encode(user.getSenha());
+		user.setSenha(cryptPassword);
 		
-		return repository.save(user);
+		return usuarioServiceImpl.salvar(user);
+        
 	}
 	
 
@@ -145,4 +162,28 @@ public class UsuarioService {
 		
 		return senhaUser;
 	}
+	
+	public Usuario softDeleteUser(int id) throws NoSuchElementException{
+		Usuario deleteUser = 
+				 repository.findById(id)
+						   .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+		
+		deleteUser.setAtivo(false);
+		
+		return repository.save(deleteUser);
+	}
+	
+	public TokenDTO authenticate(CredenciaisDTO credenciais) {
+		try {
+			Usuario usuario = Usuario.builder()
+					.email(credenciais.getEmail())
+					.senha(credenciais.getSenha()).build();
+			usuarioServiceImpl.autenticar(usuario);
+			String token = jwtService.gerarToken(usuario);
+			return new TokenDTO(usuario.getEmail(), token);
+		} catch (UsernameNotFoundException | SenhaInvalidaException e){
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());	
+		}
+	}
+	
 }

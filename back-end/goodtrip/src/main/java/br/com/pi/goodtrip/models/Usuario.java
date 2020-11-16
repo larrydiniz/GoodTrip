@@ -15,7 +15,10 @@ import javax.persistence.Table;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Builder;
+
 @Entity
+@Builder
 @Table(name = "usuarios")
 public class Usuario{
 	
@@ -40,6 +43,10 @@ public class Usuario{
 	
 	@Column(name = "ativo")
 	private Boolean ativo;
+	
+	@Builder.Default
+	@Column(name = "admin")
+	private boolean admin = false;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"usuario", "tarefas", "itens", "embarques"})
@@ -134,5 +141,29 @@ public class Usuario{
 	}
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public Usuario(int id, String nome, String email, String username, String senha, String foto, Boolean ativo,
+			boolean admin, Set<Viagem> viagens, Set<Embarque> embarques, Set<Tarefa> tarefas, Set<Item> itens) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.username = username;
+		this.senha = senha;
+		this.foto = foto;
+		this.ativo = ativo;
+		this.admin = admin;
+		this.viagens = viagens;
+		this.embarques = embarques;
+		this.tarefas = tarefas;
+		this.itens = itens;
 	}
 }

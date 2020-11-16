@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pi.goodtrip.controllers.bodies.Senha;
+import br.com.pi.goodtrip.dto.CredenciaisDTO;
+import br.com.pi.goodtrip.dto.TokenDTO;
 import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.services.UsuarioService;
 
@@ -40,8 +44,14 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("escrever")
+	@ResponseStatus (HttpStatus.CREATED)
 	public Usuario escreverUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.writeAnUser(usuario);
+	}
+	
+	@PostMapping("/auth")
+	public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais) {
+		return usuarioService.authenticate(credenciais);	
 	}
 	
 	@PutMapping("/editar/{id}")
@@ -59,4 +69,10 @@ public class UsuarioController {
 	public Usuario editarFotoUsuario(@PathVariable int id, @RequestPart("foto-usuario") MultipartFile file) throws NoSuchElementException, IOException{
 		return usuarioService.uploadUserImage(id, file);
 	}
+	
+	@PutMapping("/apagar/{id}")
+	public Usuario apagarUsuario(@PathVariable int id){
+		return usuarioService.softDeleteUser(id);
+	}
+	
 }
