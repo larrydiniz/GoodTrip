@@ -42,7 +42,7 @@ public class FileUpload {
 			
 			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
 			
-			return path + "/" + filename;
+			return "../../back-end/goodtrip/" + uploadDir + "/" + filename;
 		}
 		catch(IOException e) {
 			

@@ -26,8 +26,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioService {
 	
+	@Autowired
 	private final UsuarioServiceImpl usuarioServiceImpl;
+	
+	@Autowired
 	private final PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private final JwtService jwtService;
 
 	@Autowired
@@ -37,7 +42,7 @@ public class UsuarioService {
 	private UsuarioRepository repository;
 	
 	private Optional<String> hasValidEmailUserField(Usuario user){
-		return Optional.ofNullable(user.getEmail())
+		return Optional.of(user.getEmail())
 						.filter(email -> repository.checkEmailExists(email).isEmpty())
 						.map(email -> email.substring(0, email.indexOf("@")))
 						.filter(username -> username.length() > 0)
@@ -46,7 +51,7 @@ public class UsuarioService {
 	}
 	
 	private Optional<String> hasValidEmailDomain(Usuario user){
-		return	Optional.ofNullable(user.getEmail())
+		return	Optional.of(user.getEmail())
 						.map(email -> email.substring(email.indexOf("@") + 1, email.length()))
 						.filter(domain -> domain.length() > 2)
 						.filter(domain -> !domain.contains("@"))
@@ -56,7 +61,7 @@ public class UsuarioService {
 	}
 	
 	private Optional<String> hasValidUsername(Usuario user){
-		return	Optional.ofNullable(user.getUsername())
+		return	Optional.of(user.getUsername())
 					    .filter(n -> repository.checkUsernameExists(n).isEmpty())
 					    .filter(n -> n.length() > 2)
 					    .filter(n -> !n.contains("  "))
@@ -64,7 +69,7 @@ public class UsuarioService {
 	}
 	
 	private Optional<String> hasValidName(Usuario user){
-		return  Optional.ofNullable(user.getNome())
+		return  Optional.of(user.getNome())
 		                .filter(n -> n.length() > 2)
 		                .filter(n -> !n.contains("  "));
 	}
@@ -107,7 +112,6 @@ public class UsuarioService {
 		user.setSenha(cryptPassword);
 		
 		return usuarioServiceImpl.salvar(user);
-        
 	}
 	
 

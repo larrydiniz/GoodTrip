@@ -8,6 +8,7 @@ const ulNav = document.querySelector("ul");
 const loginModalOpenButton = document.querySelector("button#entrar.menu");
 const loginModalCloseButton = document.querySelector("button.login.fechar");
 const loginModalContent = document.querySelector("div.login.modal");
+const loginButton = document.querySelector("button.entrar");
 const registerModalOpenButton = document.querySelector("button#cadastrar.menu");
 const registerModalCloseButton = document.querySelector("button.cadastro.fechar");
 const registerModalContent = document.querySelector("div.cadastro.modal");
@@ -37,6 +38,21 @@ nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}))
 overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: "hide"}));
 
 window.addEventListener('load', () => {
+
+	loginButton.addEventListener('click', () => {
+		var myHeaders = new Headers();
+		
+		myHeaders.append("Content-Type", "application/json");
+
+		fetch("http://localhost:3333/usuarios/auth", 
+				{ "headers": myHeaders,
+				  "method": "POST",
+				  "body": JSON.stringify({ "email": document.querySelector("input#email-login").value, "senha": document.querySelector("input#senha-login").value}),
+				  "mode": "cors" })
+		.then(res => res.text())
+		.then(text => console.log(text))
+		.catch(e => console.log(e))
+	})
 
 	passwordFieldsList.forEach(field => { 
 		pv.addTypeListeners(field); 
