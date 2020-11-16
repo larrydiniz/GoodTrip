@@ -19,6 +19,7 @@ import br.com.pi.goodtrip.services.UsuarioServiceImpl;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
 	@Autowired
     private UsuarioServiceImpl usuarioService;
     @Autowired
@@ -43,19 +44,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
-        http
-            .csrf().disable()
+        http.csrf().disable()
             .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/usuarios/**")
+                .antMatchers(HttpMethod.POST, "/usuarios/escrever")
                     .permitAll()
-                .antMatchers(HttpMethod.POST, "/usuarios")
+                .antMatchers(HttpMethod.POST, "/usuarios/auth")
                     .permitAll()
+                .antMatchers("/usuarios/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/viagens/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/itens/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/tarefas/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/embarques/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
             .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
-                .addFilterBefore( jwtFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
         ;
     }
 

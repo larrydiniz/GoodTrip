@@ -1,6 +1,7 @@
 package br.com.pi.goodtrip.services;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -119,5 +120,17 @@ public class ViagemService {
 		toUpdate.setTermino(verifiedEnd);
 		
 		return viagemRepo.save(toUpdate);
+	}
+	
+	public Viagem softDeleteTrip(int id) throws NoSuchElementException{
+		Viagem deleteTrip = 
+				 viagemRepo.findById(id)
+						   .orElseThrow(() -> new NoSuchElementException("Viagem não encontrada"));
+		
+		Date today = new Date();
+		
+		deleteTrip.setApagada(today);
+		
+		return viagemRepo.save(deleteTrip);
 	}
 }
