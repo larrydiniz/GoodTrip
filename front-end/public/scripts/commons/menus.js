@@ -22,7 +22,7 @@ function setUserMenuAttributes(imageField, nameField, usernameField, data){
 window.addEventListener('load', () => {
 
     mnu.addOpenedListeners({ menu: menuMobile });
-    
+
     fetch(`http://localhost:3333/usuarios/ler/1`)
         .then(res => res.json())
         .then(json => setUserMenuAttributes(userImageField, nameField, usernameField, json))

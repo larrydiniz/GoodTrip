@@ -55,6 +55,7 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/editar/{id}")
+	@ResponseStatus(HttpStatus.OK)
 	public Usuario editarUsuario(@PathVariable int id, @RequestBody Usuario dadosUser){
 		return usuarioService.editUserById(id, dadosUser);
 	}

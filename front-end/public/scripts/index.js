@@ -1,5 +1,6 @@
 import modals from "./modules/modals.js"
 import passwordVisibility from "./modules/passwordVisibility.js"
+import postLogin from "./requests/login.js";
 import { classToggler, sourceToggler, typeToggler } from "./utils/togglers.js"
 
 const overlay = document.querySelector("div.overlay");
@@ -9,6 +10,7 @@ const loginModalOpenButton = document.querySelector("button#entrar.menu");
 const loginModalCloseButton = document.querySelector("button.login.fechar");
 const loginModalContent = document.querySelector("div.login.modal");
 const loginButton = document.querySelector("button.entrar");
+const loginEmail = document.querySelector("input#email-login");
 const registerModalOpenButton = document.querySelector("button#cadastrar.menu");
 const registerModalCloseButton = document.querySelector("button.cadastro.fechar");
 const registerModalContent = document.querySelector("div.cadastro.modal");
@@ -40,18 +42,13 @@ overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: 
 window.addEventListener('load', () => {
 
 	loginButton.addEventListener('click', () => {
-		var myHeaders = new Headers();
-		
-		myHeaders.append("Content-Type", "application/json");
 
-		fetch("http://localhost:3333/usuarios/auth", 
-				{ "headers": myHeaders,
-				  "method": "POST",
-				  "body": JSON.stringify({ "email": document.querySelector("input#email-login").value, "senha": document.querySelector("input#senha-login").value}),
-				  "mode": "cors" })
-		.then(res => res.text())
-		.then(text => console.log(text))
-		.catch(e => console.log(e))
+		const request = postLogin({"email": loginEmail.value, "senha": passwordLoginInput.value});
+		
+		fetch(request.url, request.init)
+		  .then(response => response.json())
+		  .then(json => console.log(json))
+		  .catch(error => console.log('error', error));
 	})
 
 	passwordFieldsList.forEach(field => { 
