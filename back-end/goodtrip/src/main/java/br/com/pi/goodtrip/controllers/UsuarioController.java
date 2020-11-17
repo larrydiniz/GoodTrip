@@ -66,7 +66,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/upload/foto/{id}")
-	public Usuario editarFotoUsuario(@PathVariable int id, @RequestPart("foto-usuario") MultipartFile file) throws NoSuchElementException, IOException{
+	public Usuario editarFotoUsuario(@PathVariable int id, @RequestPart("foto") MultipartFile file) throws NoSuchElementException, IOException{
 		return usuarioService.uploadUserImage(id, file);
 	}
 	

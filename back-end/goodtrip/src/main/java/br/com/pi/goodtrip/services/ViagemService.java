@@ -86,7 +86,7 @@ public class ViagemService {
 		String toSaveFilename = 
 				Optional.ofNullable(file)
 						.map(f -> fileUpload.saveFileTimestampNamed("images", f))
-						.orElse("default_travel_image.png");
+						.orElse("../../back-end/goodtrip/images/default_travel_image.png");
 		
 		toUpdate.setImagem(toSaveFilename);
 			

@@ -140,7 +140,7 @@ public class UsuarioService {
 		String toSaveFilename = 
 				Optional.ofNullable(file)
 						.map(f -> fileUpload.saveFileTimestampNamed("images", file))
-						.orElse("default_user_image.png");
+						.orElse("../../back-end/goodtrip/images/default_user_image.png");
 		
 		toUpdate.setFoto(toSaveFilename);
 			
