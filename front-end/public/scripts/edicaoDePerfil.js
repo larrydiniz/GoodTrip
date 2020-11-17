@@ -2,6 +2,7 @@ import updateUserInfos from "./requests/updateUserInfos.js"
 import imagePreviewer from "./utils/imagePreviewer.js"
 import postUploadUserImage from "./requests/postUploadUserImage.js"
 
+const navMenu = document.getElementById("menu");
 const inputUsername = document.querySelector('input#edicao_nome_usuario');
 const inputName = document.querySelector('input#edicao_nome_perfil');
 const inputImg = document.querySelector('input#edicao_perfil_inputImagem');
@@ -33,4 +34,11 @@ sendButton.addEventListener('click', () => {
     const request = postUploadUserImage(requestBody)
 
     fetch(request.url, request.init)
+})
+
+navMenu.addEventListener("menuWasBuilded", e => {
+
+    imgPreview.setAttribute('src', e.detail.foto)
+    inputName.setAttribute('value', e.detail.nome)
+    inputUsername.setAttribute('value', e.detail.username)
 })

@@ -28,7 +28,8 @@ window.addEventListener('load', () => {
 
     fetch(request.url, request.init)
         .then(res => res.json())
-        .then(json => setUserMenuAttributes(userImageField, nameField, usernameField, json))
+        .then(json => (setUserMenuAttributes(userImageField, nameField, usernameField, json), json))
+        .then(json => navMenu.dispatchEvent(new CustomEvent("menuWasBuilded", { detail: json })))
         .catch(e => console.log(e))
 })
     
