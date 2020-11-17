@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,13 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//import br.com.pi.goodtrip.controllers.bodies.ItemBody;
 import br.com.pi.goodtrip.models.Item;
-//import br.com.pi.goodtrip.models.Usuario;
-//import br.com.pi.goodtrip.models.Viagem;
-import br.com.pi.goodtrip.repositories.ItemRepository;
-//import br.com.pi.goodtrip.repositories.UsuarioRepository;
-//import br.com.pi.goodtrip.repositories.ViagemRepository;
+import br.com.pi.goodtrip.services.ItemService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -29,54 +23,30 @@ import br.com.pi.goodtrip.repositories.ItemRepository;
 public class ItemController {
 	
 	@Autowired
-	private ItemRepository itemRepo;
-	
-/*	@Autowired
-	private ViagemRepository viagemRepo;
-	
-	@Autowired
-	private UsuarioRepository usuarioRepo; */
+	private ItemService itemService;
 	
 	@GetMapping("ler/{id}")
-	public Optional<Item> lerItem(@PathVariable(value = "id") int id){
-		
-		return itemRepo.findById(id);
+	public Item lerItem(@PathVariable(value = "id") int id){
+		return itemService.readById(id);
 	}
 	
 	@GetMapping("/viagem/ler")
-	public List<Item> lerItensDeCategoriaEViagem(@RequestParam int viagem, String categoria){
-		return itemRepo.lerItensPorCategoriaEViagem(viagem, categoria);
+	public List<Item> lerItensDeCategoriaEViagem(@RequestParam int viagem, int categoria){
+		return itemService.readByCategoryAndTravelId(viagem, categoria);
 	}
 	
 	@PostMapping("escrever")
 	public Item escreverItem(@RequestBody Item item) {
-		itemRepo.save(item);
-		return item;
+		return itemService.writeAnItem(item);
 	}
 	
 	@DeleteMapping("apagar")
-	public void deletarItem(@RequestParam int id) {
-		itemRepo.apagarItem(id);
+	public Item deletarItem(@RequestParam int id) {
+		return itemService.deleteItemById(id);
 	}
 	
 	@PutMapping("/editar/{id}")
-	public Item editarItem(@PathVariable int id, @RequestBody Item dadosItem) throws Exception{
-		Item itemDB = itemRepo.findById(id)
-				.orElseThrow(() -> new IllegalAccessException());
-		
-		itemDB.setNome(dadosItem.getNome());
-		
-		itemRepo.save(itemDB);
-		
-		return itemDB;
+	public Item editarItem(@PathVariable int id, @RequestBody Item dadosItem) {
+		return itemService.editItem(id, dadosItem);
 	}
-	
-	/*@PostMapping("escrever")
-	public void escreverViagem(@RequestBody ItemBody body) {
-		
-		Usuario usuario = usuarioRepo.findById(body.getUsuarioId()).orElseThrow();
-		Viagem viagem = viagemRepo.findById(body.getViagemId()).orElseThrow();
-		
-		itemRepo.save(new Item(body, usuario, viagem));
-	}*/
 }

@@ -10,16 +10,21 @@
 
 .convite {
     height: 100px;
-    background-color: #F4FDFF;
+    /* background-color: #F4FDFF; */
     border-width: thin;
-    border-style: solid;
-    border-color: #c2c1c1;
-    border-radius: 8px;
+    border: 3px solid;
+    border-color: transparent;
     margin: 10px;
     margin-bottom: 15px;
     position: relative;
     display: flex;
+    transition: 0.2s;
+}
 
+.convite:hover{
+    border-left: solid 3px var(--verde-seleção);
+    box-shadow: 0px 0px 10px #eeeeee;
+    margin-right: 10px;
 }
 
 .usuario-convite {

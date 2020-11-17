@@ -15,19 +15,17 @@ function setTravelHeaderAttributes(nameField, dateField, imageField,data){
     nameField.innerText = data.destino;
     dateField.innerText = data.month + "\n" + data.year;
 }
-
-// fetch("/data/viagens.json")
-//     .then(res => res.json())
-//     .then(json => {
-
-//         const mappedUrlVariables = urlp.mapVariables(location.href);
-
-//         setTravelHeaderAttributes(travelTitleField, travelDateField, travelImageField, dtp.dateParser(json.find(element => element.id == mappedUrlVariables.travel_id ))) //Apenas testes!!!!! Mudar assim que o backend funcionar!!!!!!!!!!!!!
-// })
-
 window.addEventListener('load', () => {
 
-    fetch(`http://localhost:3333/viagens/ler/${travelId}`)
+    const url = `http://localhost:3333/viagens/ler/${travelId}`
+
+    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
+                      "Content-Type": "application/json" }
+
+    const init = { "headers": headers, 
+                   "redirect": "follow" }
+
+    fetch(url, init)
         .then(res => res.json())
         .then(json => setTravelHeaderAttributes(travelTitleField, travelDateField, travelImageField, dtp.dateParser(json)))
 })

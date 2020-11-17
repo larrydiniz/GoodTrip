@@ -19,6 +19,6 @@ const passwordFieldsList = [actualPasswordField, newPasswordField, confirmPasswo
 
 window.addEventListener('load', () => {
 
-	passwordFieldsList.forEach(field => { pv.addTypeListeners(field); pv.addSourceListeners(field) });
+	passwordFieldsList.forEach(field => (pv.addTypeListeners(field), pv.addSourceListeners(field)));
 
 })

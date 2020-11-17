@@ -1,12 +1,13 @@
-package br.com.pi.goodtrip.controllers.bodies;
+package br.com.pi.goodtrip.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Senha {
 	
 	private String senha_atual;
 	private String nova_senha;
 	private String confirmar_senha;
-	
-	
 	
 	public Senha(){}
 	
@@ -28,7 +29,4 @@ public class Senha {
 	public void setConfirmar_senha(String confirmar_senha) {
 		this.confirmar_senha = confirmar_senha;
 	}
-	
-	
-	
 }

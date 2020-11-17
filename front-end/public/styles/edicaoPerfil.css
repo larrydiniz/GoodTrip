@@ -3,33 +3,6 @@ main#edicao_perfil_inputs{
     display: flex;
     flex-direction: column;
 }
-/************ Header ************/
-    header {
-        background-color: #ffffff;
-        width: 100%;
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: var(--cinza-bordas) solid 1px;
-    }
-
-    header .menu-landing{
-        margin-left: 25px;
-        background-color: white;
-        border: none;
-        width: 30px;
-        height: 25px;
-
-    }
-
-    header .logo{
-        width: 100px;
-    }
-
-    header span{
-        width: 55px;
-    }
 
 /***** NAV MENU        ******/
     nav#seraomenu{
@@ -121,15 +94,16 @@ main#edicao_perfil_inputs{
     }
 
     button#edicao_salvar{
-        width: 300px;
-        height: 55px;
+        width: 50%;
+        min-height: 55px;
         border-radius: 8px;
         font-size: 20px;
         font-weight: 700;
         background-color: var(--azul);
         color: white;
-        border: var(--azul) solid 1px;
-        margin: 45px 0 10px 0;
+        border: none;
+        margin: 10px 0 50px 0;
+        transition: 0.1s;
     }
 
 /**** CAMPOS ***/
@@ -152,13 +126,6 @@ main#edicao_perfil_inputs{
 
     button.menu-landing{
         display: none;
-    }
-
-    header.header-landing{
-        justify-content: center;
-        display: flex;
-        width: 700px;
-        border: none;
     }
 
     img.logo{
@@ -221,22 +188,14 @@ main#edicao_perfil_inputs{
         height: 140px;
     }
 
-    button#edicao_salvar{
-        width: 300px;
-        height: 55px;
-        border-radius: 8px;
-        font-size: 20px;
-        font-weight: 700;
-        background-color: var(--azul);
-        color: white;
-        border: var(--azul) solid 1px;
-        margin: 45px 0 10px 0;
+    button#edicao_salvar:hover{
+        border-radius: 0;
     }
 /***** CAMPOS ******/
-    div#edicao_campos{
+    /* div#edicao_campos{
         flex-direction: row;
         align-items: space-around;
         justify-content: space-around;
         width: 100%;
-    }
+    } */
 }

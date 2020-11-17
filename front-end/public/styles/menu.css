@@ -140,6 +140,16 @@ ul span{
 }
 
 @media (min-width: 800px){
+    button.configuracoes > svg:hover > path{
+        cursor: pointer;
+        transition: 0.3s;
+        fill: var(--amarelo);
+    }
+
+    nav#config:hover ~ path{
+        fill: var(--vermelho-btn);
+    }
+
     header{
         width: 60%;
         position: absolute;
@@ -171,16 +181,33 @@ ul span{
         position: absolute;
         top: 0;
         left: 0;   
-    } 
+    }
+
+    nav#config{
+       overflow-y: hidden;
+       border-left-width: 40px;
+    }
  
    main{
-    margin: auto 15px;
-    width: 70%;
-    position: relative;
-    left: 26%;
-    top: 10%;
-    height: 88%;
-    border-radius: 8px;
-    border: var(--cinza-bordas) solid 1px;;
+        margin: auto 15px;
+        width: 70%;
+        position: relative;
+        left: 26%;
+        top: 10%;
+        height: 88%;
+        border-radius: 8px;
+        border: var(--cinza-bordas) solid 1px;
+    }
+
+    img.img-menu-lateral{
+        margin-left: 15px;
+    }
+
+    a.ancora-lateral:hover{
+        margin-left: 2px;
+        border: solid 1px var(--verde-seleção);
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
     }
 }

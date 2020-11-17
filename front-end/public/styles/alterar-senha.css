@@ -58,8 +58,9 @@ button.salvar{
     font-weight: 700;
     background-color: var(--azul);
     color: white;
-    border: var(--azul) solid 1px;
+    border: none;
     margin: 10px 0 50px 0;
+    transition: 0.1s;
 }
 
 input:focus{
@@ -87,6 +88,10 @@ button:focus{
 }
 
 @media (min-width: 800px){
+
+    button.salvar:hover{
+        border-radius: 0;
+    }
 
     h1{
         font-size: 25px;

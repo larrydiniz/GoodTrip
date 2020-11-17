@@ -1,7 +1,7 @@
 export default function deleteAnInvitation(requestParam){
     const url = `http://localhost:3333/embarques/apagar?id=${requestParam}`
 
-    const headers = { "Authorization": "Token " + "JWT by localstorage", 
+    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
                       "Content-Type": "application/json" }
 
     const init = { "headers": headers, 

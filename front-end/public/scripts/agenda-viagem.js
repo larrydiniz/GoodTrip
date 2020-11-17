@@ -2,6 +2,7 @@ import menu from './modules/menu.js';
 import { classToggler } from './utils/togglers.js';
 import urlParser from './modules/urlParser.js';
 import taskCards from './modules/taskCards.js';
+import getTravelTasks from './requests/getTravelTasks.js';
 
 const membersLink = document.querySelector('a#link-membros');
 const bagLink = document.querySelector('a#link-mala');
@@ -213,16 +214,13 @@ let calendario = new Calendario('calendar');
 
 function fetchTarefas() {
 	
-	const urlToGetTasksBelongsToTravel = `http://localhost:3333/tarefas/viagem/ler?id_viagem=${travelId}&finalizada=false`
+	const request = getTravelTasks(travelId)
 
-	fetch(urlToGetTasksBelongsToTravel)
+	fetch(request.url, request.init)
 		.then(res => res.json())
-		.then(json => {
-			
-			json.map(tarefa => taskCards().buildCard(templateTarefas, tarefa))
-		        .forEach(card => blocoTarefas.appendChild(card))
+		.then(json => Array.isArray(json)? json.map(tarefa => taskCards().buildCard(templateTarefas, tarefa)): false)
+		.then(cards => cards? cards.forEach(card => blocoTarefas.appendChild(card)): blocoTarefas.innerText = "Nenhuma tarefa..." )
 		
-		})
 }
 
 

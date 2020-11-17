@@ -11,9 +11,18 @@ window.addEventListener('load', function getTask(){
     
     const urlToGetTaskById = `http://localhost:3333/tarefas/ler/${mappedUrlParams.task_id}`
 
-    fetch(urlToGetTaskById)
+    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
+                      "Content-Type": "application/json" }
+    
+    const init = { "headers": headers, 
+                   "redirect": "follow" }
+
+    fetch(urlToGetTaskById, init)
         .then(res => res.json())
         .then(json => {
+
+            if(json.message) return console.log(json)
+
             const card = viewTaskCard().buildCard(templateTarefa, json);
             blocoTarefa.appendChild(card);
         });

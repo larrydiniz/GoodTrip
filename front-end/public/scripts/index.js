@@ -1,5 +1,9 @@
 import modals from "./modules/modals.js"
 import passwordVisibility from "./modules/passwordVisibility.js"
+import postLogin from "./requests/login.js";
+import StorageToken from "../scripts/modules/StorageToken.js";
+import StorageUserId from "../scripts/modules/StorageUserId.js"
+import Optional from "../scripts/modules/Optional.js"
 import { classToggler, sourceToggler, typeToggler } from "./utils/togglers.js"
 
 const overlay = document.querySelector("div.overlay");
@@ -8,6 +12,8 @@ const ulNav = document.querySelector("ul");
 const loginModalOpenButton = document.querySelector("button#entrar.menu");
 const loginModalCloseButton = document.querySelector("button.login.fechar");
 const loginModalContent = document.querySelector("div.login.modal");
+const loginButton = document.querySelector("button.entrar");
+const loginEmail = document.querySelector("input#email-login");
 const registerModalOpenButton = document.querySelector("button#cadastrar.menu");
 const registerModalCloseButton = document.querySelector("button.cadastro.fechar");
 const registerModalContent = document.querySelector("div.cadastro.modal");
@@ -35,6 +41,39 @@ const definedModalsList = [loginModal, registerModal];
 nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}));
 
 overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: "hide"}));
+
+loginButton.addEventListener('click', () => {
+
+	const requestBody = { "email": loginEmail.value, 
+						  "senha": passwordLoginInput.value }
+
+	const request = postLogin(requestBody)
+	
+	fetch(request.url, request.init)
+	.then(response => response.json())						
+	.then(json => {
+
+		const token = Optional.of(json.token)
+							  .filter(token => token.length > 1)
+							  .getOrElse(() => { throw new Error("Token inválido")})
+
+		StorageToken.storeToken(token)
+
+		return json
+		
+	})
+	.then(json => {
+
+		const id = Optional.of(json.id)
+						   .filter(id => !isNaN(id))
+						   .getOrElse(() => { throw new Error("Id inválido")})
+
+		StorageUserId.storeUserId(id)
+		
+	})
+	.then(() => window.location.pathname = "/front-end/views/listaDeViagem.html")
+	.catch(error => console.log(error));
+})
 
 window.addEventListener('load', () => {
 

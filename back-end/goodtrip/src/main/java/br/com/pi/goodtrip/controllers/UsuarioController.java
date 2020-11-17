@@ -1,8 +1,9 @@
 package br.com.pi.goodtrip.controllers;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.NoSuchElementException;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +13,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import br.com.pi.goodtrip.controllers.bodies.Senha;
+import br.com.pi.goodtrip.dto.CredenciaisDTO;
+import br.com.pi.goodtrip.dto.Senha;
+import br.com.pi.goodtrip.dto.TokenDTO;
 import br.com.pi.goodtrip.models.Usuario;
-import br.com.pi.goodtrip.repositories.UsuarioRepository;
+import br.com.pi.goodtrip.services.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,56 +30,49 @@ import br.com.pi.goodtrip.repositories.UsuarioRepository;
 public class UsuarioController {
 	
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioService usuarioService;
 	
 	@GetMapping("ler/{id}")
-	public Optional<Usuario> lerConvite(@PathVariable(value = "id") int id){
-		return repository.findById(id);
+	public Usuario lerConvite(@PathVariable(value = "id") int id){
+		return usuarioService.readUserById(id);
 	}
 	
 	@GetMapping("/buscar")
-	public List<Usuario> getByNome(@RequestParam String q) {
-		return repository.encontrarUsuario(q);
+	public Usuario searchByUsernameOrEmail(@RequestParam String q) {
+		return usuarioService.readUserByEmailOrUsername(q);
 	}
 	
 	@PostMapping("escrever")
+	@ResponseStatus (HttpStatus.CREATED)
 	public Usuario escreverUsuario(@RequestBody Usuario usuario) {
-		repository.save(usuario);
-		return usuario;
+		return usuarioService.writeAnUser(usuario);
+	}
+	
+	@PostMapping("/auth")
+	public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais) {
+		return usuarioService.authenticate(credenciais);	
 	}
 	
 	@PutMapping("/editar/{id}")
-	public Usuario editarUsuario(@PathVariable int id, @RequestBody Usuario dadosUser) throws Exception{
-		Usuario userDB = repository.findById(id)
-				.orElseThrow(() -> new IllegalAccessException());
-		
-		userDB.setFoto(dadosUser.getFoto());
-		userDB.setNome(dadosUser.getNome());
-		userDB.setUsername(dadosUser.getUsername());
-		
-		repository.save(userDB);
-		
-		return userDB;
+	@ResponseStatus(HttpStatus.OK)
+	public Usuario editarUsuario(@PathVariable int id, @RequestBody Usuario dadosUser){
+		return usuarioService.editUserById(id, dadosUser);
 	}
 	
 	
 	@PutMapping("/alterarSenha/{id}")
-	public Usuario editarSenha(@PathVariable int id, @RequestBody Senha alterarSenha) throws Exception{
-		Usuario senhaUser = repository.findById(id)
-				.orElseThrow(() -> new IllegalAccessException());
-		
-		if(senhaUser.getSenha().equals(alterarSenha.getSenha_atual())) {
-			
-			if(alterarSenha.getNova_senha().equals(alterarSenha.getConfirmar_senha())) {
-				
-				senhaUser.setSenha(alterarSenha.getNova_senha());
-				repository.save(senhaUser);
-				
-				return senhaUser;
-			}
-		}
-		
-		return senhaUser;
+	public Usuario editarSenha(@PathVariable int id, @RequestBody Senha alterarSenha){
+		return usuarioService.editUserPassword(id, alterarSenha);
+	}
+	
+	@PostMapping("/upload/foto/{id}")
+	public Usuario editarFotoUsuario(@PathVariable int id, @RequestPart("foto") MultipartFile file) throws NoSuchElementException, IOException{
+		return usuarioService.uploadUserImage(id, file);
+	}
+	
+	@PutMapping("/apagar/{id}")
+	public Usuario apagarUsuario(@PathVariable int id){
+		return usuarioService.softDeleteUser(id);
 	}
 	
 }

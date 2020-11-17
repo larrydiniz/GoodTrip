@@ -1,6 +1,6 @@
 package br.com.pi.goodtrip.models;
 
-//import java.util.Date;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-/*import javax.persistence.Temporal;
-import javax.persistence.TemporalType;*/
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -41,6 +39,9 @@ public class Viagem{
 	
 	@Column(name = "imagem")
 	private String imagem;
+	
+	@Column(name = "apagada")
+	private Date apagada;
 	
 	@ManyToOne//(cascade= CascadeType.ALL)
 	@JoinColumn(name = "fk_id_usuario")
@@ -159,4 +160,13 @@ public class Viagem{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public Date getApagada() {
+		return apagada;
+	}
+
+	public void setApagada(Date apagada) {
+		this.apagada = apagada;
+	}
+	
 }

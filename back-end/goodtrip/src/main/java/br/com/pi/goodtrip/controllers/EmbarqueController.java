@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,11 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pi.goodtrip.models.Embarque;
-//import br.com.pi.goodtrip.models.Usuario;
-//import br.com.pi.goodtrip.models.Viagem;
-import br.com.pi.goodtrip.repositories.EmbarqueRepository;
-//import br.com.pi.goodtrip.repositories.UsuarioRepository;
-//import br.com.pi.goodtrip.repositories.ViagemRepository;
+import br.com.pi.goodtrip.services.EmbarqueService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -28,60 +23,35 @@ import br.com.pi.goodtrip.repositories.EmbarqueRepository;
 public class EmbarqueController {
 	
 	@Autowired
-	private EmbarqueRepository embarqueRepo;
-	
-	/*@Autowired
-	private UsuarioRepository usuarioRepo;
-	
-	@Autowired
-	private ViagemRepository viagemRepo;*/
+	private EmbarqueService embarqueService;
 	
 	@GetMapping("ler/{id}")
-	public Optional<Embarque> lerConvite(@PathVariable(value = "id") int id){
-		return embarqueRepo.findById(id);
+	public Embarque lerConvite(@PathVariable(value = "id") int id){
+			return embarqueService.readAInvitationById(id);
 	}
 	
 	@GetMapping("usuario/ler")
-	public List<Embarque> lerTodosEmbarquesPeloIdUsuario(@RequestParam String id_usuario, Boolean aceito){
-		return embarqueRepo.encontrarEmbarquesDeUsuario(id_usuario, aceito);
+	public List<Embarque> lerTodosEmbarquesPeloIdUsuario(@RequestParam int id_usuario, Boolean aceito){
+		return embarqueService.readAllByIdWhereAccepted(id_usuario, aceito);
 	}
 	
 	@GetMapping("viagem/ler")
-	public List<Embarque> lerTodosEmbarquesPeloIdViagem(@RequestParam String id_viagem, Boolean finalizada){
-		return embarqueRepo.encontrarEmbarquesDeViagem(id_viagem, finalizada);
+	public List<Embarque> lerTodosEmbarquesPeloIdViagem(@RequestParam int id_viagem, Boolean finalizada){
+		return embarqueService.readAllByTravelIdWhereFinalised(id_viagem, finalizada);
 	}
 	
 	@PostMapping("escrever")
 	public Embarque novoEmbarque(@RequestBody Embarque embarque) {
-
-		if(embarqueRepo.encontrarEmbarque((embarque.getUsuario().getId()),
-			(embarque.getViagem().getId())).isEmpty()) {
-
-				embarqueRepo.save(embarque);
-				return embarque;
-		}
-		
-		return Erro();
+		return embarqueService.writeAnInvitation(embarque);
 	}
 	
-	private Embarque Erro() {
-		return null;
-	}
-
 	@PutMapping("aceitar/{id}")
-	public Embarque responderEmbarque(@PathVariable int id, @RequestBody Embarque resposta) throws Exception{
-		Embarque embarcar = embarqueRepo.findById(id)
-				.orElseThrow(() -> new IllegalAccessException());
-		
-		embarcar.setAceito(resposta.getAceito());
-		
-		embarqueRepo.save(embarcar);
-		
-		return resposta;
+	public Embarque responderEmbarque(@PathVariable int id, @RequestBody Embarque resposta){
+		return embarqueService.acceptOrNotAnInvitation(id, resposta);
 	}
 	
 	@DeleteMapping("apagar")
-	public void deletarItem(@RequestParam int id) {
-		embarqueRepo.apagarEmbarque(id);
+	public Embarque deletarItem(@RequestParam int id) {
+        return embarqueService.deleteInvitationById(id);
 	}	
 }

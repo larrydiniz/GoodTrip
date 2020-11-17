@@ -20,6 +20,8 @@ section.tarefa-atual{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    position: relative;
+    top: 130px;
 }
 
 /************** infos ************/
@@ -160,8 +162,10 @@ section.tarefas{
         align-items: center;
         width: 37%;
         height: 75%;
+        position: relative;
         border-left: var(--cinza-bordas) solid 1px;
         padding: 20px 0;
+        top: 130px;
     }
 
     section h3{
