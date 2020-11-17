@@ -1,4 +1,5 @@
 import invitationCards from "./modules/invitationCards.js"
+import getInvitesOfUser from "./requests/getInvitesOfUser.js"
 import dataParser from "./modules/dataParser.js"
 
 const inttn = invitationCards();
@@ -9,15 +10,13 @@ const templateInvitationCard = document.querySelector("template#t-convite");
         
 window.addEventListener('load', () => {
 
-    const urlToGetTravelsWhereUserWasInvited = "http://localhost:3333/embarques/usuario/ler?id_usuario=1&aceito=false"
+    const request = getInvitesOfUser()
 
-    fetch(urlToGetTravelsWhereUserWasInvited)
+    fetch(request.url, request.init)
         .then(res => res.json())
-        .then(json => {
-
-            json.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser({ ...data, ...data.viagem })))
-                .forEach(card => invitationsBlock.appendChild(card))
-        })
+        .then(json => Array.isArray(json)? json.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser({ ...data, ...data.viagem }))): false)
+        .then(cards => cards.length != 0? cards.forEach(card => invitationsBlock.appendChild(card)): invitationsBlock.innerText = "Nenhum convite..")
+        .catch(e => console.log(e))
 })
 
 window.addEventListener('invitation-click', e => console.log(e.detail));

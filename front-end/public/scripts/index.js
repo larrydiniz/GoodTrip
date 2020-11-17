@@ -1,6 +1,9 @@
 import modals from "./modules/modals.js"
 import passwordVisibility from "./modules/passwordVisibility.js"
 import postLogin from "./requests/login.js";
+import StorageToken from "../scripts/modules/StorageToken.js";
+import StorageUserId from "../scripts/modules/StorageUserId.js"
+import Optional from "../scripts/modules/Optional.js"
 import { classToggler, sourceToggler, typeToggler } from "./utils/togglers.js"
 
 const overlay = document.querySelector("div.overlay");
@@ -39,17 +42,40 @@ nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}))
 
 overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: "hide"}));
 
-window.addEventListener('load', () => {
+loginButton.addEventListener('click', () => {
 
-	loginButton.addEventListener('click', () => {
+	const requestBody = { "email": loginEmail.value, 
+						  "senha": passwordLoginInput.value }
 
-		const request = postLogin({"email": loginEmail.value, "senha": passwordLoginInput.value});
+	const request = postLogin(requestBody)
+	
+	fetch(request.url, request.init)
+	.then(response => response.json())						
+	.then(json => {
+
+		const token = Optional.of(json.token)
+							  .filter(token => token.length > 1)
+							  .getOrElse(() => { throw new Error("Token inválido")})
+
+		StorageToken.storeToken(token)
+
+		return json
 		
-		fetch(request.url, request.init)
-		  .then(response => response.json())
-		  .then(json => console.log(json))
-		  .catch(error => console.log('error', error));
 	})
+	.then(json => {
+
+		const id = Optional.of(json.id)
+						   .filter(id => !isNaN(id))
+						   .getOrElse(() => { throw new Error("Id inválido")})
+
+		StorageUserId.storeUserId(id)
+		
+	})
+	.then(() => window.location.pathname = "/front-end/views/listaDeViagem.html")
+	.catch(error => console.log(error));
+})
+
+window.addEventListener('load', () => {
 
 	passwordFieldsList.forEach(field => { 
 		pv.addTypeListeners(field); 

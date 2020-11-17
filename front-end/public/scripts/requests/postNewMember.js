@@ -2,7 +2,7 @@ export default function postNewMember(requestBody){
 
     const url = `http://localhost:3333/embarques/escrever`
 
-    const headers = { "Authorization": "Token " + "JWT by localstorage", 
+    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
                       "Content-Type": "application/json" }
 
     const body = JSON.stringify(requestBody)

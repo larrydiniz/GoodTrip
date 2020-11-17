@@ -49,6 +49,7 @@ public class UsuarioServiceImpl implements UserDetailsService{
                 	String s = roles[i];
                 	System.out.println(s);}
 
+                
         return User
                 .builder()
                 .username(usuario.getEmail())

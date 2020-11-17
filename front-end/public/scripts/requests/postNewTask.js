@@ -2,8 +2,8 @@ export default function postNewTask(requestBody){
 
     const url = `http://localhost:3333/tarefas/escrever`
 
-	const headers = { "Authorization": "Token " + "JWT by localstorage", 
-		              "Content-Type": "application/json" }
+    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
+                      "Content-Type": "application/json" }
 
 	const body = JSON.stringify(requestBody)
 

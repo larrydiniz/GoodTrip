@@ -2,7 +2,7 @@ export default function postNewtravel(requestBody){
 
     const url = `http://localhost:3333/viagens/escrever`
 
-    const headers = { "Authorization": "Token " + "Jwt by localstorage", 
+    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
                       "Content-Type": "application/json" }
 
     const body = JSON.stringify(requestBody)

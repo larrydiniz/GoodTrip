@@ -31,7 +31,7 @@ sendButton.addEventListener('click', () => {
 
 	const paramsValues = { "data": urlParams.day,
 						   "viagem": { "id": Number.parseInt(urlParams.travel_id) },
-						   "usuario": { "id": 1 },
+						   "usuario": { "id": localStorage.getItem("USER_ID") },
 						   "finalizada": false }
 
     const request = postNewTask({...inputsValues, ...paramsValues})

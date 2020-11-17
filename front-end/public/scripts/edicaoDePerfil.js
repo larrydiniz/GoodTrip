@@ -15,7 +15,9 @@ sendButton.addEventListener('click', () => {
 
     const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc), {});
 
-    const request = updateUserInfos(1, requestBody)
+    const request = updateUserInfos(requestBody)
 
     fetch(request.url, request.init)
+        .then(res => res.json())
+        .then(res => console.log(res))
 })

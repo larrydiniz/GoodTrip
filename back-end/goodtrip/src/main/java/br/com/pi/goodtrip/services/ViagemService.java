@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pi.goodtrip.models.Viagem;
-import br.com.pi.goodtrip.repositories.UsuarioRepository;
 import br.com.pi.goodtrip.repositories.ViagemRepository;
 import br.com.pi.goodtrip.utils.FileUpload;
 
@@ -23,8 +22,6 @@ public class ViagemService {
 	
 	@Autowired
 	private ViagemRepository viagemRepo;
-	
-	@Autowired UsuarioRepository usuarioRepo;
 	
 	private Optional<String> hasValidDestination(Viagem travel){
 		return Optional.ofNullable(travel.getDestino())
@@ -61,7 +58,6 @@ public class ViagemService {
 		List<Viagem> belongsToUser = viagemRepo.selectTravelsByUserIdWhereFinalised(user, finalised);
 				
 		Optional.of(belongsToUser)
-				.filter(list -> !list.isEmpty())
 				.orElseThrow(() -> new NoSuchElementException("Viagens de usuário não encontradas"));
 		
 		return belongsToUser;

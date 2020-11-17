@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.services;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -82,15 +81,14 @@ public class UsuarioService {
 		return foundUser;
 	}
 	
-	public List<Usuario> readUserByEmailOrUsername(String q) throws NoSuchElementException{
-		List<Usuario> users = repository.selectUserByEmailOrUsername(q);
+	public Usuario readUserByEmailOrUsername(String q) throws NoSuchElementException{
+		Usuario foundUser = repository.selectUserByEmailOrUsername(q)
+									  .stream()
+									  .findFirst()
+									  .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
-		List<Usuario> verifiedUsersList =
-		               Optional.of(users)
-					           .filter(list -> !list.isEmpty())
-					           .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
-		return verifiedUsersList;
+		return foundUser;
 	}
 	
 
@@ -183,12 +181,21 @@ public class UsuarioService {
 	
 	public TokenDTO authenticate(CredenciaisDTO credenciais) {
 		try {
+			
+			Usuario foundByEmail = repository.checkEmailExists(credenciais.getEmail())
+											 .stream()
+											 .findFirst()
+											 .orElseThrow(() -> new UsernameNotFoundException("Email de usuário inválido"));
+			
 			Usuario usuario = Usuario.builder()
-					.email(credenciais.getEmail())
-					.senha(credenciais.getSenha()).build();
+					                 .email(credenciais.getEmail())
+					                 .senha(credenciais.getSenha()).build();
+			
 			usuarioServiceImpl.autenticar(usuario);
 			String token = jwtService.gerarToken(usuario);
-			return new TokenDTO(usuario.getEmail(), token);
+			
+			return new TokenDTO(foundByEmail.getId(), usuario.getEmail(), token);
+			
 		} catch (UsernameNotFoundException | SenhaInvalidaException e){
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());	
 		}

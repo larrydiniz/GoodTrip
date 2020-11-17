@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
@@ -39,7 +38,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/buscar")
-	public List<Usuario> searchByUsernameOrEmail(@RequestParam String q) {
+	public Usuario searchByUsernameOrEmail(@RequestParam String q) {
 		return usuarioService.readUserByEmailOrUsername(q);
 	}
 	

@@ -1,4 +1,5 @@
 import menu from "../modules/menu.js"
+import getUser from "../requests/getUser.js"
 import { classToggler} from "../utils/togglers.js"
 
 const mnu = menu(classToggler);
@@ -23,8 +24,11 @@ window.addEventListener('load', () => {
 
     mnu.addOpenedListeners({ menu: menuMobile });
 
-    fetch(`http://localhost:3333/usuarios/ler/1`)
+    const request = getUser()
+
+    fetch(request.url, request.init)
         .then(res => res.json())
         .then(json => setUserMenuAttributes(userImageField, nameField, usernameField, json))
+        .catch(e => console.log(e))
 })
     

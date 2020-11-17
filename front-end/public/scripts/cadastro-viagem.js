@@ -13,7 +13,7 @@ inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox:
 
 sendButton.addEventListener('click', () => {
 
-    const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc ), { "usuario": { "id": 1 } });
+    const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc ), { "usuario": { "id": localStorage.getItem("USER_ID") } });
 
     const request = postNewtravel(requestBody)
 
