@@ -1,5 +1,6 @@
 import updateUserInfos from "./requests/updateUserInfos.js"
 import imagePreviewer from "./utils/imagePreviewer.js"
+import postUploadUserImage from "./requests/postUploadUserImage.js"
 
 const inputUsername = document.querySelector('input#edicao_nome_usuario');
 const inputName = document.querySelector('input#edicao_nome_perfil');
@@ -29,7 +30,7 @@ sendButton.addEventListener('click', () => {
 
     const requestBody = formdata;
 
-    const request = postUploadTravelImage(requestBody)
+    const request = postUploadUserImage(requestBody)
 
     fetch(request.url, request.init)
 })
