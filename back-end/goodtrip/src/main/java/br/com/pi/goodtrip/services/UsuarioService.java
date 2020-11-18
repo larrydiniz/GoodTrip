@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.services;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -26,8 +25,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioService {
 	
+	@Autowired
 	private final UsuarioServiceImpl usuarioServiceImpl;
+	
+	@Autowired
 	private final PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private final JwtService jwtService;
 
 	@Autowired
@@ -77,15 +81,14 @@ public class UsuarioService {
 		return foundUser;
 	}
 	
-	public List<Usuario> readUserByEmailOrUsername(String q) throws NoSuchElementException{
-		List<Usuario> users = repository.selectUserByEmailOrUsername(q);
+	public Usuario readUserByEmailOrUsername(String q) throws NoSuchElementException{
+		Usuario foundUser = repository.selectUserByEmailOrUsername(q)
+									  .stream()
+									  .findFirst()
+									  .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
-		List<Usuario> verifiedUsersList =
-		               Optional.of(users)
-					           .filter(list -> !list.isEmpty())
-					           .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
-		return verifiedUsersList;
+		return foundUser;
 	}
 	
 
@@ -104,10 +107,12 @@ public class UsuarioService {
         	.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
         
         String cryptPassword = passwordEncoder.encode(user.getSenha());
+        
 		user.setSenha(cryptPassword);
 		
+		user.setFoto("../../back-end/goodtrip/images/default_user_image.png");
+		
 		return usuarioServiceImpl.salvar(user);
-        
 	}
 	
 
@@ -138,7 +143,7 @@ public class UsuarioService {
 		String toSaveFilename = 
 				Optional.ofNullable(file)
 						.map(f -> fileUpload.saveFileTimestampNamed("images", file))
-						.orElse("default_user_image.png");
+						.orElse("../../back-end/goodtrip/images/default_user_image.png");
 		
 		toUpdate.setFoto(toSaveFilename);
 			
@@ -179,12 +184,21 @@ public class UsuarioService {
 	
 	public TokenDTO authenticate(CredenciaisDTO credenciais) {
 		try {
+			
+			Usuario foundByEmail = repository.checkEmailExists(credenciais.getEmail())
+											 .stream()
+											 .findFirst()
+											 .orElseThrow(() -> new UsernameNotFoundException("Email de usuário inválido"));
+			
 			Usuario usuario = Usuario.builder()
-					.email(credenciais.getEmail())
-					.senha(credenciais.getSenha()).build();
+					                 .email(credenciais.getEmail())
+					                 .senha(credenciais.getSenha()).build();
+			
 			usuarioServiceImpl.autenticar(usuario);
 			String token = jwtService.gerarToken(usuario);
-			return new TokenDTO(usuario.getEmail(), token);
+			
+			return new TokenDTO(foundByEmail.getId(), usuario.getEmail(), token);
+			
 		} catch (UsernameNotFoundException | SenhaInvalidaException e){
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());	
 		}

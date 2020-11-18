@@ -1,7 +1,6 @@
 package br.com.pi.goodtrip.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
@@ -39,7 +38,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/buscar")
-	public List<Usuario> searchByUsernameOrEmail(@RequestParam String q) {
+	public Usuario searchByUsernameOrEmail(@RequestParam String q) {
 		return usuarioService.readUserByEmailOrUsername(q);
 	}
 	
@@ -55,6 +54,7 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/editar/{id}")
+	@ResponseStatus(HttpStatus.OK)
 	public Usuario editarUsuario(@PathVariable int id, @RequestBody Usuario dadosUser){
 		return usuarioService.editUserById(id, dadosUser);
 	}
@@ -66,7 +66,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/upload/foto/{id}")
-	public Usuario editarFotoUsuario(@PathVariable int id, @RequestPart("foto-usuario") MultipartFile file) throws NoSuchElementException, IOException{
+	public Usuario editarFotoUsuario(@PathVariable int id, @RequestPart("foto") MultipartFile file) throws NoSuchElementException, IOException{
 		return usuarioService.uploadUserImage(id, file);
 	}
 	

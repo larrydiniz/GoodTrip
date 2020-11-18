@@ -1,5 +1,7 @@
 import dataParser from "../modules/dataParser.js"
 import urlParser from "../modules/urlParser.js"
+import getTravel from "../requests/getTravel.js";
+import gtHeaders from "../requests/gtHeaders.js";
 
 const dtp = dataParser();
 const urlp = urlParser();
@@ -15,19 +17,11 @@ function setTravelHeaderAttributes(nameField, dateField, imageField,data){
     nameField.innerText = data.destino;
     dateField.innerText = data.month + "\n" + data.year;
 }
-
-// fetch("/data/viagens.json")
-//     .then(res => res.json())
-//     .then(json => {
-
-//         const mappedUrlVariables = urlp.mapVariables(location.href);
-
-//         setTravelHeaderAttributes(travelTitleField, travelDateField, travelImageField, dtp.dateParser(json.find(element => element.id == mappedUrlVariables.travel_id ))) //Apenas testes!!!!! Mudar assim que o backend funcionar!!!!!!!!!!!!!
-// })
-
 window.addEventListener('load', () => {
 
-    fetch(`http://localhost:3333/viagens/ler/${travelId}`)
+    const request = getTravel(gtHeaders.authorized(), travelId)
+
+    fetch(request.url, request.init)
         .then(res => res.json())
         .then(json => setTravelHeaderAttributes(travelTitleField, travelDateField, travelImageField, dtp.dateParser(json)))
 })

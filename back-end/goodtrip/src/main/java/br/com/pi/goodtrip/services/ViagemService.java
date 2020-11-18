@@ -24,21 +24,21 @@ public class ViagemService {
 	private ViagemRepository viagemRepo;
 	
 	private Optional<String> hasValidDestination(Viagem travel){
-		return Optional.of(travel.getDestino())
+		return Optional.ofNullable(travel.getDestino())
 					   .filter(d -> d.length() > 3)
 					   .filter(d -> !d.contains("  "))
 					   .filter(d -> d.length() < 20);
 	}
 	
 	private Optional<String> hasValidInit(Viagem travel){
-		return Optional.of(travel.getInicio())
+		return Optional.ofNullable(travel.getInicio())
 				       .filter(ini -> !(ini.length() > 10))
 				       .filter(ini -> !(ini.length() < 8))
 				       .filter(ini -> !ini.contains(" "));
 	}
 	
 	private Optional<String> hasValidEnd(Viagem travel){
-		return Optional.of(travel.getInicio())
+		return Optional.ofNullable(travel.getInicio())
 				       .filter(ini -> !(ini.length() > 10))
 				       .filter(ini -> !(ini.length() < 8))
 				       .filter(ini -> !ini.contains(" "));
@@ -58,7 +58,6 @@ public class ViagemService {
 		List<Viagem> belongsToUser = viagemRepo.selectTravelsByUserIdWhereFinalised(user, finalised);
 				
 		Optional.of(belongsToUser)
-				.filter(list -> !list.isEmpty())
 				.orElseThrow(() -> new NoSuchElementException("Viagens de usuário não encontradas"));
 		
 		return belongsToUser;
@@ -87,7 +86,7 @@ public class ViagemService {
 		String toSaveFilename = 
 				Optional.ofNullable(file)
 						.map(f -> fileUpload.saveFileTimestampNamed("images", f))
-						.orElse("default_travel_image.png");
+						.orElse("../../back-end/goodtrip/images/default_travel_image.png");
 		
 		toUpdate.setImagem(toSaveFilename);
 			

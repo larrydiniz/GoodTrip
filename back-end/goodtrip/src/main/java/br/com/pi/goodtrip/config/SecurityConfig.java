@@ -44,17 +44,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
             .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/usuarios/escrever")
                     .permitAll()
                 .antMatchers(HttpMethod.POST, "/usuarios/auth")
                     .permitAll()
-                .antMatchers("/usuarios/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/viagens/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/itens/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/tarefas/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/embarques/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("**/usuarios/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("**/viagens/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("**/itens/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("**/tarefas/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("**/embarques/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
             .and()
                 .sessionManagement()

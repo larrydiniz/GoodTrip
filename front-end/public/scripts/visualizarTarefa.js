@@ -1,5 +1,6 @@
 import viewTaskCard from "./modules/viewTaskCard.js"
 import urlParser from "./modules/urlParser.js"
+import Opcional from "./modules/Optional.js"
 
 const urlp = urlParser();
 
@@ -11,11 +12,15 @@ window.addEventListener('load', function getTask(){
     
     const urlToGetTaskById = `http://localhost:3333/tarefas/ler/${mappedUrlParams.task_id}`
 
-    fetch(urlToGetTaskById)
-        .then(res => res.json())
-        .then(json => {
+    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
+                      "Content-Type": "application/json" }
+    
+    const init = { "headers": headers, 
+                   "redirect": "follow" }
 
-            if(json.message) return console.log(json)
+    fetch(urlToGetTaskById, init)
+        .then(res => res.json())
+        .then(json => { 
 
             const card = viewTaskCard().buildCard(templateTarefa, json);
             blocoTarefa.appendChild(card);

@@ -113,6 +113,7 @@ li p.titulo{
 
 .period {
     border: var(--fonte-normal) solid 1px;
+    border-radius: 4px;
     color: var(--fonte-normal);
     background-color: var(--verde-seleção);
     transition: 0.2s;

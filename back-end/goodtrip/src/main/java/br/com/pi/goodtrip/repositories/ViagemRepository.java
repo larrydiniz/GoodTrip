@@ -11,8 +11,8 @@ import br.com.pi.goodtrip.models.Viagem;
 @Repository
 public interface ViagemRepository extends JpaRepository<Viagem, Integer>{
 	
-	String selectByUserId = "SELECT * FROM viagens WHERE fk_id_usuario = :usuario AND finalizada = :finalizada";
+	String selectByUserIdAndFinalised = "SELECT * FROM viagens WHERE fk_id_usuario = :usuario AND finalizada = :finalizada";
 	
-	@Query(value = selectByUserId, nativeQuery = true)
+	@Query(value = selectByUserIdAndFinalised, nativeQuery = true)
 	List<Viagem> selectTravelsByUserIdWhereFinalised(int usuario, Boolean finalizada);
 }

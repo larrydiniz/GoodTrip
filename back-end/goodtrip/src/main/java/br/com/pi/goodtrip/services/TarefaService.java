@@ -16,26 +16,26 @@ public class TarefaService {
 	private TarefaRepository tarefaRepo;
 	
 	private Optional<String> hasValidTitle(Tarefa task){
-		return Optional.of(task.getTitulo())
+		return Optional.ofNullable(task.getTitulo())
 				       .filter(t -> !t.isBlank())
 				       .filter(t -> t.length() < 20);
 	}
 	
 	private Optional<String> hasValidHourly(Tarefa task){
-		return Optional.of(task.getHorario())
+		return Optional.ofNullable(task.getHorario())
 				       .filter(h -> !h.isBlank())
 				       .filter(h -> h.length() > 4)
 				       .filter(h -> h.length() < 8);
 	}
 	
 	private Optional<Integer> hasValidCurrency(Tarefa task){
-		return Optional.of(task.getMoeda())
+		return Optional.ofNullable(task.getMoeda())
 				       .filter(m -> m > -1)
 				       .filter(m -> m < 4);
 	}
 	
 	private Optional<Integer> hasValidTransport(Tarefa task){
-		return Optional.of(task.getTransporte())
+		return Optional.ofNullable(task.getTransporte())
 				       .filter(t -> t > -1)
 				       .filter(t -> t < 4);
 	}
