@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.pi.goodtrip.models.Usuario;
 import br.com.pi.goodtrip.models.Viagem;
 import br.com.pi.goodtrip.services.ViagemService;
 
