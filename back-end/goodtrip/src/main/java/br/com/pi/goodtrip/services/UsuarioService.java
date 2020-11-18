@@ -169,10 +169,10 @@ public class UsuarioService {
 		
 		boolean senhasBatem = passwordEncoder.matches(senha.getSenha_atual(), user.getSenha());
 		
-		hasValidPasswordUpdate(senha)
-    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
-		
 		if(senhasBatem) {
+			
+			hasValidPasswordUpdate(senha)
+	    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
 			
 			if(senha.getNova_senha().equals(senha.getConfirmar_senha())) {
 				

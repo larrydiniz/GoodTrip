@@ -22,4 +22,16 @@ sendButton.addEventListener('click', () => {
     const request = postNewtravel(gtHeaders.authorized(), requestBody)
 
     fetch(request.url, request.init)
+        .then(res => res.json())
+        .then(json => {
+
+            const formdata = new FormData();
+            
+            formdata.append("imagem", inputImg.files[0]);
+            
+            return postUploadTravelImage(json.id, formdata);
+
+        })
+        .then(request => fetch(request.url, request.init))
+        .catch(e => console.log(e))
 })

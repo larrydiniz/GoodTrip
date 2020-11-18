@@ -34,13 +34,9 @@ saveBtn.addEventListener('click', () => {
 
     const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc ), {"usuario": user});
 
-	console.log(inputsList)
-
     const request = updatePassword(gtHeaders.authorized(), requestBody)
 
-    fetch(request.url, request.init)
-        .then(res => res.json())
-        .then(json => console.log(json))
-        .then(request => fetch(request.url, request.init))
-        .catch(e => console.log(e))
+	fetch(request.url, request.init)
+	.then(res => res.json())
+	.then(json => console.log(json))
 })
