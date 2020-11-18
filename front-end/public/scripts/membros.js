@@ -1,6 +1,7 @@
 import membersCards from "./modules/membersCards.js"
 import urlParser from "./modules/urlParser.js"
 import deleteAnInvitation from "./requests/deleteAnInvitation.js";
+import gtHeaders from "./requests/gtHeaders.js";
 import postNewMember from "./requests/postNewMember.js";
 
 const mmbc = membersCards();
@@ -20,11 +21,8 @@ searchButton.addEventListener('click', function getUserAndTravelToMakeAnInvitati
 
         const urls = { "searchUser": `http://localhost:3333/usuarios/buscar?q=${searchInput.value}`,
                        "getTravel": `http://localhost:3333/viagens/ler/${urlParams.travel_id}` }
-
-        const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
-                          "Content-Type": "application/json" }
  
-        const init = { "headers": headers, 
+        const init = { "headers": gtHeaders.authorized(), 
                        "redirect": "follow" }
         
         const fetchs = [ fetch(urls.searchUser, init), fetch(urls.getTravel, init) ]
@@ -42,10 +40,7 @@ window.addEventListener('load', function getActiveTravels(){
 
         const urlToGetUserMembersOfTravel = `http://localhost:3333/embarques/viagem/ler?id_viagem=${urlParams.travel_id}&finalizada=false`
 
-        const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
-                          "Content-Type": "application/json" }
-
-        const init = { "headers": headers, 
+        const init = { "headers": gtHeaders.authorized(), 
                        "redirect": "follow" }
 
         fetch(urlToGetUserMembersOfTravel, init)
@@ -62,7 +57,7 @@ window.addEventListener("guestCardCancelButtonClick", function cancelInvitation(
 
         fetch(request.url, request.init)
                 .then(res => res.json())
-                .then(res => console.log(res))
+                .then(res => console.log(res.message))
 })
 
 window.addEventListener("guestCardInviteButtonClick", function inviteToTravel(e){
@@ -71,5 +66,5 @@ window.addEventListener("guestCardInviteButtonClick", function inviteToTravel(e)
 
         fetch(request.url, request.init)
                 .then(res => res.json())
-                .then(res => console.log(res))
+                .then(res => console.log(res.message))
 })

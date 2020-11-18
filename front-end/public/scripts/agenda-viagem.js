@@ -3,6 +3,7 @@ import { classToggler } from './utils/togglers.js';
 import urlParser from './modules/urlParser.js';
 import taskCards from './modules/taskCards.js';
 import getTravelTasks from './requests/getTravelTasks.js';
+import gtHeaders from './requests/gtHeaders.js'
 
 const membersLink = document.querySelector('a#link-membros');
 const bagLink = document.querySelector('a#link-mala');
@@ -214,7 +215,7 @@ let calendario = new Calendario('calendar');
 
 function fetchTarefas() {
 	
-	const request = getTravelTasks(travelId)
+	const request = getTravelTasks(gtHeaders.authorized(), travelId)
 
 	fetch(request.url, request.init)
 		.then(res => res.json())

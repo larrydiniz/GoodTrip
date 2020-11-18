@@ -107,7 +107,10 @@ public class UsuarioService {
         	.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
         
         String cryptPassword = passwordEncoder.encode(user.getSenha());
+        
 		user.setSenha(cryptPassword);
+		
+		user.setFoto("../../back-end/goodtrip/images/default_user_image.png");
 		
 		return usuarioServiceImpl.salvar(user);
 	}

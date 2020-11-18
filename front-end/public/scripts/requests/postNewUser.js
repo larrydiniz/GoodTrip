@@ -1,10 +1,10 @@
-export default function postNewtravel(authorizedHeader, requestBody){
+export default function postNewUser(commomHeader, requestBody){
 
-    const url = `http://localhost:3333/viagens/escrever`
+    const url = `http://localhost:3333/usuarios/escrever`
 
     const body = JSON.stringify(requestBody)
 
-    const init = { "headers": authorizedHeader,
+    const init = { "headers": commomHeader,
                    "method": "POST", 
                    "body": body,
                    "mode": "cors",

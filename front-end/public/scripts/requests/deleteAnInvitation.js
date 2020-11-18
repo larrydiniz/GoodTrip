@@ -1,10 +1,7 @@
-export default function deleteAnInvitation(requestParam){
+export default function deleteAnInvitation(authorizedHeader, requestParam){
     const url = `http://localhost:3333/embarques/apagar?id=${requestParam}`
 
-    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
-                      "Content-Type": "application/json" }
-
-    const init = { "headers": headers, 
+    const init = { "headers": authorizedHeader, 
                    "method": "DELETE", 
                    "redirect": "follow" }
 

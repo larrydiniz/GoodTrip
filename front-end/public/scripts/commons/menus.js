@@ -1,5 +1,6 @@
 import menu from "../modules/menu.js"
 import getUser from "../requests/getUser.js"
+import gtHeaders from "../requests/gtHeaders.js";
 import { classToggler} from "../utils/togglers.js"
 
 const mnu = menu(classToggler);
@@ -24,7 +25,7 @@ window.addEventListener('load', () => {
 
     mnu.addOpenedListeners({ menu: menuMobile });
 
-    const request = getUser()
+    const request = getUser(gtHeaders.authorized())
 
     fetch(request.url, request.init)
         .then(res => res.json())

@@ -1,6 +1,7 @@
-import postNewtravel from "./requests/postNewTravel.js";
+import postNewtravel from "./requests/postNewTravel.js"
 import imagePreviewer from "./utils/imagePreviewer.js"
 import postUploadTravelImage from "./requests/postUploadTravelImage.js"
+import gtHeaders from "./requests/gtHeaders.js"
 
 const inputTitle = document.querySelector('input#viagem-destino');
 const inputInit = document.querySelector('input#data-inicio');
@@ -18,20 +19,19 @@ sendButton.addEventListener('click', () => {
 
     const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc ), { "usuario": user, "finalizada": false });
 
-    const request = postNewtravel(requestBody)
+    const request = postNewtravel(gtHeaders.authorized(), requestBody)
 
     fetch(request.url, request.init)
-})
+        .then(res => res.json())
+        .then(json => {
 
-sendButton.addEventListener('click', () => {
+            const formdata = new FormData();
+            
+            formdata.append("imagem", inputImg.files[0]);
+            
+            return postUploadTravelImage(json.id, formdata);
 
-    const formdata = new FormData();
-
-    formdata.append("imagem", inputImg.files[0]);
-
-    const requestBody = formdata;
-
-    const request = postUploadTravelImage(requestBody)
-
-    fetch(request.url, request.init)
+        })
+        .then(request => fetch(request.url, request.init))
+        .catch(e => console.log(e))
 })

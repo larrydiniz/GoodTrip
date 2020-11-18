@@ -1,5 +1,7 @@
 import dataParser from "../modules/dataParser.js"
 import urlParser from "../modules/urlParser.js"
+import getTravel from "../requests/getTravel.js";
+import gtHeaders from "../requests/gtHeaders.js";
 
 const dtp = dataParser();
 const urlp = urlParser();
@@ -17,15 +19,9 @@ function setTravelHeaderAttributes(nameField, dateField, imageField,data){
 }
 window.addEventListener('load', () => {
 
-    const url = `http://localhost:3333/viagens/ler/${travelId}`
+    const request = getTravel(gtHeaders.authorized(), travelId)
 
-    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
-                      "Content-Type": "application/json" }
-
-    const init = { "headers": headers, 
-                   "redirect": "follow" }
-
-    fetch(url, init)
+    fetch(request.url, request.init)
         .then(res => res.json())
         .then(json => setTravelHeaderAttributes(travelTitleField, travelDateField, travelImageField, dtp.dateParser(json)))
 })

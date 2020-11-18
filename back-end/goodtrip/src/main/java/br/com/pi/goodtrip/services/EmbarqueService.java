@@ -50,13 +50,22 @@ public class EmbarqueService {
 		int userId = embarque.getUsuario().getId();
 		int travelId = embarque.getViagem().getId();
 		
-		List<Embarque> list = embarqueRepo.selectInvitationByUserIdAndTravelId(userId, travelId);
+		Optional.of(userId)
+		        .filter(u -> u != embarque.getAutor().getId())
+		        .orElseThrow(() -> new IllegalArgumentException("Não é possível convidar a si mesmo"));
 		
-		Optional.of(list)
-				.filter(l -> l.isEmpty())
-				.orElseThrow(() -> new IllegalArgumentException("Embarque já existe"));
+		Optional<Embarque> invite = embarqueRepo.selectInvitationByUserIdAndTravelId(userId, travelId)
+								   .stream()
+								   .findFirst();
 		
-		return embarqueRepo.save(embarque);
+		if(invite.isEmpty()) {
+			
+			return embarqueRepo.save(embarque);
+		}
+		else {
+			
+			throw new IllegalArgumentException("Embarque já existe");
+		}
 	}
 	
 	public Embarque acceptOrNotAnInvitation(int id, Embarque resposta) throws NoSuchElementException{

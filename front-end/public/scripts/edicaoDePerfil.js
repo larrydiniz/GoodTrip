@@ -1,6 +1,7 @@
 import updateUserInfos from "./requests/updateUserInfos.js"
 import imagePreviewer from "./utils/imagePreviewer.js"
 import postUploadUserImage from "./requests/postUploadUserImage.js"
+import gtHeaders from "./requests/gtHeaders.js";
 
 const navMenu = document.getElementById("menu");
 const inputUsername = document.querySelector('input#edicao_nome_usuario');
@@ -16,7 +17,7 @@ sendButton.addEventListener('click', () => {
 
     const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc), {});
 
-    const request = updateUserInfos(requestBody)
+    const request = updateUserInfos(gtHeaders.authorized(), requestBody)
 
     fetch(request.url, request.init)
         .then(res => res.json())

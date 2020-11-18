@@ -1,6 +1,6 @@
-export default function postUploadtravelImage(requestBody){
+export default function postUploadtravelImage(id, requestBody){
 
-    const url = `http://localhost:3333/viagens/upload/imagem/4`
+    const url = `http://localhost:3333/viagens/upload/imagem/${id}`
 
     const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN") }
 

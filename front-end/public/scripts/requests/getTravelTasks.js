@@ -1,11 +1,8 @@
-export default function gettravelTasks(travelId){
+export default function gettravelTasks(authorizedHeader, id){
 
-    const url = `http://localhost:3333/tarefas/viagem/ler?id_viagem=${travelId}&finalizada=false`
+    const url = `http://localhost:3333/tarefas/viagem/ler?id_viagem=${id}&finalizada=false`
 
-    const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
-                      "Content-Type": "application/json" }
-
-    const init = { "headers": headers, 
+    const init = { "headers": authorizedHeader, 
                    "redirect": "follow" }
     
     return { "url": url,

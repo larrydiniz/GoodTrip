@@ -1,5 +1,6 @@
 import viewTaskCard from "./modules/viewTaskCard.js"
 import urlParser from "./modules/urlParser.js"
+import Opcional from "./modules/Optional.js"
 
 const urlp = urlParser();
 
@@ -19,9 +20,7 @@ window.addEventListener('load', function getTask(){
 
     fetch(urlToGetTaskById, init)
         .then(res => res.json())
-        .then(json => {
-
-            if(json.message) return console.log(json)
+        .then(json => { 
 
             const card = viewTaskCard().buildCard(templateTarefa, json);
             blocoTarefa.appendChild(card);
