@@ -111,6 +111,14 @@ li #entrar{
     border: var(--azul) solid 1px;
 }
 
+button#cadastrar:hover{
+    border: #004a58 2px solid;
+}
+
+button#entrar:hover{
+    background-color: #004a58;
+}
+
 /************ Divs ************/
 main {
     background-color: #ffffff;
@@ -222,6 +230,10 @@ main {
         color: var(--azul);
     }
 
+    a.login.esqueci:hover{
+        color:  #003d49;
+    }
+
     button.login.fechar, button.cadastro.fechar{
         font-size: 20px;
         font-weight: 700;
@@ -273,6 +285,14 @@ main {
 
     button.login.google > p{
         margin: 0 0 0 10px;
+    }
+
+    button.login.google:hover{
+        border: #004a58 2px solid;
+    }
+
+    button.login.entrar:hover, button.cadastro.cadastrar:hover{
+        background-color: #004a58;
     }
 
     div.login, div.cadastro{
@@ -330,13 +350,12 @@ main {
     }
 
     div.senha{
-        margin: 5% 0;
+        margin: 0 0 20px 0;
         min-height: 55px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-radius: 8px;
-        padding: 0 15px;
         font-size: 14px;
         background-color: var(--cinza-fundo-form);
         border: var(--cinza-bordas) solid 1px;
@@ -357,6 +376,10 @@ main {
         width: 30px;
         height: 25px;
     }
+
+    div.visualizar{
+        padding-right: 15px;
+    }
     
     button:focus{
         box-shadow: 0 0 0 0;
@@ -372,6 +395,11 @@ main {
         font-size: 16px;
         margin: 5px 0 8px 0;
         font-weight: 700;
+    }
+    
+    input:focus{
+        box-shadow: 0 0 0 0;
+        outline: 0;
     }
 
 /************ Responsividade ************/
