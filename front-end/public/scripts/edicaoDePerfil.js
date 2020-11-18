@@ -15,13 +15,13 @@ inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox:
 
 sendButton.addEventListener('click', () => {
 
-    const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc), {});
-
-    const request = updateUserInfos(gtHeaders.authorized(), requestBody)
-
-    fetch(request.url, request.init)
-        .then(res => res.json())
-        .then(res => console.log(res))
+    Promise.resolve(inputsList)
+           .then(inputs => inputs.map(input => input.value != undefined && input.value != null && input.value != "" && input.value.length > 2? input: (input.value = "__inalterado__", input)))
+           .then(inputs => inputs.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, currentInput.value = "", acc), {}))
+           .then(body => updateUserInfos(gtHeaders.authorized(), body))
+           .then(request => fetch(request.url, request.init))
+           .then(res => res.json())
+           .then(res => console.log(res))
 })
 
 sendButton.addEventListener('click', () => {
@@ -40,6 +40,6 @@ sendButton.addEventListener('click', () => {
 navMenu.addEventListener("menuWasBuilded", e => {
 
     imgPreview.setAttribute('src', e.detail.foto)
-    inputName.setAttribute('value', e.detail.nome)
-    inputUsername.setAttribute('value', e.detail.username)
+    inputName.setAttribute('placeholder', e.detail.nome)
+    inputUsername.setAttribute('placeholder', e.detail.username)
 })

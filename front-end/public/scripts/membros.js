@@ -53,7 +53,7 @@ window.addEventListener('load', function getActiveTravels(){
 
 window.addEventListener("guestCardCancelButtonClick", function cancelInvitation(e){
 
-        const request = deleteAnInvitation(e.detail)
+        const request = deleteAnInvitation(gtHeaders.authorized(), e.detail)
 
         fetch(request.url, request.init)
                 .then(res => res.json())
@@ -62,7 +62,7 @@ window.addEventListener("guestCardCancelButtonClick", function cancelInvitation(
 
 window.addEventListener("guestCardInviteButtonClick", function inviteToTravel(e){
 
-        const request = postNewMember(e.detail)
+        const request = postNewMember(gtHeaders.authorized(), e.detail)
 
         fetch(request.url, request.init)
                 .then(res => res.json())
