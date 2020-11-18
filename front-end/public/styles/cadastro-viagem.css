@@ -56,8 +56,8 @@ div.data, .imagem{
     color: var(--fonte-normal);
 }
 
-.data #data{
-    width: 40%;
+.data #data-termino, #data-inicio{
+    width: 50%;
     height: 55px;  
     color: var(--azul);
     background-color: transparent;

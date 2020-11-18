@@ -1,5 +1,7 @@
 import passwordVisibility from './modules/passwordVisibility.js'
 import { typeToggler, sourceToggler } from './utils/togglers.js'
+import updatePassword from "./requests/updatePassword.js"
+import gtHeaders from "./requests/gtHeaders.js"
 
 const actualPasswordInput = document.querySelector("input#senha-atual");
 const actualPasswordButton = document.querySelector("div#senha-atual-visibilidade");
@@ -17,8 +19,28 @@ const newPasswordField = pv.defineField(newPasswordButton, newPasswordInput);
 const confirmPasswordField = pv.defineField(confirmPasswordButton, confirmPasswordInput);
 const passwordFieldsList = [actualPasswordField, newPasswordField, confirmPasswordField];
 
+const saveBtn = document.getElementById('salvar-senha');
+const inputsList = [actualPasswordInput, newPasswordInput, confirmPasswordInput];
+
 window.addEventListener('load', () => {
 
 	passwordFieldsList.forEach(field => (pv.addTypeListeners(field), pv.addSourceListeners(field)));
 
+})
+
+saveBtn.addEventListener('click', () => {
+
+    const user = { "id": localStorage.getItem("USER_ID") }
+
+    const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc ), {"usuario": user});
+
+	console.log(inputsList)
+
+    const request = updatePassword(gtHeaders.authorized(), requestBody)
+
+    fetch(request.url, request.init)
+        .then(res => res.json())
+        .then(json => console.log(json))
+        .then(request => fetch(request.url, request.init))
+        .catch(e => console.log(e))
 })

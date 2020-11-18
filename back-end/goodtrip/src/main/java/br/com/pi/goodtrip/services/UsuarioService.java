@@ -73,6 +73,16 @@ public class UsuarioService {
 		                .filter(n -> !n.contains("  "));
 	}
 	
+	private Optional<String> hasValidPassword(Usuario user){
+		return  Optional.of(user.getSenha())
+		                .filter(n -> n.length() > 5);
+	}
+	
+	private Optional<String> hasValidPasswordUpdate(Senha senha){
+		return  Optional.of(senha.getNova_senha())
+		                .filter(n -> n.length() > 5);
+	}
+	
 	public Usuario readUserById(int id) throws NoSuchElementException{
 		Usuario foundUser = 
 				 repository.findById(id)
@@ -105,6 +115,9 @@ public class UsuarioService {
         
         hasValidEmailDomain(user)
         	.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
+        
+        hasValidPassword(user)
+    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
         
         String cryptPassword = passwordEncoder.encode(user.getSenha());
         
@@ -152,9 +165,12 @@ public class UsuarioService {
 	
 	public Usuario editUserPassword(int id, Senha senha) {
 		Usuario user = repository.findById(id)
-				                      .orElseThrow(() -> new NoSuchElementException());
+				                      .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
 		boolean senhasBatem = passwordEncoder.matches(senha.getSenha_atual(), user.getSenha());
+		
+		hasValidPasswordUpdate(senha)
+    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
 		
 		if(senhasBatem) {
 			
