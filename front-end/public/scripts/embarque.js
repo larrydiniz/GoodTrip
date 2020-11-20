@@ -15,7 +15,8 @@ window.addEventListener('load', () => {
 
     fetch(request.url, request.init)
         .then(res => res.json())
-        .then(json => Array.isArray(json)? json.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser({ ...data, ...data.viagem }))): false)
+        .then(json => Array.isArray(json)? json: false)
+        .then(json => json? json.map(data => inttn.buildCard(templateInvitationCard, dtp.dateParser({ ...data, ...data.viagem }))): false)
         .then(cards => cards? cards.forEach(card => invitationsBlock.appendChild(card)): invitationsBlock.innerText = "Nenhum convite..")
         .catch(e => console.log(e))
 })
