@@ -19,17 +19,17 @@ VALUES  ('2021-01-07', '09:00', 'Café da Manhã', 'Café da manhã no grande ho
 INSERT INTO embarques (fk_id_viagem, fk_id_usuario, fk_id_autor)
 VALUES (3, 1, 2);
 
-INSERT INTO itens (nome, categoria, fk_id_usuario, fk_id_viagem)
-VALUES  ('Escova de Dente', 0, 1, 1),
-		('Toalha', 1, 1, 1),
-        ('Pasta de Dente', 0, 1, 1),
-        ('Escova de Dente', 0, 2, 3),
-        ('Pasta de Dente', 0, 2, 3),
-        ('4 Camisetas', 1, 1, 1),
-        ('3 Calças', 1, 1, 2),
-        ('Pilhas', 2, 1, 1),
-        ('Câmera fotográfica', 3, 1, 1),
-        ('Cabo USB', 3, 1, 1)
+INSERT INTO itens (nome, categoria, pessoal, fk_id_usuario, fk_id_viagem)
+VALUES  ('Escova de Dente', 0, 1, 1, 1),
+		('Toalha', 1, 1, 1, 1),
+        ('Pasta de Dente', 0, 1, 1, 1),
+        ('Escova de Dente', 0, 1, 2, 3),
+        ('Pasta de Dente', 0, 1, 2, 3),
+        ('4 Camisetas', 1, 1, 1, 1),
+        ('3 Calças', 1, 1, 1, 2),
+        ('Pilhas', 2, 1, 1, 1),
+        ('Câmera fotográfica', 3, 0, 1, 1),
+        ('Cabo USB', 3, 0, 1, 1);
 
 
 

@@ -29,14 +29,12 @@ public class ItemService {
 	}
 	
 	public Item editItem(int id, Item newItem) throws NoSuchElementException, IllegalArgumentException{
-		String newName = 
-				hasValidName(newItem)
-						.orElseThrow(() -> new IllegalArgumentException("Nome de item não pode ser vazio"));
 		
 		Item toUpdate = 
 				itemRepo.findById(id)
-						.map(item -> item.setNomeThenReturnSelf(newName))
 						.orElseThrow(() -> new NoSuchElementException("Item não encontrado"));
+		
+		toUpdate.setChecado(newItem.getChecado());
 		
 		return itemRepo.save(toUpdate);
 	}
@@ -50,12 +48,14 @@ public class ItemService {
 		
 		List<Item> itens = itemRepo.readItensByCategoryAndTravelId(travel, verifiedCategory);
 		
-		List<Item> verifiedListItem =
-					Optional.of(itens)
-					        .filter(list -> !list.isEmpty())
-					        .orElseThrow(() -> new NoSuchElementException("Itens de viagem não encontrados"));
+		return itens;
+	}
+	
+	public List<Item> readAllByTravel(int travel){
 		
-		return verifiedListItem;
+		List<Item> itens = itemRepo.readItensByTravelId(travel);
+		
+		return itens;
 	}
 	
 	public Item deleteItemById(int id) throws NoSuchElementException{

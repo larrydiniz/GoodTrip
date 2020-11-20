@@ -45,7 +45,8 @@ window.addEventListener('load', function getActiveTravels(){
 
         fetch(urlToGetUserMembersOfTravel, init)
                 .then(res => res.json())
-                .then(json => Array.isArray(json)? json.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]}): false)
+                .then(json => Array.isArray(json)? json: false)
+                .then(json => json? json.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]}): false)
                 .then(embarques => embarques? (embarques.aceitos.map(data => mmbc.buildMemberCard(templateMemberCard, data)).forEach(card => membersBlock.appendChild(card)), embarques): (membersBlock.innerText = "Nenhum membro", false))
                 .then(embarques => embarques? embarques.pendentes.map(data => mmbc.buildGuestCard(templateGuestCard, data)).forEach(card => guestsBlock.appendChild(card)): guestsBlock.innerText = "Nenhum convite")
                 .catch(e => console.log(e))
@@ -53,7 +54,7 @@ window.addEventListener('load', function getActiveTravels(){
 
 window.addEventListener("guestCardCancelButtonClick", function cancelInvitation(e){
 
-        const request = deleteAnInvitation(e.detail)
+        const request = deleteAnInvitation(gtHeaders.authorized(), e.detail)
 
         fetch(request.url, request.init)
                 .then(res => res.json())
@@ -62,7 +63,7 @@ window.addEventListener("guestCardCancelButtonClick", function cancelInvitation(
 
 window.addEventListener("guestCardInviteButtonClick", function inviteToTravel(e){
 
-        const request = postNewMember(e.detail)
+        const request = postNewMember(gtHeaders.authorized(), e.detail)
 
         fetch(request.url, request.init)
                 .then(res => res.json())

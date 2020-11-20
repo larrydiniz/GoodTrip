@@ -134,16 +134,25 @@ public class UsuarioService {
 				 repository.findById(id)
 					  	   .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
-		String verifiedUsername =
-				hasValidUsername(data)
+		if(!(data.getNome().equals("__inalterado__"))) {
+			
+			String verifiedName = 
+					hasValidName(data)
+					.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
+			
+			toUpdate.setNome(verifiedName);
+		}
+		
+		if(!(data.getUsername().equals("__inalterado__"))) {
+			
+			String verifiedUsername =
+					hasValidUsername(data)
 					.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
 			
-		String verifiedName = 
-				hasValidName(data)
-					.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
+			
+			toUpdate.setUsername(verifiedUsername);
+		}
 		
-		toUpdate.setNome(verifiedName);
-		toUpdate.setUsername(verifiedUsername);
 		
 		return repository.save(toUpdate);
 	}
