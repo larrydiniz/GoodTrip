@@ -18,7 +18,7 @@ const diaSemana = document.getElementById('dia-semana');
 const inicio = "2021-01-07";
 const termino = "2021-01-20";
 var selecionado;
-var dia;
+var dia = inicio;
 
 class Calendario {
 	constructor(id){
@@ -215,7 +215,7 @@ let calendario = new Calendario('calendar');
 
 function fetchTarefas() {
 	
-	const request = getTravelTasks(gtHeaders.authorized(), travelId)
+	const request = getTravelTasks(gtHeaders.authorized(), dia, travelId)
 
 	fetch(request.url, request.init)
 		.then(res => res.json())
@@ -235,7 +235,7 @@ calendario.getElement().addEventListener('change', e => {
 
 	blocoTarefas.innerHTML = '';
 	/* console.log("id=" + travelId) */
-	console.log(dia)
+	/*console.log(dia)*/
 	/* console.log("url =" + urlp.mapVariables(location.href)); */
 	fetchTarefas();
 })
