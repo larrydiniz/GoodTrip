@@ -3,7 +3,9 @@ import { classToggler } from './utils/togglers.js';
 import urlParser from './modules/urlParser.js';
 import taskCards from './modules/taskCards.js';
 import getTravelTasks from './requests/getTravelTasks.js';
+import getTravel from "./requests/getTravel.js";
 import gtHeaders from './requests/gtHeaders.js'
+
 
 const membersLink = document.querySelector('a#link-membros');
 const bagLink = document.querySelector('a#link-mala');
@@ -12,25 +14,50 @@ const configNav = document.querySelector('nav#config');
 const adicionar = document.querySelector('.btn-adicionar');
 const diaSemana = document.getElementById('dia-semana');
 
+/* window.addEventListener('load', () => {
 
+    const request = getTravel(gtHeaders.authorized(), travelId)
+
+	fetch(request.url, request.init)
+    .then(res => res.json())
+    .then(data => {
+		var inicio = `${data.inicio}`;
+		var termino = `${data.termino}`;
+
+		console.log("inicio: " +inicio)
+		console.log("termino: " +termino)
+	});
+}) */
+
+/* function passarPeriodo(data){
+	var inicio = `${data.inicio}`;
+	var termino = `${data.termino}`;
+
+	console.log("inicio: " +inicio)
+	console.log("termino: " +termino)
+} */
 
 /********************************************* calendário *******************************************************/
-const inicio = "2021-01-07";
-const termino = "2021-01-20";
+var inicio;
+var termino;
+
 var selecionado;
 var dia = inicio;
 
-class Calendario {
+console.log("inicio var: " +inicio)
+console.log("termino var: " +termino)
+
+	class Calendario {
 	constructor(id){
 		const dataInicial = 
-		this.cells = [];
-		this.dataSelecionada = null;
-		this.calendar = document.getElementById(id);
-		this.mostrarTemplate();
-		this.gridBody = this.calendar.querySelector('.grid#body');
-		this.selectedDay = document.getElementById('dia-numero');
-		this.selectedDayWeek = document.getElementById('dia-semana')
-		this.mostrarDias();	
+			this.cells = [];
+			this.dataSelecionada = null;
+			this.calendar = document.getElementById(id);
+			this.mostrarTemplate();
+			this.gridBody = this.calendar.querySelector('.grid#body');
+			this.selectedDay = document.getElementById('dia-numero');
+			this.selectedDayWeek = document.getElementById('dia-semana')
+			this.mostrarDias();	
 	}
 
 	mostrarTemplate() {
@@ -192,7 +219,6 @@ class Calendario {
 		return this.diaSelecionado;
 	}
 }
-
 	
 /************************************************ MAIN *****************************************************/
 const mnu = menu(classToggler);
@@ -211,7 +237,19 @@ const templateTarefas = document.getElementById('t-tarefa');
 
 const viagem = location.href.split("?")[1];
 
-let calendario = new Calendario('calendar');
+var calendario = new Calendario('calendar');
+
+window.addEventListener('load', () => {
+	const request = getTravel(gtHeaders.authorized(), travelId)
+	fetch(request.url, request.init)
+		.then(res => res.json())
+		.then(data => {
+			console.log("CHEGUEI AQUI ")
+			inicio = `${data.inicio}`
+			termino = `${data.termino}`
+			calendario = new Calendario('calendar');
+		});
+});
 
 function fetchTarefas() {
 	
@@ -223,7 +261,6 @@ function fetchTarefas() {
 		.then(cards => cards? cards.forEach(card => blocoTarefas.appendChild(card)): blocoTarefas.innerText = "Nenhuma tarefa..." )
 		
 }
-
 
 calendario.getElement().addEventListener('change', e => {
 	dia = calendario.value().format('YYYY-MM-DD');
@@ -239,7 +276,6 @@ calendario.getElement().addEventListener('change', e => {
 	/* console.log("url =" + urlp.mapVariables(location.href)); */
 	fetchTarefas();
 })
-
 
 membersLink.href += `?travel_id=${travelId}`;
 bagLink.href += `?travel_id=${travelId}`;
