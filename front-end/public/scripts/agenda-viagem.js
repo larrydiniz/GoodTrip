@@ -14,40 +14,13 @@ const configNav = document.querySelector('nav#config');
 const adicionar = document.querySelector('.btn-adicionar');
 const diaSemana = document.getElementById('dia-semana');
 
-/* window.addEventListener('load', () => {
-
-    const request = getTravel(gtHeaders.authorized(), travelId)
-
-	fetch(request.url, request.init)
-    .then(res => res.json())
-    .then(data => {
-		var inicio = `${data.inicio}`;
-		var termino = `${data.termino}`;
-
-		console.log("inicio: " +inicio)
-		console.log("termino: " +termino)
-	});
-}) */
-
-/* function passarPeriodo(data){
-	var inicio = `${data.inicio}`;
-	var termino = `${data.termino}`;
-
-	console.log("inicio: " +inicio)
-	console.log("termino: " +termino)
-} */
-
 /********************************************* calendário *******************************************************/
 var inicio;
 var termino;
-
 var selecionado;
 var dia = inicio;
 
-console.log("inicio var: " +inicio)
-console.log("termino var: " +termino)
-
-	class Calendario {
+class Calendario {
 	constructor(id){
 		const dataInicial = 
 			this.cells = [];
