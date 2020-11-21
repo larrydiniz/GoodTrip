@@ -30,7 +30,14 @@ class Calendario {
 			this.gridBody = this.calendar.querySelector('.grid#body');
 			this.selectedDay = document.getElementById('dia-numero');
 			this.selectedDayWeek = document.getElementById('dia-semana')
-			this.mostrarDias();	
+			this.verificarData();	
+	}
+
+	verificarData(){
+		if (inicio == undefined){
+			return;
+		} 
+		this.mostrarDias();
 	}
 
 	mostrarTemplate() {
