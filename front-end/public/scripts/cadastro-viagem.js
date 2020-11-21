@@ -2,6 +2,7 @@ import postNewtravel from "./requests/postNewTravel.js"
 import imagePreviewer from "./utils/imagePreviewer.js"
 import postUploadTravelImage from "./requests/postUploadTravelImage.js"
 import gtHeaders from "./requests/gtHeaders.js"
+import Inputs from "./modules/Inputs.js"
 
 const inputTitle = document.querySelector('input#viagem-destino');
 const inputInit = document.querySelector('input#data-inicio');
@@ -17,7 +18,7 @@ sendButton.addEventListener('click', () => {
 
     const user = { "id": localStorage.getItem("USER_ID") }
 
-    const requestBody = inputsList.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, acc ), { "usuario": user, "finalizada": false });
+    const requestBody = inputsList.reduce(Inputs.reduceByInputName, { "usuario": user, "finalizada": false });
 
     const request = postNewtravel(gtHeaders.authorized(), requestBody)
 

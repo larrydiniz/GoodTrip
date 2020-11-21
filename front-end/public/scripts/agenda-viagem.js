@@ -4,6 +4,7 @@ import urlParser from './modules/urlParser.js';
 import taskCards from './modules/taskCards.js';
 import getTravelTasks from './requests/getTravelTasks.js';
 import gtHeaders from './requests/gtHeaders.js'
+import Optional from './modules/Optional.js';
 
 const membersLink = document.querySelector('a#link-membros');
 const bagLink = document.querySelector('a#link-mala');
@@ -219,11 +220,17 @@ function fetchTarefas() {
 
 	fetch(request.url, request.init)
 		.then(res => res.json())
-		.then(json => Array.isArray(json)? json.map(tarefa => taskCards().buildCard(templateTarefas, tarefa)): false)
-		.then(cards => cards? cards.forEach(card => blocoTarefas.appendChild(card)): blocoTarefas.innerText = "Nenhuma tarefa..." )
-		
+		.then(json => {
+			
+			const toAppendTasksCards = Optional.of(json)
+											   .filter(json => Array.isArray(json))
+											   .flatMap(tarefa => taskCards().buildCard(templateTarefas, tarefa))
+											   .flatMap(card => blocoTarefas.appendChild(card))
+											   .getOrElse(() => { throw new Error("Resposta do não é uma lista de tarefas")})
+			
+		})
+		.catch(e => console.log(e))
 }
-
 
 calendario.getElement().addEventListener('change', e => {
 	dia = calendario.value().format('YYYY-MM-DD');

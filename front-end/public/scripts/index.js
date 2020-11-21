@@ -79,13 +79,15 @@ loginButton.addEventListener('click', () => {
 
 registerButton.addEventListener('click', () => {
 
+	const password = Optional.of(passwordRegisterInput.value)
+	                         .filter(password => password === passwordConfirmInput.value)
+	                         .getOrElse(() => { throw new Error("Senhas não são iguais")})
+
 	const requestBody = { "nome": registerName.value,
 						  "username": "@" + registerUsername.value,
 						  "email": registerEmail.value,
 						  "ativo": true,
-						  "senha": Optional.of(passwordRegisterInput.value)
-										   .filter(password => password === passwordConfirmInput.value)
-										   .getOrElse(() => { throw new Error("Senhas não são iguais")}) }
+						  "senha": password }
 
 	const request = postNewUser( gtHeaders.commom(), requestBody)
 

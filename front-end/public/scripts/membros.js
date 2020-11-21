@@ -1,5 +1,7 @@
 import membersCards from "./modules/membersCards.js"
 import urlParser from "./modules/urlParser.js"
+import Fork from "./modules/Fork.js"
+import Optional from "./modules/Optional.js"
 import deleteAnInvitation from "./requests/deleteAnInvitation.js";
 import gtHeaders from "./requests/gtHeaders.js";
 import postNewMember from "./requests/postNewMember.js";
@@ -45,10 +47,21 @@ window.addEventListener('load', function getActiveTravels(){
 
         fetch(urlToGetUserMembersOfTravel, init)
                 .then(res => res.json())
-                .then(json => Array.isArray(json)? json: false)
-                .then(json => json? json.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]}): false)
-                .then(embarques => embarques? (embarques.aceitos.map(data => mmbc.buildMemberCard(templateMemberCard, data)).forEach(card => membersBlock.appendChild(card)), embarques): (membersBlock.innerText = "Nenhum membro", false))
-                .then(embarques => embarques? embarques.pendentes.map(data => mmbc.buildGuestCard(templateGuestCard, data)).forEach(card => guestsBlock.appendChild(card)): guestsBlock.innerText = "Nenhum convite")
+                .then(json => {
+                        const fork = Fork.of(json)
+                                         .between("aceitos", "pendentes")
+                                         .flatReduce(curr => curr.aceito)
+ 
+                        const toAppendMembersCards = Optional.of(fork.aceitos)
+                                                             .flatMap(data => mmbc.buildMemberCard(templateMemberCard, data))
+                                                             .flatMap(card => membersBlock.appendChild(card))
+                                                             .getOrElse(() => membersBlock.innerText = "Nenhum membro")
+ 
+                        const toAppendGuestsCards = Optional.of(fork.pendentes)
+                                                            .flatMap(data => mmbc.buildGuestCard(templateGuestCard, data))
+                                                            .flatMap(card => guestsBlock.appendChild(card))
+                                                            .getOrElse(() => guestsBlock.innerText = "Nenhum convite")
+                })
                 .catch(e => console.log(e))
 })
 
