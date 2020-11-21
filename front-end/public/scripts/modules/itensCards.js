@@ -2,16 +2,32 @@ export default function itensCards(){
 
     return {
 
-        setCheckboxAttributes: function( identity, checkbox, label, value){
+        setCheckboxAttributes: function( identity, checkbox, label, data){
 
-            identity.setAttribute('value', value);
-            checkbox.setAttribute('id', value);
-            label.setAttribute('for', value);
+            checkbox.onchange = function(){
+
+                const parent = this.parentElement
+          
+                const id = parent.children[0].value
+          
+                const body = { "checado": this.checked }
+          
+                window.dispatchEvent(new CustomEvent('checkboxChangeValue', { detail: { "id": id, "body": body }}))
+            }
+
+            if(data.checado){
+
+                checkbox.setAttribute('checked', data.checado);
+            }
+
+            identity.setAttribute('value', data.id);
+            checkbox.setAttribute('id', data.id);
+            label.setAttribute('for', data.id);
         },
 
         setClonePersonalAttributes: function({ identityField, categoryField, checkboxField, labelField}, data){
             
-            this.setCheckboxAttributes(identityField, checkboxField, labelField, data.id);
+            this.setCheckboxAttributes(identityField, checkboxField, labelField, data);
 
             categoryField.setAttribute('value', data.categoria);
             labelField.innerText = data.nome;
@@ -34,10 +50,10 @@ export default function itensCards(){
 
         setCloneCommonAttributes: function({ identityField, imageField, usernameField, checkboxField, labelField }, data){
 
-            this.setCheckboxAttributes(identityField, checkboxField, labelField, data.id);
+            this.setCheckboxAttributes(identityField, checkboxField, labelField, data);
             
             imageField.src = data.usuario.foto;
-            usernameField.innerText = data.usuario.user;
+            usernameField.innerText = data.usuario.username;
             labelField.innerText = data.nome;
         },
 

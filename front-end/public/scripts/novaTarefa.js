@@ -1,6 +1,7 @@
 import urlParser from './modules/urlParser.js'
 import taskCards from "./modules/taskCards.js"
 import postNewTask from "./requests/postNewTask.js"
+import gtHeaders from './requests/gtHeaders.js';
 
 const urlp = urlParser();
 
@@ -34,7 +35,7 @@ sendButton.addEventListener('click', () => {
 						   "usuario": { "id": localStorage.getItem("USER_ID") },
 						   "finalizada": false }
 
-    const request = postNewTask({...inputsValues, ...paramsValues})
+    const request = postNewTask(gtHeaders.authorized(), {...inputsValues, ...paramsValues})
 
 	fetch(request.url, request.init)
 		.then(res => res.json())

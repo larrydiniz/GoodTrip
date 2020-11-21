@@ -31,8 +31,13 @@ public class ItemController {
 	}
 	
 	@GetMapping("/viagem/ler")
-	public List<Item> lerItensDeCategoriaEViagem(@RequestParam int viagem, int categoria){
-		return itemService.readByCategoryAndTravelId(viagem, categoria);
+	public List<Item> lerItensDeCategoriaEViagem(@RequestParam int travel_id, int category){
+		return itemService.readByCategoryAndTravelId(travel_id, category);
+	}
+	
+	@GetMapping("/viagem/todos/ler")
+	public List<Item> lerItensDeViagem(@RequestParam int travel_id){
+		return itemService.readAllByTravel(travel_id);
 	}
 	
 	@PostMapping("escrever")

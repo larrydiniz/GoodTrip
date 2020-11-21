@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -50,11 +51,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     .permitAll()
                 .antMatchers(HttpMethod.POST, "/usuarios/auth")
                     .permitAll()
-                .antMatchers("**/usuarios/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("**/viagens/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("**/itens/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("**/tarefas/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("**/embarques/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/usuarios/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/viagens/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/itens/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/tarefas/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/embarques/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
             .and()
                 .sessionManagement()
@@ -63,5 +64,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
         ;
     }
+    
+    @Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**")
+		.antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
+	}
 
 }

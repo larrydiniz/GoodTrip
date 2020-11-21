@@ -17,6 +17,8 @@ public interface ItemRepository extends JpaRepository<Item, Integer>{
 	
 	String selectItensByCategoryAndTravelId = "SELECT * FROM itens WHERE categoria=:category AND fk_id_viagem=:travel ";
 	
+	String selectByTravelId = "SELECT * FROM itens WHERE fk_id_viagem=:travel";
+	
 	@Modifying
 	@Transactional
 	@Query(value = deleteItenById, nativeQuery = true)
@@ -24,5 +26,8 @@ public interface ItemRepository extends JpaRepository<Item, Integer>{
 	
 	@Query(value = selectItensByCategoryAndTravelId, nativeQuery = true)
 	List<Item> readItensByCategoryAndTravelId(int travel, int category);
+	
+	@Query(value = selectByTravelId, nativeQuery = true)
+	List<Item> readItensByTravelId(int travel);
 	
 }

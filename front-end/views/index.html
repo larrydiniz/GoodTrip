@@ -22,13 +22,13 @@
                 <button class ="menu" id="entrar">Entrar</button>
             </li>
             <li>
-                <a href="#criar">Criar Viagens</a>
+                <a href="#criar">Planejar Viagens</a>
             </li>
             <li>
-                <a href="#compartilhar">Compartilhar com o Grupo</a>
+                <a href="#compartilhar">Compartilhar</a>
             </li>
             <li>
-                <a href="#conectar">Conectar com amigos</a>
+                <a href="#conectar">Embarcar com Amigos</a>
             </li>       
         </ul>
     </nav>
@@ -45,7 +45,7 @@
         <div class="compartilhar">
             <div class="compartilhar" id="imagem"> </div>
             <div class="compartilhar" id="texto">
-                <p>Compartilhe sua viagem com amigos, e planejem os roteiros juntos...</p>
+                <p>Compartilhe seus planos com os amigos, e crie uma agenda para a viagem...</p>
             </div>
             <div class="compartilhar" id="mockup"> </div>     
         </div>
@@ -54,7 +54,7 @@
         <div class="conectar">
             <div class="conectar" id="mockup"> </div>
             <div class="conectar" id="texto">
-                <p>Adicione amigos a sua lista, para criarem viagens juntos!</p>
+                <p>Embarque com seus amigos, para organizarem o roteiro juntos!</p>
             </div>
             <div class="conectar" id="imagem"> </div>
         </div>
@@ -120,9 +120,9 @@
         <p class="cadastro">cadastre-se usando seu endereço de e-mail</p>
 
         <form class="cadastro" method="post">
-            <input class="cadastro nome" type="text" name="nome" placeholder="Nome Completo">
-            <input class="cadastro usuario" type="text" name="usuario" placeholder="Nome de usuário">
-            <input class="cadastro email" type="email" name="email" placeholder="Digite seu email">
+            <input class="cadastro nome" type="text" name="nome"  id="cadastro-nome"placeholder="Nome Completo">
+            <input class="cadastro usuario" type="text" name="usuario" id="cadastro-usuario" placeholder="Nome de usuário">
+            <input class="cadastro email" type="email" name="email" id="cadastro-email" placeholder="Digite seu email">
 
             <div class="senha">
                 <input type="password" class="pass cadastro senha" id="cadastro-senha" name="senha" placeholder="Senha">
@@ -137,7 +137,7 @@
                 </div>
             </div>
         </form>
-        <button class="cadastro cadastrar">Cadastrar</button>
+        <button class="cadastro cadastrar" id="cadastro-cadastrar">Cadastrar</button>
     </div><!-- MODAL -->
     <div class="overlay"></div>
     <script src="../bundles/menus.bundle.js"></script>

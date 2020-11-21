@@ -17,27 +17,20 @@ export default function travelCards(){
 
         setMembersImages: function(membersBlock, members){
 
-            if(members.length){
+            membersBlock.classList.add('ativa');
 
-                console.log(members)
-
-                membersBlock.classList.add('ativa');
-
-                members.map(member => this.mapMemberImage(member.usuario.foto))
-                       .map(({ element, source }) => this.setMembersImagesAttributes(element, source))
-                       .forEach(image => membersBlock.appendChild(image))
-            }
+            members.map(member => this.mapMemberImage(member.usuario.foto))
+                   .map(({ element, source }) => this.setMembersImagesAttributes(element, source))
+                   .forEach(image => membersBlock.appendChild(image))
         },
 
-        setCloneCardAttributes: function({ imageField, titleField, dateField, linkField, identityField, categoryField, authorField }, data){
+        setCloneCardAttributes: function({ imageField, titleField, dateField, linkField, identityField}, data){
 
             imageField.style.backgroundImage = `url(${data.imagem})`;
             titleField.innerText = data.destino;
             dateField.innerText = data.month + "\n" + data.year;
             identityField.value = data.id;
-            // categoryField.children[data.categoria].classList.add("selecionado");
             linkField.href += `?travel_id=${data.id}`;
-            //authorField.innerText = data.autor.user;
         },
         
         mapCloneTravelCard: function(fragment){
@@ -46,9 +39,7 @@ export default function travelCards(){
             const travelTitle = travelCard.children[0].children[0];
             const travelMembers = travelCard.children[0].children[1];
             const travelDate = travelCard.children[0].children[2];
-            const travelId = travelCard.children[0].children[3]
-            const travelCategories = travelCard.children[0].children[4];
-            const travelAuthor = travelCard.children[0].children[5];
+            const travelId = travelCard.children[0].children[3];
         
             return {
                 "imageField": travelImage,
@@ -57,8 +48,6 @@ export default function travelCards(){
                 "dateField": travelDate,
                 "linkField": travelCard,
                 "identityField": travelId,
-                "categoryField": travelCategories,
-                "authorField": travelAuthor
             }
         },
 
@@ -68,7 +57,11 @@ export default function travelCards(){
             const mappedTravelCard = this.mapCloneTravelCard(clonedTravelCard);
             
             this.setCloneCardAttributes(mappedTravelCard, data);
-            this.setMembersImages(mappedTravelCard.membersField, data.embarques);
+
+            if(data.embarques.length){
+
+                this.setMembersImages(mappedTravelCard.membersField, data.embarques);
+            }
         
             return clonedTravelCard;
         }

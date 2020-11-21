@@ -1,6 +1,7 @@
 import membersCards from "./modules/membersCards.js"
 import urlParser from "./modules/urlParser.js"
 import deleteAnInvitation from "./requests/deleteAnInvitation.js";
+import gtHeaders from "./requests/gtHeaders.js";
 import postNewMember from "./requests/postNewMember.js";
 
 const mmbc = membersCards();
@@ -20,11 +21,8 @@ searchButton.addEventListener('click', function getUserAndTravelToMakeAnInvitati
 
         const urls = { "searchUser": `http://localhost:3333/usuarios/buscar?q=${searchInput.value}`,
                        "getTravel": `http://localhost:3333/viagens/ler/${urlParams.travel_id}` }
-
-        const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
-                          "Content-Type": "application/json" }
  
-        const init = { "headers": headers, 
+        const init = { "headers": gtHeaders.authorized(), 
                        "redirect": "follow" }
         
         const fetchs = [ fetch(urls.searchUser, init), fetch(urls.getTravel, init) ]
@@ -42,15 +40,13 @@ window.addEventListener('load', function getActiveTravels(){
 
         const urlToGetUserMembersOfTravel = `http://localhost:3333/embarques/viagem/ler?id_viagem=${urlParams.travel_id}&finalizada=false`
 
-        const headers = { "Authorization": localStorage.getItem("AUTHENTICATED_TOKEN"), 
-                          "Content-Type": "application/json" }
-
-        const init = { "headers": headers, 
+        const init = { "headers": gtHeaders.authorized(), 
                        "redirect": "follow" }
 
         fetch(urlToGetUserMembersOfTravel, init)
                 .then(res => res.json())
-                .then(json => Array.isArray(json)? json.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]}): false)
+                .then(json => Array.isArray(json)? json: false)
+                .then(json => json? json.reduce((acc, current) => current.aceito? (acc.aceitos.push(current), acc): (acc.pendentes.push(current), acc), {"aceitos":[], "pendentes":[]}): false)
                 .then(embarques => embarques? (embarques.aceitos.map(data => mmbc.buildMemberCard(templateMemberCard, data)).forEach(card => membersBlock.appendChild(card)), embarques): (membersBlock.innerText = "Nenhum membro", false))
                 .then(embarques => embarques? embarques.pendentes.map(data => mmbc.buildGuestCard(templateGuestCard, data)).forEach(card => guestsBlock.appendChild(card)): guestsBlock.innerText = "Nenhum convite")
                 .catch(e => console.log(e))
@@ -58,18 +54,18 @@ window.addEventListener('load', function getActiveTravels(){
 
 window.addEventListener("guestCardCancelButtonClick", function cancelInvitation(e){
 
-        const request = deleteAnInvitation(e.detail)
+        const request = deleteAnInvitation(gtHeaders.authorized(), e.detail)
 
         fetch(request.url, request.init)
                 .then(res => res.json())
-                .then(res => console.log(res))
+                .then(res => console.log(res.message))
 })
 
 window.addEventListener("guestCardInviteButtonClick", function inviteToTravel(e){
 
-        const request = postNewMember(e.detail)
+        const request = postNewMember(gtHeaders.authorized(), e.detail)
 
         fetch(request.url, request.init)
                 .then(res => res.json())
-                .then(res => console.log(res))
+                .then(res => console.log(res.message))
 })

@@ -1,4 +1,4 @@
-export default function postLogin(requestBody){
+export default function postLogin( commomHeader, requestBody){
 
     const url = "http://localhost:3333/usuarios/auth"
 
@@ -8,7 +8,7 @@ export default function postLogin(requestBody){
     
     var init = {
       "method": "POST",
-      "headers": headers,
+      "headers": commomHeader,
       "body": body,
       "redirect": 'follow'
     }
