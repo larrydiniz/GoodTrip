@@ -160,6 +160,8 @@ class Calendario {
 	diaSelecionado(){
 		let dias = this.calendar.querySelectorAll('.dia');
 
+		fetchTarefas();
+
 		dias.forEach(dia => {
 			dia.addEventListener('click', e => {
 				let target = e.target;
@@ -188,6 +190,8 @@ class Calendario {
 				this.calendar.dispatchEvent(new Event('change'));	
 				
 				/* console.log(this.cells[target.dataset.id].date.date()) */
+
+				fetchTarefas();
 			})
 		})
 	}
@@ -200,7 +204,8 @@ class Calendario {
 		return this.diaSelecionado;
 	}
 }
-	
+
+
 /************************************************ MAIN *****************************************************/
 const mnu = menu(classToggler);
 const urlp = urlParser();
@@ -225,7 +230,6 @@ window.addEventListener('load', () => {
 	fetch(request.url, request.init)
 		.then(res => res.json())
 		.then(data => {
-			console.log("CHEGUEI AQUI ")
 			inicio = `${data.inicio}`
 			termino = `${data.termino}`
 			calendario = new Calendario('calendar');
@@ -262,7 +266,7 @@ calendario.getElement().addEventListener('change', e => {
 	/* console.log("id=" + travelId) */
 	/*console.log(dia)*/
 	/* console.log("url =" + urlp.mapVariables(location.href)); */
-	fetchTarefas();
+	
 })
 
 membersLink.href += `?travel_id=${travelId}`;

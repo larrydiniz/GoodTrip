@@ -71,6 +71,17 @@ button:hover {
     width: 200px;
 }
 
+#erro p {
+    color: #e84242;
+    text-align: center;
+    font-size: 14px;
+}
+
+.swal-button {
+    background-color: #006478;
+    font-size: 12px;
+}
+
 @media (min-width: 800px){
     body{
         min-height: 800px;

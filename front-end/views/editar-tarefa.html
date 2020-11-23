@@ -93,7 +93,7 @@
             </div>
             <img class="imagem-viagem" src="">   
         </div>
-        <div id="criar-nova-tarefa"> <!--  method="post" -->
+        <div id="criar-nova-tarefa" style="margin: 0 auto;">
             <div class="agenda">
                 <div id="dia">
                     <!-- dia -->
@@ -192,6 +192,7 @@
                     </label>
                 <input type="number" name="custo" id="custo" placeholder="Custo">
             </div>
+            <div id="erro"></div>
             <button class="btn-salvar">
                 <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="23.5" cy="23.5" r="23.5" fill="#006478"/>
@@ -200,25 +201,7 @@
                 </svg>
             </button>
         </div>
-        <section class="tarefas">
-            <h3>Tarefas do dia</h3>
-            <div class="tarefas">
-                <!-- Adicionadas dinamicamente-->
-            </div>
-        </section>
     </main>
-
-    <!-- TEMPLATES -->
-    <template id="t-card-tarefa">
-        <div class="card-tarefa">
-            <div id="horario-tarefa">
-                <!-- hora -->
-             </div>
-             <div id="nome-tarefa">
-                 <!-- nome card -->
-             </div>              
-        </div>
-    </template>
     <script src="../bundles/menus.bundle.js"></script>
     <script src="../bundles/travelHeader.bundle.js"></script>
     <script src="../bundles/editarTarefa.bundle.js"></script>

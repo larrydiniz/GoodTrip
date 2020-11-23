@@ -3,6 +3,7 @@ import { typeToggler, sourceToggler } from './utils/togglers.js'
 import updatePassword from "./requests/updatePassword.js"
 import gtHeaders from "./requests/gtHeaders.js"
 import Inputs from './modules/Inputs.js';
+import swal from 'sweetalert';
 
 const actualPasswordInput = document.querySelector("input#senha-atual");
 const actualPasswordButton = document.querySelector("div#senha-atual-visibilidade");
@@ -10,8 +11,9 @@ const newPasswordInput = document.querySelector("input#nova-senha");
 const newPasswordButton = document.querySelector("div#nova-senha-visibilidade");
 const confirmPasswordInput = document.querySelector("input#confirmar-senha");
 const confirmPasswordButton = document.querySelector("div#confirmar-senha-visibilidade");
+const divErro = document.getElementById('erro');
 const passwordInputTypes = Object.defineProperties({}, { primary: { value: "password", writable: false} , secondary: { value: "text", writable: false }});
-const passwordIconSources = Object.defineProperties({}, { primary: { value: "../public/icons/olho-fechado.svg", writable: false} , secondary: { value: "../public/icons/olho-aberto.svg", writable: false }});
+const passwordIconSources = Object.defineProperties({}, { primary: { value: "../public/icons/olho-aberto.svg", writable: false} , secondary: { value: "../public/icons/olho-fechado.svg", writable: false }});
 
 const pv = passwordVisibility(typeToggler, sourceToggler, passwordInputTypes, passwordIconSources);
 
@@ -39,5 +41,15 @@ saveBtn.addEventListener('click', () => {
 
 	fetch(request.url, request.init)
 	.then(res => res.json())
-	.then(json => console.log(json))
+	.then(json => {
+		if(json.message !== undefined){
+			divErro.innerHTML = `<p>${json.message}</p>`;
+		} else {
+			swal ( "Senha Alterada com sucesso!" , { 
+				icon: "success",
+				buttons : false, 
+				timer : 2000 })
+			.then((value) => window.location.href = "listaDeViagem.html");
+		}
+	})
 })

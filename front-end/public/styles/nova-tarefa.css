@@ -175,10 +175,7 @@ section.tarefas{
     }
 
     section.tarefas{
-        overflow-y: auto;
         display: flex;
-        flex-direction: column;
-        align-items: center;
         width: 37%;
         height: 75%;
         border-left: var(--cinza-bordas) solid 1px;
@@ -199,8 +196,17 @@ section.tarefas{
         top: 130px;
     }
 
+    .div-tarefas{
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+    }
+
     div.card-tarefa{
-        width: 90%;
+        width: 80%;
         padding: 0 10px;
         height: 60px;
         margin-bottom: 20px;

@@ -194,7 +194,7 @@ public class UsuarioService {
 				
 			} else throw new IllegalArgumentException("As senhas não batem");
 			
-		} else throw new IllegalArgumentException("Senha inválida");
+		} else throw new IllegalArgumentException("Senha atual inválida");
 	}
 	
 	public Usuario softDeleteUser(int id) throws NoSuchElementException{
