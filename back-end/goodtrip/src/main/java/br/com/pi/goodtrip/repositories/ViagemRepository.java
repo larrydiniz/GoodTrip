@@ -15,4 +15,9 @@ public interface ViagemRepository extends JpaRepository<Viagem, Integer>{
 	
 	@Query(value = selectByUserIdAndFinalised, nativeQuery = true)
 	List<Viagem> selectTravelsByUserIdWhereFinalised(int usuario, Boolean finalizada);
+	
+	String selectTripByLocalName = "SELECT * FROM viagens WHERE destino LIKE %:q% AND fk_id_usuario = :usuario";
+	
+	@Query(value = selectTripByLocalName, nativeQuery = true)
+	List<Viagem> selectTripByLocalName(String q, int usuario);
 }

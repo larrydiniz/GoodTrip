@@ -57,4 +57,9 @@ public class ViagemController {
 	public Viagem apagarViagem(@PathVariable int id){
 		return viagemService.softDeleteTrip(id);
 	}
+	
+	@GetMapping("/buscar")
+	public List<Viagem> buscarViagem(@RequestParam String q, int user_id) {
+		return viagemService.readTripByLocal(q, user_id);
+	}
 }
