@@ -38,10 +38,10 @@ public class ViagemService {
 	}
 	
 	private Optional<String> hasValidEnd(Viagem travel){
-		return Optional.ofNullable(travel.getInicio())
-				       .filter(ini -> !(ini.length() > 10))
-				       .filter(ini -> !(ini.length() < 8))
-				       .filter(ini -> !ini.contains(" "));
+		return Optional.ofNullable(travel.getTermino())
+				       .filter(end -> !(end.length() > 10))
+				       .filter(end -> !(end.length() < 8))
+				       .filter(end -> !end.contains(" "));
 	}
 	
 	public Viagem readATravelById(int id) throws NoSuchElementException{

@@ -14,6 +14,7 @@ const configButton = document.querySelector('button.configuracoes');
 const configNav = document.querySelector('nav#config');
 const adicionar = document.querySelector('.btn-adicionar');
 const diaSemana = document.getElementById('dia-semana');
+const editTrip = document.getElementById('editar-viagem');
 
 /********************************************* calendário *******************************************************/
 var inicio;
@@ -271,6 +272,7 @@ calendario.getElement().addEventListener('change', e => {
 
 membersLink.href += `?travel_id=${travelId}`;
 bagLink.href += `?travel_id=${travelId}`;
+editTrip.href += `?travel_id=${travelId}`;
 
 fetchTarefas();
 
