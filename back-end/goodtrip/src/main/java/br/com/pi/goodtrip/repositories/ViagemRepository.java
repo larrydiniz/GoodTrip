@@ -20,4 +20,10 @@ public interface ViagemRepository extends JpaRepository<Viagem, Integer>{
 	
 	@Query(value = selectTripByLocalName, nativeQuery = true)
 	List<Viagem> selectTripByLocalName(String q, int usuario);
+	
+	String selectTripByLocalNameBeingMember = "	SELECT * FROM viagens AS v INNER JOIN embarques AS e ON v.id = e.fk_id_viagem"
+			+ "	WHERE destino LIKE %:q% AND e.fk_id_usuario = :usuario";
+
+	@Query(value = selectTripByLocalNameBeingMember, nativeQuery = true)
+	List<Viagem> selectTripByLocalNameBeingMember(String q, int usuario);
 }

@@ -62,4 +62,9 @@ public class ViagemController {
 	public List<Viagem> buscarViagem(@RequestParam String q, int user_id) {
 		return viagemService.readTripByLocal(q, user_id);
 	}
+	
+	@GetMapping("/buscarEmbarque")
+	public List<Viagem> buscarViagemSendoMembro(@RequestParam String q, int user_id) {
+		return viagemService.readTripByLocalBeingMember(q, user_id);
+	}
 }

@@ -173,6 +173,16 @@ p.autor{
     left: 80%;
 }
 
+.membros-fotos p{
+    background-color: #65636396;
+    color: white;
+    height: 20px;
+    padding: 5px;
+    margin: 0;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
 /************** Responsividade ************/
 @media (min-width: 800px){	
     .h1{

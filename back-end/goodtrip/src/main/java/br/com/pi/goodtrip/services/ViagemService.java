@@ -137,4 +137,12 @@ public class ViagemService {
 		
 		return foundTrip;
 	}
+	
+	public List <Viagem> readTripByLocalBeingMember(String q, int usuario) throws NoSuchElementException{
+		List<Viagem> foundTrip = viagemRepo.selectTripByLocalNameBeingMember(q, usuario);
+		
+		Optional.of(foundTrip).orElseThrow(() -> new NoSuchElementException("Viagem não encontrada"));
+		
+		return foundTrip;
+	}
 }

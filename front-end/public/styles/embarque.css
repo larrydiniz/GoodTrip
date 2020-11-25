@@ -27,14 +27,8 @@
     margin-right: 10px;
 }
 
-.usuario-convite {
-    width: 194px;
-    position: relative;
-    margin-left: 10px;
-}
-
 .user {
-    width: 100%;
+    width: 70%;
     display: flex;
 }
 
@@ -71,13 +65,14 @@
     justify-content: space-around;
     background-color: #026F81;
     border-radius: 8px;
-    width: 90%;
+    min-width: 90%;
     height: 40px;
     margin: auto;
     margin-top: 10px;
 }
 
 .convite-destino > p {
+    margin: 0 10px;
     display: flex;
     align-self: center;
     color: #FFFFFF;
@@ -141,43 +136,13 @@
     text-align: center;
 }
 
-.desktop-aceitar {
-    display: block;
-}
-  
-.mobile-aceitar {
-    display: none;
-}
-  
-.desktop-recusar {
-    display: block;
-}
-  
-.mobile-recusar {
-    display: none;
-}
-
 @media(max-width: 480px) {
-    .desktop-aceitar {
-        display: none;
+    .user{
+        width: 100%;
     }
-    .mobile-aceitar {
-        display: block;
-    }
-    .mobile-aceitar > img{
-        width: 20px;
-        height: 20px;
-    }
-
-    .desktop-recusar {
-        display: none;
-    }
-    .mobile-recusar {
-        display: block;
-    }
-    .mobile-recusar > img{
-        width: 20px;
-        height: 2
-    }
-    
+    .convite {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 20px;
+    }  
 }
