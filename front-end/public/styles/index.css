@@ -402,6 +402,12 @@ main {
         outline: 0;
     }
 
+    #erroc p {
+        color: #e84242;
+        text-align: center;
+        font-size: 14px;
+    }
+
 /************ Responsividade ************/
 @media (min-width: 800px){
   /*   main{

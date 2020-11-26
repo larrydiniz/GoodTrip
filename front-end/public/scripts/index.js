@@ -7,6 +7,7 @@ import StorageUserId from "../scripts/modules/StorageUserId.js"
 import Optional from "../scripts/modules/Optional.js"
 import { classToggler, sourceToggler, typeToggler } from "./utils/togglers.js"
 import gtHeaders from "./requests/gtHeaders.js"
+import swal from 'sweetalert';
 
 const overlay = document.querySelector("div.overlay");
 const nav = document.querySelector("nav#menu");
@@ -45,6 +46,8 @@ const passwordFieldsList = [loginPasswordField, passwordRegisterField, confirmPa
 
 const loginModal = md.defineModal(loginModalOpenButton, loginModalCloseButton, loginModalContent);					
 const registerModal = md.defineModal(registerModalOpenButton, registerModalCloseButton, registerModalContent);
+const divErro = document.getElementById('erro');
+const divErroC = document.getElementById('erroc')
 const definedModalsList = [loginModal, registerModal];
 								  
 nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}));
@@ -64,7 +67,7 @@ loginButton.addEventListener('click', () => {
 
 			const token = Optional.of(json.token)
 								  .filter(token => token.length > 1)
-								  .getOrElse(() => { throw new Error("Token inválido")})
+								  .getOrElse(() => {divErro.innerHTML = `<p>E-mail ou senha incorretos</p>`;})
 
 			const id = Optional.of(json.id)
 							   .filter(id => !isNaN(id))
@@ -78,13 +81,18 @@ loginButton.addEventListener('click', () => {
 })
 
 registerButton.addEventListener('click', () => {
+	let passwordException = '';
 
 	const password = Optional.of(passwordRegisterInput.value)
 	                         .filter(password => password === passwordConfirmInput.value)
-	                         .getOrElse(() => { throw new Error("Senhas não são iguais")})
+							 .getOrElse(() => {passwordException = 'Senhas não são iguais'})
+	
+	if (!(registerUsername.value).includes('@')){
+		registerUsername.value = "@" + registerUsername.value;
+	}
 
 	const requestBody = { "nome": registerName.value,
-						  "username": "@" + registerUsername.value,
+						  "username": registerUsername.value,
 						  "email": registerEmail.value,
 						  "ativo": true,
 						  "senha": password }
@@ -93,7 +101,20 @@ registerButton.addEventListener('click', () => {
 
 	fetch(request.url, request.init)
 		.then(res => res.json())
-		.then(json => console.log(json))
+		.then(json => {
+			if (json.message == undefined) {
+				swal ( "Cadastro efetuado com sucesso!" , { 
+					icon: "success",
+					buttons : false, 
+					timer : 2000 })
+				.then((value) => window.location.href = "index.html");
+			}
+			else if(json.message !== undefined && json.message !== 'No message available') {
+				divErroC.innerHTML = `<p>${json.message}</p>`;
+			} else {
+				divErroC.innerHTML = `<p>${passwordException}</p>`;
+			}
+		})
 		.catch(error => console.log(error));
 })
 

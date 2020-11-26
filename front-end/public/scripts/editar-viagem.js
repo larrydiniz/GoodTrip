@@ -71,7 +71,7 @@ sendButton.addEventListener('click', () => {
             .then((value) => window.location.href = `agenda-viagem.html?travel_id=${urlParams.travel_id}`);
         })
         .catch(e => {
-            swal ("Erro ao criar viagem. Tente novamente..." , { 
+            swal ("Erro ao editar viagem. Tente novamente..." , { 
             icon: "error",
             buttons : false, 
             timer : 2000 })

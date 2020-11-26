@@ -43,6 +43,8 @@ public class UsuarioService {
 	private Optional<String> hasValidEmailUserField(Usuario user){
 		return Optional.of(user.getEmail())
 						.filter(email -> repository.checkEmailExists(email).isEmpty())
+						.filter(email -> email.length() > 0)
+						.filter(email -> email.contains("@"))
 						.map(email -> email.substring(0, email.indexOf("@")))
 						.filter(username -> username.length() > 0)
 						.filter(username -> !username.contains("@"))
@@ -51,6 +53,7 @@ public class UsuarioService {
 	
 	private Optional<String> hasValidEmailDomain(Usuario user){
 		return	Optional.of(user.getEmail())
+						.filter(email -> email.contains("@"))
 						.map(email -> email.substring(email.indexOf("@") + 1, email.length()))
 						.filter(domain -> domain.length() > 2)
 						.filter(domain -> !domain.contains("@"))
@@ -104,14 +107,14 @@ public class UsuarioService {
 
 	public Usuario writeAnUser(Usuario user) throws IllegalArgumentException{
 		
-		hasValidUsername(user)
-			.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
-		
 		hasValidName(user)
-		    .orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
+	    .orElseThrow(() -> new IllegalArgumentException("Nome não pode ser vazio"));
+		
+		hasValidUsername(user)
+			.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
 		
         hasValidEmailUserField(user)
-        	.orElseThrow(() -> new IllegalArgumentException("Email com usuário inválido"));
+        	.orElseThrow(() -> new IllegalArgumentException("Email com usuário inválido ou já cadastrado no sistema"));
         
         hasValidEmailDomain(user)
         	.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
