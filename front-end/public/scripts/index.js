@@ -18,6 +18,7 @@ const loginModalCloseButton = document.querySelector("button.login.fechar");
 const loginModalContent = document.querySelector("div.login.modal");
 const loginButton = document.querySelector("button.entrar");
 const loginEmail = document.querySelector("input#email-login");
+const openRegister = document.getElementById('open-register');
 
 const registerModalOpenButton = document.querySelector("button#cadastrar.menu");
 const registerModalCloseButton = document.querySelector("button.cadastro.fechar");
@@ -51,6 +52,11 @@ const divErroC = document.getElementById('erroc')
 const definedModalsList = [loginModal, registerModal];
 								  
 nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}));
+
+openRegister.addEventListener("click", function(){
+	loginModalContent.classList.remove('show');
+	registerModalContent.classList.add('show');
+});
 
 overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: "hide"}));
 
@@ -131,3 +137,12 @@ window.addEventListener('load', () => {
 		md.addTogglingListeners(modal);
 	})
 })
+/* 
+https://firebase.google.com/docs/auth/web/google-signin?hl=pt-br 
+https://developers.google.com/identity/sign-in/web/sign-in
+https://firebase.google.com/docs/auth/android/google-signin?hl=pt-Br
+https://developers.google.com/api-client-library/java/google-api-java-client/oauth2
+
+*/
+
+/* S3nh40k0k */

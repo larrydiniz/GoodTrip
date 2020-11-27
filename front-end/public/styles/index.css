@@ -231,7 +231,7 @@ main {
     }
 
     a.login.esqueci:hover{
-        color:  #003d49;
+        color:  #002d36;
     }
 
     button.login.fechar, button.cadastro.fechar{
@@ -255,6 +255,16 @@ main {
         margin: 45px 0 10px 0;
     }
 
+    label#open-register{
+        margin-left: 5px;
+        color: var(--azul);
+        cursor: pointer;
+    }
+
+    label#open-register:hover{
+        color:  #002d36;
+    }
+
     button.cadastro.cadastrar{
         width: 300px;
         height: 55px;
@@ -266,8 +276,8 @@ main {
         border: var(--azul) solid 1px;
         margin: 0 0 0 0;
     }
-
-    button.login.google{
+/************* login google ****************/
+    #customBtn {
         width: 300px;
         height: 55px;
         border-radius: 8px;
@@ -282,14 +292,20 @@ main {
         justify-content: center;
         margin: 0 0 5px 0;
     }
-
-    button.login.google > p{
+    span.label {
+        font-family: serif;
+        font-weight: normal;
+    }
+    span.icon {
+        margin-top: 8px;
+    }
+    p.buttonText {
         margin: 0 0 0 10px;
     }
-
-    button.login.google:hover{
+    #customBtn:hover {
         border: #004a58 2px solid;
     }
+    
 
     button.login.entrar:hover, button.cadastro.cadastrar:hover{
         background-color: #004a58;
@@ -314,6 +330,7 @@ main {
     }
 
     div.login.cadastrar{
+        display: flex;
         flex-direction: row;
         justify-content: center;
         margin: 15px 0 0 0;

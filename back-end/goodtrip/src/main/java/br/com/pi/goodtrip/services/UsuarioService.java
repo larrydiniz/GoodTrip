@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.com.pi.goodtrip.dto.ForgottenPasswordDTO;
+import br.com.pi.goodtrip.utils.Mail;
 import br.com.pi.goodtrip.dto.CredenciaisDTO;
 import br.com.pi.goodtrip.dto.Senha;
 import br.com.pi.goodtrip.dto.TokenDTO;
@@ -39,6 +41,9 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioRepository repository;
+    
+    @Autowired
+    private EmailService emailService;
 	
 	private Optional<String> hasValidEmailUserField(Usuario user){
 		return Optional.of(user.getEmail())
@@ -231,5 +236,18 @@ public class UsuarioService {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());	
 		}
 	}
+	
+    public void recoverPassword(ForgottenPasswordDTO dto) {
+    	Optional<Usuario> userOpt = repository.findByEmail(dto.getEmail());
+    	if(userOpt.isPresent()) {
+    		Usuario user = userOpt.get();
+    		String token = jwtService.gerarToken(user);
+    		
+    		Mail mail = new Mail();
+    		mail.setToEmail(dto.getEmail());
+    		mail.setSubject("Recuperação de senha - goodtrip.com.br");
+    		emailService.sendEmail(mail, token);
+    	}
+    }
 	
 }

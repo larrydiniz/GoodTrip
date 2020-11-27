@@ -25,7 +25,7 @@ public class UsuarioServiceImpl implements UserDetailsService{
     public Usuario salvar(Usuario usuario){
         return repository.save(usuario);
     }
-
+        
     public UserDetails autenticar( Usuario usuario ){
         UserDetails user = loadUserByUsername(usuario.getEmail());
         boolean senhasBatem = encoder.matches( usuario.getSenha(), user.getPassword() );

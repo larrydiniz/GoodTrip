@@ -33,6 +33,22 @@ li p.titulo{
     margin: 0;
 }
 
+li label#excluir-viagem{
+    padding: 2% 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    color: #006478;
+    font-weight: 700; 
+    font-size: 14px;
+}
+
+li label p{
+    margin-left: 20px;
+}
+
 
 /********************** Calendário *****************/
 .data {

@@ -24,28 +24,25 @@ sendButton.addEventListener('click', () => {
 
     const request = postNewtravel(gtHeaders.authorized(), requestBody)
 
-    console.log(JSON.stringify(requestBody))
-
     fetch(request.url, request.init)
         .then(res => res.json())
         .then(json => {
             if(json.message !== undefined){
-            divErro.innerHTML = `<p>${json.message}</p>`;
+                divErro.innerHTML = `<p>${json.message}</p>`;
             } else {
                 divErro.innerHTML = ``;
-                console.log(json)
                 const formdata = new FormData();   
                 formdata.append("imagem", inputImg.files[0]);
                 return postUploadTravelImage(json.id, formdata);
-            }
+            }  
         })
         .then(request => fetch(request.url, request.init)
-        .then(json => {
-            swal ("Viagem criada com sucesso!" , { 
-                icon: "success",
-                buttons : false, 
-                timer : 2000 })
-            .then((value) => window.location.href = "listaDeViagem.html");
+        .then(() => {
+            swal("Viagem criada com sucesso!" , { 
+                buttons : false
+                })
+            .then((value) => window.location.href = "listaDeViagem.html")
+            .catch(window.location.href = "listaDeViagem.html");
         })
         .catch(e => {
             swal ("Erro ao criar viagem. Tente novamente..." , { 

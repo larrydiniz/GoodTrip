@@ -15,7 +15,10 @@ public interface EmbarqueRepository extends JpaRepository<Embarque, Integer>{
 	
 	String selectByTravelId = "SELECT * FROM embarques WHERE fk_id_viagem=:viagem AND finalizada=:finalizada";
 	
-	String selectByUserId = "SELECT * FROM embarques WHERE fk_id_usuario=:usuario AND aceito=:aceito";
+	//String selectByUserId = "SELECT * FROM embarques WHERE fk_id_usuario=:usuario AND aceito=:aceito";
+	
+	String selectByUserId = "SELECT * FROM viagens AS v INNER JOIN embarques AS e ON v.id = e.fk_id_viagem "
+			+ "WHERE e.fk_id_usuario=:usuario AND e.aceito=:aceito AND v.apagada IS NULL";
 	
 	String deleteById = "DELETE FROM embarques WHERE id=:id";
 	

@@ -6,6 +6,7 @@ import getTravelTasks from './requests/getTravelTasks.js';
 import getTravel from "./requests/getTravel.js";
 import gtHeaders from './requests/gtHeaders.js'
 import Optional from './modules/Optional.js';
+import swal from 'sweetalert';
 
 
 const membersLink = document.querySelector('a#link-membros');
@@ -15,6 +16,7 @@ const configNav = document.querySelector('nav#config');
 const adicionar = document.querySelector('.btn-adicionar');
 const diaSemana = document.getElementById('dia-semana');
 const editTrip = document.getElementById('editar-viagem');
+const deleteBtn = document.getElementById('excluir-viagem');
 
 /********************************************* calendário *******************************************************/
 var inicio;
@@ -275,4 +277,38 @@ bagLink.href += `?travel_id=${travelId}`;
 editTrip.href += `?travel_id=${travelId}`;
 
 fetchTarefas();
+
+
+deleteBtn.addEventListener('click', () => {
+		swal({
+			title: "Deseja apagar essa viagem?",
+			text: "Você não poderá restaura-la após apagar...",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		  })
+		  .then((willDelete) => {
+			if (willDelete) {
+				const urlToDeleteTrip = `http://localhost:3333/viagens/apagar/${travelId}`
+				   
+				const init = { "headers": gtHeaders.authorized(), 
+							   "method": "PUT", 
+							   "mode": "cors",
+							   "redirect": "follow"}
+			
+				fetch(urlToDeleteTrip, init)
+					.then(res => res.json())
+					.catch(e => console.log(e))
+							
+					swal("Viagem Deletada!", {
+					icon: "success",
+					buttons : false,
+					timer : 2000
+					})
+					.then((value) => window.location.href = "listaDeViagem.html");
+			}else{
+				document.location.reload(true);
+			}
+		  })     
+})
 
