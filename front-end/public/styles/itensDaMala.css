@@ -227,6 +227,57 @@ div#itens-viagem{
     justify-content: center;
 }
 
+.input-item{
+    border-radius: 8px;
+    border: #dddddd solid 2px;
+    height: 25px;
+    padding-left: 10px;
+}
+
+button.add-btn{
+    color: #28DE70;
+    font-size: 20px;
+    padding: 0 10px;
+    background-color: transparent;
+    border: transparent;
+}
+/*********** checkbox personalizada ***************/
+  .item-checkbox-style {
+    position: relative;
+    padding-left: 2.2em;
+    display: inline-block;
+  }
+  .item-checkbox-style::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 15px;
+    width: 15px;
+    background: #FFF;
+    margin-right: 0.5em;
+    border: 1px solid #026F81;
+    transition: all 0.2s ease;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+  }
+  .item-checkbox-style::after {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: 700;
+    color: #026F81;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+  .item-checkbox:checked + .item-checkbox-style::after {
+    opacity: 1;
+  }
+
 @media (max-width: 425px){
     .titulo-viagem{
         background-color: #28de71ab;
@@ -250,7 +301,7 @@ div#itens-viagem{
 @media (min-width: 800px){
 
     span#divisoria-listas{
-        background-color: skyblue;
+        background-color: #ddd;
         margin: 20px 0 0 0;
         height: 600px;
         width: 1px;
@@ -259,6 +310,10 @@ div#itens-viagem{
     section#lista-itens{
         flex-direction: row;
         justify-content: space-around;
+    }
+
+    #itens-viagem h2{
+        width: 100%;
     }
 
     ul.lista-itens{

@@ -249,7 +249,7 @@ window.addEventListener('load', () => {
 					
 			});
 
-	});
+});
 
 
 function fetchTarefas() {

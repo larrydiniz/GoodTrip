@@ -2,7 +2,7 @@ export default function itensCards(){
 
     return {
 
-        setCheckboxAttributes: function( identity, checkbox, label, data){
+        setCheckboxAttributes: function( identity, checkbox, labelCheck, label, data){
 
             checkbox.onchange = function(){
 
@@ -22,12 +22,13 @@ export default function itensCards(){
 
             identity.setAttribute('value', data.id);
             checkbox.setAttribute('id', data.id);
+            labelCheck.setAttribute('for', data.id);
             label.setAttribute('for', data.id);
         },
 
-        setClonePersonalAttributes: function({ identityField, categoryField, checkboxField, labelField}, data){
+        setClonePersonalAttributes: function({ identityField, categoryField, checkboxField, labelCheckbox, labelField}, data){
             
-            this.setCheckboxAttributes(identityField, checkboxField, labelField, data);
+            this.setCheckboxAttributes(identityField, checkboxField, labelCheckbox, labelField, data);
 
             categoryField.setAttribute('value', data.categoria);
             labelField.innerText = data.nome;
@@ -38,19 +39,21 @@ export default function itensCards(){
             const identity = card.children[0];
             const category = card.children[1];
             const checkBox = card.children[2];
-            const label = card.children[3];
+            const labelCheck = card.children[3];
+            const label = card.children[4];
         
             return {
                 "identityField": identity,
                 "categoryField": category,
                 "checkboxField": checkBox,
+                "labelCheckbox": labelCheck,
                 "labelField": label
             }
         },
 
-        setCloneCommonAttributes: function({ identityField, imageField, usernameField, checkboxField, labelField }, data){
+        setCloneCommonAttributes: function({ identityField, imageField, usernameField, checkboxField, labelCheckbox, labelField }, data){
 
-            this.setCheckboxAttributes(identityField, checkboxField, labelField, data);
+            this.setCheckboxAttributes(identityField, checkboxField, labelCheckbox, labelField, data);
             
             imageField.src = data.usuario.foto;
             usernameField.innerText = data.usuario.username;
@@ -63,13 +66,15 @@ export default function itensCards(){
             const user = commonCard.children[1].children[1];
             const identity = commonCard.children[0].children[0];
             const checkbox = commonCard.children[0].children[2];
-            const label = commonCard.children[0].children[3];
+            const labelCheck = commonCard.children[0].children[3];
+            const label = commonCard.children[0].children[4];
 
             return {
                 "identityField": identity,
                 "imageField": authorImg,
                 "usernameField": user,
                 "checkboxField": checkbox,
+                "labelCheckbox": labelCheck,
                 "labelField": label
             }
         },
