@@ -4,6 +4,7 @@ import gtHeaders from "./requests/gtHeaders.js";
 import taskCards from "./modules/taskCards.js"
 import getTravelTasks from './requests/getTravelTasks.js';
 import Optional from './modules/Optional.js';
+import swal from 'sweetalert';
 
 const urlp = urlParser();
 
@@ -12,7 +13,9 @@ const templateTarefa = document.getElementById('t-tarefa-atual');
 const tarefas = document.querySelector('div.div-tarefas');
 const templateCardTarefas = document.getElementById('t-card-tarefa');
 const linkEdit = document.querySelector('a.btn-editar')
+const deleteBtn = document.getElementById('excluir-tarefa');
 const mappedUrlParams = urlp.mapVariables(location.href);
+
 
 window.addEventListener('load', () => {
 
@@ -51,4 +54,37 @@ window.addEventListener('load', () => {
 			
 		})
 		.catch(e => console.log(e))
+})
+
+deleteBtn.addEventListener('click', () => {
+	swal({
+		title: "Deseja apagar essa tarefa?",
+		text: "Você não poderá restaura-la após apagar...",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	  })
+	  .then((willDelete) => {
+		if (willDelete) {
+			const urlToDeleteTask = `http://localhost:3333/tarefas/apagar?id=${mappedUrlParams.task_id}`
+			   
+			const init = { "headers": gtHeaders.authorized(), 
+						   "method": "DELETE", 
+						   "mode": "cors",
+						   "redirect": "follow"}
+		
+			fetch(urlToDeleteTask, init)
+				.then(res => res.json())
+				.catch(e => console.log(e))
+						
+				swal("Tarefa Deletada!", {
+				icon: "success",
+				buttons : false,
+				timer : 2000
+				})
+				.then((value) => window.location.href = `agenda-viagem.html?travel_id=${mappedUrlParams.travel_id}`);
+		}else{
+			document.location.reload(true);
+		}
+	  })     
 })

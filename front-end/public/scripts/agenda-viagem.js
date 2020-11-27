@@ -17,6 +17,7 @@ const adicionar = document.querySelector('.btn-adicionar');
 const diaSemana = document.getElementById('dia-semana');
 const editTrip = document.getElementById('editar-viagem');
 const deleteBtn = document.getElementById('excluir-viagem');
+const linkShare = document.getElementById('btn-compartilhar');
 
 /********************************************* calendário *******************************************************/
 var inicio;
@@ -230,14 +231,26 @@ var calendario = new Calendario('calendar');
 
 window.addEventListener('load', () => {
 	const request = getTravel(gtHeaders.authorized(), travelId)
+
 	fetch(request.url, request.init)
 		.then(res => res.json())
-		.then(data => {
-			inicio = `${data.inicio}`
-			termino = `${data.termino}`
-			calendario = new Calendario('calendar');
-		});
-});
+		.then(json => {
+			if(json.message == "Access Denied"){
+					swal ("Faça Login para continuar" , { 
+						icon: "error",
+						buttons : false, 
+						timer : 2000 })
+					.then((value) => window.location.href ="index.html")}
+			else {
+				inicio = `${json.inicio}`
+				termino = `${json.termino}`
+				calendario = new Calendario('calendar');
+			}
+					
+			});
+
+	});
+
 
 function fetchTarefas() {
 	
@@ -275,9 +288,9 @@ calendario.getElement().addEventListener('change', e => {
 membersLink.href += `?travel_id=${travelId}`;
 bagLink.href += `?travel_id=${travelId}`;
 editTrip.href += `?travel_id=${travelId}`;
+linkShare.href += `http://127.0.0.1:5500/front-end/views/agenda-viagem.html?travel_id=${travelId}`;
 
 fetchTarefas();
-
 
 deleteBtn.addEventListener('click', () => {
 		swal({

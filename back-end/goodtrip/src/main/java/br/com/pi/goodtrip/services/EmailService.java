@@ -24,7 +24,42 @@ public class EmailService {
     @Value( "${api.email.from.name}" )
     private String name;
     
+    /*private String mailSMTPServer;
+	private String mailSMTPServerPort;
+	
+	
+	  //quando instanciar um Objeto ja sera atribuido o servidor SMTP do GMAIL e a porta usada por ele
+	 
+	EmailService() { //Para o GMAIL 
+		mailSMTPServer = "smtp.gmail.com";
+		mailSMTPServerPort = "587";
+	}
+	
+	 //caso queira mudar o servidor e a porta, so enviar para o contrutor os valor como string
+	 
+	EmailService(String mailSMTPServer, String mailSMTPServerPort) { //Para outro Servidor
+		this.mailSMTPServer = mailSMTPServer;
+		this.mailSMTPServerPort = mailSMTPServerPort;
+	}*/
+    
     public void sendEmail(Mail mail, String token) {
+	    	/*Properties props = new Properties();
+	    	
+			props.put("mail.transport.protocol", "smtp"); //define protocolo de envio como SMTP
+			props.put("mail.smtp.starttls.enable","true"); 
+			props.put("mail.smtp.host", mailSMTPServer); //server SMTP do GMAIL
+			props.put("mail.smtp.auth", "true"); //ativa autenticacao
+			props.put("mail.smtp.user", address); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
+			props.put("mail.debug", "true");
+			props.put("mail.smtp.port", mailSMTPServerPort); //porta
+			props.put("mail.smtp.socketFactory.port", mailSMTPServerPort); //mesma porta para o socket
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+			
+			
+			Session session = Session.getDefaultInstance(props, token);
+			session.setDebug(true);*/
+		
     	try {
     		MimeMessage message = emailSender.createMimeMessage();
     		MimeMessageHelper helper = new MimeMessageHelper(message, 
@@ -50,4 +85,5 @@ public class EmailService {
     		e.printStackTrace();
     	}
     }
+    
 }
