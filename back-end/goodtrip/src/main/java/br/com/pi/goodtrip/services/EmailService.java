@@ -1,7 +1,11 @@
 package br.com.pi.goodtrip.services;
 
+//import javax.mail.PasswordAuthentication;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
+//import javax.mail.Authenticator;
+//import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,26 +28,26 @@ public class EmailService {
     @Value( "${api.email.from.name}" )
     private String name;
     
-    /*private String mailSMTPServer;
-	private String mailSMTPServerPort;
+    private String mailSMTPServer;
+	private Integer mailSMTPServerPort;
 	
 	
 	  //quando instanciar um Objeto ja sera atribuido o servidor SMTP do GMAIL e a porta usada por ele
 	 
 	EmailService() { //Para o GMAIL 
 		mailSMTPServer = "smtp.gmail.com";
-		mailSMTPServerPort = "587";
+		mailSMTPServerPort = 587;
 	}
 	
 	 //caso queira mudar o servidor e a porta, so enviar para o contrutor os valor como string
 	 
-	EmailService(String mailSMTPServer, String mailSMTPServerPort) { //Para outro Servidor
+	/*EmailService(String mailSMTPServer, String mailSMTPServerPort) { //Para outro Servidor
 		this.mailSMTPServer = mailSMTPServer;
 		this.mailSMTPServerPort = mailSMTPServerPort;
 	}*/
     
     public void sendEmail(Mail mail, String token) {
-	    	/*Properties props = new Properties();
+	    	Properties props = new Properties();
 	    	
 			props.put("mail.transport.protocol", "smtp"); //define protocolo de envio como SMTP
 			props.put("mail.smtp.starttls.enable","true"); 
@@ -56,8 +60,16 @@ public class EmailService {
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			props.put("mail.smtp.socketFactory.fallback", "false");
 			
+			/*Authenticator auth = new Authenticator(){
+				
+				@Override
+			    protected PasswordAuthentication getPasswordAuthentication() {   
+			        return new PasswordAuthentication(name, password);  
+			    } 
+			};
+		
 			
-			Session session = Session.getDefaultInstance(props, token);
+			Session session = Session.getDefaultInstance(props, auth);
 			session.setDebug(true);*/
 		
     	try {
@@ -72,6 +84,7 @@ public class EmailService {
     		if(mail.getFromName() == null) {
     			mail.setFromName(name);
     		}
+    		
     		
     		helper.setTo(mail.getToEmail());
     		helper.setText("Olá siga este link para redefinir a sua senha: http://localhost:3000/redefine-password?token=" + token);

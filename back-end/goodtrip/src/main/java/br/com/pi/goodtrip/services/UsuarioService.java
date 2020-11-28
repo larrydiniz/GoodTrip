@@ -125,7 +125,7 @@ public class UsuarioService {
         	.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
         
         hasValidPassword(user)
-    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
+    		.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
         
         String cryptPassword = passwordEncoder.encode(user.getSenha());
         
@@ -239,6 +239,7 @@ public class UsuarioService {
 	
     public void recoverPassword(ForgottenPasswordDTO dto) {
     	Optional<Usuario> userOpt = repository.findByEmail(dto.getEmail());
+    	    	
     	if(userOpt.isPresent()) {
     		Usuario user = userOpt.get();
     		String token = jwtService.gerarToken(user);
