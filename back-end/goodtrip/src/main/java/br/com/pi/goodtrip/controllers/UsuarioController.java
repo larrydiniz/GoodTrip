@@ -84,4 +84,9 @@ public class UsuarioController {
     	return ResponseEntity.noContent().build();
     }
 	
+	@PutMapping("/recuperarSenha/{id}")
+	public Usuario novaSenha(@PathVariable int id, @RequestBody Senha alterarSenha){
+		return usuarioService.forggotPassword(id, alterarSenha);
+	}
+	
 }

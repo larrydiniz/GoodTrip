@@ -238,6 +238,21 @@ public class UsuarioService {
 	}
 	
     public void recoverPassword(ForgottenPasswordDTO dto) {
+    		Optional.of(dto.getEmail())
+    						.filter(email -> email.length() > 0)
+    						.filter(email -> email.contains("@"))
+    						.map(email -> email.substring(0, email.indexOf("@")))
+    						.filter(username -> username.length() > 0)
+    						.filter(username -> !username.contains("@"))
+    						.filter(username -> !username.contains(" "))
+    						.map(email -> email.substring(email.indexOf("@") + 1, email.length()))
+    						.filter(domain -> domain.length() > 2)
+    						.filter(domain -> !domain.contains("@"))
+    						.filter(domain -> !domain.contains(" "))
+    						.filter(domain -> domain.indexOf(".") > 0)
+    						.filter(domain -> domain.lastIndexOf(".") < domain.length() - 1)
+    						.orElseThrow(() -> new IllegalArgumentException("E-mail inválido"));
+
     	Optional<Usuario> userOpt = repository.findByEmail(dto.getEmail());
     	    	
     	if(userOpt.isPresent()) {
@@ -251,4 +266,23 @@ public class UsuarioService {
     	}
     }
 	
+    public Usuario forggotPassword(int id, Senha senha) {
+		Usuario user = repository.findById(id)
+				                      .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+		
+			
+			hasValidPasswordUpdate(senha)
+	    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
+			
+			if(senha.getNova_senha().equals(senha.getConfirmar_senha())) {
+				
+				String cryptPassword = passwordEncoder.encode(senha.getNova_senha());
+
+				user.setSenha(cryptPassword);
+				repository.save(user);
+				
+				return user;
+			
+		} else throw new IllegalArgumentException("Senhas não batem");
+	}
 }

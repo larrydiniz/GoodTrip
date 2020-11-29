@@ -87,7 +87,7 @@ public class EmailService {
     		
     		
     		helper.setTo(mail.getToEmail());
-    		helper.setText("Olá siga este link para redefinir a sua senha: http://localhost:3000/redefine-password?token=" + token);
+    		helper.setText("Olá siga este link para redefinir a sua senha: http://127.0.0.1:5500/front-end/views/recuperar-senha.html?token=" + token);
     		helper.setSubject(mail.getSubject());
             helper.setFrom(mail.getFromEmail(), mail.getFromName());
             

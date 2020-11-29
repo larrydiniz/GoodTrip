@@ -6,7 +6,6 @@ import Optional from "./modules/Optional.js"
 import swal from 'sweetalert';
 
 const inttn = invitationCards();
-const dtp = dataParser();
 
 const invitationsBlock = document.querySelector("div.convites-embarque");
 const templateInvitationCard = document.querySelector("template#t-convite");
@@ -21,7 +20,7 @@ window.addEventListener('load', () => {
 
             const toAppendCards = Optional.of(json)
                                           .filter(json => Array.isArray(json))
-                                          .flatMap(data => inttn.buildCard(templateInvitationCard, dtp.dateParser({ ...data, ...data.viagem, ...data})))
+                                          .flatMap(data => inttn.buildCard(templateInvitationCard, data))
                                           .getOrElse(() => { throw new Error("Resposta não é uma lista de embarques") })
 
             const cards = Optional.of(toAppendCards)
@@ -45,11 +44,6 @@ window.addEventListener('invitation-click', e => {
 
     const urlToPutInvitation = `http://localhost:3333/embarques/aceitar/${e.detail.invitation}`
 
-    console.log(urlToPutInvitation)
-
-    console.log(`{"aceito": "${action}"}`);
-
-    console.log()
     const init = { "headers": gtHeaders.authorized(), 
                     "method": "PUT", 
                     "body": `{"aceito": "${action}"}`,

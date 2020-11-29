@@ -223,15 +223,16 @@ main {
         z-index: -2;
     }
 
-    a.login.esqueci{
+    span.login.esqueci{
         font-size: 12px;
         margin: 0 0 0px 150px;
         text-decoration: none;
         color: var(--azul);
     }
 
-    a.login.esqueci:hover{
+    span.login.esqueci:hover{
         color:  #002d36;
+        cursor: pointer;
     }
 
     button.login.fechar, button.cadastro.fechar{

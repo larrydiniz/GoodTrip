@@ -17,7 +17,8 @@ module.exports = {
     menus: './public/scripts/commons/menus.js',
     travelHeader: './public/scripts/commons/travelHeader.js',
     editarTarefa: './public/scripts/editar-tarefa.js',
-    editarViagem: './public/scripts/editar-viagem.js'
+    editarViagem: './public/scripts/editar-viagem.js',
+    recuperarSenha: './public/scripts/recuperar-senha.js'
   },
   output: {
     filename: '[name].bundle.js',

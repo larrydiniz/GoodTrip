@@ -19,6 +19,7 @@ const loginModalContent = document.querySelector("div.login.modal");
 const loginButton = document.querySelector("button.entrar");
 const loginEmail = document.querySelector("input#email-login");
 const openRegister = document.getElementById('open-register');
+const forggotPass = document.getElementById('esqueci-senha');
 
 const registerModalOpenButton = document.querySelector("button#cadastrar.menu");
 const registerModalCloseButton = document.querySelector("button.cadastro.fechar");
@@ -137,6 +138,63 @@ window.addEventListener('load', () => {
 		md.addTogglingListeners(modal);
 	})
 })
+
+forggotPass.addEventListener('click', () => {
+	swal({
+		text: 'Digite seu e-mail cadastrado no sistema: ',
+		content: "input",
+		button: {
+		  text: "Recuperar Senha",
+		  closeModal: false,
+		},
+	  })
+	  .then(name => {
+		if (!name) throw null;
+
+		const init = { "headers": gtHeaders.authorized(), 
+		"method": "POST", 
+		"body": `{"email": "${name}"}`,
+		"mode": "cors",
+		"redirect": "follow" }
+	   
+		return fetch(`http://localhost:3333/usuarios/recuperar-senha`, init);
+	  })
+	  .then(results => {
+		return results.json();
+	  })
+	  .then(json => {
+		  console.log(json.message)
+			if(json.message !== undefined){
+				swal ({
+					title: "E-mail inválido!",
+					text: "Tente novamente",
+					icon: "error",
+					buttons : false, 
+					timer : 2000 })
+				swal.stopLoading();
+			} else {
+				swal ({
+					title: "E-mail Enviado!",
+					text: "Caso não encontre o e-mail de recuperação, verifique a caixa de span.",
+					icon: "success",
+					buttons : false, 
+					timer : 3000 })
+				.then((value) => window.location.href = "index.html");
+			} 
+		}) 
+	  .catch(err => {
+		if (err) {
+		  swal("Erro", "Falha ao enviar e-mail. Tente novamente", "error");
+		} else {
+		  swal.stopLoading();
+		  swal.close();
+		}
+	  });
+})
+
+
+
+
 /* 
 https://firebase.google.com/docs/auth/web/google-signin?hl=pt-br 
 https://developers.google.com/identity/sign-in/web/sign-in

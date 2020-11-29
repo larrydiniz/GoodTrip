@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="shortcut icon" href="../public/icons/logo-min.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/main.css">
+    <link rel="stylesheet" href="../public/styles/alterar-senha.css">
+    
+    <title>GoodTrip</title>
+</head>
+<body>
+    <main>
+        <h1>Recuperar Senha</h1>
+        <div id="alterar-senha"> <!--  method="post" -->
+            <div>
+                <div class="senha">
+                    <input type="password" class="pass" id="nova-senha" name="nova_senha" placeholder="Nova Senha">  
+                    <div class="visualizar" id="nova-senha-visibilidade">
+                        <img class = "olho2" src="../public/icons/olho-fechado.svg">
+                    </div>
+                </div>
+                <div class="senha">
+                    <input type="password" class="pass" id="confirmar-senha" name="confirmar_senha" placeholder="Confirmar Senha">
+                    <div class="visualizar" id="confirmar-senha-visibilidade">
+                        <img  class ="olho3" src="../public/icons/olho-fechado.svg">
+                    </div>
+                </div>
+                <div id="erro"></div>
+            </div>
+        </div>
+        <button class="salvar" id="salvar-senha">Salvar Alterações</button>
+    </main>
+
+    <script src='../bundles/recuperarSenha.bundle.js'></script>
+</body>
+</html>
