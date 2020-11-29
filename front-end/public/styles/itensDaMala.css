@@ -180,15 +180,29 @@ section#lista-itens{
     top: 130px;
 }
 
+div#itens-pessoais{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div#itens-pessoais h2, div#itens-pessoais h3{
+    align-self: flex-start;
+}
+
 ul.lista-itens{
     display: flex;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-top: 5px;
     width: 300px;
 }
 
 ul.lista-itens-comuns{
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     height: 560px;
     margin-top: 5px;
@@ -309,7 +323,12 @@ button.add-btn{
 
     section#lista-itens{
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-evenly;
+    }
+
+    div#itens-pessoais{
+        width: 50%;
+        margin: 0 10px;
     }
 
     #itens-viagem h2{
