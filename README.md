@@ -47,3 +47,26 @@ Front-end das telas, com base apenas no design estabelecido.
 Elaboração do banco de dados.
 - [x] Ideação
 - [x] Modelagem
+
+### Sprint 5
+Desenvolvimento do back-end, usando Spring Boot e Rest API.
+- [x] Gerar Entities
+- [x] Definir Rotas
+- [x] Gerar Controllers
+- [x] Implementar autenticação JWT
+- [ ] Implementar recuperação de senha
+
+### Sprint 6
+Conexão do back-end ao front-end.
+- [ ] Login e cadastro
+- [x] Lista de Viagens
+- [x] Agenda de Viagens
+- [x] Alterar Senha
+- [x] Tarefas
+- [x] Embarques
+- [x] Membros
+- [ ] Mala
+
+
+
+
