@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="shortcut icon" href="../public/icons/logo-min.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/main.css">
+    <link rel="stylesheet" href="../public/styles/cadastro-viagem.css">
+    <link rel="stylesheet" href="../public/styles/menu.css">
+    
+    <title>GoodTrip</title>
+</head>
+<body>
+    <header class="header-landing">
+        <button class="menu-landing"><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.75 4.1875H20.25C20.625 4.1875 21 3.85938 21 3.4375V1.5625C21 1.1875 20.625 0.8125 20.25 0.8125H0.75C0.328125 0.8125 0 1.1875 0 1.5625V3.4375C0 3.85938 0.328125 4.1875 0.75 4.1875ZM0.75 11.6875H20.25C20.625 11.6875 21 11.3594 21 10.9375V9.0625C21 8.6875 20.625 8.3125 20.25 8.3125H0.75C0.328125 8.3125 0 8.6875 0 9.0625V10.9375C0 11.3594 0.328125 11.6875 0.75 11.6875ZM0.75 19.1875H20.25C20.625 19.1875 21 18.8594 21 18.4375V16.5625C21 16.1875 20.625 15.8125 20.25 15.8125H0.75C0.328125 15.8125 0 16.1875 0 16.5625V18.4375C0 18.8594 0.328125 19.1875 0.75 19.1875Z" fill="#026F81"/>
+            </svg></button>
+        <img class="logo" src="../public/icons/logo_extenso.svg" alt="">
+        <button class="voltar" onClick="history.go(-1)"><svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.2 17.5076L11.1484 18.4615C10.7031 18.8654 9.98312 18.8654 9.54259 18.4615L0.333955 10.1127C-0.111318 9.70879 -0.111318 9.05566 0.333955 8.65605L9.54259 0.30293C9.98786 -0.100977 10.7079 -0.100977 11.1484 0.30293L12.2 1.25684C12.65 1.66504 12.6406 2.33105 12.1811 2.73066L6.47304 7.66348H20.087C20.7171 7.66348 21.2239 8.12324 21.2239 8.69473V10.0697C21.2239 10.6412 20.7171 11.101 20.087 11.101H6.47304L12.1811 16.0338C12.6453 16.4334 12.6548 17.0994 12.2 17.5076Z" fill="#026F81"/>
+            </svg></button>
+    </header>
+    <nav  id="menu">
+        <div class="perfil">
+            <img src="" class="img-perfil">
+            <div class="dados-perfil">
+                <div class="dados-perfil" id="nome">
+                    <!-- Adição dinâmica -->
+                </div>
+                <div class="dados-perfil" id="user">
+                    <!-- Adição dinâmica -->
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="listaDeViagem.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/viagem.svg"> 
+                    <p>Viagens</p>
+                </a> 
+            </li>
+            <!-- <li class="menu-li"> 
+                <a class="ancora-lateral" href="minhaMala.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/mala.svg"> 
+                    <p>Mala</p>
+                </a> 
+            </li> -->
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="embarque.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/embarcar.svg"> 
+                    <p>Embarque</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="edicaoPerfil.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/config.svg"> 
+                    <p>Atualizar perfil</p>
+                </a> 
+            </li>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="alterar-senha.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/senha.svg"> 
+                    <p>Alterar Senha</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="sobre.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/sobre.svg"> 
+                    <p>Sobre</p>
+                </a> 
+            </li>
+            <span></span>
+            <li class="menu-li"> 
+                <a class="ancora-lateral" href="index.html"> 
+                    <img class="img-menu-lateral" src="../public/icons/sair.svg"> 
+                    <p>Sair</p>
+                </a> 
+            </li>
+    </nav>
+    <main>
+        <h1>Cadastrar Viagem</h1>
+        <div id="cadastro-viagem">
+            <input type="text" id="viagem-destino" class="local" name="destino">
+            <div class="data">
+                <label id="texto">Data de início</label>
+                <input type="date" id="data-inicio" name="inicio">
+            </div>
+            <div class="data">
+                <label id="texto">Data de término</label>
+                <input type="date" id="data-termino" name="termino">
+            </div>
+            <div class="imagem">
+                <input type="file" id="carregar-imagem" name="imagem-viagem" size="30000" maxlength="2000" accept="image/*">
+                <label for="carregar-imagem" id="texto">Carregar imagem
+                    <img id="preview" width="80px" height="auto">
+                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.09375 11.2495H5.90625C5.54258 11.2495 5.25 10.9359 5.25 10.5462V5.62363H2.85195C2.36523 5.62363 2.12187 4.99365 2.46641 4.62446L6.62539 0.164819C6.83047 -0.0549397 7.1668 -0.0549397 7.37188 0.164819L11.5336 4.62446C11.8781 4.99365 11.6348 5.62363 11.148 5.62363H8.75V10.5462C8.75 10.9359 8.45742 11.2495 8.09375 11.2495ZM14 11.015V14.2968C14 14.6865 13.7074 15 13.3438 15H0.65625C0.292578 15 0 14.6865 0 14.2968V11.015C0 10.6253 0.292578 10.3118 0.65625 10.3118H4.375V10.5462C4.375 11.4516 5.06133 12.1871 5.90625 12.1871H8.09375C8.93867 12.1871 9.625 11.4516 9.625 10.5462V10.3118H13.3438C13.7074 10.3118 14 10.6253 14 11.015ZM10.6094 13.5935C10.6094 13.2712 10.3633 13.0075 10.0625 13.0075C9.76172 13.0075 9.51562 13.2712 9.51562 13.5935C9.51562 13.9159 9.76172 14.1796 10.0625 14.1796C10.3633 14.1796 10.6094 13.9159 10.6094 13.5935ZM12.3594 13.5935C12.3594 13.2712 12.1133 13.0075 11.8125 13.0075C11.5117 13.0075 11.2656 13.2712 11.2656 13.5935C11.2656 13.9159 11.5117 14.1796 11.8125 14.1796C12.1133 14.1796 12.3594 13.9159 12.3594 13.5935Z" fill="#026F81"/>
+                    </svg>
+                </label>
+            </div>
+        </div>
+
+        <button class="cadastrar">Atualizar</button>
+    </main>
+    <script src="../bundles/menus.bundle.js"></script>
+    <script src='../bundles/editarViagem.bundle.js'></script>
+</body>
+</html>

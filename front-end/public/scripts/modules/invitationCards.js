@@ -2,22 +2,25 @@ export default function invitationsCards(){
     return {
 
         setCloneUserAttributes: function({ imageField, nameField, usernameField }, data){
-        
             imageField.src = data.autor.foto;
             nameField.innerText = data.autor.nome;
             usernameField.innerText = data.autor.username;
         },
 
         setCloneTravelAttributes: function({ titleField, dateField }, data){
+            const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+            const splittedDate = data.viagem.inicio.split("-");
+            const monthIndex = Number.parseInt(splittedDate[1]) - 1;
+            const month = months[monthIndex];
+            const year = splittedDate[0];
 
-            titleField.innerText = data.destino;
-            dateField.innerText = data.month + " | " + data.year;
+            titleField.innerText = data.viagem.destino;
+            dateField.innerText = month + " | " + year;
         },
 
         setCloneButtonsListeners: function(buttonsList, data){
 
             buttonsList.forEach(button => {
-                
                 button.onclick = () => window.dispatchEvent(new CustomEvent("invitation-click", { detail: { "invitation": data.id, "action": button.name }}));
             })
         },

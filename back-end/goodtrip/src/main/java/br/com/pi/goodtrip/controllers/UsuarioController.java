@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pi.goodtrip.dto.CredenciaisDTO;
+import br.com.pi.goodtrip.dto.ForgottenPasswordDTO;
 import br.com.pi.goodtrip.dto.Senha;
 import br.com.pi.goodtrip.dto.TokenDTO;
 import br.com.pi.goodtrip.models.Usuario;
@@ -73,6 +76,17 @@ public class UsuarioController {
 	@PutMapping("/apagar/{id}")
 	public Usuario apagarUsuario(@PathVariable int id){
 		return usuarioService.softDeleteUser(id);
+	}
+	
+	@PostMapping("/recuperar-senha")
+    public ResponseEntity<?> generateAuthenticatedLink(@RequestBody ForgottenPasswordDTO data) throws UsernameNotFoundException {
+    	usuarioService.recoverPassword(data);
+    	return ResponseEntity.noContent().build();
+    }
+	
+	@PutMapping("/recuperarSenha/{id}")
+	public Usuario novaSenha(@PathVariable int id, @RequestBody Senha alterarSenha){
+		return usuarioService.forggotPassword(id, alterarSenha);
 	}
 	
 }

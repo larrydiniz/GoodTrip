@@ -4,6 +4,8 @@ import getItensByTravel from "./requests/getItensByTravel.js"
 import gtHeaders from "./requests/gtHeaders.js"
 import postNewItem from "./requests/postNewItem.js"
 import editItem from "./requests/editItem.js"
+import Optional from "./modules/Optional.js"
+import Fork from "./modules/Fork.js"
 
 const itnc = itensCards();
 const urlp = urlParser();
@@ -29,10 +31,25 @@ window.addEventListener('load', () => {
 
   fetch(request.url, request.init)
     .then(res => res.json())
-    .then(json => Array.isArray(json)? json: false)
-    .then(json => json? json.reduce((acc, current) => current.pessoal? (acc.pessoais.push(current), acc): (acc.comuns.push(current), acc), {"comuns":[], "pessoais":[]}): false)
-    .then(fork => fork? (fork.pessoais.map(data => [data.categoria, itnc.buildPersonalCard(templatePersonalItem, data)]).forEach(tuple => personalBlocks[tuple[0]].appendChild(tuple[1])), fork): false)
-    .then(fork => fork? fork.comuns.map(data => itnc.buildCommonCard(templateCommonItem, data)).forEach(card => commonItensBlock.appendChild(card)): false)
+    .then(json => {
+
+      const fork = Fork.of(json)
+                       .between("pessoais", "comuns")
+                       .flatReduce(curr => curr.pessoal)
+
+      const toAppendPersonalTuples = Optional.of(fork.pessoais)
+                                            .flatMap(data => [data.categoria, itnc.buildPersonalCard(templatePersonalItem, data)])
+                                            .getOrElse(() => { throw new Error("Erro no fork de itens pessoais") })
+
+      const toAppendCommomCards = Optional.of(fork.comuns)
+                                          .flatMap(data => itnc.buildCommonCard(templateCommonItem, data))
+                                          .getOrElse(() => { throw new Error("erro no fork de itens comuns")})
+
+      toAppendPersonalTuples.forEach(tuple => personalBlocks[tuple[0]].appendChild(tuple[1]))
+
+      toAppendCommomCards.forEach(card => commonItensBlock.appendChild(card))
+
+    })
     .then(() => window.dispatchEvent(new Event('checkboxesAreMounted')))
 })
 

@@ -1,6 +1,7 @@
 import updateUserInfos from "./requests/updateUserInfos.js"
 import imagePreviewer from "./utils/imagePreviewer.js"
 import postUploadUserImage from "./requests/postUploadUserImage.js"
+import Inputs from "./modules/Inputs.js"
 import gtHeaders from "./requests/gtHeaders.js";
 
 const navMenu = document.getElementById("menu");
@@ -16,8 +17,8 @@ inputImg.addEventListener('change', imagePreviewer({input: inputImg, previewBox:
 sendButton.addEventListener('click', () => {
 
     Promise.resolve(inputsList)
-           .then(inputs => inputs.map(input => input.value != undefined && input.value != null && input.value != "" && input.value.length > 2? input: (input.value = "__inalterado__", input)))
-           .then(inputs => inputs.reduce((acc, currentInput) => (acc[currentInput.name] = currentInput.value, currentInput.value = "", acc), {}))
+           .then(inputs => inputs.map(Inputs.areUnaltered))
+           .then(inputs => inputs.reduce(Inputs.reduceByInputName, {}))
            .then(body => updateUserInfos(gtHeaders.authorized(), body))
            .then(request => fetch(request.url, request.init))
            .then(res => res.json())

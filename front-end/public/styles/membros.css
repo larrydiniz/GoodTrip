@@ -73,6 +73,7 @@ div#membros_usuarios, div#membros_convidados{
 }
 
 div#membros_convidar{
+    overflow-y: auto;
     position: relative;
     top: 130px;
 }

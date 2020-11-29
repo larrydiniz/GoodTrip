@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.com.pi.goodtrip.dto.ForgottenPasswordDTO;
+import br.com.pi.goodtrip.utils.Mail;
 import br.com.pi.goodtrip.dto.CredenciaisDTO;
 import br.com.pi.goodtrip.dto.Senha;
 import br.com.pi.goodtrip.dto.TokenDTO;
@@ -39,10 +41,15 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioRepository repository;
+    
+    @Autowired
+    private EmailService emailService;
 	
 	private Optional<String> hasValidEmailUserField(Usuario user){
 		return Optional.of(user.getEmail())
 						.filter(email -> repository.checkEmailExists(email).isEmpty())
+						.filter(email -> email.length() > 0)
+						.filter(email -> email.contains("@"))
 						.map(email -> email.substring(0, email.indexOf("@")))
 						.filter(username -> username.length() > 0)
 						.filter(username -> !username.contains("@"))
@@ -51,6 +58,7 @@ public class UsuarioService {
 	
 	private Optional<String> hasValidEmailDomain(Usuario user){
 		return	Optional.of(user.getEmail())
+						.filter(email -> email.contains("@"))
 						.map(email -> email.substring(email.indexOf("@") + 1, email.length()))
 						.filter(domain -> domain.length() > 2)
 						.filter(domain -> !domain.contains("@"))
@@ -104,20 +112,20 @@ public class UsuarioService {
 
 	public Usuario writeAnUser(Usuario user) throws IllegalArgumentException{
 		
-		hasValidUsername(user)
-			.orElseThrow(() -> new IllegalArgumentException("Username de usuário inválido"));
-		
 		hasValidName(user)
-		    .orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
+	    .orElseThrow(() -> new IllegalArgumentException("Nome não pode ser vazio"));
+		
+		hasValidUsername(user)
+			.orElseThrow(() -> new IllegalArgumentException("Nome de usuário inválido"));
 		
         hasValidEmailUserField(user)
-        	.orElseThrow(() -> new IllegalArgumentException("Email com usuário inválido"));
+        	.orElseThrow(() -> new IllegalArgumentException("Email com usuário inválido ou já cadastrado no sistema"));
         
         hasValidEmailDomain(user)
         	.orElseThrow(() -> new IllegalArgumentException("Email com domínio inválido"));
         
         hasValidPassword(user)
-    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
+    		.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
         
         String cryptPassword = passwordEncoder.encode(user.getSenha());
         
@@ -194,7 +202,7 @@ public class UsuarioService {
 				
 			} else throw new IllegalArgumentException("As senhas não batem");
 			
-		} else throw new IllegalArgumentException("Senha inválida");
+		} else throw new IllegalArgumentException("Senha atual inválida");
 	}
 	
 	public Usuario softDeleteUser(int id) throws NoSuchElementException{
@@ -229,4 +237,52 @@ public class UsuarioService {
 		}
 	}
 	
+    public void recoverPassword(ForgottenPasswordDTO dto) {
+    		Optional.of(dto.getEmail())
+    						.filter(email -> email.length() > 0)
+    						.filter(email -> email.contains("@"))
+    						.map(email -> email.substring(0, email.indexOf("@")))
+    						.filter(username -> username.length() > 0)
+    						.filter(username -> !username.contains("@"))
+    						.filter(username -> !username.contains(" "))
+    						.map(email -> email.substring(email.indexOf("@") + 1, email.length()))
+    						.filter(domain -> domain.length() > 2)
+    						.filter(domain -> !domain.contains("@"))
+    						.filter(domain -> !domain.contains(" "))
+    						.filter(domain -> domain.indexOf(".") > 0)
+    						.filter(domain -> domain.lastIndexOf(".") < domain.length() - 1)
+    						.orElseThrow(() -> new IllegalArgumentException("E-mail inválido"));
+
+    	Optional<Usuario> userOpt = repository.findByEmail(dto.getEmail());
+    	    	
+    	if(userOpt.isPresent()) {
+    		Usuario user = userOpt.get();
+    		String token = jwtService.gerarToken(user);
+    		
+    		Mail mail = new Mail();
+    		mail.setToEmail(dto.getEmail());
+    		mail.setSubject("Recuperação de senha - goodtrip.com.br");
+    		emailService.sendEmail(mail, token);
+    	}
+    }
+	
+    public Usuario forggotPassword(int id, Senha senha) {
+		Usuario user = repository.findById(id)
+				                      .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+		
+			
+			hasValidPasswordUpdate(senha)
+	    	.orElseThrow(() -> new IllegalArgumentException("A senha deve conter no mínimo 6 caracteres."));
+			
+			if(senha.getNova_senha().equals(senha.getConfirmar_senha())) {
+				
+				String cryptPassword = passwordEncoder.encode(senha.getNova_senha());
+
+				user.setSenha(cryptPassword);
+				repository.save(user);
+				
+				return user;
+			
+		} else throw new IllegalArgumentException("Senhas não batem");
+	}
 }

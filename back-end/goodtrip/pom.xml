@@ -15,7 +15,7 @@
 	<description>Projeto Integrador - DH - Organizador de roteiro de viagens</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 		<dependencies>
@@ -81,6 +81,11 @@
 				<groupId>io.springfox</groupId>        
 				<artifactId>springfox-swagger-ui</artifactId>        
 				<version>2.9.2</version>    
+		</dependency>
+		
+		<dependency>            
+				<groupId>org.springframework.boot</groupId>            
+				<artifactId>spring-boot-starter-mail</artifactId>        
 		</dependency>
 		
 	</dependencies>

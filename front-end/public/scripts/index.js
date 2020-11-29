@@ -7,6 +7,7 @@ import StorageUserId from "../scripts/modules/StorageUserId.js"
 import Optional from "../scripts/modules/Optional.js"
 import { classToggler, sourceToggler, typeToggler } from "./utils/togglers.js"
 import gtHeaders from "./requests/gtHeaders.js"
+import swal from 'sweetalert';
 
 const overlay = document.querySelector("div.overlay");
 const nav = document.querySelector("nav#menu");
@@ -17,6 +18,8 @@ const loginModalCloseButton = document.querySelector("button.login.fechar");
 const loginModalContent = document.querySelector("div.login.modal");
 const loginButton = document.querySelector("button.entrar");
 const loginEmail = document.querySelector("input#email-login");
+const openRegister = document.getElementById('open-register');
+const forggotPass = document.getElementById('esqueci-senha');
 
 const registerModalOpenButton = document.querySelector("button#cadastrar.menu");
 const registerModalCloseButton = document.querySelector("button.cadastro.fechar");
@@ -45,9 +48,16 @@ const passwordFieldsList = [loginPasswordField, passwordRegisterField, confirmPa
 
 const loginModal = md.defineModal(loginModalOpenButton, loginModalCloseButton, loginModalContent);					
 const registerModal = md.defineModal(registerModalOpenButton, registerModalCloseButton, registerModalContent);
+const divErro = document.getElementById('erro');
+const divErroC = document.getElementById('erroc')
 const definedModalsList = [loginModal, registerModal];
 								  
 nav.addEventListener("click", classToggler({element: nav, toggleClass: "show"}));
+
+openRegister.addEventListener("click", function(){
+	loginModalContent.classList.remove('show');
+	registerModalContent.classList.add('show');
+});
 
 overlay.addEventListener("toggling", classToggler({element: ulNav, toggleClass: "hide"}));
 
@@ -64,7 +74,7 @@ loginButton.addEventListener('click', () => {
 
 			const token = Optional.of(json.token)
 								  .filter(token => token.length > 1)
-								  .getOrElse(() => { throw new Error("Token inválido")})
+								  .getOrElse(() => {divErro.innerHTML = `<p>E-mail ou senha incorretos</p>`;})
 
 			const id = Optional.of(json.id)
 							   .filter(id => !isNaN(id))
@@ -78,20 +88,40 @@ loginButton.addEventListener('click', () => {
 })
 
 registerButton.addEventListener('click', () => {
+	let passwordException = '';
+
+	const password = Optional.of(passwordRegisterInput.value)
+	                         .filter(password => password === passwordConfirmInput.value)
+							 .getOrElse(() => {passwordException = 'Senhas não são iguais'})
+	
+	if (!(registerUsername.value).includes('@')){
+		registerUsername.value = "@" + registerUsername.value;
+	}
 
 	const requestBody = { "nome": registerName.value,
-						  "username": "@" + registerUsername.value,
+						  "username": registerUsername.value,
 						  "email": registerEmail.value,
 						  "ativo": true,
-						  "senha": Optional.of(passwordRegisterInput.value)
-										   .filter(password => password === passwordConfirmInput.value)
-										   .getOrElse(() => { throw new Error("Senhas não são iguais")}) }
+						  "senha": password }
 
 	const request = postNewUser( gtHeaders.commom(), requestBody)
 
 	fetch(request.url, request.init)
 		.then(res => res.json())
-		.then(json => console.log(json))
+		.then(json => {
+			if (json.message == undefined) {
+				swal ( "Cadastro efetuado com sucesso!" , { 
+					icon: "success",
+					buttons : false, 
+					timer : 2000 })
+				.then((value) => window.location.href = "index.html");
+			}
+			else if(json.message !== undefined && json.message !== 'No message available') {
+				divErroC.innerHTML = `<p>${json.message}</p>`;
+			} else {
+				divErroC.innerHTML = `<p>${passwordException}</p>`;
+			}
+		})
 		.catch(error => console.log(error));
 })
 
@@ -108,3 +138,69 @@ window.addEventListener('load', () => {
 		md.addTogglingListeners(modal);
 	})
 })
+
+forggotPass.addEventListener('click', () => {
+	swal({
+		text: 'Digite seu e-mail cadastrado no sistema: ',
+		content: "input",
+		button: {
+		  text: "Recuperar Senha",
+		  closeModal: false,
+		},
+	  })
+	  .then(name => {
+		if (!name) throw null;
+
+		const init = { "headers": gtHeaders.authorized(), 
+		"method": "POST", 
+		"body": `{"email": "${name}"}`,
+		"mode": "cors",
+		"redirect": "follow" }
+	   
+		return fetch(`http://localhost:3333/usuarios/recuperar-senha`, init);
+	  })
+	  .then(results => {
+		return results.json();
+	  })
+	  .then(json => {
+		  console.log(json.message)
+			if(json.message !== undefined){
+				swal ({
+					title: "E-mail inválido!",
+					text: "Tente novamente",
+					icon: "error",
+					buttons : false, 
+					timer : 2000 })
+				swal.stopLoading();
+			} else {
+				swal ({
+					title: "E-mail Enviado!",
+					text: "Caso não encontre o e-mail de recuperação, verifique a caixa de span.",
+					icon: "success",
+					buttons : false, 
+					timer : 3000 })
+				.then((value) => window.location.href = "index.html");
+			} 
+		}) 
+	  .catch(err => {
+		if (err) {
+		  swal("Erro", "Falha ao enviar e-mail. Tente novamente", "error");
+		} else {
+		  swal.stopLoading();
+		  swal.close();
+		}
+	  });
+})
+
+
+
+
+/* 
+https://firebase.google.com/docs/auth/web/google-signin?hl=pt-br 
+https://developers.google.com/identity/sign-in/web/sign-in
+https://firebase.google.com/docs/auth/android/google-signin?hl=pt-Br
+https://developers.google.com/api-client-library/java/google-api-java-client/oauth2
+
+*/
+
+/* S3nh40k0k */

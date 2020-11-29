@@ -38,10 +38,10 @@ public class ViagemService {
 	}
 	
 	private Optional<String> hasValidEnd(Viagem travel){
-		return Optional.ofNullable(travel.getInicio())
-				       .filter(ini -> !(ini.length() > 10))
-				       .filter(ini -> !(ini.length() < 8))
-				       .filter(ini -> !ini.contains(" "));
+		return Optional.ofNullable(travel.getTermino())
+				       .filter(end -> !(end.length() > 10))
+				       .filter(end -> !(end.length() < 8))
+				       .filter(end -> !end.contains(" "));
 	}
 	
 	public Viagem readATravelById(int id) throws NoSuchElementException{
@@ -128,5 +128,21 @@ public class ViagemService {
 		deleteTrip.setApagada(today);
 		
 		return viagemRepo.save(deleteTrip);
+	}
+	
+	public List <Viagem> readTripByLocal(String q, int usuario) throws NoSuchElementException{
+		List<Viagem> foundTrip = viagemRepo.selectTripByLocalName(q, usuario);
+		
+		Optional.of(foundTrip).orElseThrow(() -> new NoSuchElementException("Viagem não encontrada"));
+		
+		return foundTrip;
+	}
+	
+	public List <Viagem> readTripByLocalBeingMember(String q, int usuario) throws NoSuchElementException{
+		List<Viagem> foundTrip = viagemRepo.selectTripByLocalNameBeingMember(q, usuario);
+		
+		Optional.of(foundTrip).orElseThrow(() -> new NoSuchElementException("Viagem não encontrada"));
+		
+		return foundTrip;
 	}
 }

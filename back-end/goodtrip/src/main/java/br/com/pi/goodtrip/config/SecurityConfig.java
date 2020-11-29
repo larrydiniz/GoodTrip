@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
     private UsuarioServiceImpl usuarioService;
+	
     @Autowired
     private JwtService jwtService;
 
@@ -51,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     .permitAll()
                 .antMatchers(HttpMethod.POST, "/usuarios/auth")
                     .permitAll()
+                .antMatchers(HttpMethod.POST, "/usuarios/recuperar-senha")
+                .permitAll()
                 .antMatchers("/usuarios/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/viagens/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/itens/**").hasAnyRole("USER", "ADMIN")

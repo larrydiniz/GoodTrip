@@ -102,7 +102,7 @@
                 <div id="adicionar-item-roupas" action="/data/itens.json">
                     <input type="hidden" name="categoria" value="1" readonly>
                     <input type="hidden" name="pessoal" value="true" readonly>
-                    <input name="nome" type="text" placeholder="Adicionar roupa...">
+                    <input class="input-item" name="nome" type="text" placeholder="Adicionar roupa...">
                     <button class="add-btn" id="btn-add-roupa">+</button>
                 </div>
                 <ul id="lista-roupas" class="lista-itens">
@@ -112,7 +112,7 @@
                 <div id="adicionar-item-higiene" action="/data/itens.json">
                     <input type="hidden" name="categoria" value="0" readonly>
                     <input type="hidden" name="pessoal" value="true" readonly>
-                    <input name="nome" type="text" placeholder="Adicionar item de higiene...">
+                    <input class="input-item" name="nome" type="text" placeholder="Adicionar item de higiene...">
                     <button class="add-btn" id="btn-add-higiene">+</button>
                 </div>
                 <ul id="lista-higiene" class="lista-itens">
@@ -122,7 +122,7 @@
                 <div id="adicionar-item-outros" action="/data/itens.json">
                     <input type="hidden" name="categoria" value="2" readonly>
                     <input type="hidden" name="pessoal" value="true" readonly>
-                    <input name="nome" type="text" placeholder="Adicionar item...">
+                    <input class="input-item" name="nome" type="text" placeholder="Adicionar item...">
                     <button class="add-btn" id="btn-add-outro">+</button>
                 </div>
                 <ul id="lista-outros" class="lista-itens">
@@ -135,7 +135,7 @@
                 <div id="adicionar-item" action="/data/itens.json">
                     <input type="hidden" name="categoria" value="3" readonly>
                     <input type="hidden" name="pessoal" value="false" readonly>
-                    <input name="nome" type="text" placeholder="Adicionar à lista da viagem...">
+                    <input class="input-item" name="nome" type="text" placeholder="Adicionar item coletivo...">
                     <button class="add-btn" id="btn-add-comum">+</button>
                 </div>
                 <ul id="lista-itens-viagem" class="lista-itens-comuns">
@@ -150,7 +150,8 @@
         <li class="item-pessoal">
             <input type="hidden" name="id" value="" readonly>
             <input type="hidden" name="categoria" value="" readonly>
-            <input type="checkbox" name="checado" id="" class="item-checkbox">
+            <input type="checkbox" name="checado" id="" class="item-checkbox" hidden>
+            <label for="" class="item-checkbox-style"><!-- personalização do checkbox --></label>
             <label for="" class="item-label"><!-- Nome de item adicionado dinamicamente --></label>
         </li>
     </template>
@@ -160,7 +161,8 @@
             <div class="botao-check">
                 <input type="hidden" name="id" value="" readonly>
                 <input type="hidden" name="categoria" value="3" readonly>
-                <input type="checkbox" name="checado" id="" class="item-checkbox">
+                <input type="checkbox" name="checado" id="" class="item-checkbox" hidden>
+                <label for="" class="item-checkbox-style"><!-- personalização do checkbox --></label>
                 <label for="" class="item-label"><!-- Nome de item adiciconado dinamicamente --></label>
             </div>
             <div class="item-autor">
