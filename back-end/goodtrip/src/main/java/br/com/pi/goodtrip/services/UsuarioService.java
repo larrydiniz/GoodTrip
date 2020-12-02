@@ -268,7 +268,7 @@ public class UsuarioService {
 	
     public Usuario forggotPassword(int id, Senha senha) {
 		Usuario user = repository.findById(id)
-				                      .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+				                 .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 		
 			
 			hasValidPasswordUpdate(senha)

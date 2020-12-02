@@ -292,6 +292,12 @@ button.add-btn{
     opacity: 1;
   }
 
+  .delete-item-personal, .delete-item-common{
+      border: none;
+      background-color: transparent;
+      color: var(--vermelho-btn);
+  }
+
 @media (max-width: 425px){
     .titulo-viagem{
         background-color: #28de71ab;

@@ -41,13 +41,15 @@ export default function itensCards(){
             const checkBox = card.children[2];
             const labelCheck = card.children[3];
             const label = card.children[4];
+            const deleteButton = card.children[5];
         
             return {
                 "identityField": identity,
                 "categoryField": category,
                 "checkboxField": checkBox,
                 "labelCheckbox": labelCheck,
-                "labelField": label
+                "labelField": label,
+                "deleteButton": deleteButton
             }
         },
 
@@ -56,7 +58,7 @@ export default function itensCards(){
             this.setCheckboxAttributes(identityField, checkboxField, labelCheckbox, labelField, data);
             
             imageField.src = data.usuario.foto;
-            usernameField.innerText = data.usuario.username;
+            //usernameField.innerText = data.usuario.username;
             labelField.innerText = data.nome;
         },
 
@@ -68,6 +70,7 @@ export default function itensCards(){
             const checkbox = commonCard.children[0].children[2];
             const labelCheck = commonCard.children[0].children[3];
             const label = commonCard.children[0].children[4];
+            const deleteButton = commonCard.children[0].children[5];
 
             return {
                 "identityField": identity,
@@ -75,7 +78,8 @@ export default function itensCards(){
                 "usernameField": user,
                 "checkboxField": checkbox,
                 "labelCheckbox": labelCheck,
-                "labelField": label
+                "labelField": label,
+                "deleteButton": deleteButton
             }
         },
 

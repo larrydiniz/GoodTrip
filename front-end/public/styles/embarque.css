@@ -27,6 +27,12 @@
     margin-right: 10px;
 }
 
+.convite-user-imagem{
+    border-radius: 36px;
+    width: 72px;
+    height: 72px;
+}
+
 .user {
     width: 70%;
     display: flex;
