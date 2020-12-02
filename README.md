@@ -54,7 +54,7 @@ Desenvolvimento do back-end, usando Spring Boot e Rest API.
 - [x] Definir Rotas
 - [x] Gerar Controllers
 - [x] Implementar autenticação JWT
-- [ ] Implementar recuperação de senha
+- [x] Implementar recuperação de senha
 
 ### Sprint 6
 Conexão do back-end ao front-end.
@@ -65,7 +65,7 @@ Conexão do back-end ao front-end.
 - [x] Tarefas
 - [x] Embarques
 - [x] Membros
-- [ ] Mala
+- [x] Mala
 
 
 
