@@ -151,6 +151,7 @@ div.membros-fotos.ativa{
 }
 
 img.imagem-membro{
+    border-radius: 16px;
     height: 32px;
     width: 32px;
     margin: 4px 4px 4px 4px;

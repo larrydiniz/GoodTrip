@@ -1,3 +1,12 @@
+header .voltar{
+    margin-right: 25px;
+    background-color: white;
+    border: none;
+    width: 30px;
+    height: 25px;
+
+}
+
 main#membros_content{
     display: flex;
     flex-direction: column;
@@ -125,6 +134,16 @@ input#membros_busca_amigo{
 }
 
 @media (min-width: 800px){
+
+    header .voltar{
+        margin-left: 30px;
+        background-color: white;
+        border: none;
+        width: 30px;
+        height: 25px;
+        position: absolute;
+        right: 0;
+    }
 
     button.membro_cancelar_convite, button.membro_convidar{
         border-radius: 8px;

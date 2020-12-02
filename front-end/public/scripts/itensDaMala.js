@@ -6,6 +6,7 @@ import postNewItem from "./requests/postNewItem.js"
 import editItem from "./requests/editItem.js"
 import Optional from "./modules/Optional.js"
 import Fork from "./modules/Fork.js"
+import deleteIten from "./requests/deleteIten.js"
 
 const itnc = itensCards();
 const urlp = urlParser();
@@ -24,6 +25,9 @@ const templateCommonItem = document.querySelector("template#t-item-comum");
 const addButtons = [...document.getElementsByClassName("add-btn")];
 const personalBlocks = [personalHygieneBlock, personalClothsBlock, personalOthersBlock];
 const urlParams = urlp.mapVariables(location.href);
+const userid = localStorage.getItem("USER_ID");
+
+//data.fk_id_usuario == userid
 
 window.addEventListener('load', () => {
 
@@ -86,4 +90,43 @@ window.addEventListener('checkboxChangeValue', (e) => {
 
   fetch(request.url, request.init)
     .catch(e => console.log(e))
+})
+
+window.addEventListener('checkboxesAreMounted', () => {
+  const deletePersonalButtons = [... document.getElementsByClassName("delete-item-personal")]
+  const deleteCommonButtons = [... document.getElementsByClassName("delete-item-common")]
+
+  if(deletePersonalButtons.length){
+
+    deletePersonalButtons.forEach(button => {
+  
+      const itemId = button.parentElement.children[0].value
+  
+      button.onclick = () => {
+        
+        console.log(itemId)
+        const request = deleteIten(gtHeaders.authorized(), itemId)
+  
+        fetch(request.url, request.init)
+          .then(() => window.location.reload())
+      }
+    })
+  }
+
+  if(deleteCommonButtons.length){
+
+    deleteCommonButtons.forEach(button => {
+  
+      const itemId = button.parentElement.children[0].children[0].value
+  
+      button.onclick = () => {
+        
+        console.log(itemId)
+        const request = deleteIten(gtHeaders.authorized(), itemId)
+  
+        fetch(request.url, request.init)
+          .then(() => window.location.reload())
+      }
+    })
+  }
 })
