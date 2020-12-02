@@ -18,7 +18,7 @@ public class TarefaService {
 	private Optional<String> hasValidTitle(Tarefa task){
 		return Optional.ofNullable(task.getTitulo())
 				       .filter(t -> !t.isBlank())
-				       .filter(t -> t.length() < 20);
+				       .filter(t -> t.length() < 50);
 	}
 	
 	private Optional<String> hasValidHourly(Tarefa task){

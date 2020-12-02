@@ -24,6 +24,9 @@ const templateCommonItem = document.querySelector("template#t-item-comum");
 const addButtons = [...document.getElementsByClassName("add-btn")];
 const personalBlocks = [personalHygieneBlock, personalClothsBlock, personalOthersBlock];
 const urlParams = urlp.mapVariables(location.href);
+const userid = localStorage.getItem("USER_ID");
+
+//data.fk_id_usuario == userid
 
 window.addEventListener('load', () => {
 

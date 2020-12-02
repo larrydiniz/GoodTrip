@@ -26,7 +26,6 @@ sendButton.addEventListener('click', () => {
 })
 
 sendButton.addEventListener('click', () => {
-
     const formdata = new FormData();
 
     formdata.append("foto", inputImg.files[0]);
@@ -35,8 +34,8 @@ sendButton.addEventListener('click', () => {
 
     const request = postUploadUserImage(requestBody)
 
-    fetch(request.url, request.init)
-})
+    fetch(request.url, request.init)}
+)
 
 navMenu.addEventListener("menuWasBuilded", e => {
 

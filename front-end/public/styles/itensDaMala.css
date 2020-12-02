@@ -166,10 +166,10 @@ div.data-viagem{
 /* Listas de itens */
 
 span#divisoria-listas{
-    background-color: skyblue;
-    margin: 5px 0 5px 10vw;
+    background-color: #ddd;
+    margin: 50px auto 5px;
     height: 1px;
-    width: 80vw;
+    width: 90vw;
 }
 
 section#lista-itens{
@@ -218,7 +218,7 @@ div.item-autor{
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin-left: 40px;
+    margin-left: 20px;
 }
 
 div.item-autor > p {
@@ -239,6 +239,10 @@ div#itens-viagem{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#itens-viagem h2{
+    text-align: center;
 }
 
 .input-item{
