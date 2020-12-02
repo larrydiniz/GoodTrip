@@ -58,7 +58,7 @@ Desenvolvimento do back-end, usando Spring Boot e Rest API.
 
 ### Sprint 6
 Conexão do back-end ao front-end.
-- [ ] Login e cadastro
+- [x] Login e cadastro
 - [x] Lista de Viagens
 - [x] Agenda de Viagens
 - [x] Alterar Senha
