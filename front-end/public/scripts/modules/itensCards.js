@@ -28,10 +28,10 @@ export default function itensCards(){
 
         setClonePersonalAttributes: function({ identityField, categoryField, checkboxField, labelCheckbox, labelField}, data){
             
-            this.setCheckboxAttributes(identityField, checkboxField, labelCheckbox, labelField, data);
+                this.setCheckboxAttributes(identityField, checkboxField, labelCheckbox, labelField, data);
 
-            categoryField.setAttribute('value', data.categoria);
-            labelField.innerText = data.nome;
+                categoryField.setAttribute('value', data.categoria);
+                labelField.innerText = data.nome;
         },
         
         mapClonePersonalCard: function(fragment){
@@ -88,7 +88,7 @@ export default function itensCards(){
             const mappedPersonalCard = this.mapClonePersonalCard(clonedPersonalCard);
         
             this.setClonePersonalAttributes(mappedPersonalCard, data);
-        
+
             return clonedPersonalCard;
         },
 

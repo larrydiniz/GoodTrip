@@ -93,6 +93,6 @@ button:hover {
     svg:hover > path, svg:hover > g > path{
         cursor: pointer;
         transition: 0.5s;
-        fill: var(--amarelo);
+        fill: var(--btn-azul-hover);
     }
 }
